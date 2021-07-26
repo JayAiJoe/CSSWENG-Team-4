@@ -6,14 +6,14 @@ plugins {
 
 compileJava {
     options.release.set(11)
+}
 
-    doFirst {
-        options.compilerArgs += [
-                '--module-path', classpath.asPath,
-                '--add-modules', 'javafx.controls',
-                '--add-modules', 'javafx.fxml',
-                '--add-modules', 'javafx.base',
-        ]
+startScripts {
+    doLast {
+        def defaultScript = '"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %CSSWENG_TEAM_4_OPTS%  -classpath "%CLASSPATH%" driver.Driver %*'
+        def temp = defaultScript.split(" {2}")
+        def newScript = "${temp[0]} --module-path \"%CLASSPATH%\" --add-modules javafx.controls ${temp[1]}" as String
+        windowsScript.text = windowsScript.text.replace(defaultScript, newScript)
     }
 }
 
