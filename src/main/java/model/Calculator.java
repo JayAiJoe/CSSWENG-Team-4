@@ -1,8 +1,10 @@
 package model;
 
-// TODO: check invalid inputs i.e. negative inputs, maybe
-
 import java.util.ArrayList;
+
+/* TODO: Check invalid inputs i.e. negative inputs, maybe
+         Check other exceptions
+ */
 
 /**
  * This class is responsible for all computations related
@@ -13,19 +15,19 @@ public class Calculator {
     /** The instance of the Calculator class. */
     private static Calculator instance = null;
     /** The FeeTable for the PhilHealth Fee. */
-    private FeeTable philhealthFeeTable;
+    private PhilHealthFeeTable philhealthFeeTable;
     /** The FeeTable for the Pag-Ibig Fee. */
-    private FeeTable pagibigFeeTable;
-    /** The FeeTable for the SSS Fee. */
-    private FeeTable sssFeeTable;
+    private PagIbigFeeTable pagibigFeeTable;
+//    /** The FeeTable for the SSS Fee. */
+//    private FeeTable sssFeeTable;
 
     /**
      * A constructor for a Calculator.
      */
     private Calculator() {
-        philhealthFeeTable = new FeeTable(FeeTable.PHILHEALTH_FILE_NAME);
-        pagibigFeeTable = new FeeTable(FeeTable.PAG_IBIG_FILE_NAME);
-        sssFeeTable = new FeeTable(FeeTable.SSS_FILE_NAME);
+        philhealthFeeTable = new PhilHealthFeeTable();
+        pagibigFeeTable = new PagIbigFeeTable();
+//        sssFeeTable = new SSSFeeTable();
     }
 
     /**
@@ -86,10 +88,26 @@ public class Calculator {
      * based on the employee's monthly basic salary.
      * @param salary the monthly basic salary of an employee
      * @return the PhilHealth Fee to be paid by an employee
-     * @throws Exception if the salary does not fit any range
      */
-    public double computePhilHealthFee(double salary) throws Exception {
-        return computeGovtFee(salary, philhealthFeeTable.getFormulas());
+    public double computePhilHealthFee(double salary) {
+        ArrayList<ArrayList<Double>> formulas = philhealthFeeTable.getFormulas();
+        int n = formulas.size();
+
+        for (int i = 0; i < n; i++) {
+            double lower_bound = formulas.get(i).get(0);
+            double upper_bound = formulas.get(i).get(1);
+            double value = formulas.get(i).get(2);
+
+            if (salary >= lower_bound && salary <= upper_bound) {
+                if (i == 0 || i == n - 1) {
+                    return value;
+                } else {
+                    return value * salary;
+                }
+            }
+        }
+
+        return 0;
     }
 
     /**
@@ -97,10 +115,26 @@ public class Calculator {
      * based on the employee's monthly basic salary.
      * @param salary the monthly basic salary of on employee
      * @return the Pag-Ibig Fee to be paid by an employee
-     * @throws Exception if the salary does not fit any range
      */
-    public double computePagIbigFee(double salary) throws Exception {
-        return computeGovtFee(salary, pagibigFeeTable.getFormulas());
+    public double computePagIbigFee(double salary) {
+        ArrayList<ArrayList<Double>> formulas = pagibigFeeTable.getFormulas();
+        int n = formulas.size();
+
+        for (int i = 0; i < n; i++) {
+            double lower_bound = formulas.get(i).get(0);
+            double upper_bound = formulas.get(i).get(1);
+            double value = formulas.get(i).get(2);
+
+            if (salary >= lower_bound && salary <= upper_bound) {
+                if (i == n - 1) {
+                    return value;
+                } else {
+                    return value * salary;
+                }
+            }
+        }
+
+        return 0;
     }
 
     /**
@@ -108,33 +142,19 @@ public class Calculator {
      * based on the employee's monthly basic salary.
      * @param salary the monthly basic salary of an employee
      * @return the SSS Fee to be paid by an employee
-     * @throws Exception if the salary does not fit any range
      */
-    public double computeSSSFee(double salary) throws Exception {
-        return computeGovtFee(salary, sssFeeTable.getFormulas());
+    public double computeSSSFee(double salary) {
+        // TODO: Implement this method
+        return 0;
     }
 
     /**
-     * Computes for a government fee to be paid by an employee
-     * based on the employee's monthly basic salary and the
-     * fee table of the government fee.
-     * @param salary the monthly basic salary of an employee
-     * @param formulas the fee table of the government fee
-     * @return the government fee to be paid by an employee
-     * @throws Exception if the salary does not fit any range
+     * Closes the fee tables so that their contents are saved to
+     * the appropriate binary files.
      */
-    private double computeGovtFee(double salary, ArrayList<ArrayList<Double>> formulas)
-            throws Exception {
-        for (ArrayList<Double> row: formulas) {
-            double lower_bound = row.get(0);
-            double upper_bound = row.get(1);
-            double rate = row.get(2);
-            double constant = row.get(3);
-
-            if (salary >= lower_bound && salary < upper_bound) {
-                return rate * salary + constant;
-            }
-        }
-        throw new Exception("Salary does not fit any range");
+    public void close() {
+        philhealthFeeTable.close();
+        pagibigFeeTable.close();
+        // sssFeeTable.close();
     }
 }
