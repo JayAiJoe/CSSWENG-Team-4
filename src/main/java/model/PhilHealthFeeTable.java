@@ -3,8 +3,6 @@ package model;
 import java.io.*;
 import java.util.ArrayList;
 
-// TODO: Add binary file for PhilHealth fee table
-
 /**
  * This class is responsible for all processes involving the table
  * used in computing for the PhilHealth Fee. These include reading
@@ -79,7 +77,7 @@ public class PhilHealthFeeTable {
                 formulas.add(range);
             } catch (IOException e) {
                 // end of file has been reached
-                System.out.println(e.getMessage());
+                System.out.println("End of file has been reached.");
                 break;
             }
         }
