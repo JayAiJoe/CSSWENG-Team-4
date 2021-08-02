@@ -52,9 +52,13 @@ public class Calculator {
      * @param minutesLate the number of minutes late
      * @param minutesOT the number of minutes overtime
      * @return the total salary of an employee
+     * @throws IllegalArgumentException when one of the inputs is negative
      */
     public double computeSalary(double rate, int workDays, int minutesLate,
-                                       int minutesOT) {
+                                int minutesOT) throws IllegalArgumentException {
+        if (rate < 0 || workDays < 0 || minutesLate < 0 || minutesOT < 0) {
+            throw new IllegalArgumentException("Negative inputs are not allowed");
+        }
         return rate * 8 * workDays + computeOvertime(rate, minutesOT) -
                 computeLateFee(rate, minutesLate);
     }
@@ -66,8 +70,13 @@ public class Calculator {
      * @param rate the hourly rate of an employee
      * @param minutesOT the number of minutes overtime
      * @return the Overtime bonus to be added to an employee's salary
+     * @throws IllegalArgumentException when one of the inputs is negative
      */
-    private double computeOvertime(double rate, int minutesOT) {
+    private double computeOvertime(double rate, int minutesOT)
+            throws IllegalArgumentException {
+        if (rate < 0 || minutesOT < 0) {
+            throw new IllegalArgumentException("Negative inputs are not allowed");
+        }
         return rate * minutesOT / 60 * 1.25;
     }
 
@@ -78,8 +87,13 @@ public class Calculator {
      * @param rate the hourly rate of an employee
      * @param minutesLate the number of minutes late
      * @return the Late Fee to be deducted from an employee's salary
+     * @throws IllegalArgumentException when one of the inputs is negative
      */
-    private double computeLateFee(double rate, int minutesLate) {
+    private double computeLateFee(double rate, int minutesLate)
+            throws IllegalArgumentException {
+        if (rate < 0 || minutesLate < 0) {
+            throw new IllegalArgumentException("Negative inputs are not allowed");
+        }
         return rate * minutesLate / 60;
     }
 
@@ -88,8 +102,16 @@ public class Calculator {
      * based on the employee's monthly basic salary.
      * @param salary the monthly basic salary of an employee
      * @return the PhilHealth Fee to be paid by an employee
+     * @throws IllegalArgumentException when the given salary is negative
+     * @throws Exception when the given salary does not fit in any range in the
+     * PhilHealth fee table
      */
-    public double computePhilHealthFee(double salary) {
+    public double computePhilHealthFee(double salary)
+            throws IllegalArgumentException, Exception {
+        if (salary < 0) {
+            throw new IllegalArgumentException("Salary cannot be negative");
+        }
+
         ArrayList<ArrayList<Double>> formulas = philhealthFeeTable.getFormulas();
         int n = formulas.size();
 
@@ -107,7 +129,7 @@ public class Calculator {
             }
         }
 
-        return 0;
+        throw new Exception("Salary does not fit in any range");
     }
 
     /**
@@ -115,8 +137,16 @@ public class Calculator {
      * based on the employee's monthly basic salary.
      * @param salary the monthly basic salary of on employee
      * @return the Pag-Ibig Fee to be paid by an employee
+     * @throws IllegalArgumentException when the given salary is negative
+     * @throws Exception when the given salary does not fit in any range in the
+     * Pag-Ibig fee table
      */
-    public double computePagIbigFee(double salary) {
+    public double computePagIbigFee(double salary)
+            throws IllegalArgumentException, Exception {
+        if (salary < 0) {
+            throw new IllegalArgumentException("Salary cannot be negative");
+        }
+
         ArrayList<ArrayList<Double>> formulas = pagibigFeeTable.getFormulas();
         int n = formulas.size();
 
@@ -134,7 +164,7 @@ public class Calculator {
             }
         }
 
-        return 0;
+        throw new Exception("Salary does not fit in any range");
     }
 
     /**
