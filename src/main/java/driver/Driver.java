@@ -2,6 +2,6 @@ package driver;
 
 public class Driver {
     public static void main(String[] args) {
-        HelloFX.main(args);
+        Payroll.main(args);
     }
 }
