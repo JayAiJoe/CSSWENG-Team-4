@@ -3,6 +3,8 @@ module Sample.main {
     requires javafx.fxml;
 
     opens driver;
-
     exports driver;
+
+    opens controller;
+    exports controller;
 }
