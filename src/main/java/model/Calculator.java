@@ -2,10 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-/* TODO: Check invalid inputs i.e. negative inputs, maybe
-         Check other exceptions
- */
-
 /**
  * This class is responsible for all computations related
  * to the employees' wages. These include the base wages of employees
@@ -15,19 +11,19 @@ public class Calculator {
     /** The instance of the Calculator class. */
     private static Calculator instance = null;
     /** The FeeTable for the PhilHealth Fee. */
-    private PhilHealthFeeTable philhealthFeeTable;
+    private FeeTable philhealthFeeTable;
     /** The FeeTable for the Pag-Ibig Fee. */
-    private PagIbigFeeTable pagibigFeeTable;
-//    /** The FeeTable for the SSS Fee. */
-//    private FeeTable sssFeeTable;
+    private FeeTable pagibigFeeTable;
+    /** The FeeTable for the SSS Fee. */
+    private FeeTable sssFeeTable;
 
     /**
      * A constructor for a Calculator.
      */
     private Calculator() {
-        philhealthFeeTable = new PhilHealthFeeTable();
-        pagibigFeeTable = new PagIbigFeeTable();
-//        sssFeeTable = new SSSFeeTable();
+        philhealthFeeTable = new FeeTable(FeeTable.PHILHEALTH_FILE_NAME);
+        pagibigFeeTable = new FeeTable(FeeTable.PAG_IBIG_FILE_NAME);
+        sssFeeTable = new FeeTable(FeeTable.SSS_FILE_NAME);
     }
 
     /**
@@ -172,10 +168,27 @@ public class Calculator {
      * based on the employee's monthly basic salary.
      * @param salary the monthly basic salary of an employee
      * @return the SSS Fee to be paid by an employee
+     * @throws IllegalArgumentException when the given salary is negative
+     * @throws Exception when the given salary does not fit in any range in the
+     * SSS fee table
      */
-    public double computeSSSFee(double salary) {
-        // TODO: Implement this method
-        return 0;
+    public double computeSSSFee(double salary)
+            throws IllegalArgumentException, Exception {
+        if (salary < 0) {
+            throw new IllegalArgumentException("Salary cannot be negative");
+        }
+
+        for (ArrayList<Double> range: sssFeeTable.getFormulas()) {
+            double lower_bound = range.get(0);
+            double upper_bound = range.get(1);
+            double value = range.get(2);
+
+            if (salary >= lower_bound && salary <= upper_bound) {
+                return value;
+            }
+        }
+
+        throw new Exception("Salary does not fit in any range");
     }
 
     /**
@@ -185,6 +198,6 @@ public class Calculator {
     public void close() {
         philhealthFeeTable.close();
         pagibigFeeTable.close();
-        // sssFeeTable.close();
+        sssFeeTable.close();
     }
 }

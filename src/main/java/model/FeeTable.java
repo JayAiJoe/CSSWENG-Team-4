@@ -5,40 +5,46 @@ import java.util.ArrayList;
 
 /**
  * This class is responsible for all processes involving the table
- * used in computing for the PhilHealth Fee. These include reading
+ * used in computing for government fees. These include reading
  * the table from a file, writing the table to a file, and updating
  * the table.
  */
-public class PhilHealthFeeTable {
-    /** The file name of the binary file used to store the PhilHealth fee table. */
-    private static final String PHILHEALTH_FILE_NAME = "bin/PhilHealth.bin";
+public class FeeTable {
+    /** The file name of the binary file used to store the fee table. */
+    private String fileName;
     /**
-     * The fee table associated with the PhilHealth Fee. Each row in the table consists
-     * of 3 Doubles, the lower_bound, the upper_bound, the rate. The range found in each row
-     * is [lower_bound, upper_bound] and the formula for this range is rate * salary. The
-     * exceptions to this are the first and last ranges wherein the third Double found is
-     * the exact value of the fee to be paid in the salary range rather than the rate.
+     * The fee table associated with a government fee. Each row in the table consists
+     * of 3 Doubles, the lower_bound, the upper_bound, the rate/value. The range found in each
+     * row is [lower_bound, upper_bound] and the formula for this range is rate * salary or value.
      */
     private ArrayList<ArrayList<Double>> formulas;
 
+    /** The file name of the binary file used to store the Pag-Ibig fee table. */
+    public static final String PAG_IBIG_FILE_NAME = "bin/Pag-Ibig.bin";
+    /** The file name of the binary file used to store the PhilHealth fee table. */
+    public static final String PHILHEALTH_FILE_NAME = "bin/PhilHealth.bin";
+    /** The file name of the binary file used to store the SSS fee table. */
+    public static final String SSS_FILE_NAME = "bin/SSS.bin";
+
     /**
-     * A constructor for the PhilHealthFeeTable that reads the binary
-     * file used to store the PhilHealth fee table.
+     * A constructor for the FeeTable that reads the binary
+     * file used to store a fee table.
      */
-    public PhilHealthFeeTable() {
+    public FeeTable(String fileName) {
+        this.fileName = fileName;
         initialize();
     }
 
     /**
-     * Returns the fee table associated with the PhilHealth Fee.
-     * @return the fee table associated with the PhilHealth Fee
+     * Returns the fee table associated with the government fee.
+     * @return the fee table associated with the government fee
      */
     public ArrayList<ArrayList<Double>> getFormulas() {
         return formulas;
     }
 
     /**
-     * Updates the fee table associated with the PhilHealth Fee.
+     * Updates the fee table associated with the government fee.
      * @param formulas the updated fee table
      */
     public void setFormulas(ArrayList<ArrayList<Double>> formulas) {
@@ -46,7 +52,7 @@ public class PhilHealthFeeTable {
     }
 
     /**
-     * Reads the binary file where the PhilHealth fee table is stored
+     * Reads the binary file where the government fee table is stored
      * and stores the contents in the formulas attribute.
      */
     private void initialize() {
@@ -57,9 +63,9 @@ public class PhilHealthFeeTable {
         try {
             dataInputStream = new DataInputStream(
                     new BufferedInputStream(
-                            new FileInputStream(PHILHEALTH_FILE_NAME)));
+                            new FileInputStream(fileName)));
         } catch (FileNotFoundException e) {
-            System.out.println("File " + PHILHEALTH_FILE_NAME + " not found!");
+            System.out.println("File " + fileName + " not found!");
             return;
         }
 
@@ -91,7 +97,7 @@ public class PhilHealthFeeTable {
     }
 
     /**
-     * Overwrites the binary file where the PhilHealth fee table is stored
+     * Overwrites the binary file where the government fee table is stored
      * and writes the updated fee table to the file.
      */
     public void close() {
@@ -101,9 +107,9 @@ public class PhilHealthFeeTable {
         try {
             dataOutputStream = new DataOutputStream(
                     new BufferedOutputStream(
-                            new FileOutputStream(PHILHEALTH_FILE_NAME, false)));
+                            new FileOutputStream(fileName, false)));
         } catch (FileNotFoundException e) {
-            System.out.println("File " + PHILHEALTH_FILE_NAME + " not found!");
+            System.out.println("File " + fileName + " not found!");
             return;
         }
 
