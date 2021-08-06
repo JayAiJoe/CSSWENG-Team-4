@@ -19,8 +19,6 @@ public class FeeTable {
      */
     private ArrayList<ArrayList<Double>> formulas;
 
-    /** The file name of the binary file used to store the Pag-Ibig fee table. */
-    public static final String PAG_IBIG_FILE_NAME = "bin/Pag-Ibig.bin";
     /** The file name of the binary file used to store the PhilHealth fee table. */
     public static final String PHILHEALTH_FILE_NAME = "bin/PhilHealth.bin";
     /** The file name of the binary file used to store the SSS fee table. */

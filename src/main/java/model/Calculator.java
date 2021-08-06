@@ -12,17 +12,17 @@ public class Calculator {
     private static Calculator instance = null;
     /** The FeeTable for the PhilHealth Fee. */
     private FeeTable philhealthFeeTable;
-    /** The FeeTable for the Pag-Ibig Fee. */
-    private FeeTable pagibigFeeTable;
     /** The FeeTable for the SSS Fee. */
     private FeeTable sssFeeTable;
+    /** The instance of the PagIbigFee. */
+    private PagIbigFee pagIbigFee;
 
     /**
      * A constructor for a Calculator.
      */
     private Calculator() {
         philhealthFeeTable = new FeeTable(FeeTable.PHILHEALTH_FILE_NAME);
-        pagibigFeeTable = new FeeTable(FeeTable.PAG_IBIG_FILE_NAME);
+        pagIbigFee = new PagIbigFee();
         sssFeeTable = new FeeTable(FeeTable.SSS_FILE_NAME);
     }
 
@@ -134,33 +134,16 @@ public class Calculator {
      * @param salary the monthly basic salary of on employee
      * @return the Pag-Ibig Fee to be paid by an employee
      * @throws IllegalArgumentException when the given salary is negative
-     * @throws Exception when the given salary does not fit in any range in the
-     * Pag-Ibig fee table
      */
     public double computePagIbigFee(double salary)
-            throws IllegalArgumentException, Exception {
+            throws IllegalArgumentException {
         if (salary < 0) {
             throw new IllegalArgumentException("Salary cannot be negative");
         }
 
-        ArrayList<ArrayList<Double>> formulas = pagibigFeeTable.getFormulas();
-        int n = formulas.size();
-
-        for (int i = 0; i < n; i++) {
-            double lower_bound = formulas.get(i).get(0);
-            double upper_bound = formulas.get(i).get(1);
-            double value = formulas.get(i).get(2);
-
-            if (salary >= lower_bound && salary <= upper_bound) {
-                if (i == n - 1) {
-                    return value;
-                } else {
-                    return value * salary;
-                }
-            }
-        }
-
-        throw new Exception("Salary does not fit in any range");
+        double totalRate = pagIbigFee.getTotalRate();
+        double employerContrib = pagIbigFee.getEmployerContrib();
+        return totalRate * salary - employerContrib;
     }
 
     /**
@@ -197,7 +180,7 @@ public class Calculator {
      */
     public void close() {
         philhealthFeeTable.close();
-        pagibigFeeTable.close();
+        pagIbigFee.close();
         sssFeeTable.close();
     }
 }
