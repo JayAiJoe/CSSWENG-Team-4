@@ -7,4 +7,7 @@ module Sample.main {
 
     opens controller;
     exports controller;
+
+    opens model;
+    exports model;
 }
