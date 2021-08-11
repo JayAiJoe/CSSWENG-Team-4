@@ -1,20 +1,22 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import model.Payroll;
+import model.PayrollEntry;
 
 /**
  * This class is the main controller for any scripted event
  * for Payroll.fxml like onClick events, listeners, etc.
  */
-public class PayrollController implements Initializable {
+public class PayrollController {
 
     /** Instantiation of the different tabs in the calculator*/
     @FXML
@@ -23,6 +25,17 @@ public class PayrollController implements Initializable {
     /** Instantiation of Button objects from Payroll.fxml*/
     @FXML
     private Button sss_btn, phil_btn, pagibig_btn, edit_btn, cancel_btn, add_btn, delete_btn, save_btn;
+
+    /** Instantiation of objects related to table from Payroll.fxml*/
+    @FXML
+    private TableView<PayrollEntry> payrollTv;
+    @FXML
+    private TableColumn<PayrollEntry, String> nameTc, modeTc;
+    @FXML
+    private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc;
+    @FXML
+    private TableColumn<PayrollEntry, Double> rateTc, salaryTc, amountTc, colaTc, totalTc, sssTc,
+                                                philhealthTc, pagibigTc, lateTc;
 
     /** Method responsible for switching between SSS, Philhealth,
      * and Pag-ibig formula edit tabs
@@ -49,9 +62,33 @@ public class PayrollController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    public void initialize() {
+        // disable row selection
+        payrollTv.setSelectionModel(null);
 
+        // initialize columns
+        nameTc.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
+        modeTc.setCellValueFactory(new PropertyValueFactory<>("mode"));
+        workdaysTc.setCellValueFactory(new PropertyValueFactory<>("workdays"));
+        timeTc.setCellValueFactory(new PropertyValueFactory<>("time"));
+        rateTc.setCellValueFactory(new PropertyValueFactory<>("rate"));
+        salaryTc.setCellValueFactory(new PropertyValueFactory<>("salary"));
+        amountTc.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        colaTc.setCellValueFactory(new PropertyValueFactory<>("cola"));
+        totalTc.setCellValueFactory(new PropertyValueFactory<>("total"));
+        sssTc.setCellValueFactory(new PropertyValueFactory<>("sss"));
+        philhealthTc.setCellValueFactory(new PropertyValueFactory<>("philhealth"));
+        pagibigTc.setCellValueFactory(new PropertyValueFactory<>("pagibig"));
+        lateTc.setCellValueFactory(new PropertyValueFactory<>("late"));
+
+        // get data
+        Payroll payroll = new Payroll();
+        ObservableList<PayrollEntry> entries = FXCollections.observableArrayList();
+        entries.setAll(payroll.getEntries());
+
+        // set data in table
+        payrollTv.setItems(entries);
     }
 
 
