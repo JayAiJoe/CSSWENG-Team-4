@@ -3,14 +3,14 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.Payroll;
 import model.PayrollEntry;
+
+import java.util.Optional;
 
 /**
  * This class is the main controller for any scripted event
@@ -24,7 +24,12 @@ public class PayrollController {
 
     /** Instantiation of Button objects from Payroll.fxml*/
     @FXML
-    private Button sss_btn, phil_btn, pagibig_btn, edit_btn, cancel_btn, add_btn, delete_btn, save_btn;
+    private Button sss_btn, phil_btn, pagibig_btn,
+            pi_edit_btn, pi_cancel_btn, pi_add_btn, pi_delete_btn, pi_save_btn,
+            ph_update_btn, ph_cancel_btn, ph_add_btn, ph_delete_btn, ph_save_btn;
+
+    @FXML
+    private TextField pi_maxTf, pi_employeeTf, pi_employerTf;
 
     /** Instantiation of objects related to table from Payroll.fxml*/
     @FXML
@@ -36,6 +41,9 @@ public class PayrollController {
     @FXML
     private TableColumn<PayrollEntry, Double> rateTc, salaryTc, amountTc, colaTc, totalTc, sssTc,
                                                 philhealthTc, pagibigTc, lateTc;
+    @FXML
+    private TableColumn<PayrollEntry, Double> ph_range, ph_start, ph_end, ph_rate;
+
 
     /** Method responsible for switching between SSS, Philhealth,
      * and Pag-ibig formula edit tabs
@@ -89,34 +97,188 @@ public class PayrollController {
 
         // set data in table
         payrollTv.setItems(entries);
+        disableReorder();
     }
 
+    /**
+     * method simply disables reordability for all table columns in Payroll.fxml
+     */
+    public void disableReorder(){
+        //philhealth
+        ph_range.setReorderable(false);
+        ph_start.setReorderable(false);
+        ph_end.setReorderable(false);
+        ph_rate.setReorderable(false);
 
-    public void onEditClick(MouseEvent mouseEvent) {
-        if(mouseEvent.getSource() == edit_btn){
-            edit_btn.toBack();
-            edit_btn.setDisable(true);
-            cancel_btn.toFront();
-            cancel_btn.setDisable(false);
-            add_btn.setVisible(true);
-            add_btn.setDisable(false);
-            delete_btn.setVisible(true);
-            delete_btn.setDisable(false);
-            save_btn.setVisible(true);
-            save_btn.setDisable(false);
+        //Payroll table
+        timeTc.setReorderable(false);
+        totalTc.setReorderable(false);
+        amountTc.setReorderable(false);
+        colaTc.setReorderable(false);
+        lateTc.setReorderable(false);
+        modeTc.setReorderable(false);
+        nameTc.setReorderable(false);
+        pagibigTc.setReorderable(false);
+        philhealthTc.setReorderable(false);
+        rateTc.setReorderable(false);
+        salaryTc.setReorderable(false);
+        sssTc.setReorderable(false);
+        workdaysTc.setReorderable(false);
+    }
+
+    /**
+     * Method responsible for button functions in the Pag-ibig tab for calculator
+     */
+    public void onPIEditClick(MouseEvent mouseEvent) {
+        if(mouseEvent.getSource() == pi_edit_btn){
+            //buttons
+            pi_edit_btn.toBack();
+            pi_edit_btn.setDisable(true);
+            pi_cancel_btn.toFront();
+            pi_cancel_btn.setDisable(false);
+            pi_cancel_btn.setVisible(true);
+            pi_save_btn.setVisible(true);
+            pi_save_btn.setDisable(false);
+
+            //Textfields
+            pi_maxTf.setDisable(false);
+            pi_employeeTf.setDisable(false);
+            pi_employerTf.setDisable(false);
+        }
+        else if(mouseEvent.getSource() == pi_cancel_btn){
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setContentText("Cancel changes?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                //buttons
+                pi_edit_btn.toFront();
+                pi_edit_btn.setDisable(false);
+                pi_cancel_btn.toBack();
+                pi_cancel_btn.setDisable(true);
+                pi_cancel_btn.setVisible(false);
+                pi_save_btn.setVisible(false);
+                pi_save_btn.setDisable(true);
+
+                //Textfields
+                pi_maxTf.setDisable(true);
+                pi_employeeTf.setDisable(true);
+                pi_employerTf.setDisable(true);
+                System.out.println("Ok is pressed");
+            } else {
+                // ... user chose CANCEL or closed the dialog
+                System.out.println("cancel is pressed");
+            }
 
         }
-        else if(mouseEvent.getSource() == cancel_btn){
-            edit_btn.toFront();
-            edit_btn.setDisable(false);
-            cancel_btn.toBack();
-            cancel_btn.setDisable(true);
-            add_btn.setVisible(false);
-            add_btn.setDisable(true);
-            delete_btn.setVisible(false);
-            delete_btn.setDisable(true);
-            save_btn.setVisible(false);
-            save_btn.setDisable(true);
+        else if(mouseEvent.getSource() == pi_save_btn){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setContentText("Apply changes?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                pi_edit_btn.toFront();
+                pi_edit_btn.setDisable(false);
+                pi_cancel_btn.toBack();
+                pi_cancel_btn.setDisable(true);
+                pi_cancel_btn.setVisible(false);
+                pi_save_btn.setVisible(false);
+                pi_save_btn.setDisable(true);
+
+                //Textfields
+                pi_maxTf.setDisable(true);
+                pi_employeeTf.setDisable(true);
+                pi_employerTf.setDisable(true);
+
+                System.out.println("Ok is pressed");
+            } else {
+                // ... user chose CANCEL or closed the dialog
+                System.out.println("cancel is pressed");
+            }
+        }
+    }
+
+    /**
+     * Method responsible for button functions in the Philhealth tab for calculator
+     */
+    public void onPHEditClick(MouseEvent mouseEvent){
+        if(mouseEvent.getSource() == ph_update_btn){
+            ph_update_btn.toBack();
+            ph_update_btn.setDisable(true);
+            ph_cancel_btn.toFront();
+            ph_cancel_btn.setDisable(false);
+            ph_cancel_btn.setVisible(true);
+            ph_add_btn.setVisible(true);
+            ph_add_btn.setDisable(false);
+            ph_delete_btn.setVisible(true);
+            ph_delete_btn.setDisable(false);
+            ph_save_btn.setVisible(true);
+            ph_save_btn.setDisable(false);
+        }
+        else if(mouseEvent.getSource() == ph_save_btn){
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setContentText("Apply changes?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                ph_update_btn.toFront();
+                ph_update_btn.setDisable(false);
+                ph_cancel_btn.toBack();
+                ph_cancel_btn.setDisable(true);
+                ph_cancel_btn.setVisible(false);
+                ph_add_btn.setVisible(false);
+                ph_add_btn.setDisable(true);
+                ph_delete_btn.setVisible(false);
+                ph_delete_btn.setDisable(true);
+                ph_save_btn.setVisible(false);
+                ph_save_btn.setDisable(true);
+                System.out.println("Ok is pressed");
+            } else {
+                // ... user chose CANCEL or closed the dialog
+                System.out.println("cancel is pressed");
+            }
+        }
+        else if(mouseEvent.getSource() == ph_cancel_btn){
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setContentText("Discard changes?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                ph_update_btn.toFront();
+                ph_update_btn.setDisable(false);
+                ph_cancel_btn.toBack();
+                ph_cancel_btn.setDisable(true);
+                ph_cancel_btn.setVisible(false);
+                ph_add_btn.setVisible(false);
+                ph_add_btn.setDisable(true);
+                ph_delete_btn.setVisible(false);
+                ph_delete_btn.setDisable(true);
+                ph_save_btn.setVisible(false);
+                ph_save_btn.setDisable(true);
+                System.out.println("Ok is pressed");
+            } else {
+                // ... user chose CANCEL or closed the dialog
+                System.out.println("cancel is pressed");
+            }
         }
     }
 }

@@ -13,15 +13,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
+<AnchorPane prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
    <children>
       <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
+            <Tab text="Home">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
           <Tab text="Payroll">
             <content>
                   <AnchorPane style="-fx-background-color: FFF7EA;">
                      <children>
-                        <TableView id="t_payroll" fx:id="payrollTv" layoutX="38.0" layoutY="191.0" prefHeight="474.0" prefWidth="1005.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="191.0">
+                        <TableView id="t_payroll" fx:id="payrollTv" layoutX="59.0" layoutY="171.0" prefHeight="585.0" prefWidth="1166.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="171.0">
                           <columns>
                             <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="91.20001983642578" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Name" />
                             <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="74.39999389648438" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Mode" />
@@ -45,28 +50,30 @@
                                     <TableColumn id="tcd_late" fx:id="lateTc" editable="false" prefWidth="57.5999755859375" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Late/UT" />
                                  </columns>
                               </TableColumn>
+                              <TableColumn id="tc_total" fx:id="netamtTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="80.79998779296875" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Net Amount&#10;      Paid" />
+                              <TableColumn id="tc_total" fx:id="ototalTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="80.79998779296875" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="TOTAL&#10;" />
                           </columns>
                         </TableView>
-                        <Text fx:id="t_daterange" layoutX="38.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For the Period:" />
-                        <Text id="Payroll_Head" fx:id="companyname" boundsType="LOGICAL_VERTICAL_CENTER" fill="#a18a5b" layoutX="370.0" layoutY="52.0" stroke="#fcfcfc" strokeType="OUTSIDE" strokeWidth="0.0" text="COMPANY NAME" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="340.99139404296875" AnchorPane.bottomAnchor="633.4" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="369.00860595703125" AnchorPane.topAnchor="25.0">
+                        <Text fx:id="t_daterange" layoutX="71.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For the Period:" />
+                        <Text id="Payroll_Head" fx:id="companyname" boundsType="LOGICAL_VERTICAL_CENTER" fill="#a18a5b" layoutX="485.0" layoutY="37.0" stroke="#fcfcfc" strokeType="OUTSIDE" strokeWidth="0.0" text="COMPANY NAME" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="340.99139404296875" AnchorPane.bottomAnchor="696.2" AnchorPane.leftAnchor="485.0" AnchorPane.rightAnchor="454.00860595703125" AnchorPane.topAnchor="19.0">
                            <font>
                               <Font size="25.0" />
                            </font>
                         </Text>
-                        <Text fx:id="t_address" layoutX="38.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Located at:" />
+                        <Text fx:id="t_address" layoutX="71.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Located at:" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab style="-fx-background_color: #74774;" text="Values">
+          <Tab text="Values">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="228.0" style="-fx-background-color: FFEED4;">
                      <children>
-                        <AnchorPane layoutY="126.0">
+                        <AnchorPane layoutY="65.0" prefHeight="987.0" prefWidth="274.0">
                            <children>
                               <AnchorPane prefHeight="925.0" prefWidth="274.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <VBox layoutX="140.0" layoutY="168.0" prefHeight="925.6" prefWidth="274.4" style="-fx-background-color: #7E7878;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <VBox layoutX="140.0" layoutY="-77.0" prefHeight="1003.0" prefWidth="274.0" style="-fx-background-color: #7E7878;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <Button fx:id="sss_btn" mnemonicParsing="false" onMouseClicked="#onClickValues" prefHeight="54.0" prefWidth="279.0" style="-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color: #7D7D7D;" textFill="WHITE">
                                              <font>
@@ -113,42 +120,43 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <Pane fx:id="sss_tab" layoutX="274.0" layoutY="126.0" prefHeight="566.0" prefWidth="806.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="126.0" />
-                        <Pane fx:id="phil_tab" layoutX="284.0" layoutY="136.0" prefHeight="566.0" prefWidth="806.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="126.0">
+                        <Pane fx:id="sss_tab" layoutX="274.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
+                        <Pane fx:id="phil_tab" layoutX="284.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
                            <children>
-                              <TableView layoutX="82.0" layoutY="65.0" prefHeight="480.0" prefWidth="642.0" style="-fx-background-color: E9E1D5;">
+                              <TableView layoutX="193.0" layoutY="86.0" prefHeight="519.0" prefWidth="641.0" style="-fx-background-color: E9E1D5;">
                                  <columns>
-                                    <TableColumn fx:id="phil_range1" maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" text="Range">
+                                    <TableColumn fx:id="ph_range" editable="false" maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" sortable="false" text="Range">
                                        <columns>
-                                          <TableColumn fx:id="phil_end" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="208.80001831054688" sortable="false" text="End" />
-                                          <TableColumn fx:id="phil_start" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="214.39996337890625" text="Start" />
+                                          <TableColumn fx:id="ph_start" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="214.39996337890625" sortable="false" text="Start" />
+                                          <TableColumn fx:id="ph_end" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="208.80001831054688" sortable="false" text="End" />
                                        </columns>
                                     </TableColumn>
-                                    <TableColumn fx:id="phil_rate" prefWidth="217.20001220703125" text="Rate" />
+                                    <TableColumn fx:id="ph_rate" editable="false" prefWidth="217.20001220703125" sortable="false" text="Rate" />
                                  </columns>
                               </TableView>
+                              <Button fx:id="ph_save_btn" disable="true" layoutX="134.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
+                              <Button fx:id="ph_update_btn" layoutX="134.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Update" />
+                              <Text layoutX="404.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PHILHEALTH TABLE" wrappingWidth="210.51263427734375">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="ph_cancel_btn" cancelButton="true" disable="true" layoutX="134.0" layoutY="117.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Cancel" visible="false" />
+                              <Button fx:id="ph_add_btn" disable="true" layoutX="193.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="65.0" text="Add Row" visible="false" />
+                              <Button fx:id="ph_delete_btn" disable="true" layoutX="258.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="77.0" text="Delete Row" visible="false" />
                            </children>
                         </Pane>
-                        <Pane fx:id="pagibig_tab" layoutX="294.0" layoutY="146.0" prefHeight="566.0" prefWidth="806.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="126.0">
+                        <Pane fx:id="pagibig_tab" layoutX="294.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
                            <children>
-                              <TextField layoutX="53.0" layoutY="94.0" />
-                              <TableView layoutX="249.0" layoutY="70.0" prefHeight="480.0" prefWidth="534.0" style="-fx-background-color: E9E1D5;">
-                                <columns>
-                                  <TableColumn fx:id="pagibig_range" maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" text="Range">
-                                       <columns>
-                                          <TableColumn fx:id="pagibig_end" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="208.80001831054688" sortable="false" text="End" />
-                                        <TableColumn fx:id="pagibig_start" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="214.39996337890625" text="Start" />
-                                       </columns>
-                                    </TableColumn>
-                                    <TableColumn fx:id="pagibig_rate" prefWidth="109.20001220703125" text="Employee Share" />
-                                </columns>
-                              </TableView>
-                              <Button fx:id="cancel_btn" cancelButton="true" layoutX="251.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#onEditClick" prefHeight="31.0" prefWidth="58.0" text="Cancel" />
-                              <Button fx:id="add_btn" disable="true" layoutX="722.0" layoutY="39.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="30.0" text="+" visible="false" />
-                              <Button fx:id="edit_btn" layoutX="250.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#onEditClick" prefHeight="31.0" prefWidth="59.0" text="Edit" />
-                              <Button fx:id="delete_btn" disable="true" layoutX="752.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#onEditClick" prefHeight="31.0" prefWidth="31.0" text="-" visible="false" />
-                              <Button fx:id="save_btn" disable="true" layoutX="309.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#onEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
-                              <Text layoutX="56.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max Monthly Contribution:" />
+                              <Button fx:id="pi_save_btn" disable="true" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
+                              <TextField fx:id="pi_maxTf" disable="true" layoutX="223.0" layoutY="59.0" />
+                              <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="118.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="58.0" text="Cancel" visible="false" />
+                              <Button fx:id="pi_edit_btn" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Edit" />
+                              <Text layoutX="58.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max Monthly Contribution:" />
+                              <TextField fx:id="pi_employeeTf" disable="true" layoutX="223.0" layoutY="151.0" />
+                              <Text layoutX="58.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share" />
+                              <Text layoutX="58.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution" />
+                              <TextField fx:id="pi_employerTf" disable="true" layoutX="223.0" layoutY="104.0" />
                            </children>
                         </Pane>
                      </children>
