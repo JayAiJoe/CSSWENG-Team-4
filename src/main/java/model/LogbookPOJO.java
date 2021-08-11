@@ -14,6 +14,17 @@ public class LogbookPOJO {
     private int timeOut2;
 
 
+    public LogbookPOJO(int employeeID, String completeName, Date date, float temp, int timeIn1, int timeOut1, int timeIn2, int timeOut2) {
+        this.employeeID = employeeID;
+        this.completeName = completeName;
+        this.date = date;
+        this.temp = temp;
+        this.timeIn1 = timeIn1;
+        this.timeOut1 = timeOut1;
+        this.timeIn2 = timeIn2;
+        this.timeOut2 = timeOut2;
+    }
+
     public LogbookPOJO(LogbookPOJO log)
     {
         this.employeeID = log.getEmployeeID();

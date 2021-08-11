@@ -13,6 +13,17 @@ public class PerformancePOJO {
     private int minsOvertime;
     private int minsLate;
 
+    public PerformancePOJO(int employeeID, String completeName, Date dateStart, Date datePaid, float daysPresent, float daysAbsent, int minsOvertime, int minsLate) {
+        this.employeeID = employeeID;
+        this.completeName = completeName;
+        this.dateStart = dateStart;
+        this.datePaid = datePaid;
+        this.daysPresent = daysPresent;
+        this.daysAbsent = daysAbsent;
+        this.minsOvertime = minsOvertime;
+        this.minsLate = minsLate;
+    }
+
     public PerformancePOJO(PerformancePOJO performance)
     {
         this.employeeID = performance.getEmployeeId();

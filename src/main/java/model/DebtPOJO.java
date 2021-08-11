@@ -14,17 +14,16 @@ public class DebtPOJO {
     private String wageFrequency;
     private boolean paidFull;
 
-    public DebtPOJO(DebtPOJO debt)
-    {
-        this.employeeID = debt.getEmployeeID();
-        this.completeName = debt.getCompleteName();
-        this.dateBorrowed = debt.getDateBorrowed();
-        this.datePaid = debt.getDatePaid();
-        this.amountBorrowed = debt.getAmountBorrowed();
-        this.reason = debt.getReason();
-        this.amountPaid = debt.getAmountPaid();
-        this.wageFrequency = debt.getWageFrequency();
-        this.paidFull = debt.isPaidFull();
+    public DebtPOJO(int employeeID, String completeName, Date dateBorrowed, Date datePaid, double amountBorrowed, String reason, double amountPaid, String wageFrequency, boolean paidFull) {
+        this.employeeID = employeeID;
+        this.completeName = completeName;
+        this.dateBorrowed = dateBorrowed;
+        this.datePaid = datePaid;
+        this.amountBorrowed = amountBorrowed;
+        this.reason = reason;
+        this.amountPaid = amountPaid;
+        this.wageFrequency = wageFrequency;
+        this.paidFull = paidFull;
     }
 
     public int getEmployeeID() {

@@ -12,16 +12,15 @@ public class EmployeePOJO {
     private Date dateJoin;
     private Date dateLeft;
 
-    public EmployeePOJO(EmployeePOJO employee){
-        this.employeeID = employee.getEmployeeID();
-        this.completeName = employee.getCompleteName();
-        this.wage = employee.getWage();
-        this.wageFrequency = employee.getWageFrequency();
-        this.debtAmount = employee.getDebtAmount();
-        this.dateJoin = employee.getDateJoin();
-        this.dateLeft = employee.getDateLeft();
+    public EmployeePOJO(int employeeID, String completeName, double wage, String wageFrequency, double debtAmount, Date dateJoin, Date dateLeft) {
+        this.employeeID = employeeID;
+        this.completeName = completeName;
+        this.wage = wage;
+        this.wageFrequency = wageFrequency;
+        this.debtAmount = debtAmount;
+        this.dateJoin = dateJoin;
+        this.dateLeft = dateLeft;
     }
-
 
     public int getEmployeeID() {
         return employeeID;
