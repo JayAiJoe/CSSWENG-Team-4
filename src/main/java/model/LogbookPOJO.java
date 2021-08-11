@@ -25,17 +25,8 @@ public class LogbookPOJO {
         this.timeOut2 = timeOut2;
     }
 
-    public LogbookPOJO(LogbookPOJO log)
-    {
-        this.employeeID = log.getEmployeeID();
-        this.completeName = log.getCompleteName();
-        this.date = log.getDate();
-        this.temp = log.getTemp();
-        this.timeIn1 = log.getTimeIn1();
-        this.timeIn2 = log.getTimeIn2();
-        this.timeOut1 = log.getTimeOut1();
-        this.timeOut2 = log.getTimeOut2();
-    }
+
+    public LogbookPOJO(){}
 
     public int getEmployeeID() {
         return employeeID;

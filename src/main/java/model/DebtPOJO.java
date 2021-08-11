@@ -26,6 +26,8 @@ public class DebtPOJO {
         this.paidFull = paidFull;
     }
 
+    public DebtPOJO() {}
+
     public int getEmployeeID() {
         return employeeID;
     }

@@ -22,6 +22,8 @@ public class EmployeePOJO {
         this.dateLeft = dateLeft;
     }
 
+    public EmployeePOJO(){}
+
     public int getEmployeeID() {
         return employeeID;
     }

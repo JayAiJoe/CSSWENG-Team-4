@@ -24,17 +24,7 @@ public class PerformancePOJO {
         this.minsLate = minsLate;
     }
 
-    public PerformancePOJO(PerformancePOJO performance)
-    {
-        this.employeeID = performance.getEmployeeId();
-        this.completeName = performance.getCompleteName();
-        this.dateStart = performance.getDateStart();
-        this.datePaid = performance.getDatePaid();
-        this.daysPresent = performance.getDaysPresent();
-        this.daysAbsent = performance.getDaysAbsent();
-        this.minsLate = performance.getMinsLate();
-        this.minsOvertime = performance.getMinsOvertime();
-    }
+    public PerformancePOJO(){}
 
     public int getEmployeeId() {
         return employeeID;
