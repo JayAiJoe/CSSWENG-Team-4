@@ -43,54 +43,52 @@ public class Calculator {
      * Computes the total salary of an employee based on the
      * hourly rate of an employee, the number of work days, the
      * number of minutes late, and the number of minutes overtime.
-     * @param rate the hourly rate of on employee
-     * @param workDays the number of work days
-     * @param minutesLate the number of minutes late
-     * @param minutesOT the number of minutes overtime
+     * @param rate the daily rate of on employee
+     * @param daysPresent the number of days the employee was present
+     *                    for work
      * @return the total salary of an employee
      * @throws IllegalArgumentException when one of the inputs is negative
      */
-    public double computeSalary(double rate, int workDays, int minutesLate,
-                                int minutesOT) throws IllegalArgumentException {
-        if (rate < 0 || workDays < 0 || minutesLate < 0 || minutesOT < 0) {
+    public double computeSalary(double rate, double daysPresent)
+            throws IllegalArgumentException {
+        if (rate < 0 || daysPresent < 0) {
             throw new IllegalArgumentException("Negative inputs are not allowed");
         }
-        return rate * 8 * workDays + computeOvertime(rate, minutesOT) -
-                computeLateFee(rate, minutesLate);
+        return rate * daysPresent;
     }
 
     /**
      * Computes for the Overtime bonus to be added to an employee's
      * salary based on the hourly rate of an employee and the number
      * of minutes overtime.
-     * @param rate the hourly rate of an employee
+     * @param rate the daily rate of an employee
      * @param minutesOT the number of minutes overtime
      * @return the Overtime bonus to be added to an employee's salary
      * @throws IllegalArgumentException when one of the inputs is negative
      */
-    private double computeOvertime(double rate, int minutesOT)
+    public double computeOvertime(double rate, int minutesOT)
             throws IllegalArgumentException {
         if (rate < 0 || minutesOT < 0) {
             throw new IllegalArgumentException("Negative inputs are not allowed");
         }
-        return rate * minutesOT / 60 * 1.25;
+        return rate / 8 * minutesOT / 60 * 1.25;
     }
 
     /**
      * Computes for the Late Fee to be deducted from an employee's
      * salary based on the hourly rate of an employee and the number
      * of minutes late.
-     * @param rate the hourly rate of an employee
+     * @param rate the daily rate of an employee
      * @param minutesLate the number of minutes late
      * @return the Late Fee to be deducted from an employee's salary
      * @throws IllegalArgumentException when one of the inputs is negative
      */
-    private double computeLateFee(double rate, int minutesLate)
+    public double computeLateFee(double rate, int minutesLate)
             throws IllegalArgumentException {
         if (rate < 0 || minutesLate < 0) {
             throw new IllegalArgumentException("Negative inputs are not allowed");
         }
-        return rate * minutesLate / 60;
+        return rate / 8 * minutesLate / 60;
     }
 
     /**
@@ -99,11 +97,9 @@ public class Calculator {
      * @param salary the monthly basic salary of an employee
      * @return the PhilHealth Fee to be paid by an employee
      * @throws IllegalArgumentException when the given salary is negative
-     * @throws Exception when the given salary does not fit in any range in the
-     * PhilHealth fee table
      */
     public double computePhilHealthFee(double salary)
-            throws IllegalArgumentException, Exception {
+            throws IllegalArgumentException {
         if (salary < 0) {
             throw new IllegalArgumentException("Salary cannot be negative");
         }
@@ -124,8 +120,7 @@ public class Calculator {
                 }
             }
         }
-
-        throw new Exception("Salary does not fit in any range");
+        return 0;
     }
 
     /**
@@ -141,9 +136,10 @@ public class Calculator {
             throw new IllegalArgumentException("Salary cannot be negative");
         }
 
+        double sssFee = computeSSSFee(salary);
         double totalRate = pagIbigFee.getTotalRate();
         double employerContrib = pagIbigFee.getEmployerContrib();
-        return totalRate * salary - employerContrib;
+        return totalRate * sssFee - employerContrib;
     }
 
     /**
@@ -152,11 +148,9 @@ public class Calculator {
      * @param salary the monthly basic salary of an employee
      * @return the SSS Fee to be paid by an employee
      * @throws IllegalArgumentException when the given salary is negative
-     * @throws Exception when the given salary does not fit in any range in the
-     * SSS fee table
      */
     public double computeSSSFee(double salary)
-            throws IllegalArgumentException, Exception {
+            throws IllegalArgumentException {
         if (salary < 0) {
             throw new IllegalArgumentException("Salary cannot be negative");
         }
@@ -170,8 +164,7 @@ public class Calculator {
                 return value;
             }
         }
-
-        throw new Exception("Salary does not fit in any range");
+        return 0;
     }
 
     /**
