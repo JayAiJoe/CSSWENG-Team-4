@@ -16,6 +16,8 @@ public class Calculator {
     private FeeTable sssFeeTable;
     /** The instance of the PagIbigFee. */
     private PagIbigFee pagIbigFee;
+    /** The FeeTable for the Employee Compensation. */
+    private FeeTable employeeCompensation;
 
     /**
      * A constructor for a Calculator.
@@ -24,6 +26,7 @@ public class Calculator {
         philhealthFeeTable = new FeeTable(FeeTable.PHILHEALTH_FILE_NAME);
         pagIbigFee = new PagIbigFee();
         sssFeeTable = new FeeTable(FeeTable.SSS_FILE_NAME);
+        employeeCompensation = new FeeTable(FeeTable.COMPENSATION_FILE_NAME);
     }
 
     /**
@@ -136,10 +139,19 @@ public class Calculator {
             throw new IllegalArgumentException("Salary cannot be negative");
         }
 
-        double sssFee = computeSSSFee(salary);
         double totalRate = pagIbigFee.getTotalRate();
         double employerContrib = pagIbigFee.getEmployerContrib();
-        return totalRate * sssFee - employerContrib;
+
+        for (ArrayList<Double> range: employeeCompensation.getFormulas()) {
+            double lower_bound = range.get(0);
+            double upper_bound = range.get(1);
+            double value = range.get(2);
+
+            if (salary >= lower_bound && salary <= upper_bound) {
+                return totalRate * value - employerContrib;
+            }
+        }
+        return 0;
     }
 
     /**
@@ -175,5 +187,6 @@ public class Calculator {
         philhealthFeeTable.close();
         pagIbigFee.close();
         sssFeeTable.close();
+        employeeCompensation.close();
     }
 }

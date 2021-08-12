@@ -23,6 +23,8 @@ public class FeeTable {
     public static final String PHILHEALTH_FILE_NAME = "bin/PhilHealth.bin";
     /** The file name of the binary file used to store the SSS fee table. */
     public static final String SSS_FILE_NAME = "bin/SSS.bin";
+    /** The file name of the binary file used to store the SSS employee compensation table. */
+    public static final String COMPENSATION_FILE_NAME = "bin/Compensation.bin";
 
     /**
      * A constructor for the FeeTable that reads the binary
