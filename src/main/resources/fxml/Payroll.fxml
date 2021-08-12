@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
+<AnchorPane prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
    <children>
       <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -28,30 +28,29 @@
                      <children>
                         <TableView id="t_payroll" fx:id="payrollTv" layoutX="59.0" layoutY="171.0" prefHeight="585.0" prefWidth="1166.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="171.0">
                           <columns>
-                            <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="91.20001983642578" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Name" />
-                            <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="74.39999389648438" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Mode" />
-                              <TableColumn id="tc_days" fx:id="workdaysTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="73.60000610351562" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Days of&#10; Work" />
-                              <TableColumn id="tc_rate" fx:id="rateTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="60.0" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Rate" />
-                              <TableColumn id="tc_wage" fx:id="salaryTc" maxWidth="1.7976931348623157E308" prefWidth="96.79998779296875" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Total Regular&#10;     Wage" />
-                              <TableColumn id="tc_overtime" editable="false" maxWidth="1.7976931348623157E308" prefWidth="193.59994506835938" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Overtime">
+                            <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="133.60000228881836" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Name" />
+                            <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="107.20002746582031" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Mode" />
+                              <TableColumn id="tc_days" fx:id="workdaysTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="60.0" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Days of&#10; Work" />
+                              <TableColumn id="tc_rate" fx:id="rateTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="50.399993896484375" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Rate" />
+                              <TableColumn id="tc_wage" fx:id="salaryTc" maxWidth="1.7976931348623157E308" prefWidth="118.4000244140625" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Total Regular&#10;     Wage" />
+                              <TableColumn id="tc_overtime" editable="false" maxWidth="1.7976931348623157E308" prefWidth="139.60003662109375" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Overtime">
                                  <columns>
                                     <TableColumn id="tco_time" fx:id="timeTc" editable="false" prefWidth="52.800048828125" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Time" />
                                     <TableColumn id="tco_amount" fx:id="amountTc" editable="false" prefWidth="68.00003051757812" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Amount" />
                                  </columns>
                               </TableColumn>
-                              <TableColumn id="tc_cola" fx:id="colaTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="69.60003662109375" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="COLA" />
-                              <TableColumn id="tc_total" fx:id="totalTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="80.79998779296875" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Total&#10;Amount" />
-                              <TableColumn id="tc_deductions" editable="false" maxWidth="1.7976931348623157E308" prefWidth="333.20001220703125" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Deductions">
+                              <TableColumn id="tc_cola" fx:id="colaTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="52.20001220703125" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="COLA" />
+                              <TableColumn id="tc_total" fx:id="totalTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="83.99993896484375" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Total&#10;Amount" />
+                              <TableColumn id="tc_deductions" editable="false" maxWidth="1.7976931348623157E308" prefWidth="324.60003662109375" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Deductions">
                                  <columns>
-                                    <TableColumn id="tcd_sss" fx:id="sssTc" editable="false" prefWidth="66.39996337890625" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="SSS" />
-                                    <TableColumn id="tcd_philhealth" fx:id="philhealthTc" editable="false" prefWidth="81.60003662109375" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="PHILHEALTH" />
-                                    <TableColumn id="tcd_pagibig" fx:id="pagibigTc" editable="false" prefWidth="65.5999755859375" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="PAG-IBIG" />
-                                    <TableColumn id="tcd_tax" prefWidth="60.7999267578125" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Tax w/Held" />
-                                    <TableColumn id="tcd_late" fx:id="lateTc" editable="false" prefWidth="57.5999755859375" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Late/UT" />
+                                    <TableColumn id="tcd_sss" fx:id="sssTc" editable="false" prefWidth="46.39996337890625" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="SSS" />
+                                    <TableColumn id="tcd_philhealth" fx:id="philhealthTc" editable="false" prefWidth="84.800048828125" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="PHILHEALTH" />
+                                    <TableColumn id="tcd_pagibig" fx:id="pagibigTc" editable="false" prefWidth="64.79998779296875" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="PAG-IBIG" />
+                                    <TableColumn id="tcd_tax" prefWidth="71.19989013671875" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Tax w/Held" />
+                                    <TableColumn id="tcd_late" fx:id="lateTc" editable="false" minWidth="0.0" prefWidth="64.8001708984375" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Late/UT" />
                                  </columns>
                               </TableColumn>
-                              <TableColumn id="tc_total" fx:id="netamtTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="80.79998779296875" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Net Amount&#10;      Paid" />
-                              <TableColumn id="tc_total" fx:id="ototalTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="80.79998779296875" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="TOTAL&#10;" />
+                              <TableColumn id="tc_total" fx:id="netTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="98.5999755859375" resizable="false" sortable="false" style="-fx-background-color: FFF2C2; -fx-border-color: CEB689;" text="Net Amount&#10;      Paid" />
                           </columns>
                         </TableView>
                         <Text fx:id="t_daterange" layoutX="71.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For the Period:" />

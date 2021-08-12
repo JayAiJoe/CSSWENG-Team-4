@@ -18,11 +18,15 @@ import java.util.Optional;
  */
 public class PayrollController {
 
-    /** Instantiation of the different tabs in the calculator*/
+    /**
+     * Instantiation of the different tabs in the calculator
+     */
     @FXML
     private Pane sss_tab, phil_tab, pagibig_tab;
 
-    /** Instantiation of Button objects from Payroll.fxml*/
+    /**
+     * Instantiation of Button objects from Payroll.fxml
+     */
     @FXML
     private Button sss_btn, phil_btn, pagibig_btn,
             pi_edit_btn, pi_cancel_btn, pi_add_btn, pi_delete_btn, pi_save_btn,
@@ -31,38 +35,37 @@ public class PayrollController {
     @FXML
     private TextField pi_maxTf, pi_employeeTf, pi_employerTf;
 
-    /** Instantiation of objects related to table from Payroll.fxml*/
+    /**
+     * Instantiation of objects related to table from Payroll.fxml
+     */
     @FXML
     private TableView<PayrollEntry> payrollTv;
     @FXML
-    private TableColumn<PayrollEntry, String> nameTc, modeTc;
+    private TableColumn<PayrollEntry, String> nameTc, modeTc, rateTc, salaryTc,
+            amountTc, colaTc, totalTc, sssTc, philhealthTc, pagibigTc, lateTc, netTc;
     @FXML
     private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc;
-    @FXML
-    private TableColumn<PayrollEntry, Double> rateTc, salaryTc, amountTc, colaTc, totalTc, sssTc,
-                                                philhealthTc, pagibigTc, lateTc;
     @FXML
     private TableColumn<PayrollEntry, Double> ph_range, ph_start, ph_end, ph_rate;
 
 
-    /** Method responsible for switching between SSS, Philhealth,
+    /**
+     * Method responsible for switching between SSS, Philhealth,
      * and Pag-ibig formula edit tabs
      */
     public void onClickValues(MouseEvent mouseEvent) {
-        if(mouseEvent.getSource() == sss_btn){
+        if (mouseEvent.getSource() == sss_btn) {
             System.out.println(mouseEvent.getSource().toString());
             sss_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
             phil_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
             pagibig_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
             sss_tab.toFront();
-        }
-        else if(mouseEvent.getSource() == phil_btn){
+        } else if (mouseEvent.getSource() == phil_btn) {
             phil_tab.toFront();
             sss_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
             phil_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
             pagibig_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-        }
-        else if(mouseEvent.getSource() == pagibig_btn){
+        } else if (mouseEvent.getSource() == pagibig_btn) {
             pagibig_tab.toFront();
             sss_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
             phil_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
@@ -72,6 +75,9 @@ public class PayrollController {
 
     @FXML
     public void initialize() {
+        // highlight pagibig_btn
+        pagibig_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
+
         // disable row selection
         payrollTv.setSelectionModel(null);
 
@@ -89,6 +95,7 @@ public class PayrollController {
         philhealthTc.setCellValueFactory(new PropertyValueFactory<>("philhealth"));
         pagibigTc.setCellValueFactory(new PropertyValueFactory<>("pagibig"));
         lateTc.setCellValueFactory(new PropertyValueFactory<>("late"));
+        netTc.setCellValueFactory(new PropertyValueFactory<>("net"));
 
         // get data
         Payroll payroll = new Payroll();
@@ -101,9 +108,9 @@ public class PayrollController {
     }
 
     /**
-     * method simply disables reordability for all table columns in Payroll.fxml
+     * This method simply disables reorderability for all table columns in Payroll.fxml
      */
-    public void disableReorder(){
+    public void disableReorder() {
         //philhealth
         ph_range.setReorderable(false);
         ph_start.setReorderable(false);
@@ -118,6 +125,7 @@ public class PayrollController {
         lateTc.setReorderable(false);
         modeTc.setReorderable(false);
         nameTc.setReorderable(false);
+        netTc.setReorderable(false);
         pagibigTc.setReorderable(false);
         philhealthTc.setReorderable(false);
         rateTc.setReorderable(false);
@@ -130,7 +138,7 @@ public class PayrollController {
      * Method responsible for button functions in the Pag-ibig tab for calculator
      */
     public void onPIEditClick(MouseEvent mouseEvent) {
-        if(mouseEvent.getSource() == pi_edit_btn){
+        if (mouseEvent.getSource() == pi_edit_btn) {
             //buttons
             pi_edit_btn.toBack();
             pi_edit_btn.setDisable(true);
@@ -144,8 +152,7 @@ public class PayrollController {
             pi_maxTf.setDisable(false);
             pi_employeeTf.setDisable(false);
             pi_employerTf.setDisable(false);
-        }
-        else if(mouseEvent.getSource() == pi_cancel_btn){
+        } else if (mouseEvent.getSource() == pi_cancel_btn) {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -155,7 +162,7 @@ public class PayrollController {
             alert.setContentText("Cancel changes?");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
                 //buttons
                 pi_edit_btn.toFront();
                 pi_edit_btn.setDisable(false);
@@ -175,8 +182,7 @@ public class PayrollController {
                 System.out.println("cancel is pressed");
             }
 
-        }
-        else if(mouseEvent.getSource() == pi_save_btn){
+        } else if (mouseEvent.getSource() == pi_save_btn) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
             alert.setTitle("Confirmation Dialog");
@@ -185,7 +191,7 @@ public class PayrollController {
             alert.setContentText("Apply changes?");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
                 pi_edit_btn.toFront();
                 pi_edit_btn.setDisable(false);
                 pi_cancel_btn.toBack();
@@ -210,8 +216,8 @@ public class PayrollController {
     /**
      * Method responsible for button functions in the Philhealth tab for calculator
      */
-    public void onPHEditClick(MouseEvent mouseEvent){
-        if(mouseEvent.getSource() == ph_update_btn){
+    public void onPHEditClick(MouseEvent mouseEvent) {
+        if (mouseEvent.getSource() == ph_update_btn) {
             ph_update_btn.toBack();
             ph_update_btn.setDisable(true);
             ph_cancel_btn.toFront();
@@ -223,8 +229,7 @@ public class PayrollController {
             ph_delete_btn.setDisable(false);
             ph_save_btn.setVisible(true);
             ph_save_btn.setDisable(false);
-        }
-        else if(mouseEvent.getSource() == ph_save_btn){
+        } else if (mouseEvent.getSource() == ph_save_btn) {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -234,7 +239,7 @@ public class PayrollController {
             alert.setContentText("Apply changes?");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
                 ph_update_btn.toFront();
                 ph_update_btn.setDisable(false);
                 ph_cancel_btn.toBack();
@@ -251,8 +256,7 @@ public class PayrollController {
                 // ... user chose CANCEL or closed the dialog
                 System.out.println("cancel is pressed");
             }
-        }
-        else if(mouseEvent.getSource() == ph_cancel_btn){
+        } else if (mouseEvent.getSource() == ph_cancel_btn) {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -262,7 +266,7 @@ public class PayrollController {
             alert.setContentText("Discard changes?");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
                 ph_update_btn.toFront();
                 ph_update_btn.setDisable(false);
                 ph_cancel_btn.toBack();

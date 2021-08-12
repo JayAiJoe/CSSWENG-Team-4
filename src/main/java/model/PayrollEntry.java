@@ -1,5 +1,7 @@
 package model;
 
+import java.text.DecimalFormat;
+
 /**
  * This class represents a single entry in the payroll that
  * contains information related to an employee in the payroll
@@ -19,11 +21,14 @@ public class PayrollEntry {
     private double philhealth;
     private double pagibig;
     private double late;
+    private double net;
+
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     public PayrollEntry(String employeeName, String mode, int workdays,
                         double rate, double salary, int time, double amount,
                         double cola, double total, double sss,
-                        double philhealth, double pagibig, double late) {
+                        double philhealth, double pagibig, double late, double net) {
         this.employeeName = employeeName;
         this.mode = mode;
         this.workdays = workdays;
@@ -37,6 +42,7 @@ public class PayrollEntry {
         this.philhealth = philhealth;
         this.pagibig = pagibig;
         this.late = late;
+        this.net = net;
     }
 
     // getters
@@ -44,40 +50,44 @@ public class PayrollEntry {
         return employeeName;
     }
 
-    public double getAmount() {
-        return amount;
+    public String getAmount() {
+        return df.format(amount);
     }
 
-    public double getCola() {
-        return cola;
+    public String getCola() {
+        return df.format(cola);
     }
 
-    public double getLate() {
-        return late;
+    public String getLate() {
+        return df.format(late);
     }
 
-    public double getPagibig() {
-        return pagibig;
+    public String getNet() {
+        return df.format(net);
     }
 
-    public double getPhilhealth() {
-        return philhealth;
+    public String getPagibig() {
+        return df.format(pagibig);
     }
 
-    public double getRate() {
-        return rate;
+    public String getPhilhealth() {
+        return df.format(philhealth);
     }
 
-    public double getSalary() {
-        return salary;
+    public String getRate() {
+        return df.format(rate);
     }
 
-    public double getSss() {
-        return sss;
+    public String getSalary() {
+        return df.format(salary);
     }
 
-    public double getTotal() {
-        return total;
+    public String getSss() {
+        return df.format(sss);
+    }
+
+    public String getTotal() {
+        return df.format(total);
     }
 
     public int getTime() {
