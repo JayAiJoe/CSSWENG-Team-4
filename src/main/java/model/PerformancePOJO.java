@@ -8,12 +8,13 @@ public class PerformancePOJO {
     private String completeName;
     private Date dateStart;
     private Date datePaid;
-    private float daysPresent;
-    private float daysAbsent;
+    private double daysPresent;
+    private double daysAbsent;
     private int minsOvertime;
     private int minsLate;
 
-    public PerformancePOJO(int employeeID, String completeName, Date dateStart, Date datePaid, float daysPresent, float daysAbsent, int minsOvertime, int minsLate) {
+    public PerformancePOJO(int employeeID, String completeName, Date dateStart, Date datePaid,
+                           double daysPresent, double daysAbsent, int minsOvertime, int minsLate) {
         this.employeeID = employeeID;
         this.completeName = completeName;
         this.dateStart = dateStart;
@@ -24,9 +25,10 @@ public class PerformancePOJO {
         this.minsLate = minsLate;
     }
 
-    public PerformancePOJO(){}
+    public PerformancePOJO() {
+    }
 
-    public int getEmployeeId() {
+    public int getEmployeeID() {
         return employeeID;
     }
 
@@ -42,11 +44,11 @@ public class PerformancePOJO {
         return datePaid;
     }
 
-    public float getDaysPresent() {
+    public double getDaysPresent() {
         return daysPresent;
     }
 
-    public float getDaysAbsent() {
+    public double getDaysAbsent() {
         return daysAbsent;
     }
 
@@ -58,6 +60,14 @@ public class PerformancePOJO {
         return minsLate;
     }
 
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public void setCompleteName(String completeName) {
+        this.completeName = completeName;
+    }
+
     public void setDateStart(Date dateStart) {
         this.dateStart = dateStart;
     }
@@ -66,11 +76,11 @@ public class PerformancePOJO {
         this.datePaid = datePaid;
     }
 
-    public void setDaysAbsent(float daysAbsent) {
+    public void setDaysAbsent(double daysAbsent) {
         this.daysAbsent = daysAbsent;
     }
 
-    public void setDaysPresent(float daysPresent) {
+    public void setDaysPresent(double daysPresent) {
         this.daysPresent = daysPresent;
     }
 
@@ -81,6 +91,4 @@ public class PerformancePOJO {
     public void setMinsOvertime(int minsOvertime) {
         this.minsOvertime = minsOvertime;
     }
-
-
 }

@@ -60,7 +60,7 @@ public class DebtPOJO {
         return reason;
     }
 
-    public boolean isPaidFull() {
+    public boolean getPaidFull() {
         return paidFull;
     }
 

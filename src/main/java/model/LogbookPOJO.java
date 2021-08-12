@@ -7,14 +7,14 @@ public class LogbookPOJO {
     private int employeeID;
     private String completeName;
     private Date date;
-    private float temp;
+    private double temp;
     private int timeIn1;
     private int timeOut1;
     private int timeIn2;
     private int timeOut2;
 
 
-    public LogbookPOJO(int employeeID, String completeName, Date date, float temp, int timeIn1, int timeOut1, int timeIn2, int timeOut2) {
+    public LogbookPOJO(int employeeID, String completeName, Date date, double temp, int timeIn1, int timeOut1, int timeIn2, int timeOut2) {
         this.employeeID = employeeID;
         this.completeName = completeName;
         this.date = date;
@@ -40,7 +40,7 @@ public class LogbookPOJO {
         return date;
     }
 
-    public float getTemp() {
+    public double getTemp() {
         return temp;
     }
 
@@ -58,6 +58,22 @@ public class LogbookPOJO {
 
     public int getTimeOut2() {
         return timeOut2;
+    }
+
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public void setCompleteName(String completeName) {
+        this.completeName = completeName;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setTemp(double temp) {
+        this.temp = temp;
     }
 
     public void setTimeIn1(int timeIn1) {
