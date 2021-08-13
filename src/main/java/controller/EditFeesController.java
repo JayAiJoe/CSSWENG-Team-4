@@ -2,19 +2,11 @@ package controller;
 
 import driver.Driver;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import model.PayrollEntry;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.util.Optional;
 
 /**
@@ -35,7 +27,7 @@ public class EditFeesController {
     @FXML
     private Button sss_btn, phil_btn, pagibig_btn, pi_edit_btn, pi_cancel_btn,
             pi_save_btn, ph_update_btn, ph_cancel_btn, ph_add_btn, ph_delete_btn,
-            ph_save_btn, Payroll_nav;
+            ph_save_btn;
 
     @FXML
     private TextField pi_maxTf, pi_employeeTf, pi_employerTf;
