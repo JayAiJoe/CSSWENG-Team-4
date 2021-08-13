@@ -3,13 +3,21 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import model.Payroll;
 import model.PayrollEntry;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
 
 /**
@@ -27,6 +35,7 @@ public class CalculatorController {
     private Button sss_btn, phil_btn, pagibig_btn,
             pi_edit_btn, pi_cancel_btn, pi_save_btn,
             ph_update_btn, ph_cancel_btn, ph_add_btn, ph_delete_btn, ph_save_btn;
+    private Button Payroll_nav;
 
     @FXML
     private TextField pi_maxTf, pi_employeeTf, pi_employerTf;
@@ -234,5 +243,24 @@ public class CalculatorController {
                 System.out.println("cancel is pressed");
             }
         }
+    }
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     *
+     * Temporary method for switching between screens
+     */
+    @FXML
+    private void PayBtnAction(MouseEvent event) throws IOException {
+        System.out.println("You clicked me!");
+        Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        URL url = new File("src/main/resources/fxml/Payroll.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+
+        Scene scene = new Scene(root);
+        // Swap screen
+        stageTheEventSourceNodeBelongs.setScene(scene);
     }
 }
