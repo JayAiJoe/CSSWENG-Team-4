@@ -1,38 +1,19 @@
 package controller;
 
+import driver.Driver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import model.Payroll;
 import model.PayrollEntry;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Optional;
 
 /**
  * This class is the main controller for any scripted event
  * for Payroll.fxml like onClick events, listeners, etc.
  */
-public class PayrollController{
-
-
-    @FXML
-    private Button Value_nav;
-
+public class PayrollController {
     /**
      * Instantiation of objects related to table from Payroll.fxml
      */
@@ -44,11 +25,8 @@ public class PayrollController{
     @FXML
     private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc;
 
-
-
     @FXML
     public void initialize() {
-
         // disable row selection
         payrollTv.setSelectionModel(null);
 
@@ -99,24 +77,11 @@ public class PayrollController{
         workdaysTc.setReorderable(false);
     }
 
-
     /**
-     *
-     * @param event
-     * @throws IOException
-     *
-     * Temporary method for switching between screens
+     * Changes screen to EditFees.fxml.
      */
     @FXML
-    private void ValBtnAction(MouseEvent event) throws IOException {
-        System.out.println("You clicked me!");
-        Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        URL url = new File("src/main/resources/fxml/Calculator.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-
-        Scene scene = new Scene(root);
-        // Swap screen
-        stageTheEventSourceNodeBelongs.setScene(scene);
+    private void onEditFeesAction() {
+        Driver.getScreenController().activate("EditFees");
     }
-
 }

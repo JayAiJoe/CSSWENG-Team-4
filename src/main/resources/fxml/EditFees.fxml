@@ -11,15 +11,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalculatorController">
+<AnchorPane prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditFeesController">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane prefHeight="36.0" prefWidth="1326.0">
                <children>
                   <Button fx:id="Home_nav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" text="Home" />
-                  <Button fx:id="Payroll_nav" layoutX="94.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#PayBtnAction" prefHeight="29.0" prefWidth="87.0" text="View Payrolls" />
-                  <Button fx:id="Value_nav" layoutX="181.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" text="Values" />
+                  <Button layoutX="94.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onPayrollAction" prefHeight="29.0" prefWidth="87.0" text="View Payrolls" />
+                  <Button layoutX="181.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" text="Edit Fees" />
                </children>
             </AnchorPane>
         <AnchorPane layoutY="35.0" minHeight="0.0" minWidth="0.0" prefHeight="746.0" prefWidth="1326.0" style="-fx-background-color: FFEED4;">
@@ -101,7 +101,7 @@
                         <Button fx:id="ph_delete_btn" disable="true" layoutX="258.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="77.0" text="Delete Row" visible="false" />
                      </children>
                   </Pane>
-                  <Pane fx:id="pagibig_tab" layoutX="294.0" layoutY="65.0" onMouseClicked="#PayBtnAction" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+                  <Pane fx:id="pagibig_tab" layoutX="294.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
                      <children>
                         <Button fx:id="pi_save_btn" disable="true" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
                         <TextField fx:id="pi_maxTf" disable="true" layoutX="223.0" layoutY="59.0" />
