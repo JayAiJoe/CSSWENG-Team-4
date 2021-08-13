@@ -64,7 +64,7 @@ public class Payroll {
             int workdays = (int)(performance.getDaysPresent() + performance.getDaysAbsent());
 
             double rate = employee.getWage();
-            if (mode.equals("monthly")) {
+            if (mode.equals("MONTHLY")) {
                 rate /= workdays;
             }
 
@@ -76,7 +76,7 @@ public class Payroll {
             double total = salary + amount;
 
             double sss, philhealth, pagibig;
-            if (mode.equals("monthly")) {
+            if (mode.equals("MONTHLY")) {
                 sss = Calculator.getInstance().computeSSSFee(employee.getWage());
                 philhealth = Calculator.getInstance().computePhilHealthFee(employee.getWage());
                 pagibig = Calculator.getInstance().computePagIbigFee(employee.getWage());
