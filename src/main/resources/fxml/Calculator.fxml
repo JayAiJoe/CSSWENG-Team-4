@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalculatorController">
+   <children>
+  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="780.0" prefWidth="1280.0" style="-fx-background-color: FFEED4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutY="65.0" prefHeight="987.0" prefWidth="274.0">
+               <children>
+                  <AnchorPane prefHeight="987.2" prefWidth="274.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <VBox layoutX="140.0" layoutY="-77.0" prefHeight="987.2" prefWidth="274.4" style="-fx-background-color: #7E7878;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button fx:id="sss_btn" mnemonicParsing="false" onMouseClicked="#onClickValues" prefHeight="54.0" prefWidth="279.0" style="-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color: #7D7D7D;" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                                 <graphic>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SSS" wrappingWidth="240.6068389415741">
+                                       <font>
+                                          <Font name="Arial" size="18.0" />
+                                       </font>
+                                    </Text>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="phil_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#onClickValues" prefHeight="54.0" prefWidth="279.0" style="-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color: #7D7D7D;" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                                 <graphic>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PHILHEALTH" wrappingWidth="240.6068389415741">
+                                       <font>
+                                          <Font name="Arial" size="18.0" />
+                                       </font>
+                                    </Text>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="pagibig_btn" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#onClickValues" prefHeight="54.0" prefWidth="279.0" style="-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color: #7D7D7D;" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                                 <graphic>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Pag-ibig Funds" wrappingWidth="240.6068389415741">
+                                       <font>
+                                          <Font name="Arial" size="18.0" />
+                                       </font>
+                                    </Text>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <Pane fx:id="sss_tab" layoutX="274.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
+            <Pane fx:id="phil_tab" layoutX="284.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+               <children>
+                  <TableView layoutX="193.0" layoutY="86.0" prefHeight="519.0" prefWidth="641.0" style="-fx-background-color: E9E1D5;">
+                     <columns>
+                        <TableColumn fx:id="ph_range" editable="false" maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" sortable="false" text="Range">
+                           <columns>
+                              <TableColumn fx:id="ph_start" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="214.39996337890625" sortable="false" text="Start" />
+                              <TableColumn fx:id="ph_end" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="208.80001831054688" sortable="false" text="End" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn fx:id="ph_rate" editable="false" prefWidth="217.20001220703125" sortable="false" text="Rate" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="ph_save_btn" disable="true" layoutX="134.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
+                  <Button fx:id="ph_update_btn" layoutX="134.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Update" />
+                  <Text layoutX="404.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PHILHEALTH TABLE" wrappingWidth="210.51263427734375">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="ph_cancel_btn" cancelButton="true" disable="true" layoutX="134.0" layoutY="117.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Cancel" visible="false" />
+                  <Button fx:id="ph_add_btn" disable="true" layoutX="193.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="65.0" text="Add Row" visible="false" />
+                  <Button fx:id="ph_delete_btn" disable="true" layoutX="258.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="77.0" text="Delete Row" visible="false" />
+               </children>
+            </Pane>
+            <Pane fx:id="pagibig_tab" layoutX="294.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+               <children>
+                  <Button fx:id="pi_save_btn" disable="true" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
+                  <TextField fx:id="pi_maxTf" disable="true" layoutX="223.0" layoutY="59.0" />
+                  <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="118.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="58.0" text="Cancel" visible="false" />
+                  <Button fx:id="pi_edit_btn" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Edit" />
+                  <Text layoutX="58.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max Monthly Contribution:" />
+                  <TextField fx:id="pi_employeeTf" disable="true" layoutX="223.0" layoutY="151.0" />
+                  <Text layoutX="58.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share" />
+                  <Text layoutX="58.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution" />
+                  <TextField fx:id="pi_employerTf" disable="true" layoutX="223.0" layoutY="104.0" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

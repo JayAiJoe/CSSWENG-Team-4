@@ -39,6 +39,9 @@ public class Driver extends Application {
         // add screens
         screenController.addScreen("payroll", FXMLLoader.load(
                 new File("src/main/resources/fxml/Payroll.fxml").toURI().toURL()));
+
+        screenController.addScreen("calculator", FXMLLoader.load(
+                new File("src/main/resources/fxml/Calculator.fxml").toURI().toURL()));
     }
 
     public static ScreenController getScreenController() {
