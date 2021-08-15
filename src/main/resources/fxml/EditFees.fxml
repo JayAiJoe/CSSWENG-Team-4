@@ -78,15 +78,15 @@
                   <Pane fx:id="sss_tab" layoutX="274.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
                   <Pane fx:id="phil_tab" layoutX="284.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
                      <children>
-                        <TableView layoutX="193.0" layoutY="86.0" prefHeight="519.0" prefWidth="641.0" style="-fx-background-color: E9E1D5;">
+                        <TableView fx:id="philhealthTv" editable="true" layoutX="193.0" layoutY="86.0" prefHeight="519.0" prefWidth="641.0" style="-fx-background-color: E9E1D5;">
                            <columns>
-                              <TableColumn fx:id="ph_range" editable="false" maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" sortable="false" text="Range">
+                              <TableColumn maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" sortable="false" text="Range">
                                  <columns>
-                                    <TableColumn fx:id="ph_start" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="214.39996337890625" sortable="false" text="Start" />
-                                    <TableColumn fx:id="ph_end" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="208.80001831054688" sortable="false" text="End" />
+                                    <TableColumn fx:id="ph_start" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="214.39996337890625" sortable="false" text="Start" />
+                                    <TableColumn fx:id="ph_end" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="208.80001831054688" sortable="false" text="End" />
                                  </columns>
                               </TableColumn>
-                              <TableColumn fx:id="ph_rate" editable="false" prefWidth="217.20001220703125" sortable="false" text="Fee" />
+                              <TableColumn fx:id="ph_value" prefWidth="217.20001220703125" sortable="false" text="Fee" />
                            </columns>
                         </TableView>
                         <Button fx:id="ph_save_btn" disable="true" layoutX="134.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
@@ -97,8 +97,9 @@
                            </font>
                         </Text>
                         <Button fx:id="ph_cancel_btn" cancelButton="true" disable="true" layoutX="134.0" layoutY="117.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Cancel" visible="false" />
-                        <Button fx:id="ph_add_btn" disable="true" layoutX="193.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="65.0" text="Add Row" visible="false" />
-                        <Button fx:id="ph_delete_btn" disable="true" layoutX="258.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="77.0" text="Delete Row" visible="false" />
+                        <Button fx:id="ph_add_btn" disable="true" layoutX="193.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onAddRowAction" prefHeight="31.0" prefWidth="65.0" text="Add Row" visible="false" />
+                        <Button fx:id="ph_delete_btn" disable="true" layoutX="258.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onDeleteRowAction" prefHeight="31.0" prefWidth="77.0" text="Delete Row" visible="false" />
+                        <Text fx:id="ph_errorText" fill="RED" layoutX="193.0" layoutY="633.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                      </children>
                   </Pane>
                   <Pane fx:id="pagibig_tab" layoutX="294.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
@@ -112,7 +113,8 @@
                         <Text layoutX="58.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution:" />
                         <Text layoutX="354.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" />
                         <Text layoutX="194.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Php" />
-                        <Text fx:id="pi_errorText" fill="RED" layoutX="58.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Inputs!" wrappingWidth="87.36328125" />
+                        <Text fx:id="pi_employer_errorText" fill="RED" layoutX="58.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution should be nonnegative and up to 2 decimal places only!" wrappingWidth="421.7632751464844" />
+                        <Text fx:id="pi_employee_errorText" fill="RED" layoutX="59.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share should be greater than 0 and less than 100!" />
                      </children>
                   </Pane>
                </children>
