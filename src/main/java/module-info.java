@@ -4,6 +4,9 @@ module Sample.main {
     requires org.mongodb.driver.sync.client;
     requires org.mongodb.bson;
     requires org.mongodb.driver.core;
+    requires org.apache.poi.poi;
+    requires commons.math3;
+    requires SparseBitSet;
 
     opens driver;
     exports driver;
