@@ -180,6 +180,38 @@ public class Calculator {
     }
 
     /**
+     * Returns the FeeTable for the Employee Compensation.
+     * @return the FeeTable for the Employee Compensation
+     */
+    public FeeTable getEmployeeCompensation() {
+        return employeeCompensation;
+    }
+
+    /**
+     * Returns the FeeTable for the PhilHealth Fee.
+     * @return the FeeTable for the PhilHealth Fee
+     */
+    public FeeTable getPhilhealthFeeTable() {
+        return philhealthFeeTable;
+    }
+
+    /**
+     * Returns the FeeTable for the SSS Fee.
+     * @return the FeeTable for the SSS Fee
+     */
+    public FeeTable getSssFeeTable() {
+        return sssFeeTable;
+    }
+
+    /**
+     * Returns the instance of the PagIbigFee.
+     * @return the instance of the PagIbigFee
+     */
+    public PagIbigFee getPagIbigFee() {
+        return pagIbigFee;
+    }
+
+    /**
      * Closes the fee tables so that their contents are saved to
      * the appropriate binary files.
      */
