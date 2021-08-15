@@ -5,8 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import model.Calculator;
+import model.PagIbigFee;
 import model.PayrollEntry;
 
+import java.text.DecimalFormat;
 import java.util.Optional;
 
 /**
@@ -14,6 +18,7 @@ import java.util.Optional;
  * for EditFees.fxml like onClick events, listeners, etc.
  */
 public class EditFeesController {
+    private static DecimalFormat df = new DecimalFormat("0.00");
 
     /**
      * Instantiation of the different tabs in the calculator
@@ -30,13 +35,17 @@ public class EditFeesController {
             ph_save_btn;
 
     @FXML
-    private TextField pi_maxTf, pi_employeeTf, pi_employerTf;
+    private TextField pi_employeeTf, pi_employerTf;
+    @FXML
+    private Text pi_errorText;
 
     /**
      * Instantiation of objects related to table from EditFees.fxml
      */
     @FXML
     private TableColumn<PayrollEntry, Double> ph_range, ph_start, ph_end, ph_rate;
+
+    PagIbigFee pagIbigFee;
 
     /**
      * This method is responsible for switching between SSS, Philhealth,
@@ -68,6 +77,11 @@ public class EditFeesController {
         pagibig_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
 
         disableReorder();
+
+        pagIbigFee = Calculator.getInstance().getPagIbigFee();
+        pi_employeeTf.setText(df.format(pagIbigFee.getTotalRate() * 100));
+        pi_employerTf.setText(df.format(pagIbigFee.getEmployerContrib()));
+        pi_errorText.setVisible(false);
     }
 
     /**
@@ -96,7 +110,6 @@ public class EditFeesController {
             pi_save_btn.setDisable(false);
 
             //Textfields
-            pi_maxTf.setDisable(false);
             pi_employeeTf.setDisable(false);
             pi_employerTf.setDisable(false);
         } else if (mouseEvent.getSource() == pi_cancel_btn) {
@@ -119,15 +132,16 @@ public class EditFeesController {
                 pi_save_btn.setDisable(true);
 
                 //Textfields
-                pi_maxTf.setDisable(true);
+                pi_employeeTf.setText(df.format(pagIbigFee.getTotalRate() * 100));
+                pi_employerTf.setText(df.format(pagIbigFee.getEmployerContrib()));
                 pi_employeeTf.setDisable(true);
                 pi_employerTf.setDisable(true);
+
                 System.out.println("Ok is pressed");
             } else {
                 // ... user chose CANCEL or closed the dialog
                 System.out.println("cancel is pressed");
             }
-
         } else if (mouseEvent.getSource() == pi_save_btn) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -138,6 +152,14 @@ public class EditFeesController {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
+                double totalRate = Double.parseDouble(pi_employeeTf.getText()) / 100;
+                double employerContrib = Double.parseDouble(pi_employerTf.getText());
+
+                if (totalRate <= 0 || totalRate >= 1 || employerContrib < 0) {
+                    pi_errorText.setVisible(true);
+                    return;
+                }
+
                 pi_edit_btn.toFront();
                 pi_edit_btn.setDisable(false);
                 pi_cancel_btn.toBack();
@@ -145,11 +167,15 @@ public class EditFeesController {
                 pi_cancel_btn.setVisible(false);
                 pi_save_btn.setVisible(false);
                 pi_save_btn.setDisable(true);
+                pi_errorText.setVisible(false);
 
                 //Textfields
-                pi_maxTf.setDisable(true);
                 pi_employeeTf.setDisable(true);
                 pi_employerTf.setDisable(true);
+
+                // save info
+                pagIbigFee.setTotalRate(totalRate);
+                pagIbigFee.setEmployerContrib(employerContrib);
 
                 System.out.println("Ok is pressed");
             } else {

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditFeesController">
+<AnchorPane prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditFeesController">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -86,7 +86,7 @@
                                     <TableColumn fx:id="ph_end" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="208.80001831054688" sortable="false" text="End" />
                                  </columns>
                               </TableColumn>
-                              <TableColumn fx:id="ph_rate" editable="false" prefWidth="217.20001220703125" sortable="false" text="Rate" />
+                              <TableColumn fx:id="ph_rate" editable="false" prefWidth="217.20001220703125" sortable="false" text="Fee" />
                            </columns>
                         </TableView>
                         <Button fx:id="ph_save_btn" disable="true" layoutX="134.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
@@ -104,14 +104,15 @@
                   <Pane fx:id="pagibig_tab" layoutX="294.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
                      <children>
                         <Button fx:id="pi_save_btn" disable="true" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
-                        <TextField fx:id="pi_maxTf" disable="true" layoutX="223.0" layoutY="59.0" />
+                        <TextField fx:id="pi_employeeTf" disable="true" layoutX="223.0" layoutY="105.0" prefHeight="25.0" prefWidth="123.0" />
                         <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="118.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="58.0" text="Cancel" visible="false" />
                         <Button fx:id="pi_edit_btn" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Edit" />
-                        <Text layoutX="58.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max Monthly Contribution:" />
-                        <TextField fx:id="pi_employeeTf" disable="true" layoutX="223.0" layoutY="151.0" />
-                        <Text layoutX="58.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share" />
-                        <Text layoutX="58.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution" />
-                        <TextField fx:id="pi_employerTf" disable="true" layoutX="223.0" layoutY="104.0" />
+                        <Text layoutX="58.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share:" />
+                        <TextField fx:id="pi_employerTf" disable="true" layoutX="223.0" layoutY="151.0" prefHeight="25.0" prefWidth="123.0" />
+                        <Text layoutX="58.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution:" />
+                        <Text layoutX="354.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" />
+                        <Text layoutX="194.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Php" />
+                        <Text fx:id="pi_errorText" fill="RED" layoutX="58.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Inputs!" wrappingWidth="87.36328125" />
                      </children>
                   </Pane>
                </children>
