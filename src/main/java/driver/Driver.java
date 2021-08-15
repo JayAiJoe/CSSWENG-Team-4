@@ -8,9 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Calculator;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.util.Objects;
 
 public class Driver extends Application {
     private static ScreenController screenController;
@@ -18,8 +17,7 @@ public class Driver extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        URL url = new File("src/main/resources/fxml/Payroll.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Payroll.fxml")));
 
         Scene scene = new Scene(root);
         initScreenController(scene);
@@ -41,11 +39,9 @@ public class Driver extends Application {
         screenController = new ScreenController(main);
 
         // add screens
-        screenController.addScreen("Payroll", FXMLLoader.load(
-                new File("src/main/resources/fxml/Payroll.fxml").toURI().toURL()));
+        screenController.addScreen("Payroll", FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Payroll.fxml"))));
 
-        screenController.addScreen("EditFees", FXMLLoader.load(
-                new File("src/main/resources/fxml/EditFees.fxml").toURI().toURL()));
+        screenController.addScreen("EditFees", FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/EditFees.fxml"))));
     }
 
     public static ScreenController getScreenController() {
