@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Calculator;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +26,9 @@ public class Driver extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
+
+        primaryStage.setOnCloseRequest(event -> Calculator.getInstance().close());
+
         primaryStage.show();
     }
 
