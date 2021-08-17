@@ -15,14 +15,14 @@
    <children>
       <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="36.0" prefWidth="1326.0">
+            <AnchorPane prefHeight="36.0" prefWidth="1400.0">
                <children>
                   <Button fx:id="Home_nav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" text="Home" />
                   <Button layoutX="94.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onPayrollAction" prefHeight="29.0" prefWidth="87.0" text="View Payrolls" />
                   <Button layoutX="181.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" text="Edit Fees" />
                </children>
             </AnchorPane>
-        <AnchorPane layoutY="35.0" minHeight="0.0" minWidth="0.0" prefHeight="746.0" prefWidth="1326.0" style="-fx-background-color: FFEED4;">
+        <AnchorPane layoutY="35.0" minHeight="0.0" minWidth="0.0" prefHeight="746.0" prefWidth="1400.0" style="-fx-background-color: FFEED4;">
                <children>
                   <AnchorPane layoutY="65.0" prefHeight="987.0" prefWidth="274.0">
                      <children>
@@ -80,7 +80,7 @@
                      <children>
                         <TableView fx:id="philhealthTv" editable="true" layoutX="193.0" layoutY="86.0" prefHeight="519.0" prefWidth="641.0" style="-fx-background-color: E9E1D5;">
                            <columns>
-                              <TableColumn maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" sortable="false" text="Range">
+                              <TableColumn fx:id="ph_range" maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" sortable="false" text="Range">
                                  <columns>
                                     <TableColumn fx:id="ph_start" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="214.39996337890625" sortable="false" text="Start" />
                                     <TableColumn fx:id="ph_end" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="208.80001831054688" sortable="false" text="End" />

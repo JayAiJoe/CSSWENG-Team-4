@@ -61,15 +61,16 @@ public class Payroll {
 
             String employeeName = employee.getCompleteName();
             String mode = employee.getWageFrequency();
-            int workdays = (int)(performance.getDaysPresent() + performance.getDaysAbsent());
+            double absent = performance.getDaysAbsent();
+            double workdays = performance.getDaysPresent();
+            int totalDays = (int)(absent + workdays);
 
             double rate = employee.getWage();
             if (mode.equals("MONTHLY")) {
-                rate /= workdays;
+                rate /= totalDays;
             }
 
-            double salary = Calculator.getInstance().computeSalary(rate,
-                    performance.getDaysPresent());
+            double salary = Calculator.getInstance().computeSalary(rate, workdays);
             int time = performance.getMinsOvertime();
             double amount = Calculator.getInstance().computeOvertime(rate, time);
             double cola = 0;
@@ -90,7 +91,7 @@ public class Payroll {
             double late = Calculator.getInstance().computeLateFee(rate, performance.getMinsLate());
             double net = total - sss - philhealth - pagibig - late;
 
-            entries.add(new PayrollEntry(employeeName, mode, workdays, rate, salary, time,
+            entries.add(new PayrollEntry(employeeName, mode, absent, workdays, rate, salary, time,
                     amount, cola, total, sss, philhealth, pagibig, late, net));
         }
     }

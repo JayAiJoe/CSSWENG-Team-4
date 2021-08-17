@@ -20,10 +20,10 @@ public class PayrollController {
     @FXML
     private TableView<PayrollEntry> payrollTv;
     @FXML
-    private TableColumn<PayrollEntry, String> nameTc, modeTc, rateTc, salaryTc,
-            amountTc, colaTc, totalTc, sssTc, philhealthTc, pagibigTc, lateTc, netTc;
+    private TableColumn<PayrollEntry, String> nameTc, modeTc, absentTc, rateTc, salaryTc,
+            amountTc, colaTc, totalTc, sssTc, philhealthTc, pagibigTc, taxTc, lateTc, netTc;
     @FXML
-    private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc;
+    private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc, overtimeTc, deductionsTc;
 
     @FXML
     public void initialize() {
@@ -33,6 +33,7 @@ public class PayrollController {
         // initialize columns
         nameTc.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
         modeTc.setCellValueFactory(new PropertyValueFactory<>("mode"));
+        absentTc.setCellValueFactory(new PropertyValueFactory<>("absent"));
         workdaysTc.setCellValueFactory(new PropertyValueFactory<>("workdays"));
         timeTc.setCellValueFactory(new PropertyValueFactory<>("time"));
         rateTc.setCellValueFactory(new PropertyValueFactory<>("rate"));
@@ -65,15 +66,18 @@ public class PayrollController {
         totalTc.setReorderable(false);
         amountTc.setReorderable(false);
         colaTc.setReorderable(false);
+        deductionsTc.setReorderable(false);
         lateTc.setReorderable(false);
         modeTc.setReorderable(false);
         nameTc.setReorderable(false);
         netTc.setReorderable(false);
+        overtimeTc.setReorderable(false);
         pagibigTc.setReorderable(false);
         philhealthTc.setReorderable(false);
         rateTc.setReorderable(false);
         salaryTc.setReorderable(false);
         sssTc.setReorderable(false);
+        taxTc.setReorderable(false);
         workdaysTc.setReorderable(false);
     }
 

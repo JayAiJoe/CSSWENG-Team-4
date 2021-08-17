@@ -49,7 +49,7 @@ public class EditFeesController {
     @FXML
     TableView<PhilHealthRange> philhealthTv;
     @FXML
-    private TableColumn<PhilHealthRange, String> ph_start, ph_end, ph_value;
+    private TableColumn<PhilHealthRange, String> ph_start, ph_end, ph_value, ph_range;
 
     /**
      * Model components that are necessary for editing
@@ -100,6 +100,10 @@ public class EditFeesController {
         ph_start.setCellFactory(TextFieldTableCell.forTableColumn());
         ph_end.setCellFactory(TextFieldTableCell.forTableColumn());
         ph_value.setCellFactory(TextFieldTableCell.forTableColumn());
+        ph_start.setReorderable(false);
+        ph_end.setReorderable(false);
+        ph_value.setReorderable(false);
+        ph_range.setReorderable(false);
 
         // initialize editable cells
         ph_start.setOnEditStart(
