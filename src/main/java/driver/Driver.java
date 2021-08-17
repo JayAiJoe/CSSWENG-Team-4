@@ -23,7 +23,7 @@ public class Driver extends Application {
         initScreenController(scene);
 
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+        //primaryStage.setResizable(false);
 
         primaryStage.setOnCloseRequest(event -> Calculator.getInstance().close());
 
