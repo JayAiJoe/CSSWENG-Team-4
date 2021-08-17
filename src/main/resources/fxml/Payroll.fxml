@@ -8,13 +8,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
+<AnchorPane prefHeight="725.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
    <children>
       <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <children>
             <AnchorPane layoutY="-3.0" prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TableView id="t_payroll" fx:id="payrollTv" layoutX="52.0" layoutY="158.0" prefHeight="585.0" prefWidth="1275.0" stylesheets="@Payroll.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="158.0">
+                  <TableView id="t_payroll" fx:id="payrollTv" layoutX="52.0" layoutY="158.0" prefHeight="491.0" prefWidth="1275.0" stylesheets="@../css/Payroll.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="158.0">
                     <columns>
                       <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="171.20000839233398" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689;" text="Name" />
                       <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="72.80000305175781" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689;" text="Mode" />
@@ -42,15 +42,21 @@
                         <TableColumn id="tc_total" fx:id="netTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="131.9998779296875" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="Net Amount&#10;      Paid" />
                     </columns>
                   </TableView>
-                  <Text fx:id="t_daterange" layoutX="71.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For the Period:" />
-                  <Text fx:id="t_address" layoutX="71.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Located at:" />
-                  <HBox alignment="CENTER" layoutY="29.0" prefHeight="36.0" prefWidth="1400.0" AnchorPane.bottomAnchor="679.8000000000001" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+                  <Text fx:id="daterangeText" layoutX="71.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For the Period:" />
+                  <Text fx:id="addressText" layoutX="71.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Located at:" />
+                  <HBox alignment="CENTER" layoutY="45.0" prefHeight="33.0" prefWidth="1400.0" AnchorPane.bottomAnchor="670.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
                      <children>
-                        <Text id="Payroll_Head" fx:id="companyname" fill="#a18a5b" stroke="#fcfcfc" strokeType="OUTSIDE" strokeWidth="0.0" text="COMPANY NAME" textAlignment="CENTER" wrappingWidth="263.3913879394536">
+                        <Text id="Payroll_Head" fx:id="companyText" fill="#a18a5b" stroke="#fcfcfc" strokeType="OUTSIDE" strokeWidth="0.0" text="Crayola atbp." textAlignment="CENTER" wrappingWidth="263.3913879394536">
                            <font>
                               <Font size="25.0" />
                            </font>
                         </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="600.0" layoutY="1.0" prefHeight="9.0" prefWidth="200.0" AnchorPane.bottomAnchor="722.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="1.0">
+                     <children>
+                        <Button fx:id="crayolaBtn" mnemonicParsing="false" onMouseClicked="#onPayrollClick" prefHeight="26.0" prefWidth="98.0" text="Crayola atbp." />
+                        <Button fx:id="ixxiBtn" mnemonicParsing="false" onMouseClicked="#onPayrollClick" prefHeight="26.0" prefWidth="100.0" text="IX-XI Hardware" />
                      </children>
                   </HBox>
                </children>

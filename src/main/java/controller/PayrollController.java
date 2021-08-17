@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import model.Payroll;
 import model.PayrollEntry;
 
@@ -14,6 +16,17 @@ import model.PayrollEntry;
  * for Payroll.fxml like onClick events, listeners, etc.
  */
 public class PayrollController {
+
+
+    /**
+     * Instantiation of objects related to the company info in Payroll.fxml
+     */
+    @FXML
+    private Button crayolaBtn, ixxiBtn;
+
+    @FXML
+    private Text addressText, companyText, daterangeText;
+
     /**
      * Instantiation of objects related to table from Payroll.fxml
      */
@@ -55,6 +68,12 @@ public class PayrollController {
         // set data in table
         payrollTv.setItems(entries);
 
+        //disable crayolaBtn upon initialization
+        crayolaBtn.setDisable(true);
+
+        //
+        addressText.setText(addressText.getText() + " UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+
         //format column and table order
         setColumnWidth();
         disableReorder();
@@ -63,7 +82,7 @@ public class PayrollController {
     /**
      * This method simply disables reorderability for all table columns in Payroll.fxml
      */
-    public void disableReorder() {
+    private void disableReorder() {
         //Payroll table
         timeTc.setReorderable(false);
         totalTc.setReorderable(false);
@@ -87,7 +106,7 @@ public class PayrollController {
     /**
      * Method sets the width of each Table Column in payrollTv
      * */
-    public void setColumnWidth(){
+    private void setColumnWidth(){
         nameTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(8));
         modeTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
         absentTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
@@ -109,10 +128,31 @@ public class PayrollController {
     }
 
     /**
+     * Method responsible for switching between payroll of Crayola and IX-XI in Payroll.fxml
+     * @param mouseEvent
+     */
+    public void onPayrollClick(MouseEvent mouseEvent){
+        if(mouseEvent.getSource() == crayolaBtn){
+            crayolaBtn.setDisable(true);
+            ixxiBtn.setDisable(false);
+            addressText.setText("Located at: "+ "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+            companyText.setText("Crayola atbp.");
+        }
+        else if (mouseEvent.getSource() == ixxiBtn) {
+            ixxiBtn.setDisable(true);
+            crayolaBtn.setDisable(false);
+            addressText.setText("Located at: "+ "UNIT 5, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+            companyText.setText("IX-XI Hardware");
+
+        }
+    }
+
+    /**
      * Changes screen to EditFees.fxml.
      */
     @FXML
     private void onEditFeesAction() {
         Driver.getScreenController().activate("EditFees");
     }
+
 }
