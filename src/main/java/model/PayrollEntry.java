@@ -10,7 +10,8 @@ import java.text.DecimalFormat;
 public class PayrollEntry {
     private String employeeName;
     private String mode;
-    private int workdays;
+    private double absent;
+    private double workdays;
     private double rate;
     private double salary;
     private int time;
@@ -25,12 +26,13 @@ public class PayrollEntry {
 
     private static DecimalFormat df = new DecimalFormat("0.00");
 
-    public PayrollEntry(String employeeName, String mode, int workdays,
+    public PayrollEntry(String employeeName, String mode, double absent, double workdays,
                         double rate, double salary, int time, double amount,
                         double cola, double total, double sss,
                         double philhealth, double pagibig, double late, double net) {
         this.employeeName = employeeName;
         this.mode = mode;
+        this.absent = absent;
         this.workdays = workdays;
         this.rate = rate;
         this.salary = salary;
@@ -48,6 +50,10 @@ public class PayrollEntry {
     // getters
     public String getEmployeeName() {
         return employeeName;
+    }
+
+    public String getAbsent() {
+        return df.format(absent);
     }
 
     public String getAmount() {
@@ -94,8 +100,8 @@ public class PayrollEntry {
         return time;
     }
 
-    public int getWorkdays() {
-        return workdays;
+    public String getWorkdays() {
+        return df.format(workdays);
     }
 
     public String getMode() {

@@ -1,0 +1,20 @@
+.table-view {
+    -fx-background-color: white;
+}
+.table-view .column-header-background{
+     -fx-background-color: FFF2C2;
+ }
+
+ .table-view .column-header{
+    -fx-border-color:  CEB689;
+    -fx-background-color: #FFF2C2;
+ }
+
+.table-row-cell: hover {
+    -fx-background-color: #c9c9c9;
+}
+
+.table-header: hover{
+    -fx-background-color: #c9c9c9;
+}
+

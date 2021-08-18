@@ -20,7 +20,7 @@ extraJavaModuleInfo {
 
 startScripts {
     doLast {
-        def defaultScript = '"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %CSSWENG_TEAM_4_OPTS%  -classpath "%CLASSPATH%" driver.Driver %*'
+        def defaultScript = "\"%JAVA_EXE%\" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %${project.name}_OPTS%  -classpath \"%CLASSPATH%\" driver.Driver %*" as String
         def temp = defaultScript.split(" {2}")
         def newScript = "${temp[0]} --module-path \"%CLASSPATH%\" --add-modules javafx.controls,javafx.fxml ${temp[1]}" as String
         windowsScript.text = windowsScript.text.replace(defaultScript, newScript)
