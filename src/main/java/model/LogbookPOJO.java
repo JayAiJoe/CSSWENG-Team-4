@@ -12,6 +12,7 @@ public class LogbookPOJO {
     private int timeOut1;
     private int timeIn2;
     private int timeOut2;
+    private boolean approvedOT;
 
 
     public LogbookPOJO(int employeeID, String completeName, Date date, double temp, int timeIn1, int timeOut1, int timeIn2, int timeOut2) {
@@ -23,6 +24,7 @@ public class LogbookPOJO {
         this.timeOut1 = timeOut1;
         this.timeIn2 = timeIn2;
         this.timeOut2 = timeOut2;
+        this.approvedOT = false;
     }
 
 
@@ -60,6 +62,10 @@ public class LogbookPOJO {
         return timeOut2;
     }
 
+    public boolean getApprovedOT() {
+        return approvedOT;
+    }
+
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
@@ -92,4 +98,7 @@ public class LogbookPOJO {
         this.timeOut2 = timeOut2;
     }
 
+    public void setApprovedOT(boolean approvedOT) {
+        this.approvedOT = approvedOT;
+    }
 }
