@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditFeesController">
+<AnchorPane prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditFeesController">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -22,9 +22,9 @@
                   <Button layoutX="181.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" text="Edit Fees" />
                </children>
             </AnchorPane>
-        <AnchorPane layoutY="35.0" minHeight="0.0" minWidth="0.0" prefHeight="746.0" prefWidth="1400.0" style="-fx-background-color: FFEED4;">
+        <AnchorPane layoutY="35.0" minHeight="0.0" minWidth="0.0" prefHeight="746.0" prefWidth="1400.0" style="-fx-background-color: FFEED4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                <children>
-                  <AnchorPane layoutY="65.0" prefHeight="987.0" prefWidth="274.0">
+                  <AnchorPane layoutY="65.0" prefHeight="987.0" prefWidth="274.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="65.0">
                      <children>
                         <AnchorPane prefHeight="987.2" prefWidth="274.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -78,7 +78,7 @@
                   <Pane fx:id="sss_tab" layoutX="274.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
                   <Pane fx:id="phil_tab" layoutX="284.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
                      <children>
-                        <TableView fx:id="philhealthTv" editable="true" layoutX="193.0" layoutY="86.0" prefHeight="519.0" prefWidth="641.0" style="-fx-background-color: E9E1D5;">
+                        <TableView fx:id="philhealthTv" editable="true" layoutX="193.0" layoutY="86.0" prefHeight="519.0" prefWidth="641.0" stylesheets="@../css/Payroll.css">
                            <columns>
                               <TableColumn fx:id="ph_range" maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" sortable="false" text="Range">
                                  <columns>
