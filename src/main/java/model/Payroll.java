@@ -1,6 +1,8 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 // TODO: Implement initialize() method
 
@@ -12,6 +14,7 @@ import java.util.ArrayList;
  */
 public class Payroll {
     private ArrayList<PayrollEntry> entries;
+    private Date dateStart, dateEnd;
 
     public Payroll() {
         try {
@@ -25,6 +28,14 @@ public class Payroll {
         return entries;
     }
 
+    public String getDateStart() {
+        return new SimpleDateFormat("MM/dd/yyyy").format(dateStart);
+    }
+
+    public String getDateEnd() {
+        return new SimpleDateFormat("MM/dd/yyyy").format(dateEnd);
+    }
+
     /**
      * Initializes the entries of the payroll using employee and
      * performance information retrieved from the database.
@@ -36,6 +47,9 @@ public class Payroll {
 
         ArrayList<EmployeePOJO> employees = Repository.getInstance().getAllEmployees();
         ArrayList<PerformancePOJO> performances = Repository.getInstance().getAllPerformance();
+
+        dateStart = performances.get(0).getDateStart();
+        dateEnd = performances.get(0).getDatePaid();
 
         int employeeCnt = employees.size();
         System.out.println(employeeCnt);

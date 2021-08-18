@@ -72,7 +72,10 @@ public class PayrollController {
         crayolaBtn.setDisable(true);
 
         //
-        addressText.setText(addressText.getText() + " UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+        addressText.setText(addressText.getText()
+                + " UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+        daterangeText.setText(daterangeText.getText() + " " + payroll.getDateStart()
+                + " - " + payroll.getDateEnd());
 
         //format column and table order
         setColumnWidth();
@@ -129,7 +132,7 @@ public class PayrollController {
 
     /**
      * Method responsible for switching between payroll of Crayola and IX-XI in Payroll.fxml
-     * @param mouseEvent
+     * @param mouseEvent the mouse event that occurred
      */
     public void onPayrollClick(MouseEvent mouseEvent){
         if(mouseEvent.getSource() == crayolaBtn){

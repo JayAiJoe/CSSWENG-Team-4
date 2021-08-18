@@ -82,11 +82,11 @@
                            <columns>
                               <TableColumn fx:id="ph_range" maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" sortable="false" text="Range">
                                  <columns>
-                                    <TableColumn fx:id="ph_start" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="214.39996337890625" sortable="false" text="Start" />
-                                    <TableColumn fx:id="ph_end" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="208.80001831054688" sortable="false" text="End" />
+                                    <TableColumn fx:id="ph_start" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="214.39996337890625" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Start" />
+                                    <TableColumn fx:id="ph_end" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="208.80001831054688" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="End" />
                                  </columns>
                               </TableColumn>
-                              <TableColumn fx:id="ph_value" prefWidth="217.20001220703125" sortable="false" text="Fee" />
+                              <TableColumn fx:id="ph_value" prefWidth="217.20001220703125" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Fee" />
                            </columns>
                         </TableView>
                         <Button fx:id="ph_save_btn" disable="true" layoutX="134.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
