@@ -113,12 +113,12 @@ public class PayrollController {
         workdaysTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         rateTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         salaryTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(11));
-        overtimeTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
+        overtimeTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(55));
         timeTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(25));
         amountTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         colaTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
         totalTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(14));
-        deductionsTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(11));
+        deductionsTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(100));
         sssTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         pagibigTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         philhealthTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
