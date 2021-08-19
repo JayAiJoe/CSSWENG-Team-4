@@ -15,7 +15,7 @@ import model.PayrollEntry;
  * This class is the main controller for any scripted event
  * for Payroll.fxml like onClick events, listeners, etc.
  */
-public class PayrollController {
+public class PayrollController extends Controller {
 
 
     /**
@@ -37,6 +37,15 @@ public class PayrollController {
             amountTc, colaTc, totalTc, sssTc, philhealthTc, pagibigTc, taxTc, lateTc, netTc;
     @FXML
     private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc, overtimeTc, deductionsTc;
+
+    Payroll payroll;
+    ObservableList<PayrollEntry> entries = FXCollections.observableArrayList();
+
+    @Override
+    public void update() {
+        payroll.update();
+        entries.setAll(payroll.getEntries());
+    }
 
     @FXML
     public void initialize() {
@@ -60,12 +69,9 @@ public class PayrollController {
         lateTc.setCellValueFactory(new PropertyValueFactory<>("late"));
         netTc.setCellValueFactory(new PropertyValueFactory<>("net"));
 
-        // get data
-        Payroll payroll = new Payroll();
-        ObservableList<PayrollEntry> entries = FXCollections.observableArrayList();
+        // get and set data in table
+        payroll = new Payroll();
         entries.setAll(payroll.getEntries());
-
-        // set data in table
         payrollTv.setItems(entries);
 
         //disable crayolaBtn upon initialization
