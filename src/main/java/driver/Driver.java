@@ -40,9 +40,13 @@ public class Driver extends Application {
         screenController = new ScreenController(main);
 
         // add screens
-        screenController.addScreen("Payroll", FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Payroll.fxml"))));
+        FXMLLoader payrollLoader = new FXMLLoader();
+        payrollLoader.setLocation(getClass().getResource("/fxml/Payroll.fxml"));
+        screenController.addScreen("Payroll", payrollLoader);
 
-        screenController.addScreen("EditFees", FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/EditFees.fxml"))));
+        FXMLLoader editFeesLoader = new FXMLLoader();
+        editFeesLoader.setLocation(getClass().getResource("/fxml/EditFees.fxml"));
+        screenController.addScreen("EditFees", editFeesLoader);
     }
 
     public static ScreenController getScreenController() {
