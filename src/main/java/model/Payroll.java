@@ -91,12 +91,14 @@ public class Payroll {
             double total = salary + amount;
 
             double sss, philhealth, pagibig;
+            double monthlyWage;
             if (mode.equals("MONTHLY")) {
-                sss = Calculator.getInstance().computeSSSFee(employee.getWage());
-                philhealth = Calculator.getInstance().computePhilHealthFee(employee.getWage());
-                pagibig = Calculator.getInstance().computePagIbigFee(employee.getWage());
+                monthlyWage = employee.getWage();
+                sss = Calculator.getInstance().computeSSSFee(monthlyWage);
+                philhealth = Calculator.getInstance().computePhilHealthFee(monthlyWage);
+                pagibig = Calculator.getInstance().computePagIbigFee(monthlyWage);
             } else {
-                double monthlyWage = rate * 26;
+                monthlyWage = rate * 26;
                 sss = Calculator.getInstance().computeSSSFee(monthlyWage);
                 philhealth = Calculator.getInstance().computePhilHealthFee(monthlyWage);
                 pagibig = Calculator.getInstance().computePagIbigFee(monthlyWage);
@@ -106,7 +108,24 @@ public class Payroll {
             double net = total - sss - philhealth - pagibig - late;
 
             entries.add(new PayrollEntry(employeeName, mode, absent, workdays, rate, salary, time,
-                    amount, cola, total, sss, philhealth, pagibig, late, net));
+                    amount, cola, total, sss, philhealth, pagibig, late, net, monthlyWage));
+        }
+    }
+
+    /**
+     * Updates the Pag-Ibig, PhilHealth, and SSS Fees of an employee.
+     */
+    public void update() {
+        for (PayrollEntry entry: entries) {
+            double sss, philhealth, pagibig;
+            double monthlyWage = entry.getMonthlyWage();
+            sss = Calculator.getInstance().computeSSSFee(monthlyWage);
+            philhealth = Calculator.getInstance().computePhilHealthFee(monthlyWage);
+            pagibig = Calculator.getInstance().computePagIbigFee(monthlyWage);
+
+            entry.setPagibig(pagibig);
+            entry.setPhilhealth(philhealth);
+            entry.setSss(sss);
         }
     }
 }

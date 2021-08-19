@@ -23,13 +23,14 @@ public class PayrollEntry {
     private double pagibig;
     private double late;
     private double net;
+    private double monthlyWage;
 
     private static DecimalFormat df = new DecimalFormat("0.00");
 
     public PayrollEntry(String employeeName, String mode, double absent, double workdays,
                         double rate, double salary, int time, double amount,
-                        double cola, double total, double sss,
-                        double philhealth, double pagibig, double late, double net) {
+                        double cola, double total, double sss, double philhealth,
+                        double pagibig, double late, double net, double monthlyWage) {
         this.employeeName = employeeName;
         this.mode = mode;
         this.absent = absent;
@@ -45,6 +46,7 @@ public class PayrollEntry {
         this.pagibig = pagibig;
         this.late = late;
         this.net = net;
+        this.monthlyWage = monthlyWage;
     }
 
     // getters
@@ -106,5 +108,21 @@ public class PayrollEntry {
 
     public String getMode() {
         return mode;
+    }
+
+    public double getMonthlyWage() {
+        return monthlyWage;
+    }
+
+    public void setPagibig(double pagibig) {
+        this.pagibig = pagibig;
+    }
+
+    public void setPhilhealth(double philhealth) {
+        this.philhealth = philhealth;
+    }
+
+    public void setSss(double sss) {
+        this.sss = sss;
     }
 }
