@@ -21,7 +21,7 @@ import java.util.Optional;
  * This class is the main controller for any scripted event
  * for EditFees.fxml like onClick events, listeners, etc.
  */
-public class EditFeesController {
+public class EditFeesController extends Controller {
     private static DecimalFormat df = new DecimalFormat("0.00");
 
     /**
@@ -87,6 +87,16 @@ public class EditFeesController {
         }
     }
 
+    @Override
+    public void update() {
+        pagibig_tab.toFront();
+        sss_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
+        phil_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
+        pagibig_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
+        resetPagIbig();
+        resetPhilHealth();
+    }
+
     @FXML
     public void initialize() {
         pagibig_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
@@ -126,7 +136,12 @@ public class EditFeesController {
         ph_start.setOnEditCommit(
                 t -> {
                     int row = t.getTablePosition().getRow();
-                    philhealthTv.getItems().get(row).setStart(t.getNewValue());
+                    try {
+                        double check = Double.parseDouble(t.getNewValue());
+                        philhealthTv.getItems().get(row).setStart(df.format(check));
+                    } catch (Exception e) {
+                        philhealthTv.getItems().get(row).setStart(t.getNewValue());
+                    }
                     if (!t.getNewValue().isEmpty()) {
                         philhealthTv.getItems().get(row).setInitialized(true);
                     }
@@ -135,7 +150,12 @@ public class EditFeesController {
         ph_end.setOnEditCommit(
                 t -> {
                     int row = t.getTablePosition().getRow();
-                    philhealthTv.getItems().get(row).setEnd(t.getNewValue());
+                    try {
+                        double check = Double.parseDouble(t.getNewValue());
+                        philhealthTv.getItems().get(row).setEnd(df.format(check));
+                    } catch (Exception e) {
+                        philhealthTv.getItems().get(row).setEnd(t.getNewValue());
+                    }
                     if (!t.getNewValue().isEmpty()) {
                         philhealthTv.getItems().get(row).setInitialized(true);
                     }
@@ -144,7 +164,12 @@ public class EditFeesController {
         ph_value.setOnEditCommit(
                 t -> {
                     int row = t.getTablePosition().getRow();
-                    philhealthTv.getItems().get(row).setValue(t.getNewValue());
+                    try {
+                        double check = Double.parseDouble(t.getNewValue());
+                        philhealthTv.getItems().get(row).setValue(df.format(check));
+                    } catch (Exception e) {
+                        philhealthTv.getItems().get(row).setValue(t.getNewValue());
+                    }
                     if (!t.getNewValue().isEmpty()) {
                         philhealthTv.getItems().get(row).setInitialized(true);
                     }
@@ -515,13 +540,6 @@ public class EditFeesController {
      */
     @FXML
     private void onPayrollAction() {
-        pagibig_tab.toFront();
-        sss_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-        phil_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-        pagibig_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-        resetPagIbig();
-        resetPhilHealth();
-
         Driver.getScreenController().activate("Payroll");
     }
 }
