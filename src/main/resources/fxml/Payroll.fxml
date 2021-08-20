@@ -16,30 +16,30 @@
                <children>
                   <TableView id="t_payroll" fx:id="payrollTv" layoutX="52.0" layoutY="158.0" prefHeight="491.0" prefWidth="1275.0" stylesheets="@../css/Payroll.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="158.0">
                     <columns>
-                      <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="171.20000839233398" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689;" text="Name" />
-                      <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="72.80000305175781" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689;" text="Mode" />
-                        <TableColumn fx:id="absentTc" editable="false" prefWidth="64.0" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="Absent" />
-                        <TableColumn id="tc_days" fx:id="workdaysTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="64.79998779296875" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="Days of&#10; Work" />
-                        <TableColumn id="tc_rate" fx:id="rateTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="74.39996337890625" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="Rate" />
-                        <TableColumn id="tc_wage" fx:id="salaryTc" maxWidth="1.7976931348623157E308" prefWidth="88.79998779296875" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="Total Regular&#10;     Wage" />
-                        <TableColumn id="tc_overtime" fx:id="overtimeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="104.5999755859375" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689;" text="Overtime">
+                      <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="171.20000839233398" resizable="false" sortable="false" text="Name" />
+                      <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="72.80000305175781" resizable="false" sortable="false" text="Mode" />
+                        <TableColumn fx:id="absentTc" editable="false" prefWidth="64.0" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Absent" />
+                        <TableColumn id="tc_days" fx:id="workdaysTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="64.79998779296875" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Days of&#10; Work" />
+                        <TableColumn id="tc_rate" fx:id="rateTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="74.39996337890625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Rate" />
+                        <TableColumn id="tc_wage" fx:id="salaryTc" maxWidth="1.7976931348623157E308" prefWidth="88.79998779296875" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Total Regular&#10;     Wage" />
+                        <TableColumn id="tc_overtime" fx:id="overtimeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="104.5999755859375" resizable="false" sortable="false" text="Overtime">
                            <columns>
-                              <TableColumn id="tco_time" fx:id="timeTc" editable="false" prefWidth="52.800048828125" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="Time" />
-                              <TableColumn id="tco_amount" fx:id="amountTc" editable="false" prefWidth="68.00003051757812" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="Amount" />
+                              <TableColumn id="tco_time" fx:id="timeTc" editable="false" prefWidth="52.800048828125" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Time" />
+                              <TableColumn id="tco_amount" fx:id="amountTc" editable="false" prefWidth="68.00003051757812" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Amount" />
                            </columns>
                         </TableColumn>
-                        <TableColumn id="tc_cola" fx:id="colaTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="72.0" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="COLA" />
-                        <TableColumn id="tc_total" fx:id="totalTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="78.39996337890625" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="Total&#10;Amount" />
-                        <TableColumn id="tc_deductions" fx:id="deductionsTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="362.79998779296875" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689;" text="Deductions">
+                        <TableColumn id="tc_cola" fx:id="colaTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="72.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="COLA" />
+                        <TableColumn id="tc_total" fx:id="totalTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="78.39996337890625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Total&#10;Amount" />
+                        <TableColumn id="tc_deductions" fx:id="deductionsTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="362.79998779296875" resizable="false" sortable="false" text="Deductions">
                            <columns>
-                              <TableColumn id="tcd_sss" fx:id="sssTc" editable="false" prefWidth="55.99993896484375" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="SSS" />
-                              <TableColumn id="tcd_philhealth" fx:id="philhealthTc" editable="false" prefWidth="83.199951171875" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="PHILHEALTH" />
-                              <TableColumn id="tcd_pagibig" fx:id="pagibigTc" editable="false" prefWidth="61.5999755859375" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="PAG-IBIG" />
-                              <TableColumn id="tcd_tax" fx:id="taxTc" prefWidth="75.2000732421875" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="Tax w/Held" />
-                              <TableColumn id="tcd_late" fx:id="lateTc" editable="false" prefWidth="57.5999755859375" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="Late/UT" />
+                              <TableColumn id="tcd_sss" fx:id="sssTc" editable="false" prefWidth="55.99993896484375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="SSS" />
+                              <TableColumn id="tcd_philhealth" fx:id="philhealthTc" editable="false" prefWidth="83.199951171875" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="PHILHEALTH" />
+                              <TableColumn id="tcd_pagibig" fx:id="pagibigTc" editable="false" prefWidth="61.5999755859375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="PAG-IBIG" />
+                              <TableColumn id="tcd_tax" fx:id="taxTc" prefWidth="75.2000732421875" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Tax w/Held" />
+                              <TableColumn id="tcd_late" fx:id="lateTc" editable="false" prefWidth="57.5999755859375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Late/UT" />
                            </columns>
                         </TableColumn>
-                        <TableColumn id="tc_total" fx:id="netTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="131.9998779296875" resizable="false" sortable="false" style="-fx-background-color: transparent; -fx-border-color: CEB689; -fx-alignment: CENTER-RIGHT;" text="Net Amount&#10;      Paid" />
+                        <TableColumn id="tc_total" fx:id="netTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="131.9998779296875" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Net Amount&#10;      Paid" />
                     </columns>
                   </TableView>
                   <Text fx:id="daterangeText" layoutX="71.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For the Period:" />
@@ -53,7 +53,7 @@
                         </Text>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="600.0" layoutY="1.0" prefHeight="9.0" prefWidth="200.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="600.0">
+                  <HBox alignment="CENTER" layoutX="600.0" layoutY="1.0" prefHeight="9.0" prefWidth="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
                      <children>
                         <Button fx:id="crayolaBtn" mnemonicParsing="false" onMouseClicked="#onPayrollClick" prefHeight="26.0" prefWidth="98.0" text="Crayola atbp." />
                         <Button fx:id="ixxiBtn" mnemonicParsing="false" onMouseClicked="#onPayrollClick" prefHeight="26.0" prefWidth="100.0" text="IX-XI Hardware" />
