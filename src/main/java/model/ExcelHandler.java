@@ -124,7 +124,9 @@ public class ExcelHandler {
                             j++;
                         }
                         LogbookPOJO entry = new LogbookPOJO(ID, name, value, 30.0, times[0], times[1], times[2], times[3]);
-                        logbook.add(entry);
+                        if ((times[0] != 0) | (times[2] != 0)){
+                            logbook.add(entry);
+                        }
                     }
                     rowNumber++;
                 }
@@ -133,6 +135,12 @@ public class ExcelHandler {
         }
 
         return logbook;
+    }
+
+    public void readWorkdays(String filePath) throws IOException {
+        Workbook workbook = WorkbookFactory.create(new File(filePath));
+
+
     }
 
     public void writeSSS(String filePath) throws IOException {
