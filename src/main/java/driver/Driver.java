@@ -17,7 +17,7 @@ public class Driver extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Payroll.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Home.fxml")));
 
         Scene scene = new Scene(root);
         initScreenController(scene);
@@ -47,6 +47,10 @@ public class Driver extends Application {
         FXMLLoader editFeesLoader = new FXMLLoader();
         editFeesLoader.setLocation(getClass().getResource("/fxml/EditFees.fxml"));
         screenController.addScreen("EditFees", editFeesLoader);
+
+        FXMLLoader homeLoader = new FXMLLoader();
+        homeLoader.setLocation(getClass().getResource("/fxml/Home.fxml"));
+        screenController.addScreen("Home", homeLoader);
     }
 
     public static ScreenController getScreenController() {

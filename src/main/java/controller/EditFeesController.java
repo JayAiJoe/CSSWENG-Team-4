@@ -542,4 +542,25 @@ public class EditFeesController extends Controller {
     private void onPayrollAction() {
         Driver.getScreenController().activate("Payroll");
     }
+
+    /**
+     * Changes screen to Home.fxml.
+     */
+    @FXML
+    private void onHomeAction() {
+        Driver.getScreenController().activate("Home");
+    }
+
+    /**
+     * Changes screen to Employees.fxml.
+     */
+    @FXML
+    private void onEmployeesAction(){}
+
+    /**
+     * Changes screen to OvertimeWorkHours.fxml.
+     */
+    @FXML
+    private void onOvertimeWorkHoursAction(){}
+
 }
