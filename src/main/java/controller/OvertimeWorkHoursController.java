@@ -24,9 +24,10 @@ public class OvertimeWorkHoursController extends Controller{
      * initialization of work hours and overtime related objects
      */
     @FXML
-    private Button workEditBtn, workCancelBtn, workSaveBtn, overtimeEditBtn, overtimeCancelBtn, overtimeSaveBtn;
+    private Button workEditBtn, workCancelBtn, workSaveBtn, overtimeEditBtn, overtimeCancelBtn, overtimeSaveBtn,
+            acceptBtn, rejectBtn, checkAllBtn;
     @FXML
-    private TextField overtimeStartTf, overtimeEndTf, workStartTf, workEndTf;
+    private TextField overtimeStartTf, overtimeEndTf, workStartTf, workEndTf, workStartTf2, workEndTf2;
 
     @Override
     public void update() {
@@ -79,6 +80,8 @@ public class OvertimeWorkHoursController extends Controller{
             //Textfields
             workStartTf.setDisable(false);
             workEndTf.setDisable(false);
+            workStartTf2.setDisable(false);
+            workEndTf2.setDisable(false);
         } else if (mouseEvent.getSource() == workCancelBtn) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog");
@@ -99,6 +102,8 @@ public class OvertimeWorkHoursController extends Controller{
                 //Textfields
                 workStartTf.setDisable(true);
                 workEndTf.setDisable(true);
+                workStartTf2.setDisable(true);
+                workEndTf2.setDisable(true);
 
                 System.out.println("Ok is pressed");
             } else {
@@ -125,6 +130,8 @@ public class OvertimeWorkHoursController extends Controller{
                 //Textfields
                 workStartTf.setDisable(true);
                 workEndTf.setDisable(true);
+                workStartTf2.setDisable(true);
+                workEndTf2.setDisable(true);
 
                 System.out.println("Ok is pressed");
             } else {
