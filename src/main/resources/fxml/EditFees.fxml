@@ -17,7 +17,7 @@
    <children>
       <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="36.0" prefWidth="1400.0">
+            <AnchorPane prefHeight="36.0" prefWidth="1400.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Button fx:id="homeNav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onHomeAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Home" textFill="WHITE" />
                   <Button fx:id="viewpayrollNav" layoutX="94.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onPayrollAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="View Payrolls" textFill="WHITE" />
@@ -30,13 +30,13 @@
                   </MenuButton>
                </children>
             </AnchorPane>
-        <AnchorPane layoutY="35.0" minHeight="0.0" minWidth="0.0" prefHeight="746.0" prefWidth="1400.0" style="-fx-background-color: FFEED4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+        <AnchorPane layoutY="35.0" minHeight="0.0" minWidth="0.0" prefHeight="746.0" prefWidth="1400.0" style="-fx-background-color: E0F4FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                <children>
                   <AnchorPane layoutY="65.0" prefHeight="987.0" prefWidth="274.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="65.0">
                      <children>
                         <AnchorPane prefHeight="987.2" prefWidth="274.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <VBox layoutX="140.0" layoutY="-77.0" prefHeight="987.2" prefWidth="274.4" style="-fx-background-color: #7E7878;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox layoutX="140.0" layoutY="-77.0" prefHeight="987.2" prefWidth="274.4" style="-fx-background-color: #4D678E;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <Button fx:id="sss_btn" mnemonicParsing="false" onMouseClicked="#onClickValues" prefHeight="54.0" prefWidth="279.0" style="-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color: #7D7D7D;" textFill="WHITE">
                                        <font>
@@ -83,8 +83,8 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <Pane fx:id="sss_tab" layoutX="274.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
-                  <Pane fx:id="phil_tab" layoutX="284.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+                  <Pane fx:id="sss_tab" layoutX="274.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
+                  <Pane fx:id="phil_tab" layoutX="284.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
                      <children>
                         <TableView fx:id="philhealthTv" editable="true" layoutX="193.0" layoutY="86.0" prefHeight="519.0" prefWidth="641.0" stylesheets="@../css/Payroll.css">
                            <columns>
@@ -110,7 +110,7 @@
                         <Text fx:id="ph_errorText" fill="RED" layoutX="193.0" layoutY="633.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                      </children>
                   </Pane>
-                  <Pane fx:id="pagibig_tab" layoutX="294.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+                  <Pane fx:id="pagibig_tab" layoutX="294.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
                      <children>
                         <Button fx:id="pi_save_btn" disable="true" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
                         <TextField fx:id="pi_employeeTf" disable="true" layoutX="223.0" layoutY="105.0" prefHeight="25.0" prefWidth="123.0" />

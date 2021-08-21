@@ -182,6 +182,6 @@ public class PayrollController extends Controller {
      * Changes screen to OvertimeWorkHours.fxml.
      */
     @FXML
-    private void onOvertimeWorkHoursAction(){}
+    private void onOvertimeWorkHoursAction(){Driver.getScreenController().activate("OvertimeWorkHours");}
 
 }

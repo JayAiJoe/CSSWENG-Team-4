@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 public class HomePageController extends Controller {
 
 
+
     @Override
     public void update() {
 
@@ -25,7 +26,7 @@ public class HomePageController extends Controller {
     }
 
     /**
-     * Changes screen to Home.fxml.
+     * Changes screen to Payroll.fxml.
      */
     @FXML
     private void onPayrollAction() {
@@ -42,5 +43,5 @@ public class HomePageController extends Controller {
      * Changes screen to OvertimeWorkHours.fxml.
      */
     @FXML
-    private void onOvertimeWorkHoursAction(){}
+    private void onOvertimeWorkHoursAction(){Driver.getScreenController().activate("OvertimeWorkHours");}
 }

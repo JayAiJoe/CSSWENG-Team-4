@@ -561,6 +561,6 @@ public class EditFeesController extends Controller {
      * Changes screen to OvertimeWorkHours.fxml.
      */
     @FXML
-    private void onOvertimeWorkHoursAction(){}
+    private void onOvertimeWorkHoursAction(){Driver.getScreenController().activate("OvertimeWorkHours");}
 
 }

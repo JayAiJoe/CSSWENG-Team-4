@@ -51,6 +51,10 @@ public class Driver extends Application {
         FXMLLoader homeLoader = new FXMLLoader();
         homeLoader.setLocation(getClass().getResource("/fxml/Home.fxml"));
         screenController.addScreen("Home", homeLoader);
+
+        FXMLLoader overtimeWorkHoursLoader = new FXMLLoader();
+        overtimeWorkHoursLoader.setLocation(getClass().getResource("/fxml/OvertimeWorkHours.fxml"));
+        screenController.addScreen("OvertimeWorkHours", overtimeWorkHoursLoader);
     }
 
     public static ScreenController getScreenController() {

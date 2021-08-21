@@ -14,7 +14,7 @@
    <children>
       <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <children>
-            <AnchorPane layoutY="-3.0" prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: FFF7EA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane layoutY="-3.0" prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <TableView id="t_payroll" fx:id="payrollTv" layoutX="52.0" layoutY="158.0" prefHeight="491.0" prefWidth="1275.0" stylesheets="@../css/Payroll.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="158.0">
                     <columns>
@@ -65,7 +65,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="36.0" prefWidth="1326.0" AnchorPane.bottomAnchor="747.2" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="73.59999999999991" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="33.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button fx:id="Home_nav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onHomeAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Home" textFill="WHITE" />
             <Button layoutX="94.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="View Payrolls" textFill="#fcfcfc" />

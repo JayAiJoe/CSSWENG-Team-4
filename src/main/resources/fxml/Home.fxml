@@ -26,7 +26,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="36.0" prefWidth="1326.0" AnchorPane.bottomAnchor="747.2" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="73.59999999999991" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Button fx:id="homeNav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Home" textFill="WHITE" />
             <Button fx:id="viewpayrollNav" layoutX="94.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onPayrollAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="View Payrolls" textFill="#fcfcfc" />
