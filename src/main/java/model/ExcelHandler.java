@@ -1,11 +1,17 @@
 package model;
 
+import org.apache.commons.math3.analysis.function.Log;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Objects;
 
 
 public class ExcelHandler {
@@ -49,6 +55,84 @@ public class ExcelHandler {
         }
 
         return SSSvalues;
+    }
+
+    public ArrayList<LogbookPOJO> readLogbook(String filePath) throws IOException, ParseException {
+        ArrayList<LogbookPOJO> logbook = new ArrayList<>();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Workbook workbook = WorkbookFactory.create(new File(filePath));
+        Sheet sheet = workbook.getSheetAt(4);
+        DataFormatter dataFormatter = new DataFormatter();
+        int columnIndex = 0;
+        int nameColumnIndex = 9;
+        int dateColumnIndex = 1;
+        int rowNumber = 11;
+        String name;
+        String date;
+        String month;
+        int  ID;
+        int[] add = {2,3,2,1};
+        Iterator<Row> rowIterator = sheet.rowIterator();
+        while (sheet.getRow(2).getCell(columnIndex) != null){
+            Row row = sheet.getRow(2);
+            Cell cell = row.getCell(nameColumnIndex);
+            name = cell.getStringCellValue();
+            //System.out.println(name);
+            row = sheet.getRow(3);
+            cell = row.getCell(dateColumnIndex);
+            date = dataFormatter.formatCellValue(cell);
+            month = date.substring(5,7);
+            ID = Integer.parseInt(row.getCell(nameColumnIndex).getStringCellValue());
+            Date value = formatter.parse(date);
+            Date prevValue = value;
+            while (!Objects.equals(row.getCell(columnIndex).getStringCellValue(), "")) {
+                row = sheet.getRow(rowNumber);
+                String time;
+                int[] times = {0,0,0,0};
+                int j = 0;
+                if (Objects.equals(row.getCell(columnIndex).getStringCellValue(), "")){
+                    columnIndex += 15;
+                    nameColumnIndex +=15;
+                    dateColumnIndex +=15;
+                    rowNumber = 11;
+                    break;
+                }
+                else{
+                    String day = row.getCell(columnIndex).getStringCellValue().substring(0,2);
+                    prevValue.setDate(Integer.parseInt(day));
+                    if (prevValue.before(value)) {
+                        value.setMonth(Integer.parseInt(month)+1);
+                    }
+                    value.setDate(Integer.parseInt(day));
+                    cell = row.getCell(columnIndex+1);
+                    if (!cell.getStringCellValue().equals("Absent")) {
+                        for (int i = columnIndex + 1; i < columnIndex + 9;i=i) {
+                            cell = row.getCell(i);
+                            if (Objects.equals(cell.getStringCellValue(), "")){
+                                if ((i == columnIndex+4) & (times[2] != 0)){
+                                    time = "1700";
+                                }
+                                else{
+                                    time = "0";
+                                }
+                            }
+                            else{
+                                time = cell.getStringCellValue().substring(0, 2) + cell.getStringCellValue().substring(3, 5);
+                            }
+                            times[j] = Integer.parseInt(time);
+                            i+=add[j];
+                            j++;
+                        }
+                        LogbookPOJO entry = new LogbookPOJO(ID, name, value, 30.0, times[0], times[1], times[2], times[3]);
+                        logbook.add(entry);
+                    }
+                    rowNumber++;
+                }
+            }
+
+        }
+
+        return logbook;
     }
 
     public void writeSSS(String filePath) throws IOException {
