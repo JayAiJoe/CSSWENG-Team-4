@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -17,9 +19,15 @@
          <children>
             <AnchorPane prefHeight="36.0" prefWidth="1400.0">
                <children>
-                  <Button fx:id="Home_nav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" text="Home" />
-                  <Button layoutX="94.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onPayrollAction" prefHeight="29.0" prefWidth="87.0" text="View Payrolls" />
-                  <Button layoutX="181.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" text="Edit Fees" />
+                  <Button fx:id="homeNav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onHomeAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Home" textFill="WHITE" />
+                  <Button fx:id="viewpayrollNav" layoutX="94.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onPayrollAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="View Payrolls" textFill="WHITE" />
+                  <Button fx:id="employeeNav" layoutX="181.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onEmployeesAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Employees" textFill="WHITE" />
+                  <MenuButton layoutX="268.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="123.0" stylesheets="@../css/navButton.css" text="Payroll Settings" textFill="WHITE">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onOvertimeWorkHoursAction" text="Overtime/ Work Hours" />
+                        <MenuItem fx:id="editfeeNav" mnemonicParsing="false" text="Edit Fees" />
+                     </items>
+                  </MenuButton>
                </children>
             </AnchorPane>
         <AnchorPane layoutY="35.0" minHeight="0.0" minWidth="0.0" prefHeight="746.0" prefWidth="1400.0" style="-fx-background-color: FFEED4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
