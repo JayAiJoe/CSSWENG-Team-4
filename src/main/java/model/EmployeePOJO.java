@@ -3,29 +3,38 @@ package model;
 import java.util.Date;
 
 public class EmployeePOJO {
-
     private int employeeID;
     private String completeName;
+    private String company;
     private double wage;
+    private String mode;
     private String wageFrequency;
     private double debtAmount;
     private Date dateJoin;
     private Date dateLeft;
 
-    public EmployeePOJO(int employeeID, String completeName, double wage, String wageFrequency, double debtAmount, Date dateJoin, Date dateLeft) {
+    public EmployeePOJO(int employeeID, String completeName, String company, double wage, String mode,
+                        String wageFrequency, double debtAmount, Date dateJoin, Date dateLeft) {
         this.employeeID = employeeID;
         this.completeName = completeName;
+        this.company = company;
         this.wage = wage;
+        this.mode = mode;
         this.wageFrequency = wageFrequency;
         this.debtAmount = debtAmount;
         this.dateJoin = dateJoin;
         this.dateLeft = dateLeft;
     }
 
-    public EmployeePOJO(){}
+    public EmployeePOJO() {
+    }
 
     public int getEmployeeID() {
         return employeeID;
+    }
+
+    public String getCompany() {
+        return company;
     }
 
     public String getCompleteName() {
@@ -34,6 +43,10 @@ public class EmployeePOJO {
 
     public double getWage() {
         return wage;
+    }
+
+    public String getMode() {
+        return mode;
     }
 
     public String getWageFrequency() {
@@ -56,8 +69,16 @@ public class EmployeePOJO {
         this.employeeID = employeeID;
     }
 
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
     public void setWage(double wage) {
         this.wage = wage;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
     public void setWageFrequency(String wageFrequency) {
@@ -79,5 +100,4 @@ public class EmployeePOJO {
     public void setCompleteName(String completeName) {
         this.completeName = completeName;
     }
-
 }

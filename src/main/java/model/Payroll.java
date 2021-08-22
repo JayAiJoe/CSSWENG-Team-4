@@ -74,10 +74,10 @@ public class Payroll {
             PerformancePOJO performance = performances.get(performanceIndex.get(i));
 
             String employeeName = employee.getCompleteName();
-            String mode = employee.getWageFrequency();
+            String mode = employee.getMode();
             double absent = performance.getDaysAbsent();
             double workdays = performance.getDaysPresent();
-            int totalDays = (int)(absent + workdays);
+            double totalDays = absent + workdays;
 
             double rate = employee.getWage();
             if (mode.equals("MONTHLY")) {
