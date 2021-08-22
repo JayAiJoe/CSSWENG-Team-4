@@ -55,6 +55,10 @@ public class Driver extends Application {
         FXMLLoader overtimeWorkHoursLoader = new FXMLLoader();
         overtimeWorkHoursLoader.setLocation(getClass().getResource("/fxml/OvertimeWorkHours.fxml"));
         screenController.addScreen("OvertimeWorkHours", overtimeWorkHoursLoader);
+
+        FXMLLoader approvedovertimeLoader = new FXMLLoader();
+        approvedovertimeLoader.setLocation(getClass().getResource("/fxml/ApprovedOvertime.fxml"));
+        screenController.addScreen("ApprovedOvertime", approvedovertimeLoader);
     }
 
     public static ScreenController getScreenController() {

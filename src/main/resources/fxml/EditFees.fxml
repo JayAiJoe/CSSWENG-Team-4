@@ -24,6 +24,7 @@
                   <Button fx:id="employeeNav" layoutX="181.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onEmployeesAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Employees" textFill="WHITE" />
                   <MenuButton fx:id="menuButton" layoutX="268.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="123.0" stylesheets="@../css/navButton.css" text="Payroll Settings" textFill="WHITE">
                      <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onApprovedOvertimeAction" text="Approved Overtime Settings" />
                         <MenuItem mnemonicParsing="false" onAction="#onOvertimeWorkHoursAction" text="Overtime/ Work Hours" />
                         <MenuItem fx:id="editfeeNav" mnemonicParsing="false" text="Edit Fees" />
                      </items>

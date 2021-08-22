@@ -143,76 +143,7 @@ public class OvertimeWorkHoursController extends Controller{
     }
 
 
-    /**
-     * This method is responsible for handling the edits for approved overtime hours.
-     */
-    public void onOvertimeEditClick(MouseEvent mouseEvent) {
-        if (mouseEvent.getSource() == overtimeEditBtn) {
-            //buttons
-            overtimeEditBtn.setVisible(false);
-            overtimeEditBtn.setDisable(true);
-            overtimeCancelBtn.setDisable(false);
-            overtimeCancelBtn.setVisible(true);
-            overtimeSaveBtn.setVisible(true);
-            overtimeSaveBtn.setDisable(false);
 
-            //Textfields
-            overtimeStartTf.setDisable(false);
-            overtimeEndTf.setDisable(false);
-        } else if (mouseEvent.getSource() == overtimeCancelBtn) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText(null);
-            alert.setGraphic(null);
-            alert.setContentText("Cancel changes?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                //buttons
-                overtimeEditBtn.setVisible(true);
-                overtimeEditBtn.setDisable(false);
-                overtimeCancelBtn.setVisible(false);
-                overtimeCancelBtn.setDisable(true);
-                overtimeSaveBtn.setVisible(false);
-                overtimeSaveBtn.setDisable(true);
-
-                //Textfields
-                overtimeStartTf.setDisable(true);
-                overtimeEndTf.setDisable(true);
-
-                System.out.println("Ok is pressed");
-            } else {
-                // ... user chose CANCEL or closed the dialog
-                System.out.println("cancel is pressed");
-            }
-        } else if (mouseEvent.getSource() == overtimeSaveBtn) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText(null);
-            alert.setGraphic(null);
-            alert.setContentText("Apply changes?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-
-                overtimeEditBtn.setVisible(true);
-                overtimeEditBtn.setDisable(false);
-                overtimeCancelBtn.setVisible(false);
-                overtimeCancelBtn.setDisable(true);
-                overtimeSaveBtn.setVisible(false);
-                overtimeSaveBtn.setDisable(true);
-
-                //Textfields
-                overtimeStartTf.setDisable(true);
-                overtimeEndTf.setDisable(true);
-
-                System.out.println("Ok is pressed");
-            } else {
-                // ... user chose CANCEL or closed the dialog
-                System.out.println("cancel is pressed");
-            }
-        }
-    }
 
 
     /**
@@ -245,5 +176,15 @@ public class OvertimeWorkHoursController extends Controller{
      */
     @FXML
     private void onEmployeesAction(){}
+
+    /**
+     * Changes screen to ApprovedOvertime.fxml.
+     */
+    @FXML
+    private void onApprovedOvertimeAction(){
+        menuButton.hide();
+        Driver.getScreenController().activate("ApprovedOvertime");}
+
+
 
 }
