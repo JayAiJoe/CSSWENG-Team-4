@@ -9,7 +9,8 @@ import model.PayrollEntry;
 import java.util.Optional;
 
 public class OvertimeWorkHoursController extends Controller{
-
+    @FXML
+    private MenuButton menuButton;
 
     /**
      * initialization of Overtime Table related objects
@@ -227,6 +228,7 @@ public class OvertimeWorkHoursController extends Controller{
      */
     @FXML
     private void onEditFeesAction() {
+        menuButton.hide();
         Driver.getScreenController().activate("EditFees");
     }
 

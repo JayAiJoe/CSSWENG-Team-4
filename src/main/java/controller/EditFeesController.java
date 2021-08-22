@@ -24,6 +24,9 @@ import java.util.Optional;
 public class EditFeesController extends Controller {
     private static DecimalFormat df = new DecimalFormat("0.00");
 
+    @FXML
+    private MenuButton menuButton;
+
     /**
      * Instantiation of the different tabs in the calculator
      */
@@ -561,6 +564,8 @@ public class EditFeesController extends Controller {
      * Changes screen to OvertimeWorkHours.fxml.
      */
     @FXML
-    private void onOvertimeWorkHoursAction(){Driver.getScreenController().activate("OvertimeWorkHours");}
-
+    private void onOvertimeWorkHoursAction() {
+        menuButton.hide();
+        Driver.getScreenController().activate("OvertimeWorkHours");
+    }
 }

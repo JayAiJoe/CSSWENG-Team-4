@@ -16,7 +16,8 @@ import model.PayrollEntry;
  * for Payroll.fxml like onClick events, listeners, etc.
  */
 public class PayrollController extends Controller {
-
+    @FXML
+    private MenuButton menuButton;
 
     /**
      * Instantiation of objects related to the company info in Payroll.fxml
@@ -161,6 +162,7 @@ public class PayrollController extends Controller {
      */
     @FXML
     private void onEditFeesAction() {
+        menuButton.hide();
         Driver.getScreenController().activate("EditFees");
     }
 
@@ -182,6 +184,8 @@ public class PayrollController extends Controller {
      * Changes screen to OvertimeWorkHours.fxml.
      */
     @FXML
-    private void onOvertimeWorkHoursAction(){Driver.getScreenController().activate("OvertimeWorkHours");}
-
+    private void onOvertimeWorkHoursAction() {
+        menuButton.hide();
+        Driver.getScreenController().activate("OvertimeWorkHours");
+    }
 }

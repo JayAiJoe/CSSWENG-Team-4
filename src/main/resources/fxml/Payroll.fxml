@@ -70,7 +70,7 @@
             <Button fx:id="Home_nav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onHomeAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Home" textFill="WHITE" />
             <Button layoutX="94.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="View Payrolls" textFill="#fcfcfc" />
             <Button layoutX="181.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onEmployeesAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Employees" textFill="WHITE" />
-            <MenuButton layoutX="268.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="116.0" stylesheets="@../css/navButton.css" text="Payroll Settings" textFill="WHITE">
+            <MenuButton fx:id="menuButton" layoutX="268.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="116.0" stylesheets="@../css/navButton.css" text="Payroll Settings" textFill="WHITE">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#onOvertimeWorkHoursAction" text="Overtime/Work Hours" />
                 <MenuItem mnemonicParsing="false" onAction="#onEditFeesAction" text="Edit Fees" />

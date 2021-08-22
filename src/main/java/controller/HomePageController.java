@@ -2,10 +2,11 @@ package controller;
 
 import driver.Driver;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuButton;
 
 public class HomePageController extends Controller {
-
-
+    @FXML
+    private MenuButton menuButton;
 
     @Override
     public void update() {
@@ -22,6 +23,7 @@ public class HomePageController extends Controller {
      */
     @FXML
     private void onEditFeesAction() {
+        menuButton.hide();
         Driver.getScreenController().activate("EditFees");
     }
 
@@ -43,5 +45,8 @@ public class HomePageController extends Controller {
      * Changes screen to OvertimeWorkHours.fxml.
      */
     @FXML
-    private void onOvertimeWorkHoursAction(){Driver.getScreenController().activate("OvertimeWorkHours");}
+    private void onOvertimeWorkHoursAction() {
+        menuButton.hide();
+        Driver.getScreenController().activate("OvertimeWorkHours");
+    }
 }
