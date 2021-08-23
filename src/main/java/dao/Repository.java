@@ -222,5 +222,13 @@ public class Repository {
 
     }
 
+    public void updateLogbookOT(ArrayList<LogbookPOJO> logbook){
+        MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
+
+        for(LogbookPOJO entry: logbook){
+            collection.replaceOne(and(eq("date",entry.getDate()),eq("employeeID",entry.getEmployeeID())), entry);
+        }
+    }
+
 
 }
