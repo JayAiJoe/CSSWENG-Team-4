@@ -1,4 +1,4 @@
-package model;
+package dao;
 
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -188,6 +188,21 @@ public class Repository {
         } else {
             collection.deleteMany(and(gte("date", startDate), lte("date", endDate)));
         }
+
+    }
+
+    public ArrayList<WorkdayPOJO> getWorkdays(Date startDate, Date endDate) {
+
+        MongoCollection<WorkdayPOJO> collection = database.getCollection("workday", WorkdayPOJO.class);
+        ArrayList<WorkdayPOJO> workdays = new ArrayList<>();
+        if (endDate == null) {
+            collection.find(gte("date", startDate)).into(workdays);
+        } else if (startDate == null) {
+            collection.find(lte("date", endDate)).into(workdays);
+        } else {
+            collection.find(and(gte("date", startDate), lte("date", endDate))).into(workdays);
+        }
+        return workdays;
 
     }
 
