@@ -58,9 +58,10 @@ public class EditFeesController extends Controller {
      * Model components that are necessary for editing
      * the government fees.
      */
-    PagIbigFee pagIbigFee;
-    FeeTable philhealthFeeTable;
-    ObservableList<PhilHealthRange> ranges;
+    private PagIbigFee pagIbigFee;
+    private FeeTable philhealthFeeTable;
+    private ObservableList<PhilHealthRange> ranges;
+    private int editRow;
 
     /**
      * This method is responsible for switching between SSS, Philhealth,
@@ -118,36 +119,122 @@ public class EditFeesController extends Controller {
         ph_value.setReorderable(false);
         ph_range.setReorderable(false);
 
-        // initialize editable cells
+        // remove symbols on edit start
         ph_start.setOnEditStart(
                 t -> {
                     int row = t.getTablePosition().getRow();
+                    editRow = row;
                     if (row == 0) {
                         philhealthTv.edit(-1, null);
+                    } else {
+                        String start = ranges.get(row).getStart();
+                        if (!start.isEmpty() && start.charAt(0) == 'P') {
+                            ranges.get(row).setStart(start.substring(4));
+                            philhealthTv.refresh();
+                        }
+                        ph_errorText.setVisible(false);
                     }
                 }
         );
         ph_end.setOnEditStart(
                 t -> {
                     int row = t.getTablePosition().getRow();
+                    editRow = row;
                     if (row == ranges.size() - 1) {
                         philhealthTv.edit(-1, null);
+                    } else {
+                        String end = ranges.get(row).getEnd();
+                        if (!end.isEmpty() && end.charAt(0) == 'P') {
+                            ranges.get(row).setEnd(end.substring(4));
+                            philhealthTv.refresh();
+                        }
+                        ph_errorText.setVisible(false);
+                    }
+                }
+        );
+        ph_value.setOnEditStart(
+                t -> {
+                    int row = t.getTablePosition().getRow();
+                    editRow = row;
+                    String value = ranges.get(row).getValue();
+                    if (row == 0 || row == ranges.size() - 1) {
+                        if (!value.isEmpty() && value.charAt(0) == 'P') {
+                            ranges.get(row).setValue(value.substring(4));
+                            philhealthTv.refresh();
+                        }
+                    } else {
+                        if (!value.isEmpty() && value.charAt(value.length() - 1) == '%') {
+                            ranges.get(row).setValue(value.substring(0, value.length() - 2));
+                            philhealthTv.refresh();
+                        }
+                    }
+                    ph_errorText.setVisible(false);
+                }
+        );
+
+        // add symbols back on edit cancel
+        ph_start.setOnEditCancel(
+                t -> {
+                    int row = editRow;
+                    if (row != 0) {
+                        String start = ranges.get(row).getStart();
+                        if (!start.isEmpty() && start.charAt(0) != 'P') {
+                            ranges.get(row).setStart("PhP " + start);
+                            philhealthTv.refresh();
+                        }
+                    }
+                }
+        );
+        ph_end.setOnEditCancel(
+                t -> {
+                    int row = editRow;
+                    if (row != ranges.size() - 1) {
+                        String end = ranges.get(row).getEnd();
+                        if (!end.isEmpty() && end.charAt(0) != 'P') {
+                            ranges.get(row).setEnd("PhP " + end);
+                            philhealthTv.refresh();
+                        }
+                    }
+                }
+        );
+        ph_value.setOnEditCancel(
+                t -> {
+                    int row = editRow;
+                    String value = ranges.get(row).getValue();
+                    if (row == 0 || row == ranges.size() - 1) {
+                        if (!value.isEmpty() && value.charAt(0) != 'P') {
+                            ranges.get(row).setValue("PhP " + value);
+                            philhealthTv.refresh();
+                        }
+                    } else {
+                        if (!value.isEmpty() && value.charAt(value.length() - 1) != '%') {
+                            ranges.get(row).setValue(value + " %");
+                            philhealthTv.refresh();
+                        }
                     }
                 }
         );
 
+        // check for errors and add symbols back on edit commit
         ph_start.setOnEditCommit(
                 t -> {
                     int row = t.getTablePosition().getRow();
                     try {
                         double check = Double.parseDouble(t.getNewValue());
-                        philhealthTv.getItems().get(row).setStart(df.format(check));
+                        if (check <= 0 || !checkDecimalPlaces(t.getNewValue())) {
+                            throw new Exception();
+                        }
+                        ranges.get(row).setStart("PhP " + df.format(check));
                     } catch (Exception e) {
-                        philhealthTv.getItems().get(row).setStart(t.getNewValue());
+                        ph_errorText.setText("All inputs must be positive values with up to 2 decimal places only!");
+                        ph_errorText.setVisible(true);
+
+                        String start = ranges.get(row).getStart();
+                        if (!start.isEmpty()) {
+                            ranges.get(row).setStart("PhP " + start);
+                        }
                     }
-                    if (!t.getNewValue().isEmpty()) {
-                        philhealthTv.getItems().get(row).setInitialized(true);
-                    }
+                    philhealthTv.refresh();
                 }
         );
         ph_end.setOnEditCommit(
@@ -155,13 +242,20 @@ public class EditFeesController extends Controller {
                     int row = t.getTablePosition().getRow();
                     try {
                         double check = Double.parseDouble(t.getNewValue());
-                        philhealthTv.getItems().get(row).setEnd(df.format(check));
+                        if (check <= 0 || !checkDecimalPlaces(t.getNewValue())) {
+                            throw new Exception();
+                        }
+                        ranges.get(row).setEnd("PhP " + df.format(check));
                     } catch (Exception e) {
-                        philhealthTv.getItems().get(row).setEnd(t.getNewValue());
+                        ph_errorText.setText("All inputs must be positive values with up to 2 decimal places only!");
+                        ph_errorText.setVisible(true);
+
+                        String end = ranges.get(row).getEnd();
+                        if (!end.isEmpty()) {
+                            ranges.get(row).setEnd("PhP " + end);
+                        }
                     }
-                    if (!t.getNewValue().isEmpty()) {
-                        philhealthTv.getItems().get(row).setInitialized(true);
-                    }
+                    philhealthTv.refresh();
                 }
         );
         ph_value.setOnEditCommit(
@@ -169,13 +263,34 @@ public class EditFeesController extends Controller {
                     int row = t.getTablePosition().getRow();
                     try {
                         double check = Double.parseDouble(t.getNewValue());
-                        philhealthTv.getItems().get(row).setValue(df.format(check));
+                        if (check <= 0 || !checkDecimalPlaces(t.getNewValue())) {
+                            throw new Exception("Regular");
+                        }
+                        if (row != 0 && row != ranges.size() - 1) {
+                            if (check >= 100) {
+                                throw new Exception("Percent");
+                            }
+                            ranges.get(row).setValue(df.format(check) + " %");
+                        } else {
+                            ranges.get(row).setValue("PhP " + df.format(check));
+                        }
                     } catch (Exception e) {
-                        philhealthTv.getItems().get(row).setValue(t.getNewValue());
+                        ph_errorText.setText("All inputs must be positive values with up to 2 decimal places only!");
+                        if (e.getMessage().equals("Percent")) {
+                            ph_errorText.setText("All percentages must be greater than 0 and less than 100!");
+                        }
+                        ph_errorText.setVisible(true);
+
+                        String value = ranges.get(row).getValue();
+                        if (!value.isEmpty()) {
+                            if (row == 0 || row == ranges.size() - 1) {
+                                ranges.get(row).setValue("PhP " + value);
+                            } else {
+                                ranges.get(row).setValue(value + " %");
+                            }
+                        }
                     }
-                    if (!t.getNewValue().isEmpty()) {
-                        philhealthTv.getItems().get(row).setInitialized(true);
-                    }
+                    philhealthTv.refresh();
                 }
         );
 
@@ -208,6 +323,7 @@ public class EditFeesController extends Controller {
     private void resetPhilHealth() {
         // PhilHealth initialization
         philhealthFeeTable = Calculator.getInstance().getPhilhealthFeeTable();
+        philhealthTv.edit(-1, null);
         philhealthTv.setEditable(false);
         ph_update_btn.toFront();
         ph_update_btn.setDisable(false);
@@ -236,8 +352,15 @@ public class EditFeesController extends Controller {
             double value = formulas.get(i).get(2);
             if (i != 0 && i != formulas.size() - 1) {
                 value *= 100;
+                ranges.add(new PhilHealthRange("PhP " + df.format(start),
+                        "PhP " + df.format(end), df.format(value) + " %"));
+            } else if (i == 0) {
+                ranges.add(new PhilHealthRange("PhP " + df.format(start),
+                        "PhP " + df.format(end), "PhP " + df.format(value)));
+            } else {
+                ranges.add(new PhilHealthRange("PhP " + df.format(start),
+                        "MAX", "PhP " + df.format(value)));
             }
-            ranges.add(new PhilHealthRange(df.format(start), df.format(end), df.format(value)));
         }
         philhealthTv.setItems(ranges);
     }
@@ -380,61 +503,50 @@ public class EditFeesController extends Controller {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                // check if all inputs are positive values and up to 2 decimal places only
-                ArrayList<PhilHealthRange> newRanges = new ArrayList<>();
-                int rangeCount = ranges.size();
-                for (int i = 0; i < rangeCount; i++) {
-                    PhilHealthRange range = ranges.get(i);
-                    if (!range.isInitialized()) {
-                        continue;
+                // remove ranges that are all empty
+                try {
+                    ArrayList<PhilHealthRange> newRanges = new ArrayList<>();
+                    for (PhilHealthRange range : ranges) {
+                        if (range.getStart().isEmpty() && range.getEnd().isEmpty() &&
+                                range.getValue().isEmpty()) {
+                            continue;
+                        }
+                        newRanges.add(range);
                     }
-                    try {
-                        double check;
-                        if (i > 0) {
-                            check = Double.parseDouble(range.getStart());
-                            if (check <= 0 || !checkDecimalPlaces(range.getStart())) {
-                                throw new Exception();
-                            }
-                        }
-                        if (i < rangeCount - 1) {
-                            check = Double.parseDouble(range.getEnd());
-                            if (check <= 0 || !checkDecimalPlaces(range.getEnd())) {
-                                throw new Exception();
-                            }
-                        }
-                        check = Double.parseDouble(range.getValue());
-                        if (check <= 0 || !checkDecimalPlaces(range.getValue())) {
-                            throw new Exception();
-                        }
-                    } catch (Exception e) {
-                        ph_errorText.setText("All inputs must be positive values with up to 2 decimal places only!");
-                        ph_errorText.setVisible(true);
-                        return;
-                    }
-                    newRanges.add(range);
-                }
-                // sort input ranges
-                Collections.sort(newRanges);
-                // set new ranges
-                ranges.setAll(newRanges);
-                // check no range is missing
-                rangeCount = newRanges.size();
-                for (int i = 0; i < rangeCount - 1; i++) {
-                    double start = Double.parseDouble(ranges.get(i + 1).getStart());
-                    double end = Double.parseDouble(ranges.get(i).getEnd());
+                    ranges.setAll(newRanges);
 
-                    if (start != end + 0.01) {
-                        ph_errorText.setText("Ranges must cover all possible values for salary!");
-                        ph_errorText.setVisible(true);
-                        return;
+
+                    // check ranges that are incomplete
+                    newRanges = new ArrayList<>();
+                    for (PhilHealthRange range : ranges) {
+                        if (range.getStart().isEmpty() || range.getEnd().isEmpty() ||
+                                range.getValue().isEmpty()) {
+                            ph_errorText.setText("All cells must be nonempty!");
+                            ph_errorText.setVisible(true);
+                            return;
+                        }
+                        newRanges.add(range);
                     }
-                }
-                for (int i = 1; i < rangeCount - 1; i++) {
-                    double value = Double.parseDouble(ranges.get(i).getValue()) / 100;
-                    if (value <= 0 || value >= 1) {
-                        ph_errorText.setText("All percentages must be greater than 0 and less than 100!");
+
+                    // sort input ranges
+                    Collections.sort(newRanges);
+                    // set new ranges
+                    ranges.setAll(newRanges);
+                    // check no range is missing
+                    int rangeCount = newRanges.size();
+                    for (int i = 0; i < rangeCount - 1; i++) {
+                        ArrayList<Double> rangeA = ranges.get(i).convert();
+                        ArrayList<Double> rangeB = ranges.get(i + 1).convert();
+
+                        double start = rangeB.get(0);
+                        double end = rangeA.get(1);
+
+                        if (start != end + 0.01) {
+                            ph_errorText.setText("Ranges must cover all possible values for salary!");
+                            ph_errorText.setVisible(true);
+                            return;
+                        }
                     }
-                }
 
                 // update PhilHealth fee table
                 ArrayList<ArrayList<Double>> formulas = new ArrayList<>();
@@ -447,6 +559,9 @@ public class EditFeesController extends Controller {
                     formulas.add(newRange);
                 }
                 philhealthFeeTable.setFormulas(formulas);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 ph_update_btn.toFront();
                 ph_update_btn.setDisable(false);

@@ -12,7 +12,6 @@ public class PhilHealthRange implements Comparable<PhilHealthRange> {
     private String start;
     private String end;
     private String value;
-    private boolean initialized;
 
     /**
      * Constructor for instantiating an uninitialized
@@ -20,7 +19,6 @@ public class PhilHealthRange implements Comparable<PhilHealthRange> {
      */
     public PhilHealthRange() {
         this("", "", "");
-        initialized = false;
     }
 
     /**
@@ -34,7 +32,6 @@ public class PhilHealthRange implements Comparable<PhilHealthRange> {
         this.start = start;
         this.end = end;
         this.value = value;
-        initialized = true;
     }
 
     /**
@@ -46,17 +43,13 @@ public class PhilHealthRange implements Comparable<PhilHealthRange> {
      * @return 1 if this should be sorted later and -1 otherwise
      */
     public int compareTo(PhilHealthRange other) {
-        if (this.end.equals("MAX")) {
-            this.end = MAX;
-        }
-        if (other.end.equals("MAX")) {
-            other.end = MAX;
-        }
+        ArrayList<Double> rangeA = this.convert();
+        ArrayList<Double> rangeB = other.convert();
 
-        double startA = Double.parseDouble(this.start);
-        double startB = Double.parseDouble(other.start);
-        double endA = Double.parseDouble(this.end);
-        double endB = Double.parseDouble(other.end);
+        double startA = rangeA.get(0);
+        double startB = rangeB.get(0);
+        double endA = rangeA.get(1);
+        double endB = rangeB.get(1);
 
         if (startA == startB) {
             if (endA > endB) {
@@ -99,14 +92,6 @@ public class PhilHealthRange implements Comparable<PhilHealthRange> {
     }
 
     /**
-     * Returns whether the range is initialized or not.
-     * @return whether the range is initialized or not
-     */
-    public boolean isInitialized() {
-        return initialized;
-    }
-
-    /**
      * Sets the start of the range.
      * @param start the start of the range
      */
@@ -131,22 +116,24 @@ public class PhilHealthRange implements Comparable<PhilHealthRange> {
     }
 
     /**
-     * Sets whether the range is initialized or not
-     * @param initialized whether the range is initialized or not
-     */
-    public void setInitialized(boolean initialized) {
-        this.initialized = initialized;
-    }
-
-    /**
      * Returns an ArrayList of doubles that is equivalent
      * to this range.
      * @return an ArrayList of doubles that is equivalent
      * to this range
      */
     public ArrayList<Double> convert() {
-        if (end.equals("MAX")) {
+        String start, end, value;
+
+        start = this.start.substring(4);
+        if (this.end.equals("MAX")) {
             end = MAX;
+        } else {
+            end = this.end.substring(4);
+        }
+        if (this.value.charAt(0) == 'P') {
+            value = this.value.substring(4);
+        } else {
+            value = this.value.substring(0, this.value.length() - 2);
         }
 
         ArrayList<Double> result = new ArrayList<>();

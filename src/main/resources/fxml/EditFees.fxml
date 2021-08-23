@@ -121,7 +121,7 @@
                         <TextField fx:id="pi_employerTf" disable="true" layoutX="223.0" layoutY="151.0" prefHeight="25.0" prefWidth="123.0" />
                         <Text layoutX="58.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution:" />
                         <Text layoutX="354.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" />
-                        <Text layoutX="194.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Php" />
+                        <Text layoutX="194.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PhP" />
                         <Text fx:id="pi_employer_errorText" fill="RED" layoutX="58.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution should be nonnegative and up to 2 decimal places only!" wrappingWidth="421.7632751464844" />
                         <Text fx:id="pi_employee_errorText" fill="RED" layoutX="59.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share should be greater than 0 and less than 100!" />
                      </children>
