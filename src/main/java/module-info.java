@@ -16,4 +16,6 @@ module Sample.main {
 
     opens model;
     exports model;
+    exports dao;
+    opens dao;
 }
