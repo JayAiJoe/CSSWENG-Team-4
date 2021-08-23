@@ -206,5 +206,21 @@ public class Repository {
 
     }
 
+    public ArrayList<LogbookPOJO> getPendingOT(Date startDate, Date endDate){
+
+        MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
+        ArrayList<LogbookPOJO> pendingOT = new ArrayList<>();
+        if (endDate == null) {
+            collection.find(and(gte("date", startDate), gt("pendingOT", 0))).into(pendingOT);
+        } else if (startDate == null) {
+            collection.find(and(lte("date", endDate), gt("pendingOT", 0))).into(pendingOT);
+        } else {
+            collection.find(and(gt("pendingOT", 0), gte("date", startDate), lte("date", endDate))).into(pendingOT);
+        }
+
+        return pendingOT;
+
+    }
+
 
 }
