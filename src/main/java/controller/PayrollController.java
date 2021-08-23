@@ -40,12 +40,20 @@ public class PayrollController extends Controller {
     private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc, overtimeTc, deductionsTc;
 
     Payroll payroll;
-    ObservableList<PayrollEntry> entries = FXCollections.observableArrayList();
+    ObservableList<PayrollEntry> crayolaEntries = FXCollections.observableArrayList(),
+            ixxiEntries = FXCollections.observableArrayList();
 
     @Override
     public void update() {
+        crayolaBtn.setDisable(true);
+        ixxiBtn.setDisable(false);
+        addressText.setText("Located at: "+ "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+        companyText.setText("Crayola atbp.");
+        payrollTv.setItems(crayolaEntries);
+
         payroll.update();
-        entries.setAll(payroll.getEntries());
+        crayolaEntries.setAll(payroll.getCrayolaEntries());
+        ixxiEntries.setAll(payroll.getIxxiEntries());
     }
 
     @FXML
@@ -72,8 +80,9 @@ public class PayrollController extends Controller {
 
         // get and set data in table
         payroll = new Payroll();
-        entries.setAll(payroll.getEntries());
-        payrollTv.setItems(entries);
+        crayolaEntries.setAll(payroll.getCrayolaEntries());
+        ixxiEntries.setAll(payroll.getIxxiEntries());
+        payrollTv.setItems(crayolaEntries);
 
         //disable crayolaBtn upon initialization
         crayolaBtn.setDisable(true);
@@ -147,13 +156,14 @@ public class PayrollController extends Controller {
             ixxiBtn.setDisable(false);
             addressText.setText("Located at: "+ "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
             companyText.setText("Crayola atbp.");
+            payrollTv.setItems(crayolaEntries);
         }
         else if (mouseEvent.getSource() == ixxiBtn) {
             ixxiBtn.setDisable(true);
             crayolaBtn.setDisable(false);
             addressText.setText("Located at: "+ "UNIT 5, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
             companyText.setText("IX-XI Hardware");
-
+            payrollTv.setItems(ixxiEntries);
         }
     }
 

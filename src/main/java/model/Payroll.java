@@ -13,7 +13,7 @@ import java.util.Date;
  * different calculations.
  */
 public class Payroll {
-    private ArrayList<PayrollEntry> entries;
+    private ArrayList<PayrollEntry> crayolaEntries, ixxiEntries;
     private Date dateStart, dateEnd;
 
     public Payroll() {
@@ -24,8 +24,12 @@ public class Payroll {
         }
     }
 
-    public ArrayList<PayrollEntry> getEntries() {
-        return entries;
+    public ArrayList<PayrollEntry> getCrayolaEntries() {
+        return crayolaEntries;
+    }
+
+    public ArrayList<PayrollEntry> getIxxiEntries() {
+        return ixxiEntries;
     }
 
     public String getDateStart() {
@@ -43,7 +47,8 @@ public class Payroll {
     private void initialize() {
 
         // TODO: Change everything later
-        entries = new ArrayList<>();
+        crayolaEntries = new ArrayList<>();
+        ixxiEntries = new ArrayList<>();
 
         ArrayList<EmployeePOJO> employees = Repository.getInstance().getAllEmployees();
         ArrayList<PerformancePOJO> performances = Repository.getInstance().getAllPerformance();
@@ -107,8 +112,13 @@ public class Payroll {
             double late = Calculator.getInstance().computeLateFee(rate, performance.getMinsLate());
             double net = total - sss - philhealth - pagibig - late;
 
-            entries.add(new PayrollEntry(employeeName, mode, absent, workdays, rate, salary, time,
-                    amount, cola, total, sss, philhealth, pagibig, late, net, monthlyWage));
+            PayrollEntry payrollEntry = new PayrollEntry(employeeName, mode, absent, workdays, rate, salary, time,
+                    amount, cola, total, sss, philhealth, pagibig, late, net, monthlyWage);
+            if (employee.getCompany().equals("CRAYOLA")) {
+                crayolaEntries.add(payrollEntry);
+            } else {
+                ixxiEntries.add(payrollEntry);
+            }
         }
     }
 
@@ -116,7 +126,18 @@ public class Payroll {
      * Updates the Pag-Ibig, PhilHealth, and SSS Fees of an employee.
      */
     public void update() {
-        for (PayrollEntry entry: entries) {
+        for (PayrollEntry entry: crayolaEntries) {
+            double sss, philhealth, pagibig;
+            double monthlyWage = entry.getMonthlyWage();
+            sss = Calculator.getInstance().computeSSSFee(monthlyWage);
+            philhealth = Calculator.getInstance().computePhilHealthFee(monthlyWage);
+            pagibig = Calculator.getInstance().computePagIbigFee(monthlyWage);
+
+            entry.setPagibig(pagibig);
+            entry.setPhilhealth(philhealth);
+            entry.setSss(sss);
+        }
+        for (PayrollEntry entry: ixxiEntries) {
             double sss, philhealth, pagibig;
             double monthlyWage = entry.getMonthlyWage();
             sss = Calculator.getInstance().computeSSSFee(monthlyWage);
