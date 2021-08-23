@@ -203,4 +203,21 @@ public class Repository {
             return attendance;
         }
     }
+
+    public ArrayList<WorkdayPOJO> getWorkdays(Date startDate, Date endDate) {
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase(databaseName).withCodecRegistry(pojoCodecRegistry);
+            MongoCollection<WorkdayPOJO> collection = database.getCollection("workday", WorkdayPOJO.class);
+
+            ArrayList<WorkdayPOJO> workdays = new ArrayList<>();
+            if (endDate == null) {
+                collection.find(gte("date", startDate)).into(workdays);
+            } else if (startDate == null) {
+                collection.find(lte("date", endDate)).into(workdays);
+            } else {
+                collection.find(and(gte("date", startDate), lte("date", endDate))).into(workdays);
+            }
+            return workdays;
+        }
+    }
 }
