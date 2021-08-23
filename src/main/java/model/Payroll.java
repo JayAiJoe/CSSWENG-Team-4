@@ -1,5 +1,9 @@
 package model;
 
+import dao.EmployeePOJO;
+import dao.PerformancePOJO;
+import dao.Repository;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

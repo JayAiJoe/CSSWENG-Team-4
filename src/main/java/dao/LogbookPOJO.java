@@ -1,9 +1,8 @@
-package model;
+package dao;
 
 import java.util.Date;
 
 public class LogbookPOJO {
-
     private int employeeID;
     private String completeName;
     private Date date;
@@ -12,8 +11,8 @@ public class LogbookPOJO {
     private int timeOut1;
     private int timeIn2;
     private int timeOut2;
-    private boolean approvedOT;
-
+    private int approvedOT;
+    private int pendingOT;
 
     public LogbookPOJO(int employeeID, String completeName, Date date, double temp, int timeIn1, int timeOut1, int timeIn2, int timeOut2) {
         this.employeeID = employeeID;
@@ -24,11 +23,12 @@ public class LogbookPOJO {
         this.timeOut1 = timeOut1;
         this.timeIn2 = timeIn2;
         this.timeOut2 = timeOut2;
-        this.approvedOT = false;
+        this.approvedOT = 0;
+        this.pendingOT = 0;
     }
 
-
-    public LogbookPOJO(){}
+    public LogbookPOJO() {
+    }
 
     public int getEmployeeID() {
         return employeeID;
@@ -62,8 +62,12 @@ public class LogbookPOJO {
         return timeOut2;
     }
 
-    public boolean getApprovedOT() {
+    public int getApprovedOT() {
         return approvedOT;
+    }
+
+    public int getPendingOT() {
+        return pendingOT;
     }
 
     public void setEmployeeID(int employeeID) {
@@ -98,7 +102,11 @@ public class LogbookPOJO {
         this.timeOut2 = timeOut2;
     }
 
-    public void setApprovedOT(boolean approvedOT) {
+    public void setApprovedOT(int approvedOT) {
         this.approvedOT = approvedOT;
+    }
+
+    public void setPendingOT(int pendingOT) {
+        this.pendingOT = pendingOT;
     }
 }

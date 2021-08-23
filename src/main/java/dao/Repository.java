@@ -1,4 +1,4 @@
-package model;
+package dao;
 
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
