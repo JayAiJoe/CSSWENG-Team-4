@@ -90,7 +90,7 @@ public class Payroll {
 
             double rate = employee.getWage();
             if (mode.equals("MONTHLY")) {
-                rate /= totalDays;
+                rate /= 2 * totalDays;
             }
 
             double salary = Calculator.getInstance().computeSalary(rate, workdays);
