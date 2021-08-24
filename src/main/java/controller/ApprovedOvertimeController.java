@@ -2,21 +2,25 @@ package controller;
 
 import driver.Driver;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class ApprovedOvertimeController extends Controller{
 
     @FXML
-    private MenuButton menuButton;
+    private AnchorPane navBar_container;
 
     @FXML
     private Button overtimeEditBtn, overtimeCancelBtn, overtimeSaveBtn, overtimeAddBtn, overtimeRemoveBtn;
 
     @FXML
-    private TableColumn dateTc, startTc, endTc;
+    private TableColumn dateTc, startotTc, endotTc, startwh1Tc, endwh1Tc, startwh2Tc, endwh2Tc;
 
 
     @Override
@@ -26,6 +30,15 @@ public class ApprovedOvertimeController extends Controller{
 
     @FXML
     public void initialize(){
+
+        //load navigation bar
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Node node  =  loader.load(getClass().getResource("/fxml/navBar.fxml").openStream());
+            navBar_container.getChildren().add(node);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
         disableReorder();
     }
@@ -50,8 +63,12 @@ public class ApprovedOvertimeController extends Controller{
      * This method simply disables reorderability for all table columns in Payroll.fxml
      */
     private void disableReorder() {
-        startTc.setReorderable(false);
-        endTc.setReorderable(false);
+        startotTc.setReorderable(false);
+        endotTc.setReorderable(false);
+        startwh1Tc.setReorderable(false);
+        endwh1Tc.setReorderable(false);
+        startwh2Tc.setReorderable(false);
+        endwh2Tc.setReorderable(false);
         dateTc.setReorderable(false);
     }
 
@@ -112,46 +129,6 @@ public class ApprovedOvertimeController extends Controller{
                 System.out.println("cancel is pressed");
             }
         }
-    }
-
-    /**
-     * Changes screen to EditFees.fxml.
-     */
-    @FXML
-    private void onEditFeesAction() {
-        menuButton.hide();
-        Driver.getScreenController().activate("EditFees");
-    }
-
-    /**
-     * Changes screen to Payroll.fxml.
-     */
-    @FXML
-    private void onPayrollAction() {
-        Driver.getScreenController().activate("Payroll");
-    }
-
-    /**
-     * Changes screen to Home.fxml.
-     */
-    @FXML
-    private void onHomeAction() {
-        Driver.getScreenController().activate("Home");
-    }
-
-    /**
-     * Changes screen to Employees.fxml.
-     */
-    @FXML
-    private void onEmployeesAction(){}
-
-    /**
-     * Changes screen to OvertimeWorkHours.fxml.
-     */
-    @FXML
-    private void onOvertimeWorkHoursAction(){
-        menuButton.hide();
-        Driver.getScreenController().activate("OvertimeWorkHours");
     }
 
 

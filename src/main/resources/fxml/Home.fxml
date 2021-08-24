@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -26,19 +23,6 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Button fx:id="homeNav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Home" textFill="WHITE" />
-            <Button fx:id="viewpayrollNav" layoutX="94.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onPayrollAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="View Payrolls" textFill="#fcfcfc" />
-            <Button fx:id="employeesNav" layoutX="181.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onEmployeesAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Employees" textFill="WHITE" />
-            <MenuButton fx:id="menuButton" layoutX="268.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" stylesheets="@../css/navButton.css" text="Payroll Settings" textFill="WHITE">
-              <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onApprovedOvertimeAction" text="Approved Overtime Settings" />
-                <MenuItem mnemonicParsing="false" onAction="#onOvertimeWorkHoursAction" text="Overtime/Work Hours" />
-                <MenuItem mnemonicParsing="false" onAction="#onEditFeesAction" text="Edit Fees" />
-              </items>
-            </MenuButton>
-         </children>
-      </AnchorPane>
+      <AnchorPane fx:id="navBar_container" prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

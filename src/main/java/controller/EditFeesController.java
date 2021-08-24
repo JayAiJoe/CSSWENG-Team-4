@@ -4,14 +4,18 @@ import driver.Driver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import model.*;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,9 +27,8 @@ import java.util.Optional;
  */
 public class EditFeesController extends Controller {
     private static DecimalFormat df = new DecimalFormat("0.00");
-
     @FXML
-    private MenuButton menuButton;
+    private AnchorPane navBar_container;
 
     /**
      * Instantiation of the different tabs in the calculator
@@ -103,6 +106,16 @@ public class EditFeesController extends Controller {
 
     @FXML
     public void initialize() {
+
+        //load navigation bar
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Node node  =  loader.load(getClass().getResource("/fxml/navBar.fxml").openStream());
+            navBar_container.getChildren().add(node);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
         pagibig_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
         resetPagIbig();
         resetPhilHealth();
@@ -651,45 +664,5 @@ public class EditFeesController extends Controller {
         if (rowCount > 2) {
             ranges.remove(rowCount - 2);
         }
-    }
-
-    /**
-     * Changes screen to Payroll.fxml.
-     */
-    @FXML
-    private void onPayrollAction() {
-        Driver.getScreenController().activate("Payroll");
-    }
-
-    /**
-     * Changes screen to Home.fxml.
-     */
-    @FXML
-    private void onHomeAction() {
-        Driver.getScreenController().activate("Home");
-    }
-
-    /**
-     * Changes screen to Employees.fxml.
-     */
-    @FXML
-    private void onEmployeesAction(){}
-
-    /**
-     * Changes screen to OvertimeWorkHours.fxml.
-     */
-    @FXML
-    private void onOvertimeWorkHoursAction() {
-        menuButton.hide();
-        Driver.getScreenController().activate("OvertimeWorkHours");
-    }
-
-    /**
-     * Changes screen to ApprovedOvertime.fxml.
-     */
-    @FXML
-    private void onApprovedOvertimeAction(){
-        menuButton.hide();
-        Driver.getScreenController().activate("ApprovedOvertime");
     }
 }

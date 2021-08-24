@@ -4,20 +4,26 @@ import driver.Driver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.Payroll;
 import model.PayrollEntry;
+
+import java.io.IOException;
 
 /**
  * This class is the main controller for any scripted event
  * for Payroll.fxml like onClick events, listeners, etc.
  */
 public class PayrollController extends Controller {
+
     @FXML
-    private MenuButton menuButton;
+    private AnchorPane navBar_container;
 
     /**
      * Instantiation of objects related to the company info in Payroll.fxml
@@ -58,6 +64,16 @@ public class PayrollController extends Controller {
 
     @FXML
     public void initialize() {
+
+        //load navigation bar
+        FXMLLoader loader = new FXMLLoader();
+        try {
+            Node node  =  loader.load(getClass().getResource("/fxml/navBar.fxml").openStream());
+            navBar_container.getChildren().add(node);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
         // disable row selection
         payrollTv.setSelectionModel(null);
 
@@ -166,44 +182,4 @@ public class PayrollController extends Controller {
             payrollTv.setItems(ixxiEntries);
         }
     }
-
-    /**
-     * Changes screen to EditFees.fxml.
-     */
-    @FXML
-    private void onEditFeesAction() {
-        menuButton.hide();
-        Driver.getScreenController().activate("EditFees");
-    }
-
-    /**
-     * Changes screen to Home.fxml.
-     */
-    @FXML
-    private void onHomeAction() {
-        Driver.getScreenController().activate("Home");
-    }
-
-    /**
-     * Changes screen to Employees.fxml.
-     */
-    @FXML
-    private void onEmployeesAction(){}
-
-    /**
-     * Changes screen to OvertimeWorkHours.fxml.
-     */
-    @FXML
-    private void onOvertimeWorkHoursAction() {
-        menuButton.hide();
-        Driver.getScreenController().activate("OvertimeWorkHours");
-    }
-
-    /**
-     * Changes screen to ApprovedOvertime.fxml.
-     */
-    @FXML
-    private void onApprovedOvertimeAction(){
-        menuButton.hide();
-        Driver.getScreenController().activate("ApprovedOvertime");}
 }

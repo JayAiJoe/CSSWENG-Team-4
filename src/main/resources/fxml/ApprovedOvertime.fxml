@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +17,7 @@
                   <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <HBox alignment="TOP_CENTER" layoutX="1.0" layoutY="124.0" prefHeight="36.0" prefWidth="1186.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
                      <children>
-                        <Text fill="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Approved Overtime Hours" textAlignment="CENTER" wrappingWidth="277.6696014404297">
+                        <Text fill="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Approved Overtime Hours and Work Hours" textAlignment="CENTER" wrappingWidth="481.6696014404297">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -28,20 +26,34 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutY="177.0" prefHeight="514.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <AnchorPane prefHeight="276.0" prefWidth="564.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 50;">
+                        <AnchorPane prefHeight="514.0" prefWidth="901.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 50;">
                            <children>
-                              <Button fx:id="overtimeAddBtn" layoutX="30.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#onAddClick" prefHeight="26.0" prefWidth="51.0" text="Add" />
-                              <Button fx:id="overtimeEditBtn" layoutX="414.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" prefHeight="26.0" prefWidth="51.0" text="Edit" />
-                              <Button fx:id="overtimeCancelBtn" disable="true" layoutX="465.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" text="Cancel" visible="false" />
-                              <Button fx:id="overtimeSaveBtn" disable="true" layoutX="414.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" prefHeight="26.0" prefWidth="51.0" text="Save" visible="false" />
-                              <TableView layoutX="26.0" layoutY="58.0" prefHeight="426.0" prefWidth="511.0" stylesheets="@../css/Payroll.css">
+                              <Button fx:id="overtimeAddBtn" layoutX="37.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onAddClick" prefHeight="26.0" prefWidth="51.0" text="Add" />
+                              <Button fx:id="overtimeEditBtn" layoutX="760.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" prefHeight="26.0" prefWidth="51.0" text="Edit" />
+                              <Button fx:id="overtimeCancelBtn" disable="true" layoutX="811.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" text="Cancel" visible="false" />
+                              <Button fx:id="overtimeSaveBtn" disable="true" layoutX="760.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" prefHeight="26.0" prefWidth="51.0" text="Save" visible="false" />
+                              <TableView layoutX="37.0" layoutY="60.0" prefHeight="426.0" prefWidth="826.0" stylesheets="@../css/Payroll.css">
                                 <columns>
                                   <TableColumn fx:id="dateTc" prefWidth="150.40002822875977" sortable="false" text="Date" />
-                                  <TableColumn fx:id="startTc" minWidth="0.0" prefWidth="164.7999725341797" sortable="false" text="Start Time" />
-                                    <TableColumn fx:id="endTc" prefWidth="194.39996337890625" sortable="false" text="End Time" />
+                                  <TableColumn fx:id="overtimehead1Tc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="Overtime">
+                                       <columns>
+                                          <TableColumn fx:id="startotTc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="Start Time" />
+                                       </columns></TableColumn>
+                                    <TableColumn fx:id="workhourheadTc" prefWidth="500.0" sortable="false" text="Work Hours">
+                                       <columns>
+                                          <TableColumn fx:id="startwh1Tc" prefWidth="120.0" sortable="false" text="Start Time 1" />
+                                          <TableColumn fx:id="endwh1Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="End Time 1" />
+                                          <TableColumn fx:id="startwh2Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="Start Time 2" />
+                                          <TableColumn fx:id="endwh2Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="End Time 2" />
+                                       </columns></TableColumn>
+                                    <TableColumn fx:id="overtimehead2" minWidth="0.0" prefWidth="105.5999755859375" sortable="false" text="Overtime">
+                                       <columns>
+                                          <TableColumn fx:id="endotTc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="End Time" />
+                                       </columns>
+                                    </TableColumn>
                                 </columns>
                               </TableView>
-                              <Button fx:id="overtimeRemoveBtn" layoutX="81.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#onRemoveClick" prefHeight="26.0" prefWidth="60.0" text="Remove" />
+                              <Button fx:id="overtimeRemoveBtn" layoutX="88.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onRemoveClick" prefHeight="26.0" prefWidth="60.0" text="Remove" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -50,20 +62,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Button fx:id="homeNav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onHomeAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Home" textFill="WHITE" />
-            <Button fx:id="viewpayrollNav" layoutX="94.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onPayrollAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="View Payrolls" textFill="#fcfcfc" />
-            <Button fx:id="EmployeesNav" layoutX="181.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onEmployeesAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@../css/navButton.css" text="Employees" textFill="WHITE" />
-            <MenuButton fx:id="menuButton" layoutX="268.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" stylesheets="@../css/navButton.css" text="Payroll Settings" textFill="WHITE">
-              <items>
-                  <MenuItem mnemonicParsing="false" text="Approved Overtime Settings" />
-                <MenuItem mnemonicParsing="false" onAction="#onOvertimeWorkHoursAction" text="Overtime/Work Hours" />
-                <MenuItem mnemonicParsing="false" onAction="#onEditFeesAction" text="Edit Fees" />
-              </items>
-            </MenuButton>
-         </children>
-      </AnchorPane>
+      <AnchorPane fx:id="navBar_container" prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    </children>
 </AnchorPane>
