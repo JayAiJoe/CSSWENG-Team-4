@@ -117,6 +117,7 @@ public class PayrollController extends Controller {
         //Payroll table
         timeTc.setReorderable(false);
         totalTc.setReorderable(false);
+        absentTc.setReorderable(false);
         amountTc.setReorderable(false);
         colaTc.setReorderable(false);
         deductionsTc.setReorderable(false);
