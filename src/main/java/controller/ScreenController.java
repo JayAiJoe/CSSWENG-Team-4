@@ -32,4 +32,8 @@ public class ScreenController {
         controller.update();
         main.setRoot(screenMap.get(name));
     }
+
+    public Pane getNavBar() {
+        return screenMap.get("NavBar");
+    }
 }

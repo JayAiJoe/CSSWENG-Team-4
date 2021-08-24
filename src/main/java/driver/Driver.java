@@ -1,6 +1,7 @@
 package driver;
 
 import controller.ScreenController;
+import dao.Repository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,11 +17,17 @@ public class Driver extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/Home.fxml")));
-
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/NavBar.fxml")));
         Scene scene = new Scene(root);
         initScreenController(scene);
+        screenController.activate("Home");
+
+        try {
+            Repository.getInstance();
+        } catch (Exception e) {
+            // TODO: Error establishing connection to db
+            System.out.println("Error establishing connection to the database!");
+        }
 
         primaryStage.setScene(scene);
         primaryStage.setWidth(840);
@@ -40,6 +47,10 @@ public class Driver extends Application {
         screenController = new ScreenController(main);
 
         // add screens
+        FXMLLoader navBarLoader = new FXMLLoader();
+        navBarLoader.setLocation(getClass().getResource("/fxml/NavBar.fxml"));
+        screenController.addScreen("NavBar", navBarLoader);
+
         FXMLLoader payrollLoader = new FXMLLoader();
         payrollLoader.setLocation(getClass().getResource("/fxml/Payroll.fxml"));
         screenController.addScreen("Payroll", payrollLoader);
@@ -56,9 +67,9 @@ public class Driver extends Application {
         overtimeWorkHoursLoader.setLocation(getClass().getResource("/fxml/OvertimeWorkHours.fxml"));
         screenController.addScreen("OvertimeWorkHours", overtimeWorkHoursLoader);
 
-        FXMLLoader approvedovertimeLoader = new FXMLLoader();
-        approvedovertimeLoader.setLocation(getClass().getResource("/fxml/ApprovedOvertime.fxml"));
-        screenController.addScreen("ApprovedOvertime", approvedovertimeLoader);
+        FXMLLoader approvedOvertimeLoader = new FXMLLoader();
+        approvedOvertimeLoader.setLocation(getClass().getResource("/fxml/ApprovedOvertime.fxml"));
+        screenController.addScreen("ApprovedOvertime", approvedOvertimeLoader);
     }
 
     public static ScreenController getScreenController() {

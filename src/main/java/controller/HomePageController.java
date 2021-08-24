@@ -1,11 +1,8 @@
 package controller;
 
+import driver.Driver;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
 
 public class HomePageController extends Controller {
 
@@ -14,22 +11,9 @@ public class HomePageController extends Controller {
 
     @Override
     public void update() {
-
-    }
-
-    @FXML
-    public void initialize(){
-
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Node node  =  loader.load(getClass().getResource("/fxml/navBar.fxml").openStream());
-            navBar_container.getChildren().add(node);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        // load navigation bar
+        if (navBar_container.getChildren().isEmpty()) {
+            navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
         }
     }
-
-
-
-
 }

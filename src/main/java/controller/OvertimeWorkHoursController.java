@@ -36,21 +36,14 @@ public class OvertimeWorkHoursController extends Controller{
 
     @Override
     public void update() {
-
+        // load navigation bar
+        if (navBar_container.getChildren().isEmpty()) {
+            navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
+        }
     }
 
     @FXML
     public void initialize(){
-
-        //load navigation bar
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Node node  =  loader.load(getClass().getResource("/fxml/navBar.fxml").openStream());
-            navBar_container.getChildren().add(node);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
         //setColumnWidth();
         disableReorder();
     }
@@ -65,8 +58,6 @@ public class OvertimeWorkHoursController extends Controller{
         dateTc.prefWidthProperty().bind(overtimeTv.widthProperty().divide(11));
         buttonTc.prefWidthProperty().bind(overtimeTv.widthProperty().divide(11));
     }
-
-
 
     /**
      * This method simply disables reorderability for all table columns in Payroll.fxml

@@ -96,6 +96,11 @@ public class EditFeesController extends Controller {
 
     @Override
     public void update() {
+        // load navigation bar
+        if (navBar_container.getChildren().isEmpty()) {
+            navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
+        }
+
         pagibig_tab.toFront();
         sss_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
         phil_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
@@ -106,16 +111,6 @@ public class EditFeesController extends Controller {
 
     @FXML
     public void initialize() {
-
-        //load navigation bar
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Node node  =  loader.load(getClass().getResource("/fxml/navBar.fxml").openStream());
-            navBar_container.getChildren().add(node);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
         pagibig_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
         resetPagIbig();
         resetPhilHealth();

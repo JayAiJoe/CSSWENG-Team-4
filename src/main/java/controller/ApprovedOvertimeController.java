@@ -25,21 +25,14 @@ public class ApprovedOvertimeController extends Controller{
 
     @Override
     public void update() {
-
+        // load navigation bar
+        if (navBar_container.getChildren().isEmpty()) {
+            navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
+        }
     }
 
     @FXML
     public void initialize(){
-
-        //load navigation bar
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Node node  =  loader.load(getClass().getResource("/fxml/navBar.fxml").openStream());
-            navBar_container.getChildren().add(node);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
         disableReorder();
     }
 

@@ -15,6 +15,7 @@ import model.Payroll;
 import model.PayrollEntry;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * This class is the main controller for any scripted event
@@ -45,35 +46,38 @@ public class PayrollController extends Controller {
     @FXML
     private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc, overtimeTc, deductionsTc;
 
-    Payroll payroll;
-    ObservableList<PayrollEntry> crayolaEntries = FXCollections.observableArrayList(),
+    private Payroll payroll = null;
+    private ObservableList<PayrollEntry> crayolaEntries = FXCollections.observableArrayList(),
             ixxiEntries = FXCollections.observableArrayList();
 
     @Override
     public void update() {
+        // load navigation bar
+        if (navBar_container.getChildren().isEmpty()) {
+            navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
+        }
+
         crayolaBtn.setDisable(true);
         ixxiBtn.setDisable(false);
         addressText.setText("Located at: "+ "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
         companyText.setText("Crayola atbp.");
-        payrollTv.setItems(crayolaEntries);
 
-        payroll.update();
+
+        // get and set data in table
+        if (payroll == null) {
+            payroll = new Payroll();
+            daterangeText.setText(daterangeText.getText() + " " + payroll.getDateStart()
+                    + " - " + payroll.getDateEnd());
+        } else {
+            payroll.update();
+        }
         crayolaEntries.setAll(payroll.getCrayolaEntries());
         ixxiEntries.setAll(payroll.getIxxiEntries());
+        payrollTv.setItems(crayolaEntries);
     }
 
     @FXML
     public void initialize() {
-
-        //load navigation bar
-        FXMLLoader loader = new FXMLLoader();
-        try {
-            Node node  =  loader.load(getClass().getResource("/fxml/navBar.fxml").openStream());
-            navBar_container.getChildren().add(node);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
         // disable row selection
         payrollTv.setSelectionModel(null);
 
@@ -94,20 +98,12 @@ public class PayrollController extends Controller {
         lateTc.setCellValueFactory(new PropertyValueFactory<>("late"));
         netTc.setCellValueFactory(new PropertyValueFactory<>("net"));
 
-        // get and set data in table
-        payroll = new Payroll();
-        crayolaEntries.setAll(payroll.getCrayolaEntries());
-        ixxiEntries.setAll(payroll.getIxxiEntries());
-        payrollTv.setItems(crayolaEntries);
-
         //disable crayolaBtn upon initialization
         crayolaBtn.setDisable(true);
 
         //
         addressText.setText(addressText.getText()
                 + " UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
-        daterangeText.setText(daterangeText.getText() + " " + payroll.getDateStart()
-                + " - " + payroll.getDateEnd());
 
         //format column and table order
         setColumnWidth();

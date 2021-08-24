@@ -5,7 +5,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="/css/navBar.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.navBarController">
+<AnchorPane prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="/css/navBar.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NavBarController">
    <children>
       <Button fx:id="homeNav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onHomeAction" prefHeight="29.0" prefWidth="87.0" stylesheets="/css/navButton.css" text="Home" textFill="WHITE" />
       <Button fx:id="viewpayrollNav" layoutX="94.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onPayrollAction" prefHeight="29.0" prefWidth="87.0" stylesheets="/css/navButton.css" text="View Payrolls" textFill="#fcfcfc" />
