@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class OvertimeEntry {
@@ -27,20 +28,12 @@ public class OvertimeEntry {
         return date;
     }
 
+    public String getDateString() {
+        return new SimpleDateFormat("MM/dd/yyyy").format(date);
+    }
+
     public boolean getStatus() {
         return status;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
-
-    public void setMinutes(int minutes) {
-        this.minutes = minutes;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public void setStatus(boolean status) {
