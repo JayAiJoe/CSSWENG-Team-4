@@ -42,7 +42,7 @@ public class PayrollController extends Controller {
     private TableView<PayrollEntry> payrollTv;
     @FXML
     private TableColumn<PayrollEntry, String> nameTc, modeTc, absentTc, rateTc, salaryTc,
-            amountTc, colaTc, totalTc, sssTc, philhealthTc, pagibigTc, taxTc, lateTc, netTc;
+            amountTc, colaTc, totalTc, sssTc, philhealthTc, pagibigTc, taxTc, lateTc, netTc, wageTc;
     @FXML
     private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc, overtimeTc, deductionsTc;
 
@@ -133,6 +133,7 @@ public class PayrollController extends Controller {
         sssTc.setReorderable(false);
         taxTc.setReorderable(false);
         workdaysTc.setReorderable(false);
+        wageTc.setReorderable(false);
     }
 
     /**
@@ -157,6 +158,7 @@ public class PayrollController extends Controller {
         lateTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         taxTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         netTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(13));
+        wageTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
     }
 
     /**
