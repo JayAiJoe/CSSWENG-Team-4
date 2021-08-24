@@ -1,6 +1,7 @@
 package model;
 
 import dao.LogbookPOJO;
+import dao.Repository;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,16 +21,35 @@ public class OvertimeHandler {
     }
 
     private void initialize() {
-        // TODO: get pending overtime
+        attendance = Repository.getInstance().getPendingOT(startDate, endDate);
 
-        // TODO: set information in entries
+        for (LogbookPOJO logbook: attendance) {
+            entries.add(new OvertimeEntry(logbook.getCompleteName(), logbook.getPendingOT(), logbook.getDate()));
+        }
     }
 
     public ArrayList<OvertimeEntry> getEntries() {
         return entries;
     }
 
-    public void save() {
-        // TODO: update logbooks
+    public void save(ArrayList<OvertimeEntry> finalEntries) {
+        for (LogbookPOJO logbook: attendance) {
+            String name = logbook.getCompleteName();
+            Date date = logbook.getDate();
+            int minutes = logbook.getApprovedOT();
+
+            // find entry corresponding to logbook
+            for (OvertimeEntry entry: finalEntries) {
+                if (entry.getEmployeeName().equals(name) && entry.getDate().equals(date)) {
+                    if (entry.getStatus()) { // pendingOT is accepted
+                        logbook.setApprovedOT(minutes + entry.getMinutes());
+                    }
+                    logbook.setPendingOT(0);
+                    break;
+                }
+            }
+        }
+
+        Repository.getInstance().updateLogbookOT(attendance);
     }
 }
