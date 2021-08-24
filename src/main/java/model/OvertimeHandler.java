@@ -33,6 +33,7 @@ public class OvertimeHandler {
     }
 
     public void save(ArrayList<OvertimeEntry> finalEntries) {
+        ArrayList<LogbookPOJO> saveEntries = new ArrayList<>();
         for (LogbookPOJO logbook: attendance) {
             String name = logbook.getCompleteName();
             Date date = logbook.getDate();
@@ -45,11 +46,13 @@ public class OvertimeHandler {
                         logbook.setApprovedOT(minutes + entry.getMinutes());
                     }
                     logbook.setPendingOT(0);
+                    saveEntries.add(logbook);
                     break;
                 }
             }
         }
 
-        Repository.getInstance().updateLogbookOT(attendance);
+        attendance.removeAll(saveEntries);
+        Repository.getInstance().updateLogbookOT(saveEntries);
     }
 }
