@@ -99,11 +99,11 @@
                   <Pane fx:id="pagibig_tab" layoutX="294.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
                      <children>
                         <Button fx:id="pi_save_btn" disable="true" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
-                        <TextField fx:id="pi_employeeTf" disable="true" layoutX="223.0" layoutY="105.0" prefHeight="25.0" prefWidth="123.0" />
+                        <TextField fx:id="pi_employeeTf" disable="true" layoutX="223.0" layoutY="105.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
                         <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="118.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="58.0" text="Cancel" visible="false" />
                         <Button fx:id="pi_edit_btn" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Edit" />
                         <Text layoutX="58.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share:" />
-                        <TextField fx:id="pi_employerTf" disable="true" layoutX="223.0" layoutY="151.0" prefHeight="25.0" prefWidth="123.0" />
+                        <TextField fx:id="pi_employerTf" disable="true" layoutX="223.0" layoutY="151.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
                         <Text layoutX="58.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution:" />
                         <Text layoutX="354.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" />
                         <Text layoutX="194.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PhP" />
