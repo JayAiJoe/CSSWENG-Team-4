@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import model.OvertimeEntry;
 import model.OvertimeHandler;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class OvertimeWorkHoursController extends Controller {
@@ -28,12 +29,6 @@ public class OvertimeWorkHoursController extends Controller {
     private TableColumn<OvertimeEntry, Integer> overtimeTc;
     @FXML
     private TableColumn<OvertimeEntry, Boolean> buttonTc;
-
-    /**
-     * initialization of work hours and overtime related objects
-     */
-    @FXML
-    private Button acceptBtn, rejectBtn, checkAllBtn;
 
     private OvertimeHandler model;
     private ObservableList<OvertimeEntry> entries = FXCollections.observableArrayList();
@@ -113,5 +108,30 @@ public class OvertimeWorkHoursController extends Controller {
             entry.setStatus(true);
         }
         overtimeTv.refresh();
+    }
+
+    @FXML
+    private void onApproveAction() {
+        ArrayList<OvertimeEntry> approved = new ArrayList<>();
+        for (OvertimeEntry entry: entries) {
+            if (entry.getStatus()) {
+                approved.add(entry);
+            }
+        }
+        entries.removeAll(approved);
+        model.save(approved);
+    }
+
+    @FXML
+    private void onRejectAction() {
+        ArrayList<OvertimeEntry> rejected = new ArrayList<>();
+        for (OvertimeEntry entry: entries) {
+            if (entry.getStatus()) {
+                entry.setStatus(false);
+                rejected.add(entry);
+            }
+        }
+        entries.removeAll(rejected);
+        model.save(rejected);
     }
 }
