@@ -114,6 +114,15 @@ public class PayrollEntry {
         return monthlyWage;
     }
 
+    public String getWage() {
+        if (mode.equals("DAILY")) {
+            return df.format(rate);
+        } else {
+            return df.format(monthlyWage);
+        }
+    }
+
+    // setters for updating government fees
     public void setPagibig(double pagibig) {
         this.pagibig = pagibig;
     }
