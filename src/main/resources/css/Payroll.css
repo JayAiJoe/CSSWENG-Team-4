@@ -2,12 +2,12 @@
     -fx-background-color: white;
 }
 .table-view .column-header-background{
-     -fx-background-color: FFF2C2;
+     -fx-background-color: #6CB9FF;
  }
 
  .table-view .column-header{
-    -fx-border-color:  CEB689;
-    -fx-background-color: #FFF2C2;
+    -fx-border-color:  #3F86F1;
+    -fx-background-color: #6CB9FF;
  }
 
 .table-row-cell: hover {
@@ -16,6 +16,6 @@
 
 
 .table-view .column-header: hover{
-    -fx-background-color: CEB689;
+    -fx-background-color: #1D92FF;
 }
 
