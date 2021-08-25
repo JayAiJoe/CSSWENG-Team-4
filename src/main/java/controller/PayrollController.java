@@ -87,6 +87,7 @@ public class PayrollController extends Controller {
         absentTc.setCellValueFactory(new PropertyValueFactory<>("absent"));
         workdaysTc.setCellValueFactory(new PropertyValueFactory<>("workdays"));
         timeTc.setCellValueFactory(new PropertyValueFactory<>("time"));
+        wageTc.setCellValueFactory(new PropertyValueFactory<>("wage"));
         rateTc.setCellValueFactory(new PropertyValueFactory<>("rate"));
         salaryTc.setCellValueFactory(new PropertyValueFactory<>("salary"));
         amountTc.setCellValueFactory(new PropertyValueFactory<>("amount"));
@@ -141,23 +142,23 @@ public class PayrollController extends Controller {
      * */
     private void setColumnWidth(){
         nameTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(8));
-        modeTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
+        modeTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(18));
         absentTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         workdaysTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         rateTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        salaryTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(11));
+        salaryTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
         overtimeTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(55));
         timeTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(25));
         amountTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        colaTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
-        totalTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(14));
+        colaTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(18));
+        totalTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
         deductionsTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(100));
         sssTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         pagibigTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         philhealthTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         lateTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
         taxTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        netTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(13));
+        netTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
         wageTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
     }
 

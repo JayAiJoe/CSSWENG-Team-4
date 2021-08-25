@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
+<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
    <children>
       <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <children>
@@ -20,8 +20,8 @@
                       <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="42.40000915527344" resizable="false" sortable="false" text="Mode" />
                         <TableColumn fx:id="absentTc" editable="false" prefWidth="34.399993896484375" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Absent" />
                         <TableColumn id="tc_days" fx:id="workdaysTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="50.399993896484375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Days of&#10; Work" />
-                        <TableColumn id="tc_rate" fx:id="rateTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="38.399993896484375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Rate" />
                         <TableColumn id="tc_wage" fx:id="wageTc" maxWidth="1.7976931348623157E308" prefWidth="57.600006103515625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Wage&#10;" />
+                        <TableColumn id="tc_rate" fx:id="rateTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="38.399993896484375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Rate" />
                         <TableColumn id="tc_wage" fx:id="salaryTc" maxWidth="1.7976931348623157E308" prefWidth="76.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Total Regular&#10;     Wage" />
                         <TableColumn id="tc_overtime" fx:id="overtimeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="200.00003051757812" resizable="false" sortable="false" text="Overtime">
                            <columns>
