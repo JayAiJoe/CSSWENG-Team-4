@@ -4,13 +4,10 @@ import driver.Driver;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -18,10 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.Payroll;
 import model.PayrollEntry;
-
-import java.io.IOException;
-import java.util.Objects;
-import java.util.function.Function;
 
 /**
  * This class is the main controller for any scripted event
@@ -66,7 +59,7 @@ public class PayrollController extends Controller {
 
         crayolaBtn.setDisable(true);
         ixxiBtn.setDisable(false);
-        addressText.setText("Located at: "+ "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+        addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
         companyText.setText("Crayola atbp.");
 
 
@@ -86,182 +79,77 @@ public class PayrollController extends Controller {
     @FXML
     public void initialize() {
 
-        // set column hover
-        setColHover();
         // disable row selection
         payrollTv.setSelectionModel(null);
 
         // initialize columns
-        nameTc.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
-        modeTc.setCellValueFactory(new PropertyValueFactory<>("mode"));
-        absentTc.setCellValueFactory(new PropertyValueFactory<>("absent"));
-        workdaysTc.setCellValueFactory(new PropertyValueFactory<>("workdays"));
-        timeTc.setCellValueFactory(new PropertyValueFactory<>("time"));
-        wageTc.setCellValueFactory(new PropertyValueFactory<>("wage"));
-        rateTc.setCellValueFactory(new PropertyValueFactory<>("rate"));
-        salaryTc.setCellValueFactory(new PropertyValueFactory<>("salary"));
-        amountTc.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        colaTc.setCellValueFactory(new PropertyValueFactory<>("cola"));
-        totalTc.setCellValueFactory(new PropertyValueFactory<>("total"));
-        sssTc.setCellValueFactory(new PropertyValueFactory<>("sss"));
-        philhealthTc.setCellValueFactory(new PropertyValueFactory<>("philhealth"));
-        pagibigTc.setCellValueFactory(new PropertyValueFactory<>("pagibig"));
-        lateTc.setCellValueFactory(new PropertyValueFactory<>("late"));
-        netTc.setCellValueFactory(new PropertyValueFactory<>("net"));
+        initCol(nameTc, "employeeName", 8);
+        initCol(modeTc, "mode", 18);
+        initCol(absentTc, "absent", 20);
+        initCol(workdaysTc, "workdays", 20);
+        initCol(rateTc, "rate", 20);
+        initCol(salaryTc, "salary", 16);
+        initCol(overtimeTc, "overtime", 55);
+        initCol(timeTc, "time", 25);
+        initCol(amountTc, "amount", 20);
+        initCol(colaTc, "cola", 18);
+        initCol(totalTc, "total", 16);
+        initCol(deductionsTc, "deductions", 100);
+        initCol(sssTc, "sss", 20);
+        initCol(philhealthTc, "philhealth", 20);
+        initCol(pagibigTc, "pagibig", 20);
+        initCol(lateTc, "late", 20);
+        initCol(taxTc, "", 20);
+        initCol(netTc, "net", 16);
+        initCol(wageTc, "wage", 16);
 
         //disable crayolaBtn upon initialization
         crayolaBtn.setDisable(true);
 
-        //
         addressText.setText(addressText.getText()
                 + " UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
-
-        //format column and table order
-        setColumnWidth();
-        disableReorder();
     }
 
-    /**
-     * method for applying column hover effects on all table columns in payroll.fxml
-     */
-    private void setColHover(){
-        nameTc = setCol(nameTc);
-        modeTc = setCol(modeTc);
-        absentTc = setCol(absentTc);
-        workdaysTc = setColInt(workdaysTc);
-        timeTc = setColInt(timeTc);
-        wageTc = setCol(wageTc);
-        rateTc = setCol(rateTc);
-        salaryTc = setCol(salaryTc);
-        amountTc = setCol(amountTc);
-        colaTc = setCol(colaTc);
-        totalTc = setCol(totalTc);
-        sssTc = setCol(sssTc);
-        philhealthTc = setCol(philhealthTc);
-        pagibigTc = setCol(pagibigTc);
-        lateTc = setCol(lateTc);
-        netTc = setCol(netTc);
-    }
+    private <T> void initCol(TableColumn<PayrollEntry, T> col, String tag, int size) {
+        col.setCellValueFactory(new PropertyValueFactory<>(tag));
+        col.prefWidthProperty().bind(payrollTv.widthProperty().divide(size));
+        col.setReorderable(false);
 
-    /**
-     * Method sets column hover effects for String Table columns in payroll.fxml
-     * @param col
-     * @return
-     */
-    private TableColumn<PayrollEntry, String> setCol(TableColumn<PayrollEntry, String> col) {
+        // hover property
         BooleanProperty columnHover = new SimpleBooleanProperty();
 
         col.setCellFactory(column -> {
-            TableCell<PayrollEntry, String> cell = new TableCell<>() ;
-            cell.textProperty().bind(cell.itemProperty());
-            cell.hoverProperty().addListener((obs, wasHovered, isNowHovered) -> {
-                columnHover.set(isNowHovered);
-            });
+            TableCell<PayrollEntry, T> cell = new TableCell<>();
+
+            if (!tag.isEmpty()) {
+                cell.textProperty().bind(Bindings.createStringBinding(() -> cell.isEmpty() ? "" : String.format("%s", cell.getItem())
+                        , cell.itemProperty(), cell.emptyProperty()));
+            }
+            cell.hoverProperty().addListener((obs, wasHovered, isNowHovered) -> columnHover.set(isNowHovered));
+
             columnHover.addListener((obs, columnWasHovered, columnIsNowHovered) ->
                     cell.pseudoClassStateChanged(COLUMN_HOVER_PSEUDO_CLASS, columnIsNowHovered)
             );
-            return cell ;
+            return cell;
         });
-
-        return col ;
-    }
-
-    /**
-     * Method sets column hover effects for Integer Table columns in payroll.fxml
-     * @param col
-     * @return
-     */
-    private TableColumn<PayrollEntry, Integer> setColInt(TableColumn<PayrollEntry, Integer> col) {
-        BooleanProperty columnHover = new SimpleBooleanProperty();
-
-        col.setCellFactory(column -> {
-            TableCell<PayrollEntry, Integer> cell = new TableCell<>() ;
-            cell.textProperty().bind(Bindings.createStringBinding(() -> {
-                if (cell.isEmpty()) {
-                    return "" ;
-                } else {
-                    return String.format("%s", cell.getItem());
-                }
-            }, cell.itemProperty(), cell.emptyProperty()));
-            cell.hoverProperty().addListener((obs, wasHovered, isNowHovered) -> {
-                columnHover.set(isNowHovered);
-            });
-            columnHover.addListener((obs, columnWasHovered, columnIsNowHovered) ->
-                    cell.pseudoClassStateChanged(COLUMN_HOVER_PSEUDO_CLASS, columnIsNowHovered)
-            );
-            return cell ;
-        });
-
-        return col ;
-    }
-
-    /**
-     * This method simply disables reorderability for all table columns in Payroll.fxml
-     */
-    private void disableReorder() {
-        //Payroll table
-        timeTc.setReorderable(false);
-        totalTc.setReorderable(false);
-        absentTc.setReorderable(false);
-        amountTc.setReorderable(false);
-        colaTc.setReorderable(false);
-        deductionsTc.setReorderable(false);
-        lateTc.setReorderable(false);
-        modeTc.setReorderable(false);
-        nameTc.setReorderable(false);
-        netTc.setReorderable(false);
-        overtimeTc.setReorderable(false);
-        pagibigTc.setReorderable(false);
-        philhealthTc.setReorderable(false);
-        rateTc.setReorderable(false);
-        salaryTc.setReorderable(false);
-        sssTc.setReorderable(false);
-        taxTc.setReorderable(false);
-        workdaysTc.setReorderable(false);
-        wageTc.setReorderable(false);
-    }
-
-    /**
-     * Method sets the width of each Table Column in payrollTv
-     * */
-    private void setColumnWidth(){
-        nameTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(8));
-        modeTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(18));
-        absentTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        workdaysTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        rateTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        salaryTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
-        overtimeTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(55));
-        timeTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(25));
-        amountTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        colaTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(18));
-        totalTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
-        deductionsTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(100));
-        sssTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        pagibigTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        philhealthTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        lateTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        taxTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(20));
-        netTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
-        wageTc.prefWidthProperty().bind(payrollTv.widthProperty().divide(16));
     }
 
     /**
      * Method responsible for switching between payroll of Crayola and IX-XI in Payroll.fxml
+     *
      * @param mouseEvent the mouse event that occurred
      */
-    public void onPayrollClick(MouseEvent mouseEvent){
-        if(mouseEvent.getSource() == crayolaBtn){
+    public void onPayrollClick(MouseEvent mouseEvent) {
+        if (mouseEvent.getSource() == crayolaBtn) {
             crayolaBtn.setDisable(true);
             ixxiBtn.setDisable(false);
-            addressText.setText("Located at: "+ "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+            addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
             companyText.setText("Crayola atbp.");
             payrollTv.setItems(crayolaEntries);
-        }
-        else if (mouseEvent.getSource() == ixxiBtn) {
+        } else if (mouseEvent.getSource() == ixxiBtn) {
             ixxiBtn.setDisable(true);
             crayolaBtn.setDisable(false);
-            addressText.setText("Located at: "+ "UNIT 5, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+            addressText.setText("Located at: " + "UNIT 5, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
             companyText.setText("IX-XI Hardware");
             payrollTv.setItems(ixxiEntries);
         }
