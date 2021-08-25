@@ -1,8 +1,13 @@
 package controller;
 
 import driver.Driver;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,12 +21,14 @@ import model.PayrollEntry;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.function.Function;
 
 /**
  * This class is the main controller for any scripted event
  * for Payroll.fxml like onClick events, listeners, etc.
  */
 public class PayrollController extends Controller {
+    private static final PseudoClass COLUMN_HOVER_PSEUDO_CLASS = PseudoClass.getPseudoClass("column-hover");
 
     @FXML
     private AnchorPane navBar_container;
@@ -78,6 +85,9 @@ public class PayrollController extends Controller {
 
     @FXML
     public void initialize() {
+
+        // set column hover
+        setColHover();
         // disable row selection
         payrollTv.setSelectionModel(null);
 
@@ -109,6 +119,80 @@ public class PayrollController extends Controller {
         //format column and table order
         setColumnWidth();
         disableReorder();
+    }
+
+    /**
+     * method for applying column hover effects on all table columns in payroll.fxml
+     */
+    private void setColHover(){
+        nameTc = setCol(nameTc);
+        modeTc = setCol(modeTc);
+        absentTc = setCol(absentTc);
+        workdaysTc = setColInt(workdaysTc);
+        timeTc = setColInt(timeTc);
+        wageTc = setCol(wageTc);
+        rateTc = setCol(rateTc);
+        salaryTc = setCol(salaryTc);
+        amountTc = setCol(amountTc);
+        colaTc = setCol(colaTc);
+        totalTc = setCol(totalTc);
+        sssTc = setCol(sssTc);
+        philhealthTc = setCol(philhealthTc);
+        pagibigTc = setCol(pagibigTc);
+        lateTc = setCol(lateTc);
+        netTc = setCol(netTc);
+    }
+
+    /**
+     * Method sets column hover effects for String Table columns in payroll.fxml
+     * @param col
+     * @return
+     */
+    private TableColumn<PayrollEntry, String> setCol(TableColumn<PayrollEntry, String> col) {
+        BooleanProperty columnHover = new SimpleBooleanProperty();
+
+        col.setCellFactory(column -> {
+            TableCell<PayrollEntry, String> cell = new TableCell<>() ;
+            cell.textProperty().bind(cell.itemProperty());
+            cell.hoverProperty().addListener((obs, wasHovered, isNowHovered) -> {
+                columnHover.set(isNowHovered);
+            });
+            columnHover.addListener((obs, columnWasHovered, columnIsNowHovered) ->
+                    cell.pseudoClassStateChanged(COLUMN_HOVER_PSEUDO_CLASS, columnIsNowHovered)
+            );
+            return cell ;
+        });
+
+        return col ;
+    }
+
+    /**
+     * Method sets column hover effects for Integer Table columns in payroll.fxml
+     * @param col
+     * @return
+     */
+    private TableColumn<PayrollEntry, Integer> setColInt(TableColumn<PayrollEntry, Integer> col) {
+        BooleanProperty columnHover = new SimpleBooleanProperty();
+
+        col.setCellFactory(column -> {
+            TableCell<PayrollEntry, Integer> cell = new TableCell<>() ;
+            cell.textProperty().bind(Bindings.createStringBinding(() -> {
+                if (cell.isEmpty()) {
+                    return "" ;
+                } else {
+                    return String.format("%s", cell.getItem());
+                }
+            }, cell.itemProperty(), cell.emptyProperty()));
+            cell.hoverProperty().addListener((obs, wasHovered, isNowHovered) -> {
+                columnHover.set(isNowHovered);
+            });
+            columnHover.addListener((obs, columnWasHovered, columnIsNowHovered) ->
+                    cell.pseudoClassStateChanged(COLUMN_HOVER_PSEUDO_CLASS, columnIsNowHovered)
+            );
+            return cell ;
+        });
+
+        return col ;
     }
 
     /**
