@@ -4,8 +4,6 @@ import driver.Driver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -15,7 +13,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import model.*;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -578,6 +575,7 @@ public class EditFeesController extends Controller {
                 ph_save_btn.setVisible(false);
                 ph_save_btn.setDisable(true);
                 ph_errorText.setVisible(false);
+                philhealthTv.edit(-1, null);
                 philhealthTv.setEditable(false);
                 System.out.println("Ok is pressed");
             } else {
@@ -606,6 +604,7 @@ public class EditFeesController extends Controller {
                 ph_delete_btn.setDisable(true);
                 ph_save_btn.setVisible(false);
                 ph_save_btn.setDisable(true);
+                philhealthTv.edit(-1, null);
                 philhealthTv.setEditable(false);
                 ph_errorText.setVisible(false);
                 System.out.println("Ok is pressed");
