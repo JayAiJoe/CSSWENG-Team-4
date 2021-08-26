@@ -512,49 +512,47 @@ public class EditFeesController extends Controller {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 // remove ranges that are all empty
-                try {
-                    ArrayList<PhilHealthRange> newRanges = new ArrayList<>();
-                    for (PhilHealthRange range : ranges) {
-                        if (range.getStart().isEmpty() && range.getEnd().isEmpty() &&
-                                range.getValue().isEmpty()) {
-                            continue;
-                        }
-                        newRanges.add(range);
+                ArrayList<PhilHealthRange> newRanges = new ArrayList<>();
+                for (PhilHealthRange range : ranges) {
+                    if (range.getStart().isEmpty() && range.getEnd().isEmpty() &&
+                            range.getValue().isEmpty()) {
+                        continue;
                     }
-                    ranges.setAll(newRanges);
+                    newRanges.add(range);
+                }
+                ranges.setAll(newRanges);
 
-
-                    // check ranges that are incomplete
-                    newRanges = new ArrayList<>();
-                    for (PhilHealthRange range : ranges) {
-                        if (range.getStart().isEmpty() || range.getEnd().isEmpty() ||
-                                range.getValue().isEmpty()) {
-                            ph_errorText.setText("All cells must be nonempty!");
-                            ph_errorText.setVisible(true);
-                            return;
-                        }
-                        newRanges.add(range);
+                // check ranges that are incomplete
+                newRanges = new ArrayList<>();
+                for (PhilHealthRange range : ranges) {
+                    if (range.getStart().isEmpty() || range.getEnd().isEmpty() ||
+                            range.getValue().isEmpty()) {
+                        ph_errorText.setText("All cells must be nonempty!");
+                        ph_errorText.setVisible(true);
+                        return;
                     }
+                    newRanges.add(range);
+                }
 
-                    // sort input ranges
-                    Collections.sort(newRanges);
-                    // set new ranges
-                    ranges.setAll(newRanges);
-                    // check no range is missing
-                    int rangeCount = newRanges.size();
-                    for (int i = 0; i < rangeCount - 1; i++) {
-                        ArrayList<Double> rangeA = ranges.get(i).convert();
-                        ArrayList<Double> rangeB = ranges.get(i + 1).convert();
+                // sort input ranges
+                Collections.sort(newRanges);
+                // set new ranges
+                ranges.setAll(newRanges);
+                // check all ranges are valid
+                int rangeCount = newRanges.size();
+                for (int i = 0; i < rangeCount - 1; i++) {
+                    ArrayList<Double> rangeA = ranges.get(i).convert();
+                    ArrayList<Double> rangeB = ranges.get(i + 1).convert();
 
-                        double start = rangeB.get(0);
-                        double end = rangeA.get(1);
+                    double start = rangeB.get(0);
+                    double end = rangeA.get(1);
 
-                        if (start != end + 0.01) {
-                            ph_errorText.setText("Ranges must cover all possible values for salary!");
-                            ph_errorText.setVisible(true);
-                            return;
-                        }
+                    if (start != end + 0.01) {
+                        ph_errorText.setText("Ranges are invalid!");
+                        ph_errorText.setVisible(true);
+                        return;
                     }
+                }
 
                 // update PhilHealth fee table
                 ArrayList<ArrayList<Double>> formulas = new ArrayList<>();
@@ -567,9 +565,6 @@ public class EditFeesController extends Controller {
                     formulas.add(newRange);
                 }
                 philhealthFeeTable.setFormulas(formulas);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
                 ph_update_btn.toFront();
                 ph_update_btn.setDisable(false);
