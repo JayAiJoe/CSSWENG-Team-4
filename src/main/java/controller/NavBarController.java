@@ -41,12 +41,12 @@ public class NavBarController {
     private void onEmployeesAction(){}
 
     /**
-     * Changes screen to OvertimeWorkHours.fxml.
+     * Changes screen to PendingOvertime.fxml.
      */
     @FXML
-    private void onOvertimeWorkHoursAction() {
+    private void onPendingOvertimeAction() {
         menuButton.hide();
-        Driver.getScreenController().activate("OvertimeWorkHours");
+        Driver.getScreenController().activate("PendingOvertime");
     }
 
     /**

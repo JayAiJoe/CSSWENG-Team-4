@@ -14,7 +14,7 @@ import model.OvertimeHandler;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class OvertimeWorkHoursController extends Controller {
+public class PendingOvertimeController extends Controller {
     @FXML
     private AnchorPane navBar_container;
 
@@ -82,7 +82,7 @@ public class OvertimeWorkHoursController extends Controller {
     }
 
     /**
-     * This method sets the size of table columns present in OvertimeWorkHours.fxml
+     * This method sets the size of table columns present in PendingOvertime.fxml
      */
 
     private void setColumnWidth() {

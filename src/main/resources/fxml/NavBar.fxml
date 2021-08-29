@@ -13,7 +13,7 @@
       <MenuButton fx:id="menuButton" layoutX="268.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" stylesheets="/css/navButton.css" text="Payroll Settings" textFill="WHITE">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#onApprovedOvertimeAction" text="Approved Overtime/Work Hours" />
-            <MenuItem mnemonicParsing="false" onAction="#onOvertimeWorkHoursAction" text="Pending Overtime" />
+            <MenuItem mnemonicParsing="false" onAction="#onPendingOvertimeAction" text="Pending Overtime" />
             <MenuItem mnemonicParsing="false" onAction="#onEditFeesAction" text="Edit Fees" />
          </items>
       </MenuButton>
