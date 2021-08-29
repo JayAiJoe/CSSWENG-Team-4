@@ -13,6 +13,7 @@ import model.OvertimeHandler;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 public class PendingOvertimeController extends Controller {
     @FXML
@@ -112,26 +113,76 @@ public class PendingOvertimeController extends Controller {
 
     @FXML
     private void onApproveAction() {
+        StringBuilder sb = new StringBuilder();
         ArrayList<OvertimeEntry> approved = new ArrayList<>();
         for (OvertimeEntry entry: entries) {
             if (entry.getStatus()) {
                 approved.add(entry);
+                sb.append(String.format("%-25s\t\t", entry.getEmployeeName()));
+                sb.append(String.format("%-3d\tminutes\t", entry.getMinutes()));
+                sb.append(entry.getDateString()).append("\n");
             }
         }
-        entries.removeAll(approved);
-        model.save(approved);
+
+        if (approved.size() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setContentText("No entries selected!");
+            alert.showAndWait();
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Approve Overtime?");
+        alert.setContentText(sb.toString());
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            entries.removeAll(approved);
+            model.save(approved);
+        }
     }
 
     @FXML
     private void onRejectAction() {
+        StringBuilder sb = new StringBuilder();
         ArrayList<OvertimeEntry> rejected = new ArrayList<>();
         for (OvertimeEntry entry: entries) {
             if (entry.getStatus()) {
                 entry.setStatus(false);
                 rejected.add(entry);
+                sb.append(String.format("%-25s\t\t", entry.getEmployeeName()));
+                sb.append(String.format("%-3d\tminutes\t", entry.getMinutes()));
+                sb.append(entry.getDateString()).append("\n");
             }
         }
-        entries.removeAll(rejected);
-        model.save(rejected);
+
+        if (rejected.size() == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setContentText("No entries selected!");
+            alert.showAndWait();
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Reject Overtime?");
+        alert.setContentText(sb.toString());
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            entries.removeAll(rejected);
+            model.save(rejected);
+        } else {
+            for (OvertimeEntry entry: rejected) {
+                entry.setStatus(true);
+            }
+        }
     }
 }
