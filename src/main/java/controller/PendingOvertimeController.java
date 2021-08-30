@@ -200,7 +200,7 @@ public class PendingOvertimeController extends Controller {
     }
 
     @FXML
-    private void onCheckDateAction(){
+    private void onFilterAction(){
 
     }
 }

@@ -16,11 +16,11 @@
             <AnchorPane prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <HBox alignment="CENTER" layoutX="-14.0" layoutY="181.0" prefHeight="534.0" prefWidth="1186.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0">
+                  <HBox alignment="CENTER" layoutX="-14.0" layoutY="166.0" prefHeight="567.0" prefWidth="1186.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0">
                      <children>
-                        <AnchorPane prefHeight="534.0" prefWidth="746.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 20;">
+                        <AnchorPane prefHeight="567.0" prefWidth="608.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 20;">
                            <children>
-                              <TableView fx:id="overtimeTv" layoutX="32.0" layoutY="11.0" prefHeight="509.0" prefWidth="546.0" stylesheets="@../css/Payroll.css">
+                              <TableView fx:id="overtimeTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="546.0" stylesheets="@../css/Payroll.css">
                                 <columns>
                                   <TableColumn fx:id="nameTc" editable="false" prefWidth="156.80005645751953" sortable="false" text="Name" />
                                   <TableColumn fx:id="overtimeTc" editable="false" prefWidth="156.800048828125" sortable="false" text="Minutes of Overtime" />
@@ -28,15 +28,12 @@
                                     <TableColumn fx:id="buttonTc" prefWidth="106.4000244140625" sortable="false" text="Select" />
                                 </columns>
                               </TableView>
-                              <AnchorPane layoutX="586.0" layoutY="33.0" prefHeight="467.0" prefWidth="145.0" style="-fx-background-color: E0F4FF;">
-                                 <children>
-                                    <DatePicker layoutX="15.0" layoutY="91.0" prefHeight="26.0" prefWidth="115.0" />
-                                    <Button layoutX="15.0" layoutY="126.0" mnemonicParsing="false" onAction="#onCheckDateAction" prefHeight="26.0" prefWidth="67.0" text="Check" />
-                                    <Button layoutX="20.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="87.0" text="Check All" />
-                                    <Button layoutX="17.0" layoutY="220.0" mnemonicParsing="false" onAction="#onApproveAction" prefHeight="26.0" prefWidth="112.0" text="Approve Selected" />
-                                    <Button layoutX="15.0" layoutY="263.0" mnemonicParsing="false" onAction="#onRejectAction" prefHeight="26.0" prefWidth="115.0" text="Reject Selected" />
-                                 </children>
-                              </AnchorPane>
+                              <DatePicker layoutX="32.0" layoutY="23.0" prefHeight="26.0" prefWidth="115.0" />
+                              <Button layoutX="147.0" layoutY="23.0" mnemonicParsing="false" onAction="#onFilterAction" prefHeight="26.0" prefWidth="67.0" text="Filter" />
+                              <Text layoutX="32.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter By date" wrappingWidth="100.15899658203125" />
+                              <Button layoutX="466.0" layoutY="23.0" mnemonicParsing="false" onAction="#onRejectAction" prefHeight="26.0" prefWidth="112.0" text="Reject Selected" />
+                              <Button layoutX="354.0" layoutY="23.0" mnemonicParsing="false" onAction="#onApproveAction" prefHeight="26.0" prefWidth="112.0" text="Approve Selected" />
+                              <Button layoutX="214.0" layoutY="23.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" text="Check All" />
                            </children>
                         </AnchorPane>
                      </children>
