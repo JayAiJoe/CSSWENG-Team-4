@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import model.OvertimeEntry;
 import model.OvertimeHandler;
@@ -54,6 +55,18 @@ public class PendingOvertimeController extends Controller {
         disableReorder();
 
         overtimeTv.setEditable(true);
+        overtimeTv.setRowFactory(tv -> {
+            TableRow<OvertimeEntry> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
+                    boolean status = row.getItem().getStatus();
+                    row.getItem().setStatus(!status);
+                    overtimeTv.refresh();
+                }
+            });
+            return row;
+        });
+
         nameTc.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
         overtimeTc.setCellValueFactory(new PropertyValueFactory<>("minutes"));
         dateTc.setCellValueFactory(new PropertyValueFactory<>("dateString"));
