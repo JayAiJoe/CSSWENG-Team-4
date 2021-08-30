@@ -1,6 +1,6 @@
 package model;
 
-// TODO: check invalid inputs i.e. negative inputs, maybe
+import java.util.ArrayList;
 
 /**
  * This class is responsible for all computations related
@@ -8,94 +8,217 @@ package model;
  * as well as government fees such as SSS, PhilHealth, and Pag-Ibig.
  */
 public class Calculator {
+    /** The instance of the Calculator class. */
+    private static Calculator instance = null;
+    /** The FeeTable for the PhilHealth Fee. */
+    private FeeTable philhealthFeeTable;
+    /** The FeeTable for the SSS Fee. */
+    private FeeTable sssFeeTable;
+    /** The instance of the PagIbigFee. */
+    private PagIbigFee pagIbigFee;
+    /** The FeeTable for the Employee Compensation. */
+    private FeeTable employeeCompensation;
+
+    /**
+     * A constructor for a Calculator.
+     */
+    private Calculator() {
+        philhealthFeeTable = new FeeTable(FeeTable.PHILHEALTH_FILE_NAME);
+        pagIbigFee = new PagIbigFee();
+        sssFeeTable = new FeeTable(FeeTable.SSS_FILE_NAME);
+        employeeCompensation = new FeeTable(FeeTable.COMPENSATION_FILE_NAME);
+    }
+
+    /**
+     * Returns the instance of the Calculator class. If no instance
+     * of the Calculator has been instantiated, this method will create
+     * a new Calculator instance.
+     * @return the instance of the Calculator class
+     */
+    public static Calculator getInstance() {
+        if (instance == null) {
+            instance = new Calculator();
+        }
+        return instance;
+    }
+
     /**
      * Computes the total salary of an employee based on the
      * hourly rate of an employee, the number of work days, the
      * number of minutes late, and the number of minutes overtime.
-     * @param rate the hourly rate of on employee
-     * @param workDays the number of work days
-     * @param minutesLate the number of minutes late
-     * @param minutesOT the number of minutes overtime
+     * @param rate the daily rate of on employee
+     * @param daysPresent the number of days the employee was present
+     *                    for work
      * @return the total salary of an employee
+     * @throws IllegalArgumentException when one of the inputs is negative
      */
-    public static double computeSalary(double rate, int workDays, int minutesLate,
-                                       int minutesOT) {
-        return rate * 8 * workDays + computeOvertime(rate, minutesOT) -
-                computeLateFee(rate, minutesLate);
+    public double computeSalary(double rate, double daysPresent)
+            throws IllegalArgumentException {
+        if (rate < 0 || daysPresent < 0) {
+            throw new IllegalArgumentException("Negative inputs are not allowed");
+        }
+        return rate * daysPresent;
     }
 
     /**
      * Computes for the Overtime bonus to be added to an employee's
      * salary based on the hourly rate of an employee and the number
      * of minutes overtime.
-     * @param rate the hourly rate of an employee
+     * @param rate the daily rate of an employee
      * @param minutesOT the number of minutes overtime
      * @return the Overtime bonus to be added to an employee's salary
+     * @throws IllegalArgumentException when one of the inputs is negative
      */
-    private static double computeOvertime(double rate, int minutesOT) {
-        return rate * minutesOT / 60 * 1.25;
+    public double computeOvertime(double rate, int minutesOT)
+            throws IllegalArgumentException {
+        if (rate < 0 || minutesOT < 0) {
+            throw new IllegalArgumentException("Negative inputs are not allowed");
+        }
+        return rate / 8 * minutesOT / 60 * 1.25;
     }
 
     /**
      * Computes for the Late Fee to be deducted from an employee's
      * salary based on the hourly rate of an employee and the number
      * of minutes late.
-     * @param rate the hourly rate of an employee
+     * @param rate the daily rate of an employee
      * @param minutesLate the number of minutes late
      * @return the Late Fee to be deducted from an employee's salary
+     * @throws IllegalArgumentException when one of the inputs is negative
      */
-    private static double computeLateFee(double rate, int minutesLate) {
-        return rate * minutesLate / 60;
+    public double computeLateFee(double rate, int minutesLate)
+            throws IllegalArgumentException {
+        if (rate < 0 || minutesLate < 0) {
+            throw new IllegalArgumentException("Negative inputs are not allowed");
+        }
+        return rate / 8 * minutesLate / 60;
     }
 
     /**
      * Computes for the PhilHealth Fee to be paid by an employee
      * based on the employee's monthly basic salary.
-     * @param salary is the monthly basic salary of an employee
+     * @param salary the monthly basic salary of an employee
      * @return the PhilHealth Fee to be paid by an employee
+     * @throws IllegalArgumentException when the given salary is negative
      */
-    public static double computePhilHealthFee(double salary) {
-        if (salary <= 10000) {
-            return 175;
-        } else if (salary < 70000) {
-            return 0.035 * salary / 2;
-        } else {
-            return 1225;
+    public double computePhilHealthFee(double salary)
+            throws IllegalArgumentException {
+        if (salary < 0) {
+            throw new IllegalArgumentException("Salary cannot be negative");
         }
+
+        ArrayList<ArrayList<Double>> formulas = philhealthFeeTable.getFormulas();
+        int n = formulas.size();
+
+        for (int i = 0; i < n; i++) {
+            double lower_bound = formulas.get(i).get(0);
+            double upper_bound = formulas.get(i).get(1);
+            double value = formulas.get(i).get(2);
+
+            if (salary >= lower_bound && salary <= upper_bound) {
+                if (i == 0 || i == n - 1) {
+                    return value;
+                } else {
+                    return value * salary;
+                }
+            }
+        }
+        return 0;
     }
 
     /**
      * Computes for the Pag-Ibig Fee to be paid by an employee
      * based on the employee's monthly basic salary.
-     * @param salary is the monthly basic salary of on employee
+     * @param salary the monthly basic salary of on employee
      * @return the Pag-Ibig Fee to be paid by an employee
+     * @throws IllegalArgumentException when the given salary is negative
      */
-    public static double computePagIbigFee(double salary) {
-        if (salary <= 1500) {
-            return salary * 0.01;
-        } else {
-            return Math.min(salary * 0.02, 100);
+    public double computePagIbigFee(double salary)
+            throws IllegalArgumentException {
+        if (salary < 0) {
+            throw new IllegalArgumentException("Salary cannot be negative");
         }
+
+        double totalRate = pagIbigFee.getTotalRate();
+        double employerContrib = pagIbigFee.getEmployerContrib();
+
+        for (ArrayList<Double> range: employeeCompensation.getFormulas()) {
+            double lower_bound = range.get(0);
+            double upper_bound = range.get(1);
+            double value = range.get(2);
+
+            if (salary >= lower_bound && salary <= upper_bound) {
+                return totalRate * value - employerContrib;
+            }
+        }
+        return 0;
     }
 
     /**
      * Computes for the SSS Fee to be paid by an employee
      * based on the employee's monthly basic salary.
-     * @param salary is the monthly basic salary of an employee
+     * @param salary the monthly basic salary of an employee
      * @return the SSS Fee to be paid by an employee
+     * @throws IllegalArgumentException when the given salary is negative
      */
-    public static double computeSSSFee(double salary) {
-        if (salary < 3250) {
-            return 135;
+    public double computeSSSFee(double salary)
+            throws IllegalArgumentException {
+        if (salary < 0) {
+            throw new IllegalArgumentException("Salary cannot be negative");
         }
 
-        double check = 3500;
-        while (check <= 19500) {
-            if (salary >= check - 250 && salary < check + 250) {
-                return check * 0.045;
+        for (ArrayList<Double> range: sssFeeTable.getFormulas()) {
+            double lower_bound = range.get(0);
+            double upper_bound = range.get(1);
+            double value = range.get(2);
+
+            if (salary >= lower_bound && salary <= upper_bound) {
+                return value;
             }
-            check += 500;
         }
-        return 900;
+        return 0;
+    }
+
+    /**
+     * Returns the FeeTable for the Employee Compensation.
+     * @return the FeeTable for the Employee Compensation
+     */
+    public FeeTable getEmployeeCompensation() {
+        return employeeCompensation;
+    }
+
+    /**
+     * Returns the FeeTable for the PhilHealth Fee.
+     * @return the FeeTable for the PhilHealth Fee
+     */
+    public FeeTable getPhilhealthFeeTable() {
+        return philhealthFeeTable;
+    }
+
+    /**
+     * Returns the FeeTable for the SSS Fee.
+     * @return the FeeTable for the SSS Fee
+     */
+    public FeeTable getSssFeeTable() {
+        return sssFeeTable;
+    }
+
+    /**
+     * Returns the instance of the PagIbigFee.
+     * @return the instance of the PagIbigFee
+     */
+    public PagIbigFee getPagIbigFee() {
+        return pagIbigFee;
+    }
+
+    /**
+     * Closes the fee tables so that their contents are saved to
+     * the appropriate binary files.
+     */
+    public void close() {
+        philhealthFeeTable.close();
+        pagIbigFee.close();
+        sssFeeTable.close();
+        employeeCompensation.close();
     }
 }

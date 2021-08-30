@@ -1,0 +1,15 @@
+.button {
+-fx-background-color: #577CFF;
+}
+
+.menu-button{
+-fx-background-color: #577CFF;
+}
+
+.button: hover{
+-fx-background-color: #99c9ff
+}
+
+.menu-button: hover{
+-fx-background-color: #577CFF;
+}

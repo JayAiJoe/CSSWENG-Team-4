@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
+   <children>
+      <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <AnchorPane layoutY="-3.0" prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView id="t_payroll" fx:id="payrollTv" layoutX="52.0" layoutY="158.0" prefHeight="491.0" prefWidth="1275.0" stylesheets="@../css/Payroll.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="158.0">
+                    <columns>
+                      <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="171.20000839233398" resizable="false" sortable="false" text="Name" />
+                      <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="42.40000915527344" resizable="false" sortable="false" text="Mode" />
+                        <TableColumn fx:id="absentTc" editable="false" prefWidth="34.399993896484375" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Absent" />
+                        <TableColumn id="tc_days" fx:id="workdaysTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="50.399993896484375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Days of&#10; Work" />
+                        <TableColumn id="tc_wage" fx:id="wageTc" maxWidth="1.7976931348623157E308" prefWidth="57.600006103515625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Wage&#10;" />
+                        <TableColumn id="tc_rate" fx:id="rateTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="38.399993896484375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Rate" />
+                        <TableColumn id="tc_wage" fx:id="salaryTc" maxWidth="1.7976931348623157E308" prefWidth="76.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Total Regular&#10;     Wage" />
+                        <TableColumn id="tc_overtime" fx:id="overtimeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="200.00003051757812" resizable="false" sortable="false" text="Overtime">
+                           <columns>
+                              <TableColumn id="tco_time" fx:id="timeTc" editable="false" prefWidth="52.800048828125" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Time" />
+                              <TableColumn id="tco_amount" fx:id="amountTc" editable="false" prefWidth="68.00003051757812" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Amount" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn id="tc_cola" fx:id="colaTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="30.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="COLA" />
+                        <TableColumn id="tc_total" fx:id="totalTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="18.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Total&#10;Amount" />
+                        <TableColumn id="tc_deductions" fx:id="deductionsTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="389.60003662109375" resizable="false" sortable="false" text="Deductions">
+                           <columns>
+                              <TableColumn id="tcd_sss" fx:id="sssTc" editable="false" prefWidth="55.99993896484375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="SSS" />
+                              <TableColumn id="tcd_philhealth" fx:id="philhealthTc" editable="false" prefWidth="83.199951171875" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="PHILHEALTH" />
+                              <TableColumn id="tcd_pagibig" fx:id="pagibigTc" editable="false" prefWidth="61.5999755859375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="PAG-IBIG" />
+                              <TableColumn id="tcd_tax" fx:id="taxTc" prefWidth="75.2000732421875" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Tax w/Held" />
+                              <TableColumn id="tcd_late" fx:id="lateTc" editable="false" prefWidth="57.5999755859375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Late/UT" />
+                           </columns>
+                        </TableColumn>
+                        <TableColumn id="tc_total" fx:id="netTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="116.0" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Net Amount&#10;      Paid" />
+                    </columns>
+                  </TableView>
+                  <Text fx:id="daterangeText" layoutX="71.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For the Period:" />
+                  <Text fx:id="addressText" layoutX="71.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Located at:" />
+                  <HBox alignment="CENTER" layoutY="45.0" prefHeight="33.0" prefWidth="1400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Text id="Payroll_Head" fx:id="companyText" fill="#a18a5b" stroke="#fcfcfc" strokeType="OUTSIDE" strokeWidth="0.0" text="Crayola atbp." textAlignment="CENTER" wrappingWidth="263.3913879394536">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="600.0" layoutY="1.0" prefHeight="35.0" prefWidth="986.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                     <children>
+                        <Button fx:id="crayolaBtn" mnemonicParsing="false" onMouseClicked="#onPayrollClick" prefHeight="31.0" prefWidth="98.0" text="Crayola atbp." />
+                        <Button fx:id="ixxiBtn" mnemonicParsing="false" onMouseClicked="#onPayrollClick" prefHeight="31.0" prefWidth="98.0" text="IX-XI Hardware" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="navBar_container" prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>

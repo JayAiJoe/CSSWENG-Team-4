@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ApprovedOvertimeController">
+   <children>
+      <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <AnchorPane prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <HBox alignment="TOP_CENTER" layoutX="1.0" layoutY="124.0" prefHeight="36.0" prefWidth="1186.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
+                     <children>
+                        <Text fill="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Approved Overtime Hours and Work Hours" textAlignment="CENTER" wrappingWidth="481.6696014404297">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutY="177.0" prefHeight="514.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="514.0" prefWidth="901.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 50;">
+                           <children>
+                              <Button fx:id="overtimeAddBtn" layoutX="37.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onAddClick" prefHeight="26.0" prefWidth="51.0" text="Add" />
+                              <Button fx:id="overtimeEditBtn" layoutX="760.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" prefHeight="26.0" prefWidth="51.0" text="Edit" />
+                              <Button fx:id="overtimeCancelBtn" disable="true" layoutX="811.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" text="Cancel" visible="false" />
+                              <Button fx:id="overtimeSaveBtn" disable="true" layoutX="760.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" prefHeight="26.0" prefWidth="51.0" text="Save" visible="false" />
+                              <TableView layoutX="37.0" layoutY="60.0" prefHeight="426.0" prefWidth="826.0" stylesheets="@../css/Payroll.css">
+                                <columns>
+                                  <TableColumn fx:id="dateTc" prefWidth="150.40002822875977" sortable="false" text="Date" />
+                                  <TableColumn fx:id="overtimehead1Tc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="Overtime">
+                                       <columns>
+                                          <TableColumn fx:id="startotTc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="Start Time" />
+                                       </columns></TableColumn>
+                                    <TableColumn fx:id="workhourheadTc" prefWidth="500.0" sortable="false" text="Work Hours">
+                                       <columns>
+                                          <TableColumn fx:id="startwh1Tc" prefWidth="120.0" sortable="false" text="Start Time 1" />
+                                          <TableColumn fx:id="endwh1Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="End Time 1" />
+                                          <TableColumn fx:id="startwh2Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="Start Time 2" />
+                                          <TableColumn fx:id="endwh2Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="End Time 2" />
+                                       </columns></TableColumn>
+                                    <TableColumn fx:id="overtimehead2" minWidth="0.0" prefWidth="105.5999755859375" sortable="false" text="Overtime">
+                                       <columns>
+                                          <TableColumn fx:id="endotTc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="End Time" />
+                                       </columns>
+                                    </TableColumn>
+                                </columns>
+                              </TableView>
+                              <Button fx:id="overtimeRemoveBtn" layoutX="88.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onRemoveClick" prefHeight="26.0" prefWidth="60.0" text="Remove" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="navBar_container" prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+   </children>
+</AnchorPane>

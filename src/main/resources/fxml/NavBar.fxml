@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="/css/navBar.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NavBarController">
+   <children>
+      <Button fx:id="homeNav" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onHomeAction" prefHeight="29.0" prefWidth="87.0" stylesheets="/css/navButton.css" text="Home" textFill="WHITE" />
+      <Button fx:id="viewpayrollNav" layoutX="94.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onPayrollAction" prefHeight="29.0" prefWidth="87.0" stylesheets="/css/navButton.css" text="View Payrolls" textFill="#fcfcfc" />
+      <Button fx:id="EmployeesNav" layoutX="181.0" layoutY="3.0" mnemonicParsing="false" onMouseClicked="#onEmployeesAction" prefHeight="29.0" prefWidth="87.0" stylesheets="@/css/navButton.css" text="Employees" textFill="WHITE" />
+      <MenuButton fx:id="menuButton" layoutX="268.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" stylesheets="/css/navButton.css" text="Payroll Settings" textFill="WHITE">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onApprovedOvertimeAction" text="Approved Overtime/Work Hours" />
+            <MenuItem mnemonicParsing="false" onAction="#onPendingOvertimeAction" text="Pending Overtime" />
+            <MenuItem mnemonicParsing="false" onAction="#onEditFeesAction" text="Edit Fees" />
+         </items>
+      </MenuButton>
+   </children>
+</AnchorPane>
