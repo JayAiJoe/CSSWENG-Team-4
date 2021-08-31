@@ -28,12 +28,12 @@
                                     <TableColumn fx:id="buttonTc" prefWidth="106.4000244140625" sortable="false" text="Select" />
                                 </columns>
                               </TableView>
-                              <DatePicker layoutX="32.0" layoutY="23.0" prefHeight="26.0" prefWidth="115.0" />
+                              <DatePicker fx:id="datePicker" layoutX="32.0" layoutY="23.0" prefHeight="26.0" prefWidth="115.0" />
                               <Button layoutX="147.0" layoutY="23.0" mnemonicParsing="false" onAction="#onFilterAction" prefHeight="26.0" prefWidth="67.0" text="Filter" />
                               <Text layoutX="32.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter By date" wrappingWidth="100.15899658203125" />
                               <Button layoutX="466.0" layoutY="23.0" mnemonicParsing="false" onAction="#onRejectAction" prefHeight="26.0" prefWidth="112.0" text="Reject Selected" />
                               <Button layoutX="354.0" layoutY="23.0" mnemonicParsing="false" onAction="#onApproveAction" prefHeight="26.0" prefWidth="112.0" text="Approve Selected" />
-                              <Button layoutX="214.0" layoutY="23.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" text="Check All" />
+                              <Button fx:id="checkAllBtn" layoutX="214.0" layoutY="23.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" text="Check All" />
                            </children>
                         </AnchorPane>
                      </children>

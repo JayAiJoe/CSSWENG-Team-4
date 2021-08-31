@@ -3,6 +3,7 @@ package controller;
 import driver.Driver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -12,9 +13,12 @@ import javafx.scene.layout.AnchorPane;
 import model.OvertimeEntry;
 import model.OvertimeHandler;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class PendingOvertimeController extends Controller {
     @FXML
@@ -31,9 +35,13 @@ public class PendingOvertimeController extends Controller {
     private TableColumn<OvertimeEntry, Integer> overtimeTc;
     @FXML
     private TableColumn<OvertimeEntry, Boolean> buttonTc;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private Button checkAllBtn;
 
     private OvertimeHandler model;
-    private ObservableList<OvertimeEntry> entries = FXCollections.observableArrayList();
+    private FilteredList<OvertimeEntry> entries;
 
     @Override
     public void update() {
@@ -45,7 +53,9 @@ public class PendingOvertimeController extends Controller {
         Date today = new Date();
         long ms = today.getTime();
         model = new OvertimeHandler(new Date(ms - 15 * 86400000L), today);
-        entries.setAll(model.getEntries());
+        ObservableList<OvertimeEntry> observableList = FXCollections.observableArrayList();
+        observableList.setAll(model.getEntries());
+        entries = new FilteredList<>(observableList);
         overtimeTv.setItems(entries);
     }
 
@@ -61,6 +71,7 @@ public class PendingOvertimeController extends Controller {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
                     boolean status = row.getItem().getStatus();
                     row.getItem().setStatus(!status);
+                    updateCheckAll();
                     overtimeTv.refresh();
                 }
             });
@@ -87,6 +98,7 @@ public class PendingOvertimeController extends Controller {
             checkBox.selectedProperty().addListener((obs, oldValue, newValue) -> {
                 if (cell.getTableRow().getItem() != null) {
                     cell.getTableRow().getItem().setStatus(newValue);
+                    updateCheckAll();
                 }
             });
             cell.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
@@ -118,8 +130,14 @@ public class PendingOvertimeController extends Controller {
 
     @FXML
     private void onCheckAllAction() {
-        for (OvertimeEntry entry: entries) {
-            entry.setStatus(true);
+        boolean value = checkAllBtn.getText().equals("Check All");
+        for (OvertimeEntry entry : entries) {
+            entry.setStatus(value);
+        }
+        if (value) {
+            checkAllBtn.setText("Uncheck All");
+        } else {
+            checkAllBtn.setText("Check All");
         }
         overtimeTv.refresh();
     }
@@ -200,7 +218,27 @@ public class PendingOvertimeController extends Controller {
     }
 
     @FXML
-    private void onFilterAction(){
+    private void onFilterAction() {
+        LocalDate filterDate = datePicker.getValue();
+        if (filterDate == null) {
+            entries.setPredicate(null);
+            updateCheckAll();
+            return;
+        }
+        String dateString = filterDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        Predicate<OvertimeEntry> filter = entry -> entry.getDateString().equals(dateString);
+        entries.setPredicate(filter);
+        updateCheckAll();
+        System.out.println(entries.size());
+    }
 
+    private void updateCheckAll() {
+        checkAllBtn.setText("Check All");
+        for (OvertimeEntry entry: entries) {
+            if (entry.getStatus()) {
+                checkAllBtn.setText("Uncheck All");
+                break;
+            }
+        }
     }
 }
