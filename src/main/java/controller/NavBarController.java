@@ -7,7 +7,7 @@ import javafx.scene.control.MenuButton;
 public class NavBarController {
 
     @FXML
-    public MenuButton menuButton;
+    public MenuButton menuButton, employeeButton;
 
     /**
      * Changes screen to Home.fxml.
@@ -38,7 +38,14 @@ public class NavBarController {
      * Changes screen to Employees.fxml.
      */
     @FXML
-    private void onEmployeesAction(){}
+    private void onEmployeesAction(){
+        employeeButton.hide();
+    }
+
+    @FXML
+    private void onAttendanceStatisticsAction(){
+        employeeButton.hide();
+        Driver.getScreenController().activate("AttendanceStatistics");}
 
     /**
      * Changes screen to PendingOvertime.fxml.

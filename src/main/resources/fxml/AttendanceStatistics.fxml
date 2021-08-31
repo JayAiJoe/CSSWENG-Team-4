@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AttendanceStatisticsController">
+   <children>
+      <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <AnchorPane layoutY="-3.0" prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutY="21.0" prefHeight="46.0" prefWidth="1198.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Text fill="#1360a8" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Attendance Statistics" textAlignment="CENTER" wrappingWidth="375.2696075439453">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <HBox alignment="CENTER" layoutY="117.0" prefHeight="567.0" prefWidth="1198.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="567.0" prefWidth="985.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 20;">
+                           <children>
+                              <TableView fx:id="overtimeTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="926.0" stylesheets="@../css/Payroll.css">
+                                 <columns>
+                                    <TableColumn prefWidth="204.00004196166992" text="Payday Range">
+                                       <columns>
+                                          <TableColumn fx:id="startdateTc" prefWidth="101.59996032714844" text="Start Date" />
+                                          <TableColumn fx:id="paydateTc" prefWidth="104.0" text="Pay Date" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn fx:id="idTc" prefWidth="63.999969482421875" text="ID" />
+                                    <TableColumn fx:id="nameTc" editable="false" minWidth="0.0" prefWidth="147.20001220703125" sortable="false" text="Employee Name" />
+                                    <TableColumn fx:id="presentTc" editable="false" prefWidth="100.00006103515625" sortable="false" text="Present" />
+                                    <TableColumn fx:id="absentTc" prefWidth="98.4000244140625" sortable="false" text="Absent" />
+                                    <TableColumn fx:id="overtimeTc" prefWidth="105.5999755859375" text="Overtime" />
+                                    <TableColumn fx:id="lateTc" prefWidth="110.4000244140625" text="Late" />
+                                    <TableColumn fx:id="holidayTc" prefWidth="88.79998779296875" text="Holiday" />
+                                 </columns>
+                              </TableView>
+                              <ToggleButton layoutX="32.0" layoutY="24.0" mnemonicParsing="false" text="Filter by Payday" />
+                              <DatePicker layoutX="153.0" layoutY="23.0" prefHeight="26.0" prefWidth="134.0" />
+                              <DatePicker layoutX="315.0" layoutY="23.0" prefHeight="26.0" prefWidth="134.0" />
+                              <Text layoutX="295.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="navBar_container" prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+   </children>
+</AnchorPane>

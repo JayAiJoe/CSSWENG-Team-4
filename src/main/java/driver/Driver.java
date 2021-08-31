@@ -70,6 +70,10 @@ public class Driver extends Application {
         FXMLLoader approvedOvertimeLoader = new FXMLLoader();
         approvedOvertimeLoader.setLocation(getClass().getResource("/fxml/ApprovedOvertime.fxml"));
         screenController.addScreen("ApprovedOvertime", approvedOvertimeLoader);
+
+        FXMLLoader attendanceStatisticsLoader = new FXMLLoader();
+        attendanceStatisticsLoader.setLocation(getClass().getResource("/fxml/AttendanceStatistics.fxml"));
+        screenController.addScreen("AttendanceStatistics", attendanceStatisticsLoader);
     }
 
     public static ScreenController getScreenController() {

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
+<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
    <children>
       <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <children>
@@ -47,7 +47,7 @@
                   <Text fx:id="addressText" layoutX="71.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Located at:" />
                   <HBox alignment="CENTER" layoutY="45.0" prefHeight="33.0" prefWidth="1400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <Text id="Payroll_Head" fx:id="companyText" fill="#a18a5b" stroke="#fcfcfc" strokeType="OUTSIDE" strokeWidth="0.0" text="Crayola atbp." textAlignment="CENTER" wrappingWidth="263.3913879394536">
+                        <Text id="Payroll_Head" fx:id="companyText" fill="#1360a8" stroke="#fcfcfc" strokeType="OUTSIDE" strokeWidth="0.0" text="Crayola atbp." textAlignment="CENTER" wrappingWidth="263.3913879394536">
                            <font>
                               <Font size="25.0" />
                            </font>
