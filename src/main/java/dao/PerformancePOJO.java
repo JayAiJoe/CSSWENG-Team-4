@@ -1,5 +1,6 @@
 package dao;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class PerformancePOJO {
@@ -43,6 +44,10 @@ public class PerformancePOJO {
     public Date getDatePaid() {
         return datePaid;
     }
+
+    public String getDateStartString() { return new SimpleDateFormat("MM/dd/yyyy").format(dateStart);}
+
+    public String getDatePaidString() { return new SimpleDateFormat("MM/dd/yyyy").format(datePaid);}
 
     public double getDaysPresent() {
         return daysPresent;
