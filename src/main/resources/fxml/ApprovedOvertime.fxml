@@ -32,23 +32,23 @@
                               <Button fx:id="overtimeEditBtn" layoutX="760.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" prefHeight="26.0" prefWidth="51.0" text="Edit" />
                               <Button fx:id="overtimeCancelBtn" disable="true" layoutX="811.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" text="Cancel" visible="false" />
                               <Button fx:id="overtimeSaveBtn" disable="true" layoutX="760.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" prefHeight="26.0" prefWidth="51.0" text="Save" visible="false" />
-                              <TableView layoutX="37.0" layoutY="60.0" prefHeight="426.0" prefWidth="826.0" stylesheets="@../css/Payroll.css">
+                              <TableView fx:id="workdayTv" layoutX="37.0" layoutY="60.0" prefHeight="426.0" prefWidth="826.0" stylesheets="@../css/Payroll.css">
                                 <columns>
                                   <TableColumn fx:id="dateTc" prefWidth="150.40002822875977" sortable="false" text="Date" />
                                   <TableColumn fx:id="overtimehead1Tc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="Overtime">
                                        <columns>
-                                          <TableColumn fx:id="startotTc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="Start Time" />
+                                          <TableColumn fx:id="overtimeInTc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="Start Time" />
                                        </columns></TableColumn>
                                     <TableColumn fx:id="workhourheadTc" prefWidth="500.0" sortable="false" text="Work Hours">
                                        <columns>
-                                          <TableColumn fx:id="startwh1Tc" prefWidth="120.0" sortable="false" text="Start Time 1" />
-                                          <TableColumn fx:id="endwh1Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="End Time 1" />
-                                          <TableColumn fx:id="startwh2Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="Start Time 2" />
-                                          <TableColumn fx:id="endwh2Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="End Time 2" />
+                                          <TableColumn fx:id="timeIn1Tc" prefWidth="120.0" sortable="false" text="Start Time 1" />
+                                          <TableColumn fx:id="timeOut1Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="End Time 1" />
+                                          <TableColumn fx:id="timeIn2Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="Start Time 2" />
+                                          <TableColumn fx:id="timeOut2Tc" minWidth="0.0" prefWidth="120.0" sortable="false" text="End Time 2" />
                                        </columns></TableColumn>
-                                    <TableColumn fx:id="overtimehead2" minWidth="0.0" prefWidth="105.5999755859375" sortable="false" text="Overtime">
+                                    <TableColumn fx:id="overtimehead2Tc" minWidth="0.0" prefWidth="105.5999755859375" sortable="false" text="Overtime">
                                        <columns>
-                                          <TableColumn fx:id="endotTc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="End Time" />
+                                          <TableColumn fx:id="overtimeOutTc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="End Time" />
                                        </columns>
                                     </TableColumn>
                                 </columns>

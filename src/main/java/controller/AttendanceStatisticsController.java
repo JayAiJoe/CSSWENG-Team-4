@@ -15,9 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.AttendanceStatistics;
-import model.PayrollEntry;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class AttendanceStatisticsController extends Controller {
@@ -32,25 +30,23 @@ public class AttendanceStatisticsController extends Controller {
     @FXML
     private TableColumn<PerformancePOJO, Date> startdateTc, paydateTc;
     @FXML
-    private TableColumn<PerformancePOJO, String>  nameTc, presentTc, absentTc,
-            overtimeTc, lateTc, holidayTc,idTc;
+    private TableColumn<PerformancePOJO, String> nameTc, presentTc, absentTc,
+            overtimeTc, lateTc, holidayTc, idTc;
 
-    private AttendanceStatistics statistics = new AttendanceStatistics();
+    private AttendanceStatistics statistics;
     private ObservableList<PerformancePOJO> entries = FXCollections.observableArrayList();
 
     @FXML
-    public void initialize(){
-
-        initCol(startdateTc,"dateStartString");
+    public void initialize() {
+        initCol(startdateTc, "dateStartString");
         initCol(paydateTc, "datePaidString");
         initCol(idTc, "employeeID");
-        initCol(nameTc,"completeName");
+        initCol(nameTc, "completeName");
         initCol(presentTc, "daysPresent");
         initCol(absentTc, "daysAbsent");
         initCol(overtimeTc, "minsOvertime");
         initCol(lateTc, "minsLate");
         initCol(holidayTc, "");
-
     }
 
     @Override
@@ -60,9 +56,9 @@ public class AttendanceStatisticsController extends Controller {
             navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
         }
 
+        statistics = new AttendanceStatistics();
         entries.setAll(statistics.getStatistics());
         attendanceTv.setItems(entries);
-
     }
 
     private <T> void initCol(TableColumn<PerformancePOJO, T> col, String tag) {
@@ -88,7 +84,6 @@ public class AttendanceStatisticsController extends Controller {
         });
 
     }
-
 
 
 }

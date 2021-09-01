@@ -1,5 +1,6 @@
 package dao;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class WorkdayPOJO {
@@ -79,5 +80,57 @@ public class WorkdayPOJO {
 
     public void setOvertimeOut(int overtimeOut) {
         this.overtimeOut = overtimeOut;
+    }
+
+    public String getDateString() {
+        return new SimpleDateFormat("MM/dd/yyyy").format(date);
+    }
+
+    public String getTimeIn1String() {
+        if (timeIn1 == 0) {
+            return "";
+        } else {
+            return String.valueOf(timeIn1);
+        }
+    }
+
+    public String getTimeOut1String() {
+        if (timeOut1 == 0) {
+            return "";
+        } else {
+            return String.valueOf(timeOut1);
+        }
+    }
+
+    public String getTimeIn2String() {
+        if (timeIn2 == 0) {
+            return "";
+        } else {
+            return String.valueOf(timeIn2);
+        }
+    }
+
+    public String getTimeOut2String() {
+        if (timeOut2 == 0) {
+            return "";
+        } else {
+            return String.valueOf(timeOut2);
+        }
+    }
+
+    public String getOvertimeInString() {
+        if (overtimeIn == 0) {
+            return "";
+        } else {
+            return String.valueOf(overtimeIn);
+        }
+    }
+
+    public String getOvertimeOutString() {
+        if (overtimeOut == 0) {
+            return "";
+        } else {
+            return String.valueOf(overtimeOut);
+        }
     }
 }
