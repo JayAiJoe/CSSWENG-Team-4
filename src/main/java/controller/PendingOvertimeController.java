@@ -40,6 +40,9 @@ public class PendingOvertimeController extends Controller {
     @FXML
     private Button checkAllBtn;
 
+    @FXML
+    private ToggleButton filterclear_btn;
+
     private OvertimeHandler model;
     private FilteredList<OvertimeEntry> entries;
 
