@@ -34,7 +34,7 @@
                               <Button layoutX="466.0" layoutY="23.0" mnemonicParsing="false" onAction="#onRejectAction" prefHeight="26.0" prefWidth="112.0" text="Reject Selected" />
                               <Button layoutX="354.0" layoutY="23.0" mnemonicParsing="false" onAction="#onApproveAction" prefHeight="26.0" prefWidth="112.0" text="Approve Selected" />
                               <Button fx:id="checkAllBtn" layoutX="214.0" layoutY="23.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" text="Check All" />
-                              <ToggleButton fx:id="filterclear_btn" layoutX="147.0" layoutY="23.0" mnemonicParsing="false" onAction="#onFilterAction" prefHeight="26.0" prefWidth="67.0" text="Filter" />
+                              <ToggleButton fx:id="filterBtn" layoutX="147.0" layoutY="23.0" mnemonicParsing="false" onAction="#onFilterAction" prefHeight="26.0" prefWidth="67.0" text="Filter" />
                            </children>
                         </AnchorPane>
                      </children>

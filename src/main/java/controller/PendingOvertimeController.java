@@ -39,12 +39,12 @@ public class PendingOvertimeController extends Controller {
     private DatePicker datePicker;
     @FXML
     private Button checkAllBtn;
-
     @FXML
-    private ToggleButton filterclear_btn;
+    private ToggleButton filterBtn;
 
     private OvertimeHandler model;
-    private FilteredList<OvertimeEntry> entries;
+    private ObservableList<OvertimeEntry> entries;
+    private FilteredList<OvertimeEntry> filteredEntries;
 
     @Override
     public void update() {
@@ -56,10 +56,10 @@ public class PendingOvertimeController extends Controller {
         Date today = new Date();
         long ms = today.getTime();
         model = new OvertimeHandler(new Date(ms - 15 * 86400000L), today);
-        ObservableList<OvertimeEntry> observableList = FXCollections.observableArrayList();
-        observableList.setAll(model.getEntries());
-        entries = new FilteredList<>(observableList);
-        overtimeTv.setItems(entries);
+        entries = FXCollections.observableArrayList();
+        entries.setAll(model.getEntries());
+        filteredEntries = new FilteredList<>(entries);
+        overtimeTv.setItems(filteredEntries);
     }
 
     @FXML
@@ -134,7 +134,7 @@ public class PendingOvertimeController extends Controller {
     @FXML
     private void onCheckAllAction() {
         boolean value = checkAllBtn.getText().equals("Check All");
-        for (OvertimeEntry entry : entries) {
+        for (OvertimeEntry entry : filteredEntries) {
             entry.setStatus(value);
         }
         if (value) {
@@ -149,7 +149,7 @@ public class PendingOvertimeController extends Controller {
     private void onApproveAction() {
         StringBuilder sb = new StringBuilder();
         ArrayList<OvertimeEntry> approved = new ArrayList<>();
-        for (OvertimeEntry entry: entries) {
+        for (OvertimeEntry entry: filteredEntries) {
             if (entry.getStatus()) {
                 approved.add(entry);
                 sb.append(String.format("%-25s\t\t", entry.getEmployeeName()));
@@ -176,6 +176,10 @@ public class PendingOvertimeController extends Controller {
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
             entries.removeAll(approved);
+            Predicate<? super OvertimeEntry> filter = filteredEntries.getPredicate();
+            filteredEntries = new FilteredList<>(entries);
+            filteredEntries.setPredicate(filter);
+            overtimeTv.setItems(filteredEntries);
             model.save(approved);
         }
     }
@@ -184,7 +188,7 @@ public class PendingOvertimeController extends Controller {
     private void onRejectAction() {
         StringBuilder sb = new StringBuilder();
         ArrayList<OvertimeEntry> rejected = new ArrayList<>();
-        for (OvertimeEntry entry: entries) {
+        for (OvertimeEntry entry: filteredEntries) {
             if (entry.getStatus()) {
                 entry.setStatus(false);
                 rejected.add(entry);
@@ -212,6 +216,10 @@ public class PendingOvertimeController extends Controller {
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
             entries.removeAll(rejected);
+            Predicate<? super OvertimeEntry> filter = filteredEntries.getPredicate();
+            filteredEntries = new FilteredList<>(entries);
+            filteredEntries.setPredicate(filter);
+            overtimeTv.setItems(filteredEntries);
             model.save(rejected);
         } else {
             for (OvertimeEntry entry: rejected) {
@@ -222,22 +230,29 @@ public class PendingOvertimeController extends Controller {
 
     @FXML
     private void onFilterAction() {
-        LocalDate filterDate = datePicker.getValue();
-        if (filterDate == null) {
-            entries.setPredicate(null);
+        boolean status = filterBtn.isSelected();
+
+        if (status) {
+            LocalDate filterDate = datePicker.getValue();
+            if (filterDate == null) {
+                filteredEntries.setPredicate(null);
+                updateCheckAll();
+                return;
+            }
+            String dateString = filterDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+            Predicate<OvertimeEntry> filter = entry -> entry.getDateString().equals(dateString);
+            filteredEntries.setPredicate(filter);
             updateCheckAll();
-            return;
+            System.out.println(filteredEntries.size());
+        } else {
+            filteredEntries.setPredicate(null);
+            updateCheckAll();
         }
-        String dateString = filterDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-        Predicate<OvertimeEntry> filter = entry -> entry.getDateString().equals(dateString);
-        entries.setPredicate(filter);
-        updateCheckAll();
-        System.out.println(entries.size());
     }
 
     private void updateCheckAll() {
         checkAllBtn.setText("Check All");
-        for (OvertimeEntry entry: entries) {
+        for (OvertimeEntry entry: filteredEntries) {
             if (entry.getStatus()) {
                 checkAllBtn.setText("Uncheck All");
                 break;
