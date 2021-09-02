@@ -74,6 +74,10 @@ public class Driver extends Application {
         FXMLLoader attendanceStatisticsLoader = new FXMLLoader();
         attendanceStatisticsLoader.setLocation(getClass().getResource("/fxml/AttendanceStatistics.fxml"));
         screenController.addScreen("AttendanceStatistics", attendanceStatisticsLoader);
+
+        FXMLLoader employeesLoader = new FXMLLoader();
+        employeesLoader.setLocation(getClass().getResource("/fxml/Employees.fxml"));
+        screenController.addScreen("Employees", employeesLoader);
     }
 
     public static ScreenController getScreenController() {

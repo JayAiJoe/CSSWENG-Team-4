@@ -18,7 +18,7 @@
       </MenuButton>
       <MenuButton fx:id="employeeButton" layoutX="181.0" layoutY="2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="87.0" stylesheets="/css/navButton.css" text="Employee" textFill="WHITE">
          <items>
-            <MenuItem mnemonicParsing="false" text="View Employees" />
+            <MenuItem mnemonicParsing="false" onAction="#onEmployeesAction" text="View Employees" />
             <MenuItem mnemonicParsing="false" onAction="#onAttendanceStatisticsAction" text="Attendance Statistics" />
          </items>
       </MenuButton>

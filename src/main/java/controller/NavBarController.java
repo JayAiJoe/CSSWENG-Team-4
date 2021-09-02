@@ -40,6 +40,7 @@ public class NavBarController {
     @FXML
     private void onEmployeesAction(){
         employeeButton.hide();
+        Driver.getScreenController().activate("Employees");
     }
 
     @FXML
