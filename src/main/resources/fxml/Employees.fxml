@@ -38,17 +38,17 @@
                      <children>
                         <AnchorPane prefHeight="579.0" prefWidth="874.0" style="-fx-background-color: E1F4FF;">
                            <children>
-                              <TableView fx:id="overtimeTv" layoutX="15.0" layoutY="54.0" prefHeight="511.0" prefWidth="840.0" stylesheets="@../css/Payroll.css" AnchorPane.bottomAnchor="14.000000000000057" AnchorPane.topAnchor="54.00000000000006">
+                              <TableView fx:id="employeesTv" layoutX="15.0" layoutY="54.0" prefHeight="511.0" prefWidth="840.0" stylesheets="@../css/Payroll.css" AnchorPane.bottomAnchor="14.000000000000057" AnchorPane.topAnchor="54.00000000000006">
                                  <columns>
                                     <TableColumn fx:id="buttonTc" prefWidth="73.60004425048828" sortable="false" text="Select" />
                                     <TableColumn fx:id="nameTc" editable="false" prefWidth="162.39994049072266" sortable="false" text="Name" />
-                                    <TableColumn fx:id="nameTc1" editable="false" prefWidth="184.800048828125" sortable="false" text="Company" />
-                                    <TableColumn fx:id="overtimeTc" editable="false" prefWidth="148.79995727539062" sortable="false" text="Frequency of Payment" />
-                                    <TableColumn fx:id="overtimeTc1" editable="false" prefWidth="141.60003662109375" sortable="false" text="Mode" />
-                                    <TableColumn fx:id="dateTc" editable="false" prefWidth="125.60003662109375" sortable="false" text="Wage" />
+                                    <TableColumn fx:id="companyTc" editable="false" prefWidth="184.800048828125" sortable="false" text="Company" />
+                                    <TableColumn fx:id="frequencyTc" editable="false" prefWidth="148.79995727539062" sortable="false" text="Frequency of Payment" />
+                                    <TableColumn fx:id="modeTc" editable="false" prefWidth="141.60003662109375" sortable="false" text="Mode" />
+                                    <TableColumn fx:id="wageTc" editable="false" prefWidth="125.60003662109375" sortable="false" text="Wage" />
                                  </columns>
                               </TableView>
-                              <TextField layoutX="186.0" layoutY="14.0" prefHeight="26.0" prefWidth="192.0" />
+                              <TextField layoutX="186.0" layoutY="14.0" prefHeight="26.0" prefWidth="192.0" promptText="Name Search" />
                               <Text layoutX="15.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show" />
                               <Button layoutX="651.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Add" />
                               <Button layoutX="738.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Remove Selected" />
