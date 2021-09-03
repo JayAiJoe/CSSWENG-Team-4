@@ -2,9 +2,16 @@ package controller;
 
 import driver.Driver;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class EmployeesController extends Controller{
 
@@ -35,5 +42,15 @@ public class EmployeesController extends Controller{
         buttonTc.setReorderable(false);
         modeTc.setReorderable(false);
         wageTc.setReorderable(false);
+    }
+
+    public void onAddAction() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/EmployeeForm.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setOpacity(1);
+        stage.setScene(new Scene(root, 481, 448));
+        stage.setResizable(false);
+        stage.showAndWait();
     }
 }

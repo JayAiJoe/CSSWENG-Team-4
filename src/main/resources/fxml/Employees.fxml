@@ -50,7 +50,7 @@
                               </TableView>
                               <TextField layoutX="186.0" layoutY="14.0" prefHeight="26.0" prefWidth="192.0" promptText="Name Search" />
                               <Text layoutX="15.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show" />
-                              <Button layoutX="651.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Add" />
+                              <Button layoutX="651.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddAction" prefHeight="26.0" prefWidth="78.0" text="Add" />
                               <Button layoutX="738.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Remove Selected" />
                               <ChoiceBox layoutX="53.0" layoutY="14.0" prefHeight="26.0" prefWidth="86.0" value="All">
                                  <items>
