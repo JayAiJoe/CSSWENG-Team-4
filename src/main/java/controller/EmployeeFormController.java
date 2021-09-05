@@ -1,11 +1,13 @@
 package controller;
 
+import dao.EmployeePOJO;
 import driver.Driver;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.EmployeeForm;
 
 import java.util.Optional;
 
@@ -26,6 +28,8 @@ public class EmployeeFormController extends Controller {
                 wageErrorText;
     @FXML
     private TextField nameTf, frequencyTf, wageTf;
+
+    private EmployeeForm employeeForm;
 
     @Override
     public void update() {
@@ -88,8 +92,18 @@ public class EmployeeFormController extends Controller {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
+                employeeForm = new EmployeeForm();
+                boolean acknowledged = employeeForm.addEmployee(nameTf.getText(),frequencyTf.getText(),Double.parseDouble(wageTf.getText()),
+                                                                companyCb.getValue().toString(),modeCb.getValue().toString());
+                if (acknowledged){
+                    System.out.println("Employee added");
+                }
+                else{
+                    System.out.println("Add Employee failed");
+                }
                 Stage stage = (Stage) saveBtn.getScene().getWindow();
                 stage.close();
+
             } else {
 
             }
