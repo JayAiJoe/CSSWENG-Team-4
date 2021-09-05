@@ -32,7 +32,7 @@
                      <children>
                         <AnchorPane prefHeight="567.0" prefWidth="985.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 20;">
                            <children>
-                              <TableView fx:id="attendanceTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="926.0" stylesheets="@../css/Payroll.css">
+                              <TableView fx:id="attendanceTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="926.0" stylesheets="@../css/Tableview.css">
                                  <columns>
                                     <TableColumn prefWidth="204.00004196166992" text="Payday Range">
                                        <columns>
@@ -40,12 +40,12 @@
                                           <TableColumn fx:id="paydateTc" prefWidth="104.0" text="Pay Date" />
                                        </columns>
                                     </TableColumn>
-                                    <TableColumn fx:id="idTc" prefWidth="63.999969482421875" text="ID" />
+                                    <TableColumn fx:id="idTc" prefWidth="63.999969482421875" style="-fx-alignment: -fx-alignment;" text="ID" />
                                     <TableColumn fx:id="nameTc" editable="false" minWidth="0.0" prefWidth="147.20001220703125" sortable="false" text="Employee Name" />
-                                    <TableColumn fx:id="presentTc" editable="false" prefWidth="100.00006103515625" sortable="false" text="Present" />
-                                    <TableColumn fx:id="absentTc" prefWidth="98.4000244140625" sortable="false" text="Absent" />
-                                    <TableColumn fx:id="overtimeTc" prefWidth="105.5999755859375" text="Overtime" />
-                                    <TableColumn fx:id="lateTc" prefWidth="110.4000244140625" text="Late" />
+                                    <TableColumn fx:id="presentTc" editable="false" prefWidth="100.00006103515625" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Present" />
+                                    <TableColumn fx:id="absentTc" prefWidth="98.4000244140625" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Absent" />
+                                    <TableColumn fx:id="overtimeTc" prefWidth="105.5999755859375" style="-fx-alignment: CENTER-RIGHT;" text="Overtime" />
+                                    <TableColumn fx:id="lateTc" prefWidth="110.4000244140625" style="-fx-alignment: CENTER-RIGHT;" text="Late" />
                                     <TableColumn fx:id="holidayTc" prefWidth="88.79998779296875" text="Holiday" />
                                  </columns>
                               </TableView>

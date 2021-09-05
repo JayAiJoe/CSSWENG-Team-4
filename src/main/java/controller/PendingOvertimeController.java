@@ -122,7 +122,7 @@ public class PendingOvertimeController extends Controller {
     }
 
     /**
-     * This method simply disables reorderability for all table columns in Payroll.fxml
+     * This method simply disables reorderability for all table columns in PendingOvertime.fxml
      */
     private void disableReorder() {
         nameTc.setReorderable(false);

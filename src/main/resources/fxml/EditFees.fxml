@@ -72,7 +72,7 @@
                   <Pane fx:id="sss_tab" layoutX="274.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
                   <Pane fx:id="phil_tab" layoutX="284.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
                      <children>
-                        <TableView fx:id="philhealthTv" editable="true" layoutX="193.0" layoutY="86.0" prefHeight="519.0" prefWidth="641.0" stylesheets="@../css/Payroll.css">
+                        <TableView fx:id="philhealthTv" editable="true" layoutX="193.0" layoutY="86.0" prefHeight="519.0" prefWidth="641.0" stylesheets="@../css/Tableview.css">
                            <columns>
                               <TableColumn fx:id="ph_range" maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" sortable="false" text="Range">
                                  <columns>

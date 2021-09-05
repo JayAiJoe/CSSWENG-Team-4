@@ -21,10 +21,10 @@
                      <children>
                         <AnchorPane prefHeight="567.0" prefWidth="608.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 20;">
                            <children>
-                              <TableView fx:id="overtimeTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="546.0" stylesheets="@../css/Payroll.css">
+                              <TableView fx:id="overtimeTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="546.0" stylesheets="@../css/Tableview.css">
                                 <columns>
                                   <TableColumn fx:id="nameTc" editable="false" prefWidth="156.80005645751953" sortable="false" text="Name" />
-                                  <TableColumn fx:id="overtimeTc" editable="false" prefWidth="156.800048828125" sortable="false" text="Minutes of Overtime" />
+                                  <TableColumn fx:id="overtimeTc" editable="false" prefWidth="156.800048828125" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Minutes of Overtime" />
                                     <TableColumn fx:id="dateTc" editable="false" prefWidth="119.99993896484375" sortable="false" text="Date" />
                                     <TableColumn fx:id="buttonTc" prefWidth="106.4000244140625" sortable="false" text="Select" />
                                 </columns>
