@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeesController">
+<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeesController">
    <children>
       <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <children>
@@ -36,22 +36,23 @@
                   </AnchorPane>
                   <HBox alignment="CENTER" layoutY="110.0" minWidth="1190.0" prefHeight="579.0" prefWidth="1190.0" AnchorPane.bottomAnchor="16.799999999999955" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
                      <children>
-                        <AnchorPane prefHeight="579.0" prefWidth="874.0" style="-fx-background-color: E1F4FF;">
+                        <AnchorPane prefHeight="579.0" prefWidth="944.0" style="-fx-background-color: E1F4FF;">
                            <children>
-                              <TableView fx:id="employeesTv" layoutX="15.0" layoutY="54.0" prefHeight="511.0" prefWidth="840.0" stylesheets="@../css/Payroll.css" AnchorPane.bottomAnchor="14.000000000000057" AnchorPane.topAnchor="54.00000000000006">
+                              <TableView fx:id="employeesTv" layoutX="15.0" layoutY="54.0" prefHeight="511.0" prefWidth="915.0" stylesheets="@../css/Tableview.css" AnchorPane.bottomAnchor="14.0" AnchorPane.topAnchor="54.0">
                                  <columns>
                                     <TableColumn fx:id="buttonTc" prefWidth="73.60004425048828" sortable="false" text="Select" />
-                                    <TableColumn fx:id="nameTc" editable="false" prefWidth="162.39994049072266" sortable="false" text="Name" />
-                                    <TableColumn fx:id="companyTc" editable="false" prefWidth="184.800048828125" sortable="false" text="Company" />
-                                    <TableColumn fx:id="frequencyTc" editable="false" prefWidth="148.79995727539062" sortable="false" text="Frequency of Payment" />
-                                    <TableColumn fx:id="modeTc" editable="false" prefWidth="141.60003662109375" sortable="false" text="Mode" />
-                                    <TableColumn fx:id="wageTc" editable="false" prefWidth="125.60003662109375" sortable="false" text="Wage" />
+                                    <TableColumn fx:id="idTc" editable="false" prefWidth="62.400054931640625" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="ID" />
+                                    <TableColumn fx:id="nameTc" editable="false" prefWidth="179.99998474121094" sortable="false" text="Name" />
+                                    <TableColumn fx:id="companyTc" editable="false" prefWidth="171.20001220703125" sortable="false" text="Company" />
+                                    <TableColumn fx:id="frequencyTc" editable="false" prefWidth="172.79998779296875" sortable="false" text="Frequency of Payment" />
+                                    <TableColumn fx:id="modeTc" editable="false" prefWidth="97.60003662109375" sortable="false" text="Mode" />
+                                    <TableColumn fx:id="wageTc" editable="false" prefWidth="135.20001220703125" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Wage" />
                                  </columns>
                               </TableView>
                               <TextField layoutX="186.0" layoutY="14.0" prefHeight="26.0" prefWidth="192.0" promptText="Name Search" />
                               <Text layoutX="15.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show" />
-                              <Button layoutX="651.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddAction" prefHeight="26.0" prefWidth="78.0" text="Add" />
-                              <Button layoutX="738.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Remove Selected" />
+                              <Button layoutX="727.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddAction" prefHeight="26.0" prefWidth="78.0" text="Add" />
+                              <Button layoutX="814.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Remove Selected" />
                               <ChoiceBox fx:id="companyCb" layoutX="53.0" layoutY="14.0" onAction="#onFilterAction" prefHeight="26.0" prefWidth="86.0" value="All">
                                  <items>
                                     <FXCollections fx:factory="observableArrayList">

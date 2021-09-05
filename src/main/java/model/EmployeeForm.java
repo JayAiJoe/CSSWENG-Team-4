@@ -24,7 +24,6 @@ public class EmployeeForm {
                 activeEmployees.add(entry);
             }
         }
-        Collections.sort(activeEmployees);
     }
 
     public boolean addEmployee(String name, String frequency, double wage, String company, String mode) {
@@ -36,15 +35,6 @@ public class EmployeeForm {
         EmployeePOJO employee = new EmployeePOJO(num, name, companyF, wage, mode, frequency, 0, date, dateUniform);
         employees.add(employee);
         activeEmployees.add(employee);
-        for (int i = activeEmployees.size() - 1; i > 0; i--) {
-            if (activeEmployees.get(i).compareTo(activeEmployees.get(i - 1)) < 0) {
-                EmployeePOJO temp = activeEmployees.get(i);
-                activeEmployees.set(i, activeEmployees.get(i - 1));
-                activeEmployees.set(i - 1, temp);
-            } else {
-                break;
-            }
-        }
 
         return Repository.getInstance().addEmployee(employee);
     }

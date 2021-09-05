@@ -75,7 +75,7 @@ public class ApprovedOvertimeController extends Controller{
     }
 
     /**
-     * This method simply disables reorderability for all table columns in Payroll.fxml
+     * This method simply disables reorderability for all table columns in ApprovedOvertime.fxml
      */
     private void disableReorder() {
         overtimeInTc.setReorderable(false);

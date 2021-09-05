@@ -38,7 +38,7 @@ public class EmployeesController extends Controller{
     private TableView<EmployeePOJO> employeesTv;
 
     @FXML
-    private TableColumn<EmployeePOJO, String> nameTc, frequencyTc, modeTc, companyTc, wageTc, buttonTc;
+    private TableColumn<EmployeePOJO, String> nameTc, frequencyTc, modeTc, companyTc, wageTc, buttonTc, idTc;
 
     private EmployeeForm employeeForm;
     private FilteredList<EmployeePOJO> filteredEntries;
@@ -61,7 +61,7 @@ public class EmployeesController extends Controller{
 
     @FXML
     public void initialize() {
-        //initCol(idTc, "employeeID");
+        initCol(idTc, "employeeID");
         initCol(nameTc, "completeName");
         initCol(frequencyTc, "wageFrequency");
         initCol(modeTc, "mode");

@@ -3,7 +3,7 @@ package dao;
 import java.text.DecimalFormat;
 import java.util.Date;
 
-public class EmployeePOJO implements Comparable<EmployeePOJO> {
+public class EmployeePOJO {
     private int employeeID;
     private String completeName;
     private String company;
@@ -110,9 +110,5 @@ public class EmployeePOJO implements Comparable<EmployeePOJO> {
 
     public void setCompleteName(String completeName) {
         this.completeName = completeName;
-    }
-
-    public int compareTo(EmployeePOJO employee) {
-        return this.completeName.compareTo(employee.completeName);
     }
 }

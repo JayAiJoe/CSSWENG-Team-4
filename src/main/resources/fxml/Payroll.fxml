@@ -14,7 +14,7 @@
          <children>
             <AnchorPane layoutY="-3.0" prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TableView id="t_payroll" fx:id="payrollTv" layoutX="52.0" layoutY="158.0" prefHeight="491.0" prefWidth="1275.0" stylesheets="@../css/Payroll.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="158.0">
+                  <TableView id="t_payroll" fx:id="payrollTv" layoutX="52.0" layoutY="158.0" prefHeight="491.0" prefWidth="1275.0" stylesheets="@../css/Tableview.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="158.0">
                     <columns>
                       <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="171.20000839233398" resizable="false" sortable="false" text="Name" />
                       <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="42.40000915527344" resizable="false" sortable="false" text="Mode" />
