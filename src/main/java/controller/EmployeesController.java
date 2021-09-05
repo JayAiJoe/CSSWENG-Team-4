@@ -13,10 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -33,15 +30,17 @@ public class EmployeesController extends Controller{
 
     @FXML
     private ChoiceBox companyCb;
+    @FXML
+    private TextField nameTf;
 
     @FXML
     private TableView<EmployeePOJO> employeesTv;
-
     @FXML
     private TableColumn<EmployeePOJO, String> nameTc, frequencyTc, modeTc, companyTc, wageTc, buttonTc, idTc;
 
     private EmployeeForm employeeForm;
     private FilteredList<EmployeePOJO> filteredEntries;
+    private Predicate<EmployeePOJO> nameFilter = entry -> true, companyFilter = entry -> true;
 
     @Override
     public void update() {
@@ -117,13 +116,20 @@ public class EmployeesController extends Controller{
     }
 
     @FXML
-    private void onFilterAction() {
+    private void onFilterNameAction() {
+        nameFilter = entry -> entry.getCompleteName().toLowerCase()
+                .contains(nameTf.getText().toLowerCase());
+        filteredEntries.setPredicate(nameFilter.and(companyFilter));
+    }
+
+    @FXML
+    private void onFilterCompanyAction() {
         if (companyCb.getValue().equals("All")) {
-            filteredEntries.setPredicate(null);
+            companyFilter = entry -> true;
         } else {
-            Predicate<EmployeePOJO> filter = entry ->
+            companyFilter = entry ->
                     entry.getCompanyFull().equals(companyCb.getValue());
-            filteredEntries.setPredicate(filter);
         }
+        filteredEntries.setPredicate(companyFilter.and(nameFilter));
     }
 }

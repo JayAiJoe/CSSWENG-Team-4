@@ -49,11 +49,11 @@
                                     <TableColumn fx:id="wageTc" editable="false" prefWidth="135.20001220703125" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Wage" />
                                  </columns>
                               </TableView>
-                              <TextField layoutX="186.0" layoutY="14.0" prefHeight="26.0" prefWidth="192.0" promptText="Name Search" />
+                              <TextField fx:id="nameTf" layoutX="186.0" layoutY="14.0" prefHeight="26.0" prefWidth="192.0" promptText="Name Search" />
                               <Text layoutX="15.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show" />
                               <Button layoutX="727.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddAction" prefHeight="26.0" prefWidth="78.0" text="Add" />
                               <Button layoutX="814.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Remove Selected" />
-                              <ChoiceBox fx:id="companyCb" layoutX="53.0" layoutY="14.0" onAction="#onFilterAction" prefHeight="26.0" prefWidth="86.0" value="All">
+                              <ChoiceBox fx:id="companyCb" layoutX="53.0" layoutY="14.0" onAction="#onFilterCompanyAction" prefHeight="26.0" prefWidth="86.0" value="All">
                                  <items>
                                     <FXCollections fx:factory="observableArrayList">
                                        <String fx:value="All" />
@@ -62,7 +62,7 @@
                                     </FXCollections>
                                  </items>
                               </ChoiceBox>
-                              <Button layoutX="155.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="22.0">
+                              <Button layoutX="155.0" layoutY="14.0" mnemonicParsing="false" onAction="#onFilterNameAction" prefHeight="26.0" prefWidth="22.0">
                                  <graphic>
                                     <ImageView fitHeight="18.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                        <viewport>
