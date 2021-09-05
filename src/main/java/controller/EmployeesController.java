@@ -5,7 +5,6 @@ import driver.Driver;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -135,7 +134,10 @@ public class EmployeesController extends Controller{
         stage.setResizable(false);
         stage.showAndWait();
 
-        filteredEntries.setAll(employeeForm.getEmployees());
+        ObservableList<EmployeePOJO> entries = FXCollections.observableArrayList();
+        entries.setAll(employeeForm.getEmployees());
+        filteredEntries = new FilteredList<>(entries);
+        employeesTv.setItems(filteredEntries);
     }
 
     @FXML

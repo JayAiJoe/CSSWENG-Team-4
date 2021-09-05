@@ -112,6 +112,8 @@ public class EmployeeFormController extends Controller {
                     alert.setTitle("Error");
                     alert.setContentText("Failed to add employee");
                 }
+
+                alert.showAndWait();
             }
         }
     }
