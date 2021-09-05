@@ -14,7 +14,7 @@ import java.util.Optional;
 public class EmployeeFormController extends Controller {
 
     @FXML
-    private ChoiceBox modeCb, companyCb;
+    private ChoiceBox modeCb, companyCb, frequencyCb;
 
     @FXML
     private Button saveBtn, cancelBtn;
@@ -27,7 +27,7 @@ public class EmployeeFormController extends Controller {
     private Text nameErrorText, companyErrorText, modeErrorText,frequencyErrorText,
                 wageErrorText;
     @FXML
-    private TextField nameTf, frequencyTf, wageTf;
+    private TextField nameTf, wageTf;
 
     private EmployeeForm employeeForm;
 
@@ -55,6 +55,7 @@ public class EmployeeFormController extends Controller {
     }
 
     public void onSaveBtnClick(){
+
         hideErrorText();
         boolean check = true;
         if(nameTf.getText().equals("")){
@@ -62,8 +63,8 @@ public class EmployeeFormController extends Controller {
             nameErrorText.setVisible(true);
             check = false;
         }
-        if(frequencyTf.getText().equals("")){
-            frequencyErrorText.setText("Frequency of Payment should be filled!");
+        if(frequencyCb.getSelectionModel().isEmpty()){
+            frequencyErrorText.setText("No frequency of payment selected!");
             frequencyErrorText.setVisible(true);
             check = false;
         }
@@ -93,7 +94,7 @@ public class EmployeeFormController extends Controller {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 employeeForm = new EmployeeForm();
-                boolean acknowledged = employeeForm.addEmployee(nameTf.getText(),frequencyTf.getText(),Double.parseDouble(wageTf.getText()),
+                boolean acknowledged = employeeForm.addEmployee(nameTf.getText(),frequencyCb.getValue().toString(),Double.parseDouble(wageTf.getText()),
                                                                 companyCb.getValue().toString(),modeCb.getValue().toString());
                 if (acknowledged){
                     System.out.println("Employee added");

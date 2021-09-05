@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -29,6 +30,9 @@ public class EmployeesController extends Controller{
 
     @FXML
     private AnchorPane navBar_container;
+
+    @FXML
+    private ChoiceBox companyCb;
 
     @FXML
     private TableView<EmployeePOJO> employeesTv;
