@@ -54,4 +54,30 @@ public class EmployeeForm {
         return employeeActive;
     }
 
+    public ArrayList<EmployeePOJO> getCrayolaEmployees(){
+        ArrayList<EmployeePOJO> crayolaEmployees = new ArrayList<>();
+        ArrayList<EmployeePOJO> employeeActive = this.getEmployees();
+
+        for (EmployeePOJO entry : employeeActive){
+            if (entry.getCompany().equals("CRAYOLA")){
+                crayolaEmployees.add(entry);
+            }
+        }
+
+        return crayolaEmployees;
+    }
+
+    public ArrayList<EmployeePOJO> getIXXIEmployees(){
+        ArrayList<EmployeePOJO> IXXIEmployees = new ArrayList<>();
+        ArrayList<EmployeePOJO> employeeActive = this.getEmployees();
+
+        for (EmployeePOJO entry : employeeActive){
+            if (entry.getCompany().equals("IX-XI")){
+                IXXIEmployees.add(entry);
+            }
+        }
+
+        return IXXIEmployees;
+    }
+
 }
