@@ -52,28 +52,4 @@ public class EmployeeForm {
     public ArrayList<EmployeePOJO> getEmployees() {
         return activeEmployees;
     }
-
-    public ArrayList<EmployeePOJO> getCrayolaEmployees() {
-        ArrayList<EmployeePOJO> crayolaEmployees = new ArrayList<>();
-
-        for (EmployeePOJO entry: activeEmployees) {
-            if (entry.getCompany().equals("CRAYOLA")) {
-                crayolaEmployees.add(entry);
-            }
-        }
-
-        return crayolaEmployees;
-    }
-
-    public ArrayList<EmployeePOJO> getIXXIEmployees() {
-        ArrayList<EmployeePOJO> IXXIEmployees = new ArrayList<>();
-
-        for (EmployeePOJO entry: activeEmployees) {
-            if (entry.getCompany().equals("IX-XI")) {
-                IXXIEmployees.add(entry);
-            }
-        }
-
-        return IXXIEmployees;
-    }
 }

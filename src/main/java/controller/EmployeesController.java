@@ -7,6 +7,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
 import model.EmployeeForm;
 
 import java.io.IOException;
+import java.util.function.Predicate;
 
 public class EmployeesController extends Controller{
     private static final PseudoClass COLUMN_HOVER_PSEUDO_CLASS = PseudoClass.getPseudoClass("column-hover");
@@ -39,7 +41,7 @@ public class EmployeesController extends Controller{
     private TableColumn<EmployeePOJO, String> nameTc, frequencyTc, modeTc, companyTc, wageTc, buttonTc;
 
     private EmployeeForm employeeForm;
-    private ObservableList<EmployeePOJO> entries = FXCollections.observableArrayList();
+    private FilteredList<EmployeePOJO> filteredEntries;
 
     @Override
     public void update() {
@@ -51,8 +53,10 @@ public class EmployeesController extends Controller{
         }
 
         employeeForm = new EmployeeForm();
+        ObservableList<EmployeePOJO> entries = FXCollections.observableArrayList();
         entries.setAll(employeeForm.getEmployees());
-        employeesTv.setItems(entries);
+        filteredEntries = new FilteredList<>(entries);
+        employeesTv.setItems(filteredEntries);
     }
 
     @FXML
@@ -96,7 +100,8 @@ public class EmployeesController extends Controller{
         wageTc.setReorderable(false);
     }
 
-    public void onAddAction() throws IOException {
+    @FXML
+    private void onAddAction() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/EmployeeForm.fxml"));
         Parent root = fxmlLoader.load();
         EmployeeFormController controller = fxmlLoader.getController();
@@ -108,6 +113,17 @@ public class EmployeesController extends Controller{
         stage.setResizable(false);
         stage.showAndWait();
 
-        entries.setAll(employeeForm.getEmployees());
+        filteredEntries.setAll(employeeForm.getEmployees());
+    }
+
+    @FXML
+    private void onFilterAction() {
+        if (companyCb.getValue().equals("All")) {
+            filteredEntries.setPredicate(null);
+        } else {
+            Predicate<EmployeePOJO> filter = entry ->
+                    entry.getCompanyFull().equals(companyCb.getValue());
+            filteredEntries.setPredicate(filter);
+        }
     }
 }
