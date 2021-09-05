@@ -5,12 +5,14 @@ import driver.Driver;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -36,7 +38,9 @@ public class EmployeesController extends Controller{
     @FXML
     private TableView<EmployeePOJO> employeesTv;
     @FXML
-    private TableColumn<EmployeePOJO, String> nameTc, frequencyTc, modeTc, companyTc, wageTc, buttonTc, idTc;
+    private TableColumn<EmployeePOJO, String> nameTc, frequencyTc, modeTc, companyTc, wageTc, idTc;
+    @FXML
+    private TableColumn<EmployeePOJO, Button> buttonTc;
 
     private EmployeeForm employeeForm;
     private FilteredList<EmployeePOJO> filteredEntries;
@@ -66,6 +70,25 @@ public class EmployeesController extends Controller{
         initCol(modeTc, "mode");
         initCol(companyTc, "companyFull");
         initCol(wageTc, "wageString");
+        buttonTc.setCellFactory(t -> {
+            TableCell<EmployeePOJO, Button> cell = new TableCell<>() {
+                private final Button editButton = new Button();
+                @Override
+                public void updateItem(Button item, boolean empty) {
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        editButton.setText("Edit");
+                        editButton.setOnMouseClicked(e -> onEditAction());
+                        setGraphic(editButton);
+                    }
+                }
+            };
+
+            cell.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            cell.setAlignment(Pos.CENTER);
+            return cell;
+        });
     }
 
     private <T> void initCol(TableColumn<EmployeePOJO, T> col, String tag) {
@@ -131,5 +154,10 @@ public class EmployeesController extends Controller{
                     entry.getCompanyFull().equals(companyCb.getValue());
         }
         filteredEntries.setPredicate(companyFilter.and(nameFilter));
+    }
+
+    private void onEditAction() {
+        // TODO: change screen
+        System.out.println("edit button clicked");
     }
 }
