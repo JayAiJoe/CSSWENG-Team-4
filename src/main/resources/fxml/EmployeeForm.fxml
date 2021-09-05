@@ -88,7 +88,7 @@
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Weekly" />
-                                 <String fx:value="Bi-Weekly" />
+                                 <String fx:value="Biweekly" />
                               </FXCollections>
                            </items>
                            <VBox.margin>

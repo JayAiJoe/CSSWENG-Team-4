@@ -38,7 +38,7 @@ public class NavBarController {
      * Changes screen to Employees.fxml.
      */
     @FXML
-    private void onEmployeesAction(){
+    private void onEmployeesAction() {
         employeeButton.hide();
         Driver.getScreenController().activate("Employees");
     }
@@ -46,7 +46,8 @@ public class NavBarController {
     @FXML
     private void onAttendanceStatisticsAction(){
         employeeButton.hide();
-        Driver.getScreenController().activate("AttendanceStatistics");}
+        Driver.getScreenController().activate("AttendanceStatistics");
+    }
 
     /**
      * Changes screen to PendingOvertime.fxml.
@@ -63,5 +64,6 @@ public class NavBarController {
     @FXML
     private void onApprovedOvertimeAction(){
         menuButton.hide();
-        Driver.getScreenController().activate("ApprovedOvertime");}
+        Driver.getScreenController().activate("ApprovedOvertime");
+    }
 }

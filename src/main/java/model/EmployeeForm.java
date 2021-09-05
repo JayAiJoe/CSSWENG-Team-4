@@ -4,62 +4,60 @@ import dao.EmployeePOJO;
 import dao.Repository;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
 public class EmployeeForm {
-
     ArrayList<EmployeePOJO> employees = new ArrayList<>();
-    Date dateUniform = new Date(8100,0,1);
-
+    ArrayList<EmployeePOJO> activeEmployees = new ArrayList<>();
+    Date dateUniform = new Date(8100, 0, 1);
 
     public EmployeeForm() {
         initialize();
     }
 
-    public void initialize(){
+    private void initialize() {
         employees = Repository.getInstance().getAllEmployees();
-    }
 
-    public boolean addEmployee(String name, String frequency, double wage, String company, String mode){
-        String companyF;
-        String modeF;
-        int num = employees.size();
-        Date date = new Date();
-        if(company.equals("Crayola Atbp.")){
-            companyF = "CRAYOLA";
-        }
-        else{
-            companyF = "IX-XI";
-        }
-        if(mode.equals("Monthly")){
-            modeF = "MONTHLY";
-        }
-        else{
-            modeF = "DAILY";
-        }
-        EmployeePOJO employee = new EmployeePOJO(num,name,companyF,wage,modeF, frequency, 0, date, dateUniform);
-        return Repository.getInstance().addEmployee(employee);
-
-    }
-
-    public ArrayList<EmployeePOJO> getEmployees(){
-        ArrayList<EmployeePOJO> employeesN = Repository.getInstance().getAllEmployees();
-        ArrayList<EmployeePOJO> employeeActive = new ArrayList<>();
-        for (EmployeePOJO entry : employeesN){
-            if (entry.getDateLeft().equals(dateUniform)){
-                employeeActive.add(entry);
+        for (EmployeePOJO entry: employees) {
+            if (entry.getDateLeft().equals(dateUniform)) {
+                activeEmployees.add(entry);
             }
         }
-        return employeeActive;
+        Collections.sort(activeEmployees);
     }
 
-    public ArrayList<EmployeePOJO> getCrayolaEmployees(){
-        ArrayList<EmployeePOJO> crayolaEmployees = new ArrayList<>();
-        ArrayList<EmployeePOJO> employeeActive = this.getEmployees();
+    public boolean addEmployee(String name, String frequency, double wage, String company, String mode) {
+        String companyF = company.equals("Crayola Atbp.") ? "CRAYOLA" : "IX-XI";
 
-        for (EmployeePOJO entry : employeeActive){
-            if (entry.getCompany().equals("CRAYOLA")){
+        int num = employees.size();
+        Date date = new Date();
+
+        EmployeePOJO employee = new EmployeePOJO(num, name, companyF, wage, mode, frequency, 0, date, dateUniform);
+        employees.add(employee);
+        activeEmployees.add(employee);
+        for (int i = activeEmployees.size() - 1; i > 0; i--) {
+            if (activeEmployees.get(i).compareTo(activeEmployees.get(i - 1)) < 0) {
+                EmployeePOJO temp = activeEmployees.get(i);
+                activeEmployees.set(i, activeEmployees.get(i - 1));
+                activeEmployees.set(i - 1, temp);
+            } else {
+                break;
+            }
+        }
+
+        return Repository.getInstance().addEmployee(employee);
+    }
+
+    public ArrayList<EmployeePOJO> getEmployees() {
+        return activeEmployees;
+    }
+
+    public ArrayList<EmployeePOJO> getCrayolaEmployees() {
+        ArrayList<EmployeePOJO> crayolaEmployees = new ArrayList<>();
+
+        for (EmployeePOJO entry: activeEmployees) {
+            if (entry.getCompany().equals("CRAYOLA")) {
                 crayolaEmployees.add(entry);
             }
         }
@@ -67,17 +65,15 @@ public class EmployeeForm {
         return crayolaEmployees;
     }
 
-    public ArrayList<EmployeePOJO> getIXXIEmployees(){
+    public ArrayList<EmployeePOJO> getIXXIEmployees() {
         ArrayList<EmployeePOJO> IXXIEmployees = new ArrayList<>();
-        ArrayList<EmployeePOJO> employeeActive = this.getEmployees();
 
-        for (EmployeePOJO entry : employeeActive){
-            if (entry.getCompany().equals("IX-XI")){
+        for (EmployeePOJO entry: activeEmployees) {
+            if (entry.getCompany().equals("IX-XI")) {
                 IXXIEmployees.add(entry);
             }
         }
 
         return IXXIEmployees;
     }
-
 }

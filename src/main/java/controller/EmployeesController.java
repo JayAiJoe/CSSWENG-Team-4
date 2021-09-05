@@ -1,7 +1,6 @@
 package controller;
 
 import dao.EmployeePOJO;
-import dao.PerformancePOJO;
 import driver.Driver;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
@@ -19,7 +18,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.EmployeeForm;
 
@@ -45,7 +43,6 @@ public class EmployeesController extends Controller{
 
     @Override
     public void update() {
-
         disableReorder();
 
         // load navigation bar
@@ -56,7 +53,6 @@ public class EmployeesController extends Controller{
         employeeForm = new EmployeeForm();
         entries.setAll(employeeForm.getEmployees());
         employeesTv.setItems(entries);
-
     }
 
     @FXML
@@ -65,8 +61,8 @@ public class EmployeesController extends Controller{
         initCol(nameTc, "completeName");
         initCol(frequencyTc, "wageFrequency");
         initCol(modeTc, "mode");
-        initCol(companyTc, "company");
-        initCol(wageTc, "wage");
+        initCol(companyTc, "companyFull");
+        initCol(wageTc, "wageString");
     }
 
     private <T> void initCol(TableColumn<EmployeePOJO, T> col, String tag) {
@@ -79,8 +75,8 @@ public class EmployeesController extends Controller{
             TableCell<EmployeePOJO, T> cell = new TableCell<>();
 
             if (!tag.isEmpty()) {
-                cell.textProperty().bind(Bindings.createStringBinding(() -> cell.isEmpty() ? "" : String.format("%s", cell.getItem())
-                        , cell.itemProperty(), cell.emptyProperty()));
+                cell.textProperty().bind(Bindings.createStringBinding(() -> cell.isEmpty() ? "" : String.format("%s", cell.getItem()),
+                        cell.itemProperty(), cell.emptyProperty()));
             }
             cell.hoverProperty().addListener((obs, wasHovered, isNowHovered) -> columnHover.set(isNowHovered));
 
@@ -103,14 +99,15 @@ public class EmployeesController extends Controller{
     public void onAddAction() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/EmployeeForm.fxml"));
         Parent root = fxmlLoader.load();
+        EmployeeFormController controller = fxmlLoader.getController();
+        controller.setEmployeeForm(employeeForm);
+
         Stage stage = new Stage();
         stage.setOpacity(1);
         stage.setScene(new Scene(root, 481, 448));
         stage.setResizable(false);
         stage.showAndWait();
+
+        entries.setAll(employeeForm.getEmployees());
     }
-
-
-
-
 }
