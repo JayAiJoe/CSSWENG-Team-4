@@ -1,5 +1,7 @@
 package dao;
 
+import com.mongodb.client.result.InsertManyResult;
+import com.mongodb.client.result.InsertOneResult;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -36,30 +38,37 @@ public class Repository {
         return instance;
     }
 
-    public void addEmployee(EmployeePOJO employee) {
+    public boolean addEmployee(EmployeePOJO employee) {
 
         MongoCollection<EmployeePOJO> collection = database.getCollection("employees", EmployeePOJO.class);
-        collection.insertOne(employee);
+        InsertOneResult result = collection.insertOne(employee);
+        return result.wasAcknowledged();
+
     }
 
-    public void addLogBook(ArrayList<LogbookPOJO> attendance) {
+    public boolean addLogBook(ArrayList<LogbookPOJO> attendance) {
 
         MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
-        collection.insertMany(attendance);
+        InsertManyResult result = collection.insertMany(attendance);
+        return result.wasAcknowledged();
 
     }
 
-    public void addDebt(DebtPOJO debt) {
+    public boolean addDebt(DebtPOJO debt) {
 
         MongoCollection<DebtPOJO> collection = database.getCollection("debt", DebtPOJO.class);
-        collection.insertOne(debt);
+        InsertOneResult result = collection.insertOne(debt);
+        return result.wasAcknowledged();
+
 
     }
 
-    public void addPerformance(PerformancePOJO performance) {
+    public boolean addPerformance(PerformancePOJO performance) {
 
         MongoCollection<PerformancePOJO> collection = database.getCollection("performance", PerformancePOJO.class);
-        collection.insertOne(performance);
+        InsertOneResult result = collection.insertOne(performance);
+        return result.wasAcknowledged();
+
 
     }
 
@@ -228,6 +237,12 @@ public class Repository {
         for(LogbookPOJO entry: logbook){
             collection.replaceOne(and(eq("date",entry.getDate()),eq("employeeID",entry.getEmployeeID())), entry);
         }
+    }
+
+    public void updateEmployee(EmployeePOJO employee){
+        MongoCollection<EmployeePOJO> collection = database.getCollection("employees",EmployeePOJO.class);
+
+        collection.replaceOne(eq("employeeID",employee.getEmployeeID()),employee);
     }
 
 
