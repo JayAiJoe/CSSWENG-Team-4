@@ -112,6 +112,18 @@ public class EditFeesController extends Controller {
         resetPagIbig();
         resetPhilHealth();
 
+        // Pag-Ibig initialization
+        pi_employeeTf.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty() && !newValue.matches("^\\d+(\\.\\d*)?")) {
+                pi_employeeTf.setText(oldValue);
+            }
+        });
+        pi_employerTf.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty() && !newValue.matches("^\\d+(\\.\\d*)?")) {
+                pi_employerTf.setText(oldValue);
+            }
+        });
+
         // PhilHealth initialization
         ph_start.setCellValueFactory(new PropertyValueFactory<>("start"));
         ph_end.setCellValueFactory(new PropertyValueFactory<>("end"));
