@@ -4,13 +4,12 @@ import dao.EmployeePOJO;
 import dao.Repository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 
 public class EmployeeForm {
-    ArrayList<EmployeePOJO> employees = new ArrayList<>();
-    ArrayList<EmployeePOJO> activeEmployees = new ArrayList<>();
-    Date dateUniform = new Date(8100, 0, 1);
+    private ArrayList<EmployeePOJO> employees = new ArrayList<>();
+    private ArrayList<EmployeePOJO> activeEmployees = new ArrayList<>();
+    private final Date dateUniform = new Date(8100, 0, 1);
 
     public EmployeeForm() {
         initialize();
@@ -41,5 +40,9 @@ public class EmployeeForm {
 
     public ArrayList<EmployeePOJO> getEmployees() {
         return activeEmployees;
+    }
+
+    public void updateEmployee(EmployeePOJO employee) {
+        Repository.getInstance().updateEmployee(employee);
     }
 }
