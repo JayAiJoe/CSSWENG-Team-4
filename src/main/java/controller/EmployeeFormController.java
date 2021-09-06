@@ -34,8 +34,8 @@ public class EmployeeFormController extends Controller {
     public void initialize() {
         //limit input to numbers only
         wageTf.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("^\\d+(\\.\\d+)")) {
-                wageTf.setText(newValue.replaceAll("[^\\d]", ""));
+            if (!newValue.isEmpty() && !newValue.matches("^\\d+(\\.\\d*)?")) {
+                wageTf.setText(oldValue);
             }
         });
     }
@@ -52,7 +52,25 @@ public class EmployeeFormController extends Controller {
         wageErrorText.setVisible(false);
     }
 
-    public void onSaveBtnClick() {
+    /**
+     * Checks whether a given String value has up to
+     * 2 decimal places only.
+     * @param value the String value to be checked
+     * @return true if the String has up to 2 decimals
+     * only and false otherwise
+     */
+    private boolean checkDecimalPlaces(String value) {
+        int index = value.length();
+        for (int i = 0; i < value.length(); i++) {
+            if (value.charAt(i) == '.') {
+                index = i;
+                break;
+            }
+        }
+        return value.length() - index <= 3;
+    }
+
+    public void onSaveAction() {
         hideErrorText();
         boolean check = true;
         if (nameTf.getText().equals("")) {
@@ -69,6 +87,13 @@ public class EmployeeFormController extends Controller {
             wageErrorText.setText("Wage should be filled!");
             wageErrorText.setVisible(true);
             check = false;
+        } else {
+            double wage = Double.parseDouble(wageTf.getText());
+            if (wage <= 0 || !checkDecimalPlaces(wageTf.getText())) {
+                wageErrorText.setText("Wage should be a positive value with up to 2 decimal places only!");
+                wageErrorText.setVisible(true);
+                check = false;
+            }
         }
         if (companyCb.getSelectionModel().isEmpty()) {
             companyErrorText.setText("No company selected!");
@@ -118,7 +143,7 @@ public class EmployeeFormController extends Controller {
         }
     }
 
-    public void onCancelBtnClick() {
+    public void onCancelAction() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText(null);
