@@ -78,7 +78,7 @@ public class EmployeesController extends Controller{
                         setGraphic(null);
                     } else {
                         editButton.setText("Edit");
-                        editButton.setOnMouseClicked(e -> onEditAction());
+                        editButton.setOnMouseClicked(e -> onEditAction(this.getTableRow().getItem()));
                         setGraphic(editButton);
                     }
                 }
@@ -158,9 +158,11 @@ public class EmployeesController extends Controller{
         filteredEntries.setPredicate(companyFilter.and(nameFilter));
     }
 
-    private void onEditAction() {
-        // TODO: change screen
+    private void onEditAction(EmployeePOJO employee) {
+        EmployeeEditController controller = (EmployeeEditController) Driver
+                .getScreenController().getController("EmployeeEdit");
+        controller.setModels(employeeForm, employee);
+
         Driver.getScreenController().activate("EmployeeEdit");
-        //System.out.println("edit button clicked");
     }
 }

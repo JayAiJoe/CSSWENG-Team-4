@@ -1,5 +1,6 @@
 package controller;
 
+import dao.EmployeePOJO;
 import driver.Driver;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -7,14 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import model.EmployeeForm;
 
+import java.util.Date;
 import java.util.Optional;
 
-public class EmployeeEditController extends Controller{
-
+public class EmployeeEditController extends Controller {
     @FXML
-    private Button editBtn, cancelBtn, removeBtn, backBtn;
+    private Button editBtn, removeBtn;
 
     /**
      * initialization of error text  and textfields in EmployeeEdit.fxml
@@ -30,24 +31,46 @@ public class EmployeeEditController extends Controller{
     @FXML
     private Text companyTf, modeTf, frequencyTf;
 
+    private EmployeeForm employeeForm;
+    private EmployeePOJO employee;
+
     @Override
     public void update() {
-        disableTextfield();
+        editBtn.setText("Edit");
+        setTextFieldsStatus(true);
         hideErrorText();
         removeBtn.setVisible(true);
-        
+
+        resetEmployee();
     }
 
+    @FXML
     public void initialize() {
-        disableTextfield();
+        editBtn.setText("Edit");
+        setTextFieldsStatus(true);
         hideErrorText();
         removeBtn.setVisible(true);
+
         //limit input to numbers only
         wageTf.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("^\\d+(\\.\\d+)")) {
-                wageTf.setText(newValue.replaceAll("[^\\d]", ""));
+            if (!newValue.isEmpty() && !newValue.matches("^\\d+(\\.\\d*)?")) {
+                wageTf.setText(oldValue);
             }
         });
+    }
+
+    public void setModels(EmployeeForm employeeForm, EmployeePOJO employee) {
+        this.employeeForm = employeeForm;
+        this.employee = employee;
+    }
+
+    private void resetEmployee() {
+        companyTf.setText(employee.getCompanyFull());
+        modeTf.setText(employee.getMode());
+        frequencyTf.setText(employee.getWageFrequency());
+
+        nameTf.setText(employee.getCompleteName());
+        wageTf.setText(employee.getWageString());
     }
 
     private void hideErrorText() {
@@ -55,24 +78,39 @@ public class EmployeeEditController extends Controller{
         wageErrorText.setVisible(false);
     }
 
-    private void disableTextfield(){
-        nameTf.setDisable(true);
-        wageTf.setDisable(true);
+    private void setTextFieldsStatus(boolean status) {
+        nameTf.setDisable(status);
+        wageTf.setDisable(status);
+    }
+
+    /**
+     * Checks whether a given String value has up to
+     * 2 decimal places only.
+     * @param value the String value to be checked
+     * @return true if the String has up to 2 decimals
+     * only and false otherwise
+     */
+    private boolean checkDecimalPlaces(String value) {
+        int index = value.length();
+        for (int i = 0; i < value.length(); i++) {
+            if (value.charAt(i) == '.') {
+                index = i;
+                break;
+            }
+        }
+        return value.length() - index <= 3;
     }
 
     /**
      * functionality for editBtn
      */
-    public void onEditClick(){
-        //on edit btn click
-        if(editBtn.getText().equals("Edit")){
+    @FXML
+    private void onEditAction() {
+        if (editBtn.getText().equals("Edit")) { // on edit btn click
             editBtn.setText("Save");
             removeBtn.setVisible(false);
-            wageTf.setDisable(false);
-            nameTf.setDisable(false);
-        }
-        //on save button click
-        else if (editBtn.getText().equals("Save")){
+            setTextFieldsStatus(false);
+        } else if (editBtn.getText().equals("Save")) { // on save button click
             hideErrorText();
             boolean check = true;
             if (nameTf.getText().equals("")) {
@@ -85,6 +123,13 @@ public class EmployeeEditController extends Controller{
                 wageErrorText.setText("Wage should be filled!");
                 wageErrorText.setVisible(true);
                 check = false;
+            } else {
+                double wage = Double.parseDouble(wageTf.getText());
+                if (wage <= 0 || !checkDecimalPlaces(wageTf.getText())) {
+                    wageErrorText.setText("Wage should be a positive value with up to 2 decimal places only!");
+                    wageErrorText.setVisible(true);
+                    check = false;
+                }
             }
 
             if (check) {
@@ -96,19 +141,30 @@ public class EmployeeEditController extends Controller{
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK) {
-                }
-                    editBtn.setText("Edit");
-                    disableTextfield();
+                    employee.setCompleteName(nameTf.getText());
+                    employee.setWage(Double.parseDouble(wageTf.getText()));
+                    employeeForm.updateEmployee(employee);
+                    resetEmployee();
 
-                    //TODO save changes to employees
+                    editBtn.setText("Edit");
+                    setTextFieldsStatus(true);
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText(null);
+                    alert.setGraphic(null);
+                    alert.setContentText("Employee has been updated");
+                    alert.showAndWait();
                 }
+            }
         }
     }
 
     /**
      * functionality for cancelBtn
      */
-    public void onCancelBtnClick() {
+    @FXML
+    private void onCancelAction() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText(null);
@@ -117,39 +173,49 @@ public class EmployeeEditController extends Controller{
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            disableTextfield();
+            editBtn.setText("Edit");
+            setTextFieldsStatus(true);
             hideErrorText();
             removeBtn.setVisible(true);
 
-            //TODO undo changes in textfields
+            resetEmployee();
         }
     }
-
 
     /**
      * functionality for removeBtn
      */
-    public void onRemoveBtnClick(){
+    @FXML
+    private void onRemoveAction() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText(null);
         alert.setGraphic(null);
-        alert.setContentText("Proceed with firing of this employee?");
+        alert.setContentText("Proceed with the removal of this employee?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            disableTextfield();
-            //TODO remove employee from list
+            setTextFieldsStatus(true);
+
+            employee.setDateLeft(new Date());
+            employeeForm.updateEmployee(employee);
+
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setContentText("Employee has been removed");
+            alert.showAndWait();
+
+            onBackAction();
         }
     }
 
     /**
      * functionality for backBtn
      */
-    public void onBackClick(){
-        disableTextfield();
-        hideErrorText();
-        removeBtn.setVisible(true);
+    @FXML
+    private void onBackAction() {
         Driver.getScreenController().activate("Employees");
     }
 }

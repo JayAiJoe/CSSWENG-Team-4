@@ -110,8 +110,8 @@
                   </VBox>
                </children>
             </GridPane>
-            <Button fx:id="cancelBtn" layoutX="231.0" layoutY="375.0" mnemonicParsing="false" onAction="#onCancelBtnClick" prefHeight="27.0" prefWidth="98.0" text="Cancel" />
-            <Button fx:id="saveBtn" layoutX="118.0" layoutY="375.0" mnemonicParsing="false" onAction="#onSaveBtnClick" prefHeight="27.0" prefWidth="98.0" text="Save" />
+            <Button fx:id="cancelBtn" layoutX="231.0" layoutY="375.0" mnemonicParsing="false" onAction="#onCancelAction" prefHeight="27.0" prefWidth="98.0" text="Cancel" />
+            <Button fx:id="saveBtn" layoutX="118.0" layoutY="375.0" mnemonicParsing="false" onAction="#onSaveAction" prefHeight="27.0" prefWidth="98.0" text="Save" />
          </children>
       </AnchorPane>
       <HBox alignment="CENTER" layoutX="8.0" layoutY="32.0" prefHeight="46.0" prefWidth="462.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="11.0">
