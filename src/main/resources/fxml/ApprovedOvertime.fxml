@@ -14,26 +14,26 @@
          <children>
             <AnchorPane prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <HBox alignment="TOP_CENTER" layoutX="1.0" layoutY="124.0" prefHeight="36.0" prefWidth="1186.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0">
+                  <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <Text fill="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Approved Overtime Hours and Work Hours" textAlignment="CENTER" wrappingWidth="481.6696014404297">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutY="177.0" prefHeight="514.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <children>
-                        <AnchorPane prefHeight="514.0" prefWidth="901.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 50;">
+                        <HBox alignment="TOP_CENTER" layoutY="27.0" prefHeight="36.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <Button fx:id="overtimeAddBtn" layoutX="37.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onAddClick" prefHeight="26.0" prefWidth="51.0" text="Add" />
-                              <Button fx:id="overtimeEditBtn" layoutX="760.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" prefHeight="26.0" prefWidth="51.0" text="Edit" />
-                              <Button fx:id="overtimeCancelBtn" disable="true" layoutX="811.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" text="Cancel" visible="false" />
-                              <Button fx:id="overtimeSaveBtn" disable="true" layoutX="760.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onOvertimeEditClick" prefHeight="26.0" prefWidth="51.0" text="Save" visible="false" />
-                              <TableView fx:id="workdayTv" layoutX="37.0" layoutY="60.0" prefHeight="426.0" prefWidth="826.0" stylesheets="@../css/Tableview.css">
+                              <Text fill="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Approved Overtime Hours and Work Hours" textAlignment="CENTER" wrappingWidth="481.6696014404297">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children></AnchorPane>
+                  <HBox alignment="CENTER" layoutY="112.0" prefHeight="557.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="558.0" prefWidth="913.0" style="-fx-background-color: E1F4FF;">
+                           <children>
+                              <Button fx:id="overtimeAddBtn" layoutX="19.0" layoutY="20.0" mnemonicParsing="false" onAction="#onAddClick" prefHeight="26.0" prefWidth="98.0" text="Add next day" />
+                              <TableView fx:id="workdayTv" layoutX="19.0" layoutY="59.0" prefHeight="483.0" prefWidth="878.0" stylesheets="@../css/Tableview.css">
                                 <columns>
+                                    <TableColumn fx:id="editTc" prefWidth="49.600024414062545" sortable="false" />
                                   <TableColumn fx:id="dateTc" prefWidth="150.40002822875977" sortable="false" text="Date" />
                                   <TableColumn fx:id="overtimehead1Tc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="Overtime">
                                        <columns>
@@ -53,7 +53,6 @@
                                     </TableColumn>
                                 </columns>
                               </TableView>
-                              <Button fx:id="overtimeRemoveBtn" layoutX="88.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onRemoveClick" prefHeight="26.0" prefWidth="60.0" text="Remove" />
                            </children>
                         </AnchorPane>
                      </children>

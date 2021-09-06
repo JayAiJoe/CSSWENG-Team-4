@@ -1,16 +1,22 @@
 package controller;
 
+import dao.EmployeePOJO;
 import dao.WorkdayPOJO;
 import driver.Driver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.WorkdayHandler;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.Optional;
 
@@ -20,13 +26,13 @@ public class ApprovedOvertimeController extends Controller{
     private AnchorPane navBar_container;
 
     @FXML
-    private Button overtimeEditBtn, overtimeCancelBtn, overtimeSaveBtn, overtimeAddBtn, overtimeRemoveBtn;
+    private Button  overtimeAddBtn;
 
     @FXML
     private TableView<WorkdayPOJO> workdayTv;
     @FXML
     private TableColumn<WorkdayPOJO, String> dateTc, overtimeInTc, overtimeOutTc, timeIn1Tc,
-            timeOut1Tc, timeIn2Tc, timeOut2Tc, overtimehead1Tc, overtimehead2Tc, workhourheadTc;
+            timeOut1Tc, timeIn2Tc, timeOut2Tc, overtimehead1Tc, overtimehead2Tc, workhourheadTc, editTc;
 
     private WorkdayHandler model;
     private ObservableList<WorkdayPOJO> entries = FXCollections.observableArrayList();
@@ -60,19 +66,19 @@ public class ApprovedOvertimeController extends Controller{
 
     /**
      * Method for adding a table row
-     * @param mouseEvent
+     *
      */
-    public void onAddClick (MouseEvent mouseEvent){
+    public void onAddClick () throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ApprovedOvertimeForm.fxml"));
+        Parent root = fxmlLoader.load();
 
+        Stage stage = new Stage();
+        stage.setOpacity(1);
+        stage.setScene(new Scene(root, 504, 448));
+        stage.setResizable(false);
+        stage.showAndWait();
     }
 
-    /**
-     * Method for removing a table row
-     * @param mouseEvent
-     */
-    public void onRemoveClick (MouseEvent mouseEvent){
-
-    }
 
     /**
      * This method simply disables reorderability for all table columns in ApprovedOvertime.fxml
@@ -88,65 +94,6 @@ public class ApprovedOvertimeController extends Controller{
         overtimehead1Tc.setReorderable(false);
         overtimehead2Tc.setReorderable(false);
         workhourheadTc.setReorderable(false);
-    }
-
-    /**
-     * This method is responsible for handling the edits for approved overtime hours.
-     */
-    public void onOvertimeEditClick(MouseEvent mouseEvent) {
-        if (mouseEvent.getSource() == overtimeEditBtn) {
-            //buttons
-            overtimeEditBtn.setVisible(false);
-            overtimeEditBtn.setDisable(true);
-            overtimeCancelBtn.setDisable(false);
-            overtimeCancelBtn.setVisible(true);
-            overtimeSaveBtn.setVisible(true);
-            overtimeSaveBtn.setDisable(false);
-
-        } else if (mouseEvent.getSource() == overtimeCancelBtn) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText(null);
-            alert.setGraphic(null);
-            alert.setContentText("Cancel changes?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                //buttons
-                overtimeEditBtn.setVisible(true);
-                overtimeEditBtn.setDisable(false);
-                overtimeCancelBtn.setVisible(false);
-                overtimeCancelBtn.setDisable(true);
-                overtimeSaveBtn.setVisible(false);
-                overtimeSaveBtn.setDisable(true);
-                System.out.println("Ok is pressed");
-            } else {
-                // ... user chose CANCEL or closed the dialog
-                System.out.println("cancel is pressed");
-            }
-        } else if (mouseEvent.getSource() == overtimeSaveBtn) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText(null);
-            alert.setGraphic(null);
-            alert.setContentText("Apply changes?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-
-                overtimeEditBtn.setVisible(true);
-                overtimeEditBtn.setDisable(false);
-                overtimeCancelBtn.setVisible(false);
-                overtimeCancelBtn.setDisable(true);
-                overtimeSaveBtn.setVisible(false);
-                overtimeSaveBtn.setDisable(true);
-
-                System.out.println("Ok is pressed");
-            } else {
-                // ... user chose CANCEL or closed the dialog
-                System.out.println("cancel is pressed");
-            }
-        }
     }
 
 
