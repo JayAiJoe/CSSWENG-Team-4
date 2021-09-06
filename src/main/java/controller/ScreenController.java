@@ -33,6 +33,11 @@ public class ScreenController {
         main.setRoot(screenMap.get(name));
     }
 
+    public Controller getController(String name) {
+        FXMLLoader loader = loaderMap.get(name);
+        return loader.getController();
+    }
+
     public Pane getNavBar() {
         return screenMap.get("NavBar");
     }

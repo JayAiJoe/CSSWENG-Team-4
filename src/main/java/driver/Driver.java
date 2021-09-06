@@ -79,9 +79,9 @@ public class Driver extends Application {
         employeesLoader.setLocation(getClass().getResource("/fxml/Employees.fxml"));
         screenController.addScreen("Employees", employeesLoader);
 
-        FXMLLoader employeeeditLoader = new FXMLLoader();
-        employeeeditLoader.setLocation(getClass().getResource("/fxml/EmployeeEdit.fxml"));
-        screenController.addScreen("EmployeeEdit", employeeeditLoader);
+        FXMLLoader employeeEditLoader = new FXMLLoader();
+        employeeEditLoader.setLocation(getClass().getResource("/fxml/EmployeeEdit.fxml"));
+        screenController.addScreen("EmployeeEdit", employeeEditLoader);
     }
 
     public static ScreenController getScreenController() {
