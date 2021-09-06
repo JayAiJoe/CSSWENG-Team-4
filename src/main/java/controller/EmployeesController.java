@@ -160,6 +160,7 @@ public class EmployeesController extends Controller{
 
     private void onEditAction() {
         // TODO: change screen
-        System.out.println("edit button clicked");
+        Driver.getScreenController().activate("EmployeeEdit");
+        //System.out.println("edit button clicked");
     }
 }
