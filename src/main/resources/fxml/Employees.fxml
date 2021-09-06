@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeesController">
+<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeesController">
    <children>
       <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <children>
@@ -51,8 +51,7 @@
                               </TableView>
                               <TextField fx:id="nameTf" layoutX="186.0" layoutY="14.0" prefHeight="26.0" prefWidth="192.0" promptText="Name Search" />
                               <Text layoutX="15.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show" />
-                              <Button layoutX="727.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddAction" prefHeight="26.0" prefWidth="78.0" text="Add" />
-                              <Button layoutX="814.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="116.0" text="Remove Selected" />
+                              <Button layoutX="851.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddAction" prefHeight="26.0" prefWidth="78.0" text="Add" />
                               <ChoiceBox fx:id="companyCb" layoutX="53.0" layoutY="14.0" onAction="#onFilterCompanyAction" prefHeight="26.0" prefWidth="86.0" value="All">
                                  <items>
                                     <FXCollections fx:factory="observableArrayList">
