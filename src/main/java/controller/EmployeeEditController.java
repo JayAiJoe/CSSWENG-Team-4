@@ -152,6 +152,7 @@ public class EmployeeEditController extends Controller {
 
                     editBtn.setText("Edit");
                     setTextFieldsStatus(true);
+                    removeBtn.setVisible(true);
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Success");
