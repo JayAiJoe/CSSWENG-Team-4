@@ -40,13 +40,13 @@
                            <children>
                               <TableView fx:id="employeesTv" layoutX="15.0" layoutY="54.0" prefHeight="511.0" prefWidth="915.0" stylesheets="@../css/Tableview.css" AnchorPane.bottomAnchor="14.0" AnchorPane.topAnchor="54.0">
                                  <columns>
-                                    <TableColumn fx:id="buttonTc" prefWidth="73.60004425048828" sortable="false" text="Select" />
-                                    <TableColumn fx:id="idTc" editable="false" prefWidth="62.400054931640625" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="ID" />
-                                    <TableColumn fx:id="nameTc" editable="false" prefWidth="179.99998474121094" sortable="false" text="Name" />
-                                    <TableColumn fx:id="companyTc" editable="false" prefWidth="171.20001220703125" sortable="false" text="Company" />
-                                    <TableColumn fx:id="frequencyTc" editable="false" prefWidth="172.79998779296875" sortable="false" text="Frequency of Payment" />
-                                    <TableColumn fx:id="modeTc" editable="false" prefWidth="97.60003662109375" sortable="false" text="Mode" />
-                                    <TableColumn fx:id="wageTc" editable="false" prefWidth="135.20001220703125" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Wage" />
+                                    <TableColumn fx:id="buttonTc" prefWidth="73.60004425048828" resizable="false" sortable="false" text="Select" />
+                                    <TableColumn fx:id="idTc" editable="false" prefWidth="62.400054931640625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="ID" />
+                                    <TableColumn fx:id="nameTc" editable="false" prefWidth="179.99998474121094" resizable="false" sortable="false" text="Name" />
+                                    <TableColumn fx:id="companyTc" editable="false" prefWidth="171.20001220703125" resizable="false" sortable="false" text="Company" />
+                                    <TableColumn fx:id="frequencyTc" editable="false" prefWidth="172.79998779296875" resizable="false" sortable="false" text="Frequency of Payment" />
+                                    <TableColumn fx:id="modeTc" editable="false" prefWidth="97.60003662109375" resizable="false" sortable="false" text="Mode" />
+                                    <TableColumn fx:id="wageTc" editable="false" prefWidth="135.20001220703125" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Wage" />
                                  </columns>
                               </TableView>
                               <TextField fx:id="nameTf" layoutX="186.0" layoutY="14.0" prefHeight="26.0" prefWidth="192.0" promptText="Name Search" />

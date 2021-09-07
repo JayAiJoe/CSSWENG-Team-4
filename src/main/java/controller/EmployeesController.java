@@ -113,6 +113,7 @@ public class EmployeesController extends Controller{
     }
 
     private void disableReorder() {
+        idTc.setReorderable(false);
         nameTc.setReorderable(false);
         companyTc.setReorderable(false);
         frequencyTc.setReorderable(false);
