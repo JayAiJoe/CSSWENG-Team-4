@@ -224,4 +224,10 @@ public class Repository {
 
         collection.replaceOne(eq("employeeID", employee.getEmployeeID()), employee);
     }
+
+    public void updateWorkday(WorkdayPOJO workday) {
+        MongoCollection<WorkdayPOJO> collection = database.getCollection("workday", WorkdayPOJO.class);
+
+        collection.replaceOne(eq("date", workday.getDate()), workday);
+    }
 }
