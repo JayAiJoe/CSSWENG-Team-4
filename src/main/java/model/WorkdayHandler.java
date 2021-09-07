@@ -25,4 +25,13 @@ public class WorkdayHandler {
     public ArrayList<WorkdayPOJO> getEntries() {
         return entries;
     }
+
+    public boolean addWorkday(Date date, int timeIn1, int timeOut1, int timeIn2, int timeOut2,
+                           int overtimeIn, int overtimeOut) {
+        WorkdayPOJO workday = new WorkdayPOJO(date, timeIn1, timeOut1, timeIn2,
+                timeOut2, overtimeIn, overtimeOut);
+        entries.add(0, workday);
+
+        return Repository.getInstance().addWorkday(workday);
+    }
 }
