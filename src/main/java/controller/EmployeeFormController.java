@@ -1,5 +1,7 @@
 package controller;
 
+import dao.EmployeePOJO;
+import dao.Repository;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
@@ -72,6 +74,13 @@ public class EmployeeFormController {
             nameErrorText.setText("Name should be filled!");
             nameErrorText.setVisible(true);
             check = false;
+        } else {
+            EmployeePOJO employee = Repository.getInstance().findEmployee(nameTf.getText());
+            if (employee != null) {
+                nameErrorText.setText("Employee " + nameTf.getText() + " already exists!");
+                nameErrorText.setVisible(true);
+                check = false;
+            }
         }
         if (frequencyCb.getSelectionModel().isEmpty()) {
             frequencyErrorText.setText("No frequency of payment selected!");
