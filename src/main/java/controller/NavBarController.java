@@ -64,6 +64,6 @@ public class NavBarController {
     @FXML
     private void onApprovedOvertimeAction(){
         menuButton.hide();
-        Driver.getScreenController().activate("ApprovedOvertime");
+        Driver.getScreenController().activate("ApprovedOvertimeWorkHours");
     }
 }
