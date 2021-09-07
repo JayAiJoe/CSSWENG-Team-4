@@ -75,10 +75,14 @@ public class Repository {
 
     public EmployeePOJO findEmployee(int employeeID) {
         MongoCollection<EmployeePOJO> collection = database.getCollection("employees", EmployeePOJO.class);
-        EmployeePOJO newEmployee;
-        newEmployee = collection.find(eq("employeeID", employeeID)).first();
 
-        return newEmployee;
+        return collection.find(eq("employeeID", employeeID)).first();
+    }
+
+    public EmployeePOJO findEmployee(String name) {
+        MongoCollection<EmployeePOJO> collection = database.getCollection("employees", EmployeePOJO.class);
+
+        return collection.find(eq("completeName", name)).first();
     }
 
     public ArrayList<EmployeePOJO> getAllEmployees() {
