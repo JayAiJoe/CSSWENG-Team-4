@@ -1,6 +1,5 @@
 package controller;
 
-import dao.EmployeePOJO;
 import dao.WorkdayPOJO;
 import driver.Driver;
 import javafx.collections.FXCollections;
@@ -11,14 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.WorkdayHandler;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.Optional;
 
 public class ApprovedOvertimeController extends Controller{
 
@@ -26,13 +23,10 @@ public class ApprovedOvertimeController extends Controller{
     private AnchorPane navBar_container;
 
     @FXML
-    private Button  overtimeAddBtn;
-
-    @FXML
     private TableView<WorkdayPOJO> workdayTv;
     @FXML
     private TableColumn<WorkdayPOJO, String> dateTc, overtimeInTc, overtimeOutTc, timeIn1Tc,
-            timeOut1Tc, timeIn2Tc, timeOut2Tc, overtimehead1Tc, overtimehead2Tc, workhourheadTc, editTc;
+            timeOut1Tc, timeIn2Tc, timeOut2Tc, overtimehead1Tc, overtimehead2Tc, workhourheadTc, buttonTc;
 
     private WorkdayHandler model;
     private ObservableList<WorkdayPOJO> entries = FXCollections.observableArrayList();
@@ -46,7 +40,7 @@ public class ApprovedOvertimeController extends Controller{
 
         Date today = new Date();
         long ms = today.getTime();
-        model = new WorkdayHandler(new Date(ms - 15 * 86400000L), today);
+        model = new WorkdayHandler(new Date(ms - 16 * 86400000L), new Date(ms + 2 * 86400000L));
         entries.setAll(model.getEntries());
         workdayTv.setItems(entries);
     }
@@ -68,15 +62,21 @@ public class ApprovedOvertimeController extends Controller{
      * Method for adding a table row
      *
      */
-    public void onAddClick () throws IOException {
+    @FXML
+    private void onAddAction() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ApprovedOvertimeForm.fxml"));
         Parent root = fxmlLoader.load();
 
+        ApprovedOvertimeFormController controller = fxmlLoader.getController();
+        controller.setModel(model);
+
         Stage stage = new Stage();
         stage.setOpacity(1);
-        stage.setScene(new Scene(root, 504, 448));
+        stage.setScene(new Scene(root, 550, 448));
         stage.setResizable(false);
         stage.showAndWait();
+
+        entries.setAll(model.getEntries());
     }
 
 
@@ -95,6 +95,4 @@ public class ApprovedOvertimeController extends Controller{
         overtimehead2Tc.setReorderable(false);
         workhourheadTc.setReorderable(false);
     }
-
-
 }

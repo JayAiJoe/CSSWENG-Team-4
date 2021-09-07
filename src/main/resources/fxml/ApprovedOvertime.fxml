@@ -30,10 +30,10 @@
                      <children>
                         <AnchorPane prefHeight="558.0" prefWidth="913.0" style="-fx-background-color: E1F4FF;">
                            <children>
-                              <Button fx:id="overtimeAddBtn" layoutX="19.0" layoutY="20.0" mnemonicParsing="false" onAction="#onAddClick" prefHeight="26.0" prefWidth="98.0" text="Add next day" />
+                              <Button layoutX="19.0" layoutY="20.0" mnemonicParsing="false" onAction="#onAddAction" prefHeight="26.0" prefWidth="98.0" text="Add next day" />
                               <TableView fx:id="workdayTv" layoutX="19.0" layoutY="59.0" prefHeight="483.0" prefWidth="878.0" stylesheets="@../css/Tableview.css">
                                 <columns>
-                                    <TableColumn fx:id="editTc" prefWidth="49.600024414062545" sortable="false" />
+                                    <TableColumn fx:id="buttonTc" prefWidth="49.600024414062545" sortable="false" />
                                   <TableColumn fx:id="dateTc" prefWidth="150.40002822875977" sortable="false" text="Date" />
                                   <TableColumn fx:id="overtimehead1Tc" minWidth="0.0" prefWidth="96.79998779296875" sortable="false" text="Overtime">
                                        <columns>
