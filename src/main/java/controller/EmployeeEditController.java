@@ -129,10 +129,6 @@ public class EmployeeEditController extends Controller {
                     wageErrorText.setText("Wage should be a positive value with up to 2 decimal places only!");
                     wageErrorText.setVisible(true);
                     check = false;
-                } else if (wage < employee.getWage()) {
-                    wageErrorText.setText("New wage should be greater than the previous wage!");
-                    wageErrorText.setVisible(true);
-                    check = false;
                 }
             }
 
@@ -141,7 +137,13 @@ public class EmployeeEditController extends Controller {
                 alert.setTitle("Confirmation Dialog");
                 alert.setHeaderText(null);
                 alert.setGraphic(null);
-                alert.setContentText("Save Changes?");
+
+                String alertText = "Save Changes?";
+                double wage = Double.parseDouble(wageTf.getText());
+                if (wage < employee.getWage()) {
+                    alertText += "\n\nWarning: New wage is less than previous wage!";
+                }
+                alert.setContentText(alertText);
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK) {
