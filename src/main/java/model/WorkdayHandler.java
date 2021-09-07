@@ -4,38 +4,57 @@ import dao.Repository;
 import dao.WorkdayPOJO;
 import wrapper.WorkdayWrapper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class WorkdayHandler {
-    private Date startDate, endDate;
-    private ArrayList<WorkdayWrapper> entries;
+    private static final WorkdayPOJO defaultWorkday = new WorkdayPOJO(null, 800, 1200,
+            1300, 1700, 0, 0);
+    private WorkdayWrapper currentWorkday = null, nextWorkday = null;
 
-    public WorkdayHandler(Date startDate, Date endDate) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.entries = new ArrayList<>();
+    public WorkdayHandler(Date currentDate, Date nextDate) {
+        String currentDateString = new SimpleDateFormat("MM/dd/yyyy").format(currentDate);
+        String nextDateString = new SimpleDateFormat("MM/dd/yyyy").format(nextDate);
 
-        initialize();
-    }
+        Date startDate = new Date(currentDate.getTime() - 86400000L);
+        Date endDate = new Date(nextDate.getTime() + 86400000L);
 
-    private void initialize() {
         ArrayList<WorkdayPOJO> workdays = Repository.getInstance().getWorkdays(startDate, endDate);
         for (WorkdayPOJO workday: workdays) {
-            entries.add(new WorkdayWrapper(workday));
+            WorkdayWrapper temp = new WorkdayWrapper(workday);
+            if (temp.getDateString().equals(currentDateString)) {
+                currentWorkday = temp;
+            } else if (temp.getDateString().equals(nextDateString)) {
+                nextWorkday = temp;
+            }
+        }
+
+        if (currentWorkday == null) {
+            currentWorkday = new WorkdayWrapper(defaultWorkday);
+            currentWorkday.getWorkday().setDate(currentDate);
+        }
+        if (nextWorkday == null) {
+            nextWorkday = new WorkdayWrapper(defaultWorkday);
+            nextWorkday.getWorkday().setDate(nextDate);
         }
     }
 
-    public ArrayList<WorkdayWrapper> getEntries() {
-        return entries;
+    public WorkdayWrapper getCurrentWorkday() {
+        return currentWorkday;
     }
 
-    public boolean addWorkday(Date date, int timeIn1, int timeOut1, int timeIn2, int timeOut2,
-                           int overtimeIn, int overtimeOut) {
-        WorkdayPOJO workday = new WorkdayPOJO(date, timeIn1, timeOut1, timeIn2,
-                timeOut2, overtimeIn, overtimeOut);
-        entries.add(0, new WorkdayWrapper(workday));
+    public WorkdayWrapper getNextWorkday() {
+        return nextWorkday;
+    }
 
-        return Repository.getInstance().addWorkday(workday);
+    public void updateCurrentWorkday(WorkdayPOJO workday) {
+        currentWorkday = new WorkdayWrapper(workday);
+        Repository.getInstance().updateWorkday(workday);
+    }
+
+    public void updateNextWorkday(WorkdayPOJO workday) {
+        nextWorkday = new WorkdayWrapper(workday);
+        Repository.getInstance().updateWorkday(workday);
     }
 }
