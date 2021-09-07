@@ -129,6 +129,10 @@ public class EmployeeEditController extends Controller {
                     wageErrorText.setText("Wage should be a positive value with up to 2 decimal places only!");
                     wageErrorText.setVisible(true);
                     check = false;
+                } else if (wage < employee.getWage()) {
+                    wageErrorText.setText("New wage should be greater than the previous wage!");
+                    wageErrorText.setVisible(true);
+                    check = false;
                 }
             }
 
