@@ -75,9 +75,9 @@ public class EmployeeFormController {
             nameErrorText.setVisible(true);
             check = false;
         } else {
-            EmployeePOJO employee = Repository.getInstance().findEmployee(nameTf.getText());
+            EmployeePOJO employee = Repository.getInstance().findEmployee(nameTf.getText().toLowerCase());
             if (employee != null) {
-                nameErrorText.setText("Employee " + nameTf.getText() + " already exists!");
+                nameErrorText.setText("Employee " + employee.getCompleteName() + " already exists!");
                 nameErrorText.setVisible(true);
                 check = false;
             }
