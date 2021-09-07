@@ -1,6 +1,5 @@
 package controller;
 
-import dao.WorkdayPOJO;
 import driver.Driver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.WorkdayHandler;
+import wrapper.WorkdayWrapper;
 
 import java.io.IOException;
 import java.util.Date;
@@ -23,13 +23,13 @@ public class ApprovedOvertimeController extends Controller{
     private AnchorPane navBar_container;
 
     @FXML
-    private TableView<WorkdayPOJO> workdayTv;
+    private TableView<WorkdayWrapper> workdayTv;
     @FXML
-    private TableColumn<WorkdayPOJO, String> dateTc, overtimeInTc, overtimeOutTc, timeIn1Tc,
+    private TableColumn<WorkdayWrapper, String> dateTc, overtimeInTc, overtimeOutTc, timeIn1Tc,
             timeOut1Tc, timeIn2Tc, timeOut2Tc, overtimehead1Tc, overtimehead2Tc, workhourheadTc, buttonTc;
 
     private WorkdayHandler model;
-    private ObservableList<WorkdayPOJO> entries = FXCollections.observableArrayList();
+    private ObservableList<WorkdayWrapper> entries = FXCollections.observableArrayList();
 
     @Override
     public void update() {

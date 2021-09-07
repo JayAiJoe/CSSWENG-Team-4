@@ -2,13 +2,14 @@ package model;
 
 import dao.Repository;
 import dao.WorkdayPOJO;
+import wrapper.WorkdayWrapper;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class WorkdayHandler {
     private Date startDate, endDate;
-    private ArrayList<WorkdayPOJO> entries;
+    private ArrayList<WorkdayWrapper> entries;
 
     public WorkdayHandler(Date startDate, Date endDate) {
         this.startDate = startDate;
@@ -19,10 +20,13 @@ public class WorkdayHandler {
     }
 
     private void initialize() {
-        entries = Repository.getInstance().getWorkdays(startDate, endDate);
+        ArrayList<WorkdayPOJO> workdays = Repository.getInstance().getWorkdays(startDate, endDate);
+        for (WorkdayPOJO workday: workdays) {
+            entries.add(new WorkdayWrapper(workday));
+        }
     }
 
-    public ArrayList<WorkdayPOJO> getEntries() {
+    public ArrayList<WorkdayWrapper> getEntries() {
         return entries;
     }
 
@@ -30,7 +34,7 @@ public class WorkdayHandler {
                            int overtimeIn, int overtimeOut) {
         WorkdayPOJO workday = new WorkdayPOJO(date, timeIn1, timeOut1, timeIn2,
                 timeOut2, overtimeIn, overtimeOut);
-        entries.add(0, workday);
+        entries.add(0, new WorkdayWrapper(workday));
 
         return Repository.getInstance().addWorkday(workday);
     }
