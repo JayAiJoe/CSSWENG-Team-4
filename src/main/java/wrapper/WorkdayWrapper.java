@@ -12,6 +12,10 @@ public class WorkdayWrapper {
         this.workday = workday;
     }
 
+    public WorkdayPOJO getWorkday() {
+        return workday;
+    }
+
     public Date getDate() {
         return workday.getDate();
     }
