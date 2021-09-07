@@ -1,6 +1,5 @@
 package controller;
 
-import dao.PerformancePOJO;
 import driver.Driver;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
@@ -15,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.AttendanceStatistics;
+import wrapper.PerformanceWrapper;
 
 import java.util.Date;
 
@@ -24,17 +24,17 @@ public class AttendanceStatisticsController extends Controller {
     @FXML
     private AnchorPane navBar_container;
     @FXML
-    private TableView<PerformancePOJO> attendanceTv;
+    private TableView<PerformanceWrapper> attendanceTv;
 
     //table columns for tableview in AttendanceStatisticsController.java
     @FXML
-    private TableColumn<PerformancePOJO, Date> startdateTc, paydateTc;
+    private TableColumn<PerformanceWrapper, Date> startdateTc, paydateTc;
     @FXML
-    private TableColumn<PerformancePOJO, String> nameTc, presentTc, absentTc,
+    private TableColumn<PerformanceWrapper, String> nameTc, presentTc, absentTc,
             overtimeTc, lateTc, holidayTc, idTc;
 
     private AttendanceStatistics statistics;
-    private ObservableList<PerformancePOJO> entries = FXCollections.observableArrayList();
+    private ObservableList<PerformanceWrapper> entries = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -61,7 +61,7 @@ public class AttendanceStatisticsController extends Controller {
         attendanceTv.setItems(entries);
     }
 
-    private <T> void initCol(TableColumn<PerformancePOJO, T> col, String tag) {
+    private <T> void initCol(TableColumn<PerformanceWrapper, T> col, String tag) {
         col.setCellValueFactory(new PropertyValueFactory<>(tag));
         col.setReorderable(false);
 
@@ -69,7 +69,7 @@ public class AttendanceStatisticsController extends Controller {
         BooleanProperty columnHover = new SimpleBooleanProperty();
 
         col.setCellFactory(column -> {
-            TableCell<PerformancePOJO, T> cell = new TableCell<>();
+            TableCell<PerformanceWrapper, T> cell = new TableCell<>();
 
             if (!tag.isEmpty()) {
                 cell.textProperty().bind(Bindings.createStringBinding(() -> cell.isEmpty() ? "" : String.format("%s", cell.getItem())
@@ -82,8 +82,5 @@ public class AttendanceStatisticsController extends Controller {
             );
             return cell;
         });
-
     }
-
-
 }
