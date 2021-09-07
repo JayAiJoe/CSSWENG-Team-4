@@ -5,6 +5,7 @@ import java.util.Date;
 public class EmployeePOJO {
     private int employeeID;
     private String completeName;
+    private String lowerCaseName;
     private String company;
     private double wage;
     private String mode;
@@ -17,6 +18,7 @@ public class EmployeePOJO {
                         String wageFrequency, double debtAmount, Date dateJoin, Date dateLeft) {
         this.employeeID = employeeID;
         this.completeName = completeName;
+        this.lowerCaseName = completeName.toLowerCase();
         this.company = company;
         this.wage = wage;
         this.mode = mode;
@@ -39,6 +41,10 @@ public class EmployeePOJO {
 
     public String getCompleteName() {
         return completeName;
+    }
+
+    public String getLowerCaseName() {
+        return lowerCaseName;
     }
 
     public double getWage() {
@@ -99,5 +105,9 @@ public class EmployeePOJO {
 
     public void setCompleteName(String completeName) {
         this.completeName = completeName;
+    }
+
+    public void setLowerCaseName(String lowerCaseName) {
+        this.lowerCaseName = lowerCaseName;
     }
 }
