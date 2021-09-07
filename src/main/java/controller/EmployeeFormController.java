@@ -8,7 +8,7 @@ import model.EmployeeForm;
 
 import java.util.Optional;
 
-public class EmployeeFormController extends Controller {
+public class EmployeeFormController {
     @FXML
     private ChoiceBox modeCb, companyCb, frequencyCb;
 
@@ -25,11 +25,6 @@ public class EmployeeFormController extends Controller {
     private TextField nameTf, wageTf;
 
     private EmployeeForm employeeForm;
-
-    @Override
-    public void update() {
-
-    }
 
     public void initialize() {
         //limit input to numbers only

@@ -1,6 +1,5 @@
 package dao;
 
-import java.text.DecimalFormat;
 import java.util.Date;
 
 public class EmployeePOJO {
@@ -13,8 +12,6 @@ public class EmployeePOJO {
     private double debtAmount;
     private Date dateJoin;
     private Date dateLeft;
-
-    private static DecimalFormat df = new DecimalFormat("0.00");
 
     public EmployeePOJO(int employeeID, String completeName, String company, double wage, String mode,
                         String wageFrequency, double debtAmount, Date dateJoin, Date dateLeft) {
@@ -66,14 +63,6 @@ public class EmployeePOJO {
 
     public Date getDateLeft() {
         return dateLeft;
-    }
-
-    public String getWageString() {
-        return df.format(wage);
-    }
-
-    public String getCompanyFull() {
-        return company.equals("CRAYOLA") ? "Crayola Atbp." : "IX-XI Hardware";
     }
 
     public void setEmployeeID(int employeeID) {

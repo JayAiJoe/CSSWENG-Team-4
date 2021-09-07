@@ -1,6 +1,5 @@
 package controller;
 
-import dao.EmployeePOJO;
 import driver.Driver;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -9,6 +8,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import model.EmployeeForm;
+import wrapper.EmployeeWrapper;
 
 import java.util.Date;
 import java.util.Optional;
@@ -32,7 +32,7 @@ public class EmployeeEditController extends Controller {
     private Text companyTf, modeTf, frequencyTf;
 
     private EmployeeForm employeeForm;
-    private EmployeePOJO employee;
+    private EmployeeWrapper employee;
 
     @Override
     public void update() {
@@ -59,7 +59,7 @@ public class EmployeeEditController extends Controller {
         });
     }
 
-    public void setModels(EmployeeForm employeeForm, EmployeePOJO employee) {
+    public void setModels(EmployeeForm employeeForm, EmployeeWrapper employee) {
         this.employeeForm = employeeForm;
         this.employee = employee;
     }
@@ -141,8 +141,8 @@ public class EmployeeEditController extends Controller {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK) {
-                    employee.setCompleteName(nameTf.getText());
-                    employee.setWage(Double.parseDouble(wageTf.getText()));
+                    employee.getEmployee().setCompleteName(nameTf.getText());
+                    employee.getEmployee().setWage(Double.parseDouble(wageTf.getText()));
                     employeeForm.updateEmployee(employee);
                     resetEmployee();
 
@@ -197,7 +197,7 @@ public class EmployeeEditController extends Controller {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             setTextFieldsStatus(true);
 
-            employee.setDateLeft(new Date());
+            employee.getEmployee().setDateLeft(new Date());
             employeeForm.updateEmployee(employee);
 
             alert = new Alert(Alert.AlertType.INFORMATION);

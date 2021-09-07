@@ -1,6 +1,5 @@
 package controller;
 
-import dao.EmployeePOJO;
 import driver.Driver;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
@@ -19,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.EmployeeForm;
+import wrapper.EmployeeWrapper;
 
 import java.io.IOException;
 import java.util.function.Predicate;
@@ -35,15 +35,15 @@ public class EmployeesController extends Controller{
     private TextField nameTf;
 
     @FXML
-    private TableView<EmployeePOJO> employeesTv;
+    private TableView<EmployeeWrapper> employeesTv;
     @FXML
-    private TableColumn<EmployeePOJO, String> nameTc, frequencyTc, modeTc, companyTc, wageTc, idTc;
+    private TableColumn<EmployeeWrapper, String> nameTc, frequencyTc, modeTc, companyTc, wageTc, idTc;
     @FXML
-    private TableColumn<EmployeePOJO, Button> buttonTc;
+    private TableColumn<EmployeeWrapper, Button> buttonTc;
 
     private EmployeeForm employeeForm;
-    private FilteredList<EmployeePOJO> filteredEntries;
-    private Predicate<EmployeePOJO> nameFilter = entry -> true, companyFilter = entry -> true;
+    private FilteredList<EmployeeWrapper> filteredEntries;
+    private Predicate<EmployeeWrapper> nameFilter = entry -> true, companyFilter = entry -> true;
 
     @Override
     public void update() {
@@ -55,7 +55,7 @@ public class EmployeesController extends Controller{
         }
 
         employeeForm = new EmployeeForm();
-        ObservableList<EmployeePOJO> entries = FXCollections.observableArrayList();
+        ObservableList<EmployeeWrapper> entries = FXCollections.observableArrayList();
         entries.setAll(employeeForm.getEmployees());
         filteredEntries = new FilteredList<>(entries);
         employeesTv.setItems(filteredEntries);
@@ -70,7 +70,7 @@ public class EmployeesController extends Controller{
         initCol(companyTc, "companyFull");
         initCol(wageTc, "wageString");
         buttonTc.setCellFactory(t -> {
-            TableCell<EmployeePOJO, Button> cell = new TableCell<>() {
+            TableCell<EmployeeWrapper, Button> cell = new TableCell<>() {
                 private final Button editButton = new Button();
                 @Override
                 public void updateItem(Button item, boolean empty) {
@@ -90,14 +90,14 @@ public class EmployeesController extends Controller{
         });
     }
 
-    private <T> void initCol(TableColumn<EmployeePOJO, T> col, String tag) {
+    private <T> void initCol(TableColumn<EmployeeWrapper, T> col, String tag) {
         col.setCellValueFactory(new PropertyValueFactory<>(tag));
 
         // hover property
         BooleanProperty columnHover = new SimpleBooleanProperty();
 
         col.setCellFactory(column -> {
-            TableCell<EmployeePOJO, T> cell = new TableCell<>();
+            TableCell<EmployeeWrapper, T> cell = new TableCell<>();
 
             if (!tag.isEmpty()) {
                 cell.textProperty().bind(Bindings.createStringBinding(() -> cell.isEmpty() ? "" : String.format("%s", cell.getItem()),
@@ -134,7 +134,7 @@ public class EmployeesController extends Controller{
         stage.setResizable(false);
         stage.showAndWait();
 
-        ObservableList<EmployeePOJO> entries = FXCollections.observableArrayList();
+        ObservableList<EmployeeWrapper> entries = FXCollections.observableArrayList();
         entries.setAll(employeeForm.getEmployees());
         filteredEntries = new FilteredList<>(entries);
         employeesTv.setItems(filteredEntries);
@@ -158,7 +158,7 @@ public class EmployeesController extends Controller{
         filteredEntries.setPredicate(companyFilter.and(nameFilter));
     }
 
-    private void onEditAction(EmployeePOJO employee) {
+    private void onEditAction(EmployeeWrapper employee) {
         EmployeeEditController controller = (EmployeeEditController) Driver
                 .getScreenController().getController("EmployeeEdit");
         controller.setModels(employeeForm, employee);

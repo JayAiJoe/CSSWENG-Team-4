@@ -2,13 +2,14 @@ package model;
 
 import dao.EmployeePOJO;
 import dao.Repository;
+import wrapper.EmployeeWrapper;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class EmployeeForm {
-    private ArrayList<EmployeePOJO> employees = new ArrayList<>();
-    private ArrayList<EmployeePOJO> activeEmployees = new ArrayList<>();
+    private ArrayList<EmployeeWrapper> employees = new ArrayList<>();
+    private ArrayList<EmployeeWrapper> activeEmployees = new ArrayList<>();
     private final Date dateUniform = new Date(8100, 0, 1);
 
     public EmployeeForm() {
@@ -16,10 +17,12 @@ public class EmployeeForm {
     }
 
     private void initialize() {
-        employees = Repository.getInstance().getAllEmployees();
+        ArrayList<EmployeePOJO> allEmployees = Repository.getInstance().getAllEmployees();
 
-        for (EmployeePOJO entry: employees) {
-            if (entry.getDateLeft().equals(dateUniform)) {
+        for (EmployeePOJO employee: allEmployees) {
+            EmployeeWrapper entry = new EmployeeWrapper(employee);
+            employees.add(entry);
+            if (employee.getDateLeft().equals(dateUniform)) {
                 activeEmployees.add(entry);
             }
         }
@@ -32,17 +35,18 @@ public class EmployeeForm {
         Date date = new Date();
 
         EmployeePOJO employee = new EmployeePOJO(num, name, companyF, wage, mode, frequency, 0, date, dateUniform);
-        employees.add(employee);
-        activeEmployees.add(employee);
+        EmployeeWrapper entry = new EmployeeWrapper(employee);
+        employees.add(entry);
+        activeEmployees.add(entry);
 
         return Repository.getInstance().addEmployee(employee);
     }
 
-    public ArrayList<EmployeePOJO> getEmployees() {
+    public ArrayList<EmployeeWrapper> getEmployees() {
         return activeEmployees;
     }
 
-    public void updateEmployee(EmployeePOJO employee) {
-        Repository.getInstance().updateEmployee(employee);
+    public void updateEmployee(EmployeeWrapper employee) {
+        Repository.getInstance().updateEmployee(employee.getEmployee());
     }
 }
