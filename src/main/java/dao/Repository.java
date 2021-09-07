@@ -79,10 +79,10 @@ public class Repository {
         return collection.find(eq("employeeID", employeeID)).first();
     }
 
-    public EmployeePOJO findEmployee(String name) {
+    public EmployeePOJO findEmployee(String lowerCaseName) {
         MongoCollection<EmployeePOJO> collection = database.getCollection("employees", EmployeePOJO.class);
 
-        return collection.find(eq("completeName", name)).first();
+        return collection.find(eq("lowerCaseName", lowerCaseName)).first();
     }
 
     public ArrayList<EmployeePOJO> getAllEmployees() {
