@@ -55,7 +55,7 @@ public class PendingOvertimeController extends Controller {
 
         Date today = new Date();
         long ms = today.getTime();
-        model = new OvertimeHandler(new Date(ms - 15 * 86400000L), today);
+        model = new OvertimeHandler(new Date(ms - 16 * 86400000L), today);
         entries = FXCollections.observableArrayList();
         entries.setAll(model.getEntries());
         filteredEntries = new FilteredList<>(entries);
