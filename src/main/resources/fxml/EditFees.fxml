@@ -6,111 +6,125 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="780.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditFeesController">
+<AnchorPane prefHeight="794.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditFeesController">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane fx:id="navBar_container" prefHeight="36.0" prefWidth="1400.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-        <AnchorPane layoutY="35.0" minHeight="0.0" minWidth="0.0" prefHeight="746.0" prefWidth="1400.0" style="-fx-background-color: E0F4FF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+        <AnchorPane layoutY="33.0" minHeight="0.0" minWidth="0.0" prefHeight="1258.0" prefWidth="1424.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.599999999999909" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
                <children>
-                  <AnchorPane layoutY="65.0" prefHeight="987.0" prefWidth="274.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="65.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="82.0" prefWidth="1424.0" style="-fx-background-color: E0F4FF;" AnchorPane.bottomAnchor="1176.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <HBox alignment="CENTER" layoutY="111.0" prefHeight="634.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <AnchorPane prefHeight="987.2" prefWidth="274.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox prefHeight="634.0" prefWidth="520.0">
                            <children>
-                              <VBox layoutX="140.0" layoutY="-77.0" prefHeight="987.2" prefWidth="274.4" style="-fx-background-color: #4D678E;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane prefHeight="282.0" prefWidth="563.0" style="-fx-background-color: E1F4FF;">
                                  <children>
-                                    <Button fx:id="sss_btn" mnemonicParsing="false" onMouseClicked="#onClickValues" prefHeight="54.0" prefWidth="279.0" style="-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color: #7D7D7D;" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial" size="18.0" />
-                                       </font>
-                                       <graphic>
-                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="SSS" wrappingWidth="240.6068389415741">
+                                    <Pane fx:id="pagibig_tab" layoutX="9.0" layoutY="48.0" prefHeight="222.0" prefWidth="502.0" style="-fx-background-color: white;">
+                                       <children>
+                                          <Button fx:id="pi_save_btn" disable="true" layoutX="52.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
+                                          <TextField fx:id="pi_employeeTf" disable="true" layoutX="216.0" layoutY="34.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
+                                          <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="111.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="58.0" text="Cancel" visible="false" />
+                                          <Button fx:id="pi_edit_btn" layoutX="52.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Edit" />
+                                          <Text layoutX="51.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share:" />
+                                          <TextField fx:id="pi_employerTf" disable="true" layoutX="216.0" layoutY="80.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
+                                          <Text layoutX="51.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution:" />
+                                          <Text layoutX="347.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" />
+                                          <Text layoutX="187.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PhP" />
+                                          <Text fx:id="pi_employer_errorText" fill="RED" layoutX="51.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution should be nonnegative and up to 2 decimal places only!" wrappingWidth="421.7632751464844" />
+                                          <Text fx:id="pi_employee_errorText" fill="RED" layoutX="52.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share should be greater than 0 and less than 100!" />
+                                       </children>
+                                    </Pane>
+                                    <HBox alignment="CENTER" layoutX="7.0" prefHeight="31.0" prefWidth="502.0">
+                                       <children>
+                                          <Text fill="#1360a8" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Pag-ibig" textAlignment="CENTER" wrappingWidth="288.8695831298828">
                                              <font>
-                                                <Font name="Arial" size="18.0" />
+                                                <Font name="System Bold" size="25.0" />
                                              </font>
                                           </Text>
-                                       </graphic>
-                                    </Button>
-                                    <Button fx:id="phil_btn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#onClickValues" prefHeight="54.0" prefWidth="279.0" style="-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color: #7D7D7D;" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial" size="18.0" />
-                                       </font>
-                                       <graphic>
-                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PHILHEALTH" wrappingWidth="240.6068389415741">
-                                             <font>
-                                                <Font name="Arial" size="18.0" />
-                                             </font>
-                                          </Text>
-                                       </graphic>
-                                    </Button>
-                                    <Button fx:id="pagibig_btn" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#onClickValues" prefHeight="54.0" prefWidth="279.0" style="-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color: #7D7D7D;" textFill="WHITE">
-                                       <font>
-                                          <Font name="Arial" size="18.0" />
-                                       </font>
-                                       <graphic>
-                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Pag-ibig Funds" wrappingWidth="240.6068389415741">
-                                             <font>
-                                                <Font name="Arial" size="18.0" />
-                                             </font>
-                                          </Text>
-                                       </graphic>
-                                    </Button>
+                                       </children>
+                                    </HBox>
                                  </children>
-                                 <padding>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </AnchorPane>
+                              <Pane fx:id="phil_tab" prefHeight="342.0" prefWidth="549.0" style="-fx-background-color: E1F4FF;">
+                                 <children>
+                                    <TableView fx:id="philhealthTv" editable="true" layoutX="8.0" layoutY="97.0" prefHeight="216.0" prefWidth="502.0" stylesheets="@../css/Tableview.css">
+                                       <columns>
+                                          <TableColumn fx:id="ph_range" maxWidth="1.7976931348623157E308" prefWidth="395.99998474121094" sortable="false" text="Range">
+                                             <columns>
+                                                <TableColumn fx:id="ph_start" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="160.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Start" />
+                                                <TableColumn fx:id="ph_end" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="160.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="End" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn fx:id="ph_value" prefWidth="179.99996948242188" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Fee" />
+                                       </columns>
+                                    </TableView>
+                                    <Button fx:id="ph_save_btn" disable="true" layoutX="7.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" />
+                                    <Button fx:id="ph_update_btn" layoutX="7.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Edit" />
+                                    <Button fx:id="ph_cancel_btn" cancelButton="true" disable="true" layoutX="73.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Cancel" visible="false" />
+                                    <Button fx:id="ph_add_btn" disable="true" layoutX="367.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onAddRowAction" prefHeight="31.0" prefWidth="65.0" text="Add" />
+                                    <Button fx:id="ph_delete_btn" disable="true" layoutX="432.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onDeleteRowAction" prefHeight="31.0" prefWidth="77.0" text="Remove" />
+                                    <Text fx:id="ph_errorText" fill="RED" layoutX="14.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                    <HBox alignment="CENTER" layoutX="19.0" prefHeight="46.0" prefWidth="490.0">
+                                       <children>
+                                          <Text fill="#1360a8" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="PhilHealth" textAlignment="CENTER" wrappingWidth="288.8695831298828">
+                                             <font>
+                                                <Font name="System Bold" size="25.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
                                     <Insets top="10.0" />
-                                 </padding>
-                              </VBox>
+                                 </VBox.margin>
+                              </Pane>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <AnchorPane prefHeight="634.0" prefWidth="582.0" style="-fx-background-color: E1F4FF;">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <children>
+                              <HBox alignment="CENTER" layoutX="40.0" layoutY="14.0" prefHeight="31.0" prefWidth="502.0">
+                                 <children>
+                                    <Text fill="#1360a8" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="SSS" textAlignment="CENTER" wrappingWidth="288.8695831298828">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
                            </children>
                         </AnchorPane>
                      </children>
+                  </HBox>
+                  <AnchorPane prefHeight="90.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="-1.0" layoutY="22.0" prefHeight="46.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Text fill="#1360a8" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Fees and Deductions" textAlignment="CENTER" wrappingWidth="451.26960146427155">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children>
                   </AnchorPane>
-                  <Pane fx:id="sss_tab" layoutX="274.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
-                  <Pane fx:id="phil_tab" layoutX="284.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
-                     <children>
-                        <TableView fx:id="philhealthTv" editable="true" layoutX="193.0" layoutY="86.0" prefHeight="519.0" prefWidth="641.0" stylesheets="@../css/Tableview.css">
-                           <columns>
-                              <TableColumn fx:id="ph_range" maxWidth="1.7976931348623157E308" prefWidth="339.1999816894531" sortable="false" text="Range">
-                                 <columns>
-                                    <TableColumn fx:id="ph_start" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="214.39996337890625" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Start" />
-                                    <TableColumn fx:id="ph_end" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="208.80001831054688" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="End" />
-                                 </columns>
-                              </TableColumn>
-                              <TableColumn fx:id="ph_value" prefWidth="217.20001220703125" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Fee" />
-                           </columns>
-                        </TableView>
-                        <Button fx:id="ph_save_btn" disable="true" layoutX="134.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
-                        <Button fx:id="ph_update_btn" layoutX="134.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Update" />
-                        <Text layoutX="404.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PHILHEALTH TABLE" wrappingWidth="210.51263427734375">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Text>
-                        <Button fx:id="ph_cancel_btn" cancelButton="true" disable="true" layoutX="134.0" layoutY="117.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" text="Cancel" visible="false" />
-                        <Button fx:id="ph_add_btn" disable="true" layoutX="193.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onAddRowAction" prefHeight="31.0" prefWidth="65.0" text="Add Row" visible="false" />
-                        <Button fx:id="ph_delete_btn" disable="true" layoutX="258.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#onDeleteRowAction" prefHeight="31.0" prefWidth="77.0" text="Delete Row" visible="false" />
-                        <Text fx:id="ph_errorText" fill="RED" layoutX="193.0" layoutY="633.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="pagibig_tab" layoutX="294.0" layoutY="65.0" prefHeight="686.0" prefWidth="1006.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
-                     <children>
-                        <Button fx:id="pi_save_btn" disable="true" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Save" visible="false" />
-                        <TextField fx:id="pi_employeeTf" disable="true" layoutX="223.0" layoutY="105.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
-                        <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="118.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="58.0" text="Cancel" visible="false" />
-                        <Button fx:id="pi_edit_btn" layoutX="59.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" text="Edit" />
-                        <Text layoutX="58.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share:" />
-                        <TextField fx:id="pi_employerTf" disable="true" layoutX="223.0" layoutY="151.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
-                        <Text layoutX="58.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution:" />
-                        <Text layoutX="354.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" />
-                        <Text layoutX="194.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PhP" />
-                        <Text fx:id="pi_employer_errorText" fill="RED" layoutX="58.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution should be nonnegative and up to 2 decimal places only!" wrappingWidth="421.7632751464844" />
-                        <Text fx:id="pi_employee_errorText" fill="RED" layoutX="59.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share should be greater than 0 and less than 100!" />
-                     </children>
-                  </Pane>
+                  <VBox prefHeight="200.0" prefWidth="100.0" />
                </children>
             </AnchorPane>
          </children>

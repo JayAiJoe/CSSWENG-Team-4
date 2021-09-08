@@ -37,7 +37,7 @@ public class EditFeesController extends Controller {
      * Instantiation of Button objects from EditFees.fxml
      */
     @FXML
-    private Button sss_btn, phil_btn, pagibig_btn, pi_edit_btn, pi_cancel_btn,
+    private Button pi_edit_btn, pi_cancel_btn,
             pi_save_btn, ph_update_btn, ph_cancel_btn, ph_add_btn, ph_delete_btn,
             ph_save_btn;
 
@@ -63,34 +63,6 @@ public class EditFeesController extends Controller {
     private ObservableList<PhilHealthRange> ranges;
     private int editRow;
 
-    /**
-     * This method is responsible for switching between SSS, Philhealth,
-     * and Pag-ibig formula edit tabs.
-     */
-    public void onClickValues(MouseEvent mouseEvent) {
-        if (mouseEvent.getSource() == sss_btn) {
-            resetPagIbig();
-            resetPhilHealth();
-            System.out.println(mouseEvent.getSource().toString());
-            sss_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-            phil_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-            pagibig_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-            sss_tab.toFront();
-        } else if (mouseEvent.getSource() == phil_btn) {
-            resetPagIbig();
-            phil_tab.toFront();
-            sss_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-            phil_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-            pagibig_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-        } else if (mouseEvent.getSource() == pagibig_btn) {
-            resetPhilHealth();
-            pagibig_tab.toFront();
-            sss_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-            phil_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-            pagibig_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-        }
-    }
-
     @Override
     public void update() {
         // load navigation bar
@@ -98,17 +70,12 @@ public class EditFeesController extends Controller {
             navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
         }
 
-        pagibig_tab.toFront();
-        sss_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-        phil_btn.setStyle("-fx-background-color: #979797; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
-        pagibig_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
         resetPagIbig();
         resetPhilHealth();
     }
 
     @FXML
     public void initialize() {
-        pagibig_btn.setStyle("-fx-background-color: #616060; -fx-border-radius: 2; -fx-border-color:  #7D7D7D");
         resetPagIbig();
         resetPhilHealth();
 
