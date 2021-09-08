@@ -73,6 +73,13 @@ public class Repository {
         return result.wasAcknowledged();
     }
 
+    public boolean addCola(ColaPOJO cola) {
+        MongoCollection<ColaPOJO> collection = database.getCollection("cola", ColaPOJO.class);
+        InsertOneResult result = collection.insertOne(cola);
+
+        return result.wasAcknowledged();
+    }
+
     public EmployeePOJO findEmployee(int employeeID) {
         MongoCollection<EmployeePOJO> collection = database.getCollection("employees", EmployeePOJO.class);
 
@@ -209,6 +216,20 @@ public class Repository {
         }
 
         return pendingOT;
+    }
+
+    public ArrayList<ColaPOJO> getCola(Date startDate, Date endDate) {
+        MongoCollection<ColaPOJO> collection = database.getCollection("cola", ColaPOJO.class);
+        ArrayList<ColaPOJO> cola = new ArrayList<>();
+        if (endDate == null) {
+            collection.find(gte("date", startDate)).into(cola);
+        } else if (startDate == null) {
+            collection.find(lte("date", endDate)).into(cola);
+        } else {
+            collection.find(and(gte("date", startDate), lte("date", endDate))).into(cola);
+        }
+
+        return cola;
     }
 
     public void updateLogbookOT(ArrayList<LogbookPOJO> logbook) {
