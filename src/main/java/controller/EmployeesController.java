@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.EmployeeForm;
 import wrapper.EmployeeWrapper;
@@ -133,6 +134,7 @@ public class EmployeesController extends Controller{
         stage.setOpacity(1);
         stage.setScene(new Scene(root, 481, 448));
         stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
 
         ObservableList<EmployeeWrapper> entries = FXCollections.observableArrayList();
