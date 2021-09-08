@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ApprovedOvertimeWorkHoursController">
+<AnchorPane prefHeight="741.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ApprovedOvertimeWorkHoursController">
    <children>
       <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <children>
@@ -57,9 +57,9 @@
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime End Time" GridPane.rowIndex="4" />
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <TextField fx:id="cOvertimeStartTf">
+                                                <TextField fx:id="cOvertimeStartTf" prefHeight="26.0" prefWidth="151.0">
                                                    <HBox.margin>
                                                       <Insets top="10.0" />
                                                    </HBox.margin>
@@ -129,16 +129,16 @@
                                           <Text fx:id="cShift2ErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
                                        </children>
                                     </VBox>
-                                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="218.0" GridPane.columnIndex="1">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="218.0" GridPane.columnIndex="1">
                                        <children>
                                           <Text fx:id="cDateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
                                        </children>
                                     </HBox>
                                     <VBox alignment="CENTER_LEFT" layoutX="136.0" layoutY="64.0" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                        <children>
-                                          <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <TextField fx:id="cOvertimeEndTf">
+                                                <TextField fx:id="cOvertimeEndTf" prefHeight="26.0" prefWidth="153.0">
                                                    <HBox.margin>
                                                       <Insets top="10.0" />
                                                    </HBox.margin>
@@ -184,7 +184,7 @@
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime End Time" GridPane.rowIndex="4" />
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <TextField fx:id="nOvertimeStartTf">
                                                    <HBox.margin>
@@ -256,14 +256,14 @@
                                           <Text fx:id="nShift2ErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
                                        </children>
                                     </VBox>
-                                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="218.0" GridPane.columnIndex="1">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="218.0" GridPane.columnIndex="1">
                                        <children>
                                           <Text fx:id="nDateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
                                        </children>
                                     </HBox>
                                     <VBox alignment="CENTER_LEFT" layoutX="136.0" layoutY="64.0" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                        <children>
-                                          <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <TextField fx:id="nOvertimeEndTf">
                                                    <HBox.margin>
