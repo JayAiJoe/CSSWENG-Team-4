@@ -37,7 +37,7 @@
             </AnchorPane>
             <HBox alignment="CENTER" layoutX="-4.0" layoutY="117.0" prefHeight="574.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <AnchorPane prefHeight="602.0" prefWidth="674.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 20;">
+                  <AnchorPane prefHeight="602.0" prefWidth="674.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
                      <children>
                         <TableView fx:id="overtimeTv" layoutX="21.0" layoutY="66.0" prefHeight="485.0" prefWidth="631.0" stylesheets="@../css/Tableview.css">
                            <columns>
@@ -47,9 +47,9 @@
                               <TableColumn fx:id="buttonTc" prefWidth="125.5999755859375" sortable="false" text="COLA" />
                            </columns>
                         </TableView>
-                        <Text layoutX="23.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show" wrappingWidth="35.35901641845703" />
-                        <Button fx:id="checkAllBtn" layoutX="569.0" layoutY="23.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" text="Check All" />
-                        <ChoiceBox fx:id="companyCb" layoutX="58.0" layoutY="23.0" onAction="#onFilterCompanyAction" prefHeight="26.0" prefWidth="86.0" value="All">
+                        <Text layoutX="23.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Show" wrappingWidth="35.35901641845703" />
+                        <Button fx:id="checkAllBtn" layoutX="569.0" layoutY="23.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Check All" />
+                        <ChoiceBox fx:id="companyCb" layoutX="58.0" layoutY="23.0" onAction="#onFilterCompanyAction" prefHeight="26.0" prefWidth="86.0" styleClass="choicebox" value="All">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="All" />
@@ -58,8 +58,8 @@
                               </FXCollections>
                            </items>
                         </ChoiceBox>
-                        <TextField fx:id="nameTf" layoutX="299.0" layoutY="23.0" prefHeight="26.0" prefWidth="192.0" promptText="Name Search" />
-                        <Button fx:id="searchBtn" layoutX="268.0" layoutY="23.0" mnemonicParsing="false" onAction="#onFilterNameAction" prefHeight="26.0" prefWidth="22.0">
+                        <TextField fx:id="nameTf" layoutX="299.0" layoutY="23.0" prefHeight="16.0" prefWidth="192.0" promptText="Name Search" styleClass="searchfield" />
+                        <Button fx:id="searchBtn" layoutX="268.0" layoutY="23.0" mnemonicParsing="false" onAction="#onFilterNameAction" prefHeight="27.0" prefWidth="31.0" styleClass="searchbutton">
                            <graphic>
                               <ImageView fitHeight="18.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                  <viewport>
@@ -71,7 +71,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <ChoiceBox fx:id="checkedCb" layoutX="152.0" layoutY="23.0" onAction="#onFilterCheckedAction" prefHeight="26.0" prefWidth="86.0" value="All">
+                        <ChoiceBox fx:id="checkedCb" layoutX="152.0" layoutY="23.0" onAction="#onFilterCheckedAction" prefHeight="26.0" prefWidth="86.0" styleClass="choicebox" value="All">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="All" />

@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Calculator;
 
@@ -17,8 +18,16 @@ public class Driver extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        // load the tron font.
+        /*Font.loadFont(
+                getClass().getResource("/css/dosis.book.ttf").toExternalForm(),
+                10
+        );*/
+
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/NavBar.fxml")));
         Scene scene = new Scene(root);
+        scene.getStylesheets().addAll(getClass().getResource("/css/style.css").toExternalForm());
         initScreenController(scene);
         screenController.activate("Home");
 

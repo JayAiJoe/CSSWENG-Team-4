@@ -30,7 +30,7 @@
                      </children></AnchorPane>
                   <HBox alignment="CENTER" layoutY="111.0" prefHeight="567.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <AnchorPane prefHeight="567.0" prefWidth="608.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 20;">
+                        <AnchorPane prefHeight="567.0" prefWidth="608.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
                            <children>
                               <TableView fx:id="overtimeTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="546.0" stylesheets="@../css/Tableview.css">
                                 <columns>
@@ -41,11 +41,11 @@
                                 </columns>
                               </TableView>
                               <DatePicker fx:id="datePicker" layoutX="32.0" layoutY="23.0" prefHeight="26.0" prefWidth="115.0" />
-                              <Text layoutX="32.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter By date" wrappingWidth="100.15899658203125" />
-                              <Button layoutX="466.0" layoutY="23.0" mnemonicParsing="false" onAction="#onRejectAction" prefHeight="26.0" prefWidth="112.0" text="Reject Selected" />
-                              <Button layoutX="354.0" layoutY="23.0" mnemonicParsing="false" onAction="#onApproveAction" prefHeight="26.0" prefWidth="112.0" text="Approve Selected" />
-                              <Button fx:id="checkAllBtn" layoutX="214.0" layoutY="23.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" text="Check All" />
-                              <ToggleButton fx:id="filterBtn" layoutX="147.0" layoutY="23.0" mnemonicParsing="false" onAction="#onFilterAction" prefHeight="26.0" prefWidth="67.0" text="Filter" />
+                              <Text layoutX="32.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Filter By date" wrappingWidth="100.15899658203125" />
+                              <Button layoutX="466.0" layoutY="23.0" mnemonicParsing="false" onAction="#onRejectAction" prefHeight="26.0" prefWidth="112.0" styleClass="normalbutton" text="Reject Selected" />
+                              <Button layoutX="354.0" layoutY="23.0" mnemonicParsing="false" onAction="#onApproveAction" prefHeight="26.0" prefWidth="112.0" styleClass="normalbutton" text="Approve Selected" />
+                              <Button fx:id="checkAllBtn" layoutX="214.0" layoutY="23.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Check All" />
+                              <ToggleButton fx:id="filterBtn" layoutX="147.0" layoutY="23.0" mnemonicParsing="false" onAction="#onFilterAction" prefHeight="26.0" prefWidth="67.0" styleClass="normalbutton" text="Filter" />
                            </children>
                         </AnchorPane>
                      </children>

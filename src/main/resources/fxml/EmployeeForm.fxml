@@ -32,11 +32,11 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Company" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mode" wrappingWidth="31.1484375" GridPane.rowIndex="2" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency of Payment" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wage" GridPane.rowIndex="4" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Full Name" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Company" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Mode" wrappingWidth="31.1484375" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Frequency of Payment" GridPane.rowIndex="3" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Wage" GridPane.rowIndex="4" />
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <children>
                         <TextField fx:id="nameTf">
@@ -110,8 +110,8 @@
                   </VBox>
                </children>
             </GridPane>
-            <Button fx:id="cancelBtn" layoutX="231.0" layoutY="375.0" mnemonicParsing="false" onAction="#onCancelAction" prefHeight="27.0" prefWidth="98.0" text="Cancel" />
-            <Button fx:id="saveBtn" layoutX="118.0" layoutY="375.0" mnemonicParsing="false" onAction="#onSaveAction" prefHeight="27.0" prefWidth="98.0" text="Save" />
+            <Button fx:id="cancelBtn" layoutX="231.0" layoutY="375.0" mnemonicParsing="false" onAction="#onCancelAction" prefHeight="27.0" prefWidth="98.0" styleClass="cancelbutton" text="Cancel" />
+            <Button fx:id="saveBtn" layoutX="118.0" layoutY="375.0" mnemonicParsing="false" onAction="#onSaveAction" prefHeight="27.0" prefWidth="98.0" styleClass="normalbutton" text="Save" />
          </children>
       </AnchorPane>
       <HBox alignment="CENTER" layoutX="8.0" layoutY="32.0" prefHeight="46.0" prefWidth="462.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="11.0">

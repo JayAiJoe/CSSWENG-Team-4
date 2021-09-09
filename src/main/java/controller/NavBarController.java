@@ -4,10 +4,21 @@ import driver.Driver;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
 
-public class NavBarController {
+public class NavBarController{
 
     @FXML
     public MenuButton menuButton, employeeButton;
+
+    final String IDLE_BUTTON_STYLE = "-fx-background-color: #577CFF; -fx-background-radius: 0px;";
+    final String HOVERED_BUTTON_STYLE = "-fx-background-color: #99c9ff; -fx-background-radius: 0px;";
+
+
+    public void initialize() {
+        menuButton.setOnMouseEntered(e -> menuButton.setStyle(HOVERED_BUTTON_STYLE));
+        menuButton.setOnMouseExited(e -> menuButton.setStyle(IDLE_BUTTON_STYLE));
+        employeeButton.setOnMouseEntered(e -> employeeButton.setStyle(HOVERED_BUTTON_STYLE));
+        employeeButton.setOnMouseExited(e -> employeeButton.setStyle(IDLE_BUTTON_STYLE));
+    }
 
     /**
      * Changes screen to Home.fxml.

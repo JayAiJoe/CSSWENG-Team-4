@@ -30,7 +30,7 @@
                   </AnchorPane>
                   <HBox alignment="CENTER" layoutY="117.0" prefHeight="567.0" prefWidth="1198.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <AnchorPane prefHeight="567.0" prefWidth="985.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 20;">
+                        <AnchorPane prefHeight="567.0" prefWidth="985.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
                            <children>
                               <TableView fx:id="attendanceTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="926.0" stylesheets="@../css/Tableview.css">
                                  <columns>
@@ -49,10 +49,10 @@
                                     <TableColumn fx:id="holidayTc" prefWidth="88.79998779296875" text="Holiday" />
                                  </columns>
                               </TableView>
-                              <ToggleButton layoutX="32.0" layoutY="24.0" mnemonicParsing="false" text="Filter by Payday" />
+                              <ToggleButton layoutX="32.0" layoutY="24.0" mnemonicParsing="false" styleClass="normalbutton" text="Filter by Payday" />
                               <DatePicker layoutX="153.0" layoutY="23.0" prefHeight="26.0" prefWidth="134.0" />
                               <DatePicker layoutX="315.0" layoutY="23.0" prefHeight="26.0" prefWidth="134.0" />
-                              <Text layoutX="295.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
+                              <Text layoutX="295.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To" />
                            </children>
                         </AnchorPane>
                      </children>

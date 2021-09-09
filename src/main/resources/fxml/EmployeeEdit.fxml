@@ -48,11 +48,11 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Company" GridPane.rowIndex="1" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mode" wrappingWidth="31.1484375" GridPane.rowIndex="2" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency of Payment" GridPane.rowIndex="3" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wage" GridPane.rowIndex="4" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Full Name" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Company" GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Mode" wrappingWidth="31.1484375" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Frequency of Payment" GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Wage" GridPane.rowIndex="4" />
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                        <children>
                                           <TextField fx:id="nameTf" disable="true">
@@ -65,7 +65,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <Text fx:id="companyTf" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                          <Text fx:id="companyTf" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Text" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -73,12 +73,12 @@
                                           <Insets />
                                        </opaqueInsets>
                                        <children>
-                                          <Text fx:id="modeTf" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                          <Text fx:id="modeTf" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Text" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <children>
-                                          <Text fx:id="frequencyTf" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                          <Text fx:id="frequencyTf" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Text" />
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -93,10 +93,10 @@
                                     </VBox>
                                  </children>
                               </GridPane>
-                              <Button fx:id="editBtn" layoutX="185.0" layoutY="365.0" mnemonicParsing="false" onAction="#onEditAction" prefHeight="26.0" prefWidth="93.0" text="Edit" />
-                              <Button fx:id="cancelBtn" layoutX="344.0" layoutY="365.0" mnemonicParsing="false" onAction="#onCancelAction" prefHeight="26.0" prefWidth="94.0" text="Cancel" />
-                              <Button fx:id="removeBtn" layoutX="344.0" layoutY="365.0" mnemonicParsing="false" onAction="#onRemoveAction" prefHeight="26.0" prefWidth="94.0" text="Remove" />
-                              <Button fx:id="backBtn" layoutX="25.0" layoutY="21.0" mnemonicParsing="false" onAction="#onBackAction" prefHeight="26.0" prefWidth="118.0" text="Back to Employees" />
+                              <Button fx:id="editBtn" layoutX="185.0" layoutY="365.0" mnemonicParsing="false" onAction="#onEditAction" prefHeight="26.0" prefWidth="93.0" styleClass="normalbutton" text="Edit" />
+                              <Button fx:id="cancelBtn" layoutX="344.0" layoutY="365.0" mnemonicParsing="false" onAction="#onCancelAction" prefHeight="26.0" prefWidth="94.0" styleClass="cancelbutton" text="Cancel" />
+                              <Button fx:id="removeBtn" layoutX="344.0" layoutY="365.0" mnemonicParsing="false" onAction="#onRemoveAction" prefHeight="26.0" prefWidth="94.0" styleClass="cancelbutton" text="Remove" />
+                              <Button fx:id="backBtn" layoutX="25.0" layoutY="21.0" mnemonicParsing="false" onAction="#onBackAction" prefHeight="26.0" prefWidth="118.0" styleClass="normalbutton" text="Back to Employees" />
                            </children>
                         </AnchorPane>
                      </children>

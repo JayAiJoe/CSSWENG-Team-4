@@ -50,11 +50,11 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime Start Time" GridPane.rowIndex="1" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Work Hours 1st Shift" wrappingWidth="121.54849243164062" GridPane.rowIndex="2" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Work Hours 2nd Shift" wrappingWidth="121.05703735351562" GridPane.rowIndex="3" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime End Time" GridPane.rowIndex="4" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Date" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Overtime Start Time" GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Work Hours 1st Shift" wrappingWidth="121.54849243164062" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Work Hours 2nd Shift" wrappingWidth="121.05703735351562" GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Overtime End Time" GridPane.rowIndex="4" />
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
                                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
@@ -81,7 +81,7 @@
                                                       <Insets top="10.0" />
                                                    </HBox.margin>
                                                 </TextField>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" top="15.0" />
                                                    </HBox.margin>
@@ -111,7 +111,7 @@
                                                       <Insets top="10.0" />
                                                    </HBox.margin>
                                                 </TextField>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" top="15.0" />
                                                    </HBox.margin>
@@ -131,7 +131,7 @@
                                     </VBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="218.0" GridPane.columnIndex="1">
                                        <children>
-                                          <Text fx:id="cDateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+                                          <Text fx:id="cDateText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Date" />
                                        </children>
                                     </HBox>
                                     <VBox alignment="CENTER_LEFT" layoutX="136.0" layoutY="64.0" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -158,8 +158,8 @@
                                     <Font name="System Bold" size="22.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="currentEditBtn" layoutX="127.0" layoutY="347.0" mnemonicParsing="false" onAction="#onCurrentEditAction" prefHeight="26.0" prefWidth="93.0" text="Edit" />
-                              <Button fx:id="currentCancelBtn" layoutX="288.0" layoutY="347.0" mnemonicParsing="false" onAction="#onCurrentCancelAction" prefHeight="26.0" prefWidth="94.0" text="Cancel" visible="false" />
+                              <Button fx:id="currentEditBtn" layoutX="127.0" layoutY="347.0" mnemonicParsing="false" onAction="#onCurrentEditAction" prefHeight="26.0" prefWidth="93.0" styleClass="normalbutton" text="Edit" />
+                              <Button fx:id="currentCancelBtn" layoutX="288.0" layoutY="347.0" mnemonicParsing="false" onAction="#onCurrentCancelAction" prefHeight="26.0" prefWidth="94.0" styleClass="cancelbutton" text="Cancel" visible="false" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="388.0" prefWidth="517.0" style="-fx-background-color: E1F4FF;">
@@ -177,11 +177,11 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime Start Time" GridPane.rowIndex="1" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Work Hours 1st Shift" wrappingWidth="116.74852752685547" GridPane.rowIndex="2" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Work Hours 2nd Shift" wrappingWidth="120.25707244873047" GridPane.rowIndex="3" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime End Time" GridPane.rowIndex="4" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Date" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Overtime Start Time" GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Work Hours 1st Shift" wrappingWidth="116.74852752685547" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Work Hours 2nd Shift" wrappingWidth="120.25707244873047" GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Overtime End Time" GridPane.rowIndex="4" />
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
@@ -208,7 +208,7 @@
                                                       <Insets top="10.0" />
                                                    </HBox.margin>
                                                 </TextField>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" top="15.0" />
                                                    </HBox.margin>
@@ -238,7 +238,7 @@
                                                       <Insets top="10.0" />
                                                    </HBox.margin>
                                                 </TextField>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="10.0" top="15.0" />
                                                    </HBox.margin>
@@ -258,7 +258,7 @@
                                     </VBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="218.0" GridPane.columnIndex="1">
                                        <children>
-                                          <Text fx:id="nDateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+                                          <Text fx:id="nDateText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Date" />
                                        </children>
                                     </HBox>
                                     <VBox alignment="CENTER_LEFT" layoutX="136.0" layoutY="64.0" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -285,8 +285,8 @@
                                     <Font name="System Bold" size="22.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="nextEditBtn" layoutX="127.0" layoutY="347.0" mnemonicParsing="false" onAction="#onNextEditAction" prefHeight="26.0" prefWidth="93.0" text="Edit" />
-                              <Button fx:id="nextCancelBtn" layoutX="288.0" layoutY="347.0" mnemonicParsing="false" onAction="#onNextCancelAction" prefHeight="26.0" prefWidth="94.0" text="Cancel" visible="false" />
+                              <Button fx:id="nextEditBtn" layoutX="127.0" layoutY="347.0" mnemonicParsing="false" onAction="#onNextEditAction" prefHeight="26.0" prefWidth="93.0" styleClass="normalbutton" text="Edit" />
+                              <Button fx:id="nextCancelBtn" layoutX="288.0" layoutY="347.0" mnemonicParsing="false" onAction="#onNextCancelAction" prefHeight="26.0" prefWidth="94.0" styleClass="cancelbutton" text="Cancel" visible="false" />
                            </children>
                            <HBox.margin>
                               <Insets left="10.0" />

@@ -130,9 +130,11 @@ public class EmployeesController extends Controller{
         EmployeeFormController controller = fxmlLoader.getController();
         controller.setEmployeeForm(employeeForm);
 
+        Scene scene = new Scene(root, 481, 448);
+        scene.getStylesheets().addAll(getClass().getResource("/css/style.css").toExternalForm());
         Stage stage = new Stage();
         stage.setOpacity(1);
-        stage.setScene(new Scene(root, 481, 448));
+        stage.setScene(scene);
         stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
