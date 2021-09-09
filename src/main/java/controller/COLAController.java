@@ -1,38 +1,49 @@
 package controller;
 
+import dao.ColaPOJO;
 import driver.Driver;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import model.OvertimeEntry;
+import model.EmployeeForm;
 import wrapper.EmployeeWrapper;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Optional;
 import java.util.function.Predicate;
 
-public class COLAController extends Controller{
+public class COLAController extends Controller {
+    private static final PseudoClass COLUMN_HOVER_PSEUDO_CLASS = PseudoClass.getPseudoClass("column-hover");
 
     @FXML
     private AnchorPane navBar_container;
 
     @FXML
-    private ChoiceBox companyCb, checkedCb;
-
-    @FXML
-    private Button checkAllBtn, searchBtn;
+    private ChoiceBox<String> companyCb;
 
     @FXML
     private TextField nameTf;
 
     @FXML
-    private TableColumn idTc, nameTc, companyTc, buttonTc;
+    private TableView<EmployeeWrapper> employeesTv;
+    @FXML
+    private TableColumn<EmployeeWrapper, String> idTc, nameTc, companyTc;
+    @FXML
+    private TableColumn<EmployeeWrapper, ChoiceBox<String>> buttonTc;
 
+    private EmployeeForm employeeForm;
     private FilteredList<EmployeeWrapper> filteredEntries;
-    private Predicate<EmployeeWrapper> nameFilter = entry -> true, companyFilter = entry -> true,
-            checkedFilter = entry -> true;
+    private Predicate<EmployeeWrapper> nameFilter = entry -> true, companyFilter = entry -> true;
 
     @Override
     public void update() {
@@ -40,11 +51,85 @@ public class COLAController extends Controller{
         if (navBar_container.getChildren().isEmpty()) {
             navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
         }
+
+        employeeForm = new EmployeeForm();
+        ObservableList<EmployeeWrapper> entries = FXCollections.observableArrayList();
+        entries.setAll(employeeForm.getEmployees());
+        filteredEntries = new FilteredList<>(entries);
+        employeesTv.setItems(filteredEntries);
     }
 
     @FXML
     public void initialize(){
+        disableReorder();
 
+        initCol(idTc, "employeeID");
+        initCol(nameTc, "completeName");
+        initCol(companyTc, "companyFull");
+        buttonTc.setCellFactory(t -> {
+            ChoiceBox<String> choiceBox = new ChoiceBox<>();
+            TableCell<EmployeeWrapper, ChoiceBox<String>> cell = new TableCell<>() {
+                @Override
+                public void updateItem(ChoiceBox<String> item, boolean empty) {
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(choiceBox);
+                    }
+                }
+            };
+
+            ObservableList<String> values = FXCollections.observableArrayList(
+                    "Full day", "Half day", "None");
+            choiceBox.setItems(values);
+            choiceBox.setValue("Full day");
+            choiceBox.setPrefWidth(70);
+
+            choiceBox.setOnAction(e -> {
+                String value = choiceBox.getValue();
+                EmployeeWrapper employee = cell.getTableRow().getItem();
+                if (value.equals("Full day")) {
+                    employee.setCola(10);
+                } else if (value.equals("Half day")) {
+                    employee.setCola(5);
+                } else {
+                    employee.setCola(0);
+                }
+            });
+
+            cell.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            cell.setAlignment(Pos.CENTER);
+            return cell;
+        });
+    }
+
+    private <T> void initCol(TableColumn<EmployeeWrapper, T> col, String tag) {
+        col.setCellValueFactory(new PropertyValueFactory<>(tag));
+
+        // hover property
+        BooleanProperty columnHover = new SimpleBooleanProperty();
+
+        col.setCellFactory(column -> {
+            TableCell<EmployeeWrapper, T> cell = new TableCell<>();
+
+            if (!tag.isEmpty()) {
+                cell.textProperty().bind(Bindings.createStringBinding(() -> cell.isEmpty() ? "" : String.format("%s", cell.getItem()),
+                        cell.itemProperty(), cell.emptyProperty()));
+            }
+            cell.hoverProperty().addListener((obs, wasHovered, isNowHovered) -> columnHover.set(isNowHovered));
+
+            columnHover.addListener((obs, columnWasHovered, columnIsNowHovered) ->
+                    cell.pseudoClassStateChanged(COLUMN_HOVER_PSEUDO_CLASS, columnIsNowHovered)
+            );
+            return cell;
+        });
+    }
+
+    private void disableReorder() {
+        idTc.setReorderable(false);
+        nameTc.setReorderable(false);
+        companyTc.setReorderable(false);
+        buttonTc.setReorderable(false);
     }
 
     @FXML
@@ -54,42 +139,40 @@ public class COLAController extends Controller{
         filteredEntries.setPredicate(nameFilter.and(companyFilter));
     }
 
-    public void onFilterCompanyAction(){
-        /*
+    @FXML
+    private void onFilterCompanyAction() {
         if (companyCb.getValue().equals("All")) {
             companyFilter = entry -> true;
         } else {
             companyFilter = entry ->
                     entry.getCompanyFull().equals(companyCb.getValue());
         }
-        filteredEntries.setPredicate(companyFilter.and(nameFilter));*/
-
-    }
-
-    public void onFilterCheckedAction(){
-        /*
-        if (checkedCb.getValue().equals("All")) {
-            checkedFilter = entry -> true;
-        } else {
-
-        }
-        filteredEntries.setPredicate(checkedFilter.and(nameFilter));*/
-
+        filteredEntries.setPredicate(companyFilter.and(nameFilter));
     }
 
     @FXML
-    private void onCheckAllAction() {
-        /*
-        boolean value = checkAllBtn.getText().equals("Check All");
-        for (OvertimeEntry entry : filteredEntries) {
-            entry.setStatus(value);
-        }
-        if (value) {
-            checkAllBtn.setText("Uncheck All");
-        } else {
-            checkAllBtn.setText("Check All");
-        }
-        employeeTv.refresh();*/
-    }
+    private void onSaveAction() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setGraphic(null);
+        alert.setTitle("Confirmation Dialog");
+        alert.setContentText("Save changes?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            ArrayList<ColaPOJO> colas = new ArrayList<>();
+            Date date = new Date();
+            for (EmployeeWrapper employee: filteredEntries) {
+                colas.add(new ColaPOJO(employee.getEmployeeID(), date, employee.getCola()));
+            }
+            employeeForm.updateCola(colas, date);
 
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setTitle("Success");
+            alert.setContentText("Cola has been updated");
+
+            alert.showAndWait();
+        }
+    }
 }
