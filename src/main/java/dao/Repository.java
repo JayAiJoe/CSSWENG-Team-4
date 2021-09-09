@@ -251,4 +251,10 @@ public class Repository {
 
         collection.replaceOne(eq("date", workday.getDate()), workday);
     }
+
+    public void updateCola(ColaPOJO cola) {
+        MongoCollection<ColaPOJO> collection = database.getCollection("cola", ColaPOJO.class);
+
+        collection.replaceOne(and(eq("date", cola.getDate()), eq("employeeID", cola.getEmployeeID())), cola);
+    }
 }
