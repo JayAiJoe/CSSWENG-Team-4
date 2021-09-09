@@ -1,17 +1,22 @@
 package controller;
 
+import driver.Driver;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import model.OvertimeEntry;
 import wrapper.EmployeeWrapper;
 
 import java.util.function.Predicate;
 
 public class COLAController extends Controller{
+
+    @FXML
+    private AnchorPane navBar_container;
 
     @FXML
     private ChoiceBox companyCb, checkedCb;
@@ -31,7 +36,10 @@ public class COLAController extends Controller{
 
     @Override
     public void update() {
-
+        // load navigation bar
+        if (navBar_container.getChildren().isEmpty()) {
+            navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
+        }
     }
 
     @FXML
