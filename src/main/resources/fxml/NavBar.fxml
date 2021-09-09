@@ -20,6 +20,7 @@
          <items>
             <MenuItem mnemonicParsing="false" onAction="#onEmployeesAction" text="View Employees" />
             <MenuItem mnemonicParsing="false" onAction="#onAttendanceStatisticsAction" text="Attendance Statistics" />
+            <MenuItem mnemonicParsing="false" onAction="#onCOLAAction" text="COLA" />
          </items>
       </MenuButton>
    </children>

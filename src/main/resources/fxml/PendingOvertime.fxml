@@ -16,8 +16,19 @@
          <children>
             <AnchorPane prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <HBox alignment="CENTER" layoutX="-14.0" layoutY="166.0" prefHeight="567.0" prefWidth="1186.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0">
+                  <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="-120.0" layoutY="28.0" prefHeight="26.0" prefWidth="829.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Text fill="#1360a8" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending Overtime" textAlignment="CENTER" wrappingWidth="288.8695831298828">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children></AnchorPane>
+                  <HBox alignment="CENTER" layoutY="111.0" prefHeight="567.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <AnchorPane prefHeight="567.0" prefWidth="608.0" style="-fx-background-color: F0F1F4; -fx-background-radius: 20;">
                            <children>
@@ -39,17 +50,6 @@
                         </AnchorPane>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" />
-                  <HBox alignment="CENTER" layoutX="178.0" layoutY="100.0" prefHeight="26.0" prefWidth="829.0" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="178.39999999999998">
-                     <children>
-                        <Text fill="#1360a8" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending Overtime" textAlignment="CENTER" wrappingWidth="288.8695831298828">
-                           <font>
-                              <Font name="System Bold" size="30.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="-1.0" layoutY="155.0" prefHeight="26.0" prefWidth="1186.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
          </children>

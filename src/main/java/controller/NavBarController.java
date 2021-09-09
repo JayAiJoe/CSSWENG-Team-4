@@ -66,4 +66,13 @@ public class NavBarController {
         menuButton.hide();
         Driver.getScreenController().activate("ApprovedOvertimeWorkHours");
     }
+
+    /**
+     * Changes screen to COLA.fxml.
+     */
+    @FXML
+    private void onCOLAAction(){
+        employeeButton.hide();
+        Driver.getScreenController().activate("COLA");
+    }
 }
