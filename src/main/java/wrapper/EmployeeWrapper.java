@@ -7,9 +7,11 @@ import java.text.DecimalFormat;
 public class EmployeeWrapper {
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private EmployeePOJO employee;
+    private int cola;
 
     public EmployeeWrapper(EmployeePOJO employee) {
         this.employee = employee;
+        this.cola = 10;
     }
 
     public EmployeePOJO getEmployee() {
@@ -46,5 +48,13 @@ public class EmployeeWrapper {
 
     public String getCompanyFull() {
         return getCompany().equals("CRAYOLA") ? "Crayola Atbp." : "IX-XI Hardware";
+    }
+
+    public int getCola() {
+        return cola;
+    }
+
+    public void setCola(int cola) {
+        this.cola = cola;
     }
 }
