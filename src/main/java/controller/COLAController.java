@@ -39,7 +39,7 @@ public class COLAController extends Controller {
     @FXML
     private TableColumn<EmployeeWrapper, String> idTc, nameTc, companyTc;
     @FXML
-    private TableColumn<EmployeeWrapper, ChoiceBox<String>> buttonTc;
+    private TableColumn<EmployeeWrapper, Integer> buttonTc;
 
     private EmployeeForm employeeForm;
     private FilteredList<EmployeeWrapper> filteredEntries;
@@ -53,6 +53,7 @@ public class COLAController extends Controller {
         }
 
         employeeForm = new EmployeeForm();
+        employeeForm.initializeCola();
         ObservableList<EmployeeWrapper> entries = FXCollections.observableArrayList();
         entries.setAll(employeeForm.getEmployees());
         filteredEntries = new FilteredList<>(entries);
@@ -66,28 +67,36 @@ public class COLAController extends Controller {
         initCol(idTc, "employeeID");
         initCol(nameTc, "completeName");
         initCol(companyTc, "companyFull");
+        buttonTc.setCellValueFactory(new PropertyValueFactory<>("cola"));
         buttonTc.setCellFactory(t -> {
             ChoiceBox<String> choiceBox = new ChoiceBox<>();
-            TableCell<EmployeeWrapper, ChoiceBox<String>> cell = new TableCell<>() {
+            ObservableList<String> values = FXCollections.observableArrayList(
+                    "Full day", "Half day", "None");
+            choiceBox.setItems(values);
+            choiceBox.setPrefWidth(70);
+            
+            TableCell<EmployeeWrapper, Integer> cell = new TableCell<>() {
                 @Override
-                public void updateItem(ChoiceBox<String> item, boolean empty) {
+                public void updateItem(Integer item, boolean empty) {
                     if (empty) {
                         setGraphic(null);
                     } else {
+                        switch (item) {
+                            case 0: choiceBox.setValue("None"); break;
+                            case 5: choiceBox.setValue("Half day"); break;
+                            default: choiceBox.setValue("Full day"); break;
+                        }
                         setGraphic(choiceBox);
                     }
                 }
             };
 
-            ObservableList<String> values = FXCollections.observableArrayList(
-                    "Full day", "Half day", "None");
-            choiceBox.setItems(values);
-            choiceBox.setValue("Full day");
-            choiceBox.setPrefWidth(70);
-
             choiceBox.setOnAction(e -> {
                 String value = choiceBox.getValue();
                 EmployeeWrapper employee = cell.getTableRow().getItem();
+                if (employee == null) {
+                    return;
+                }
                 if (value.equals("Full day")) {
                     employee.setCola(10);
                 } else if (value.equals("Half day")) {
