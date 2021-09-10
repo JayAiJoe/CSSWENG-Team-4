@@ -42,6 +42,11 @@
     -fx-border-color: #3F86F1;
 }
 
+.searchbutton: hover {
+    -fx-background-color: #3F86F1;
+    -fx-border-color: #3F86F1;
+}
+
 .searchfield {
     -fx-background-color: #EAF5FF;
     -fx-border-color: #3F86F1;

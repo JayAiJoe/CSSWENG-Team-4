@@ -41,10 +41,10 @@
                      <children>
                         <TableView fx:id="employeesTv" layoutX="21.0" layoutY="66.0" prefHeight="485.0" prefWidth="631.0" stylesheets="@../css/Tableview.css">
                            <columns>
-                              <TableColumn fx:id="idTc" editable="false" prefWidth="119.99993896484375" sortable="false" text="ID" />
-                              <TableColumn fx:id="nameTc" editable="false" prefWidth="192.800048828125" sortable="false" text="Name" />
-                              <TableColumn fx:id="companyTc" editable="false" prefWidth="190.4000244140625" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Company" />
-                              <TableColumn fx:id="buttonTc" prefWidth="125.5999755859375" sortable="false" text="COLA" />
+                              <TableColumn fx:id="idTc" editable="false" prefWidth="119.99993896484375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="ID" />
+                              <TableColumn fx:id="nameTc" editable="false" prefWidth="192.800048828125" resizable="false" sortable="false" text="Name" />
+                              <TableColumn fx:id="companyTc" editable="false" prefWidth="190.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Company" />
+                              <TableColumn fx:id="buttonTc" prefWidth="125.5999755859375" resizable="false" sortable="false" text="COLA" />
                            </columns>
                         </TableView>
                         <Text layoutX="23.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Show" wrappingWidth="35.35901641845703" />
@@ -58,8 +58,8 @@
                               </FXCollections>
                            </items>
                         </ChoiceBox>
-                        <TextField fx:id="nameTf" layoutX="299.0" layoutY="23.0" prefHeight="16.0" prefWidth="192.0" promptText="Name Search" styleClass="searchfield" />
-                        <Button fx:id="searchBtn" layoutX="268.0" layoutY="23.0" mnemonicParsing="false" onAction="#onFilterNameAction" prefHeight="27.0" prefWidth="31.0" styleClass="searchbutton">
+                        <TextField fx:id="nameTf" layoutX="189.0" layoutY="22.0" onAction="#onFilterNameAction" prefHeight="16.0" prefWidth="192.0" promptText="Name Search" styleClass="searchfield" />
+                        <Button fx:id="searchBtn" layoutX="158.0" layoutY="22.0" mnemonicParsing="false" onAction="#onFilterNameAction" prefHeight="27.0" prefWidth="31.0" styleClass="searchbutton">
                            <graphic>
                               <ImageView fitHeight="18.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                  <viewport>
