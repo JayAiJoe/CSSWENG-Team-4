@@ -52,6 +52,25 @@ public class EmployeeForm {
         Repository.getInstance().updateEmployee(employee.getEmployee());
     }
 
+    public void initializeCola() {
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        String today = format.format(date);
+        ArrayList<ColaPOJO> check = Repository.getInstance().getCola(
+                new Date(date.getTime() - 86400000L), new Date(date.getTime() + 86400000L));
+
+        for (EmployeeWrapper employee: employees) {
+            for (ColaPOJO checkCola: check) {
+                // check if cola is already in database
+                if (today.equals(format.format(checkCola.getDate())) &&
+                        employee.getEmployeeID() == checkCola.getEmployeeID()) {
+                    employee.setCola(checkCola.getCola());
+                    break;
+                }
+            }
+        }
+    }
+
     public void updateCola(ArrayList<ColaPOJO> colas, Date date) {
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
         String today = format.format(date);
