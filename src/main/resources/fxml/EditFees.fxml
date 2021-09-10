@@ -63,8 +63,8 @@
                                        <children>
                                           <Button fx:id="pi_save_btn" disable="true" layoutX="52.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Save" visible="false" />
                                           <TextField fx:id="pi_employeeTf" disable="true" layoutX="216.0" layoutY="34.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
-                                          <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="111.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="58.0" styleClass="cancelbutton" text="Cancel" visible="false" />
-                                          <Button fx:id="pi_edit_btn" layoutX="52.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Edit" />
+                                          <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="278.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="58.0" styleClass="cancelbutton" text="Cancel" visible="false" />
+                                          <Button fx:id="pi_edit_btn" layoutX="168.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Edit" />
                                           <Text layoutX="51.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employee Share:" />
                                           <TextField fx:id="pi_employerTf" disable="true" layoutX="216.0" layoutY="80.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
                                           <Text layoutX="51.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employer Contribution:" />

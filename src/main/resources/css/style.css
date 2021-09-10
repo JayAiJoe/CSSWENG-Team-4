@@ -54,9 +54,9 @@
 
 .normalbutton {
 -fx-font-family: 'Dosis';
--fx-background-color: #75B3FB;
+-fx-background-color: #0094FF;
 -fx-text-fill: white;
--fx-border-color:  #90AFFF;
+-fx-border-color:  #0094FF;
 -fx-background-radius: 0px;
 }
 
@@ -64,13 +64,30 @@
  -fx-font-family: 'Dosis';
  -fx-background-color: #5b62f5;
  -fx-text-fill: white;
- -fx-border-color:  #90AFFF;
+ -fx-border-color:  #5b62f5;
+ -fx-background-radius: 0px;
+}
+
+.normalbutton: hover{
+ -fx-font-family: 'Dosis';
+ -fx-background-color: #5b62f5;
+ -fx-text-fill: white;
+ -fx-border-color:  #5b62f5;
  -fx-background-radius: 0px;
 }
 
 .cancelbutton {
 -fx-font-family: 'Dosis';
--fx-background-color: #FB7E86;
+-fx-background-color: #FF4F4F;
 -fx-text-fill: white;
+-fx-background-color: #FF4F4F;
+-fx-background-radius: 0px;
+}
+
+.cancelbutton: hover {
+-fx-font-family: 'Dosis';
+-fx-background-color: red;
+-fx-text-fill: white;
+-fx-border-color:  red;
 -fx-background-radius: 0px;
 }
