@@ -24,7 +24,7 @@ public class PayrollController extends Controller {
     private static final PseudoClass COLUMN_HOVER_PSEUDO_CLASS = PseudoClass.getPseudoClass("column-hover");
 
     @FXML
-    private AnchorPane navBar_container;
+    private AnchorPane navBar_container, emptypayroll, displaypayroll;
 
     /**
      * Instantiation of objects related to the company info in Payroll.fxml
