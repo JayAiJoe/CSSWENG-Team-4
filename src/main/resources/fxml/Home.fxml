@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -19,6 +27,60 @@
                         </Text>
                      </children>
                   </AnchorPane>
+                  <HBox alignment="CENTER" layoutY="107.0" prefHeight="574.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="574.0" prefWidth="568.0">
+                           <children>
+                              <AnchorPane prefHeight="241.0" prefWidth="568.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
+                                 <children>
+                                    <Text layoutX="54.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Create a new Payroll" wrappingWidth="150.55902862548828" />
+                                    <Text layoutX="54.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Date Range:" wrappingWidth="72.15900421142578" />
+                                    <DatePicker fx:id="startDate" layoutX="129.0" layoutY="76.0" prefHeight="26.0" prefWidth="115.0" />
+                                    <DatePicker fx:id="endDate" layoutX="274.0" layoutY="76.0" prefHeight="26.0" prefWidth="115.0" />
+                                    <Text layoutX="251.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To" wrappingWidth="15.359016418457031" />
+                                    <ChoiceBox fx:id="frequencyCb" layoutX="129.0" layoutY="138.0" prefHeight="26.0" prefWidth="122.0">
+                                       <items>
+                                          <FXCollections fx:factory="observableArrayList">
+                                             <String fx:value="Weekly" />
+                                             <String fx:value="Biweekly" />
+                                          </FXCollections>
+                                       </items>
+                                    </ChoiceBox>
+                                    <Text layoutX="54.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Type:" wrappingWidth="72.15900421142578" />
+                                    <Button layoutX="243.0" layoutY="201.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Create" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="241.0" prefWidth="568.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
+                                 <children>
+                                    <Text layoutX="70.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Fees and Deductions" wrappingWidth="115.19999999999982" />
+                                    <Text layoutX="396.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employees" wrappingWidth="63.35907745361328" />
+                                    <Button layoutX="87.0" layoutY="181.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Go To Page" />
+                                    <Button layoutX="386.0" layoutY="181.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Go To Page" />
+                                    <Button fx:id="sssBtn" layoutX="90.0" layoutY="55.0" mnemonicParsing="false" onAction="#onSSSUpload" prefHeight="26.0" prefWidth="115.0" styleClass="normalbutton" text="Upload a File" />
+                                    <Button fx:id="employeeBtn" layoutX="386.0" layoutY="55.0" mnemonicParsing="false" onAction="#onEmployeesUpload" prefHeight="26.0" prefWidth="115.0" styleClass="normalbutton" text="Upload a File" />
+                                    <Text layoutX="27.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="SSS" wrappingWidth="28.000048828124818" />
+                                    <Text layoutX="27.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Philhealth" wrappingWidth="63.35907745361328" />
+                                    <Text layoutX="27.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Pag-ibig" wrappingWidth="47.20011825561505" />
+                                    <Button fx:id="philhealthBtn" layoutX="90.0" layoutY="94.0" mnemonicParsing="false" onAction="#onPhilhealthUpload" prefHeight="26.0" prefWidth="115.0" styleClass="normalbutton" text="Upload a File" />
+                                    <Button fx:id="pagibigBtn" layoutX="90.0" layoutY="134.0" mnemonicParsing="false" onAction="#onPagibigUpload" prefHeight="26.0" prefWidth="115.0" styleClass="normalbutton" text="Upload a File" />
+                                    <Text layoutX="310.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employees" wrappingWidth="63.35907745361328" />
+                                    <Text layoutX="310.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Attendance Log" wrappingWidth="63.35907745361328" />
+                                    <Button fx:id="attendanceBtn" layoutX="386.0" layoutY="116.0" mnemonicParsing="false" onAction="#onAttendanceUpload" prefHeight="26.0" prefWidth="115.0" styleClass="normalbutton" text="Upload a File" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
          </children>
