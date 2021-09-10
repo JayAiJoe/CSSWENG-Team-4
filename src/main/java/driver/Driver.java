@@ -19,11 +19,6 @@ public class Driver extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        // load the tron font.
-        /*Font.loadFont(
-                getClass().getResource("/css/dosis.book.ttf").toExternalForm(),
-                10
-        );*/
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/NavBar.fxml")));
         Scene scene = new Scene(root);

@@ -154,4 +154,8 @@ public class PayrollController extends Controller {
             payrollTv.setItems(ixxiEntries);
         }
     }
+
+    public void onHomeClick(){
+        Driver.getScreenController().activate("Home");
+    }
 }

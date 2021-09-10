@@ -68,4 +68,12 @@ public class HomePageController extends Controller {
         File file = pagibigfileChooser.showOpenDialog(pagibigBtn.getScene().getWindow());
         System.out.println(file);
     }
+
+    public void onGoToEmployeesClick(){
+        Driver.getScreenController().activate("Employees");
+    }
+
+    public void onGoToFeesClick(){
+        Driver.getScreenController().activate("EditFees");
+    }
 }

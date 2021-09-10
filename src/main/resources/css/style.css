@@ -91,3 +91,17 @@
 -fx-border-color:  red;
 -fx-background-radius: 0px;
 }
+
+.hyperlabel {
+    -fx-fill: #040DE1;
+    -fx-font-size: 18px;
+}
+
+.hyperlabel: hover {
+    -fx-fill: #5201FF;
+}
+
+.notiftext {
+    -fx-fill: #1360A8;
+    -fx-font-size: 16px;
+}
