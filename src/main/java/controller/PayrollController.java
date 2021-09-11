@@ -16,6 +16,9 @@ import javafx.scene.text.Text;
 import model.Payroll;
 import model.PayrollEntry;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * This class is the main controller for any scripted event
  * for Payroll.fxml like onClick events, listeners, etc.
@@ -24,7 +27,7 @@ public class PayrollController extends Controller {
     private static final PseudoClass COLUMN_HOVER_PSEUDO_CLASS = PseudoClass.getPseudoClass("column-hover");
 
     @FXML
-    private AnchorPane navBar_container, emptypayroll, displaypayroll;
+    private AnchorPane navBar_container, emptyPayroll, displayPayroll;
 
     /**
      * Instantiation of objects related to the company info in Payroll.fxml
@@ -49,6 +52,10 @@ public class PayrollController extends Controller {
     private Payroll payroll = null;
     private ObservableList<PayrollEntry> crayolaEntries = FXCollections.observableArrayList(),
             ixxiEntries = FXCollections.observableArrayList();
+    private Date startDate, endDate;
+    private String frequency;
+    private boolean created = false;
+    private boolean newPayroll = false;
 
     @Override
     public void update() {
@@ -57,23 +64,37 @@ public class PayrollController extends Controller {
             navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
         }
 
-        crayolaBtn.setDisable(true);
-        ixxiBtn.setDisable(false);
-        addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
-        companyText.setText("Crayola atbp.");
+        if (created) {
+            displayPayroll.toFront();
 
+            crayolaBtn.setDisable(true);
+            ixxiBtn.setDisable(false);
+            addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+            companyText.setText("Crayola atbp.");
 
-        // get and set data in table
-        if (payroll == null) {
-            payroll = new Payroll();
-            daterangeText.setText(daterangeText.getText() + " " + payroll.getDateStart()
-                    + " - " + payroll.getDateEnd());
+            if (newPayroll) {
+                // get and set data in table
+                payroll = new Payroll(startDate, endDate, frequency);
+                daterangeText.setText(daterangeText.getText() + " " +
+                        new SimpleDateFormat("MM/dd/yyyy").format(startDate) + " - " +
+                        new SimpleDateFormat("MM/dd/yyyy").format(endDate));
+                crayolaEntries.setAll(payroll.getCrayolaEntries());
+                ixxiEntries.setAll(payroll.getIxxiEntries());
+                payrollTv.setItems(crayolaEntries);
+                newPayroll = false;
+            }
         } else {
-            payroll.update();
+            emptyPayroll.toFront();
         }
-        crayolaEntries.setAll(payroll.getCrayolaEntries());
-        ixxiEntries.setAll(payroll.getIxxiEntries());
-        payrollTv.setItems(crayolaEntries);
+        navBar_container.toFront();
+    }
+
+    public void setPayrollInfo(Date startDate, Date endDate, String frequency) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.frequency = frequency;
+        this.created = true;
+        this.newPayroll = true;
     }
 
     @FXML
