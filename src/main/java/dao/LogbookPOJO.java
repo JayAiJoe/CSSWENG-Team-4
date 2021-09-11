@@ -13,6 +13,7 @@ public class LogbookPOJO {
     private int timeOut2;
     private int approvedOT;
     private int pendingOT;
+    private int minsLate;
 
     public LogbookPOJO(int employeeID, String completeName, Date date, double temp, int timeIn1, int timeOut1, int timeIn2, int timeOut2) {
         this.employeeID = employeeID;
@@ -25,6 +26,7 @@ public class LogbookPOJO {
         this.timeOut2 = timeOut2;
         this.approvedOT = 0;
         this.pendingOT = 0;
+        this.minsLate = 0;
     }
 
     public LogbookPOJO() {
@@ -70,6 +72,10 @@ public class LogbookPOJO {
         return pendingOT;
     }
 
+    public int getMinsLate() {
+        return minsLate;
+    }
+
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
@@ -108,5 +114,9 @@ public class LogbookPOJO {
 
     public void setPendingOT(int pendingOT) {
         this.pendingOT = pendingOT;
+    }
+
+    public void setMinsLate(int minsLate) {
+        this.minsLate = minsLate;
     }
 }
