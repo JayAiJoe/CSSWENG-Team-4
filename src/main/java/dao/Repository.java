@@ -119,7 +119,7 @@ public class Repository {
     public PerformancePOJO findPerformanceOne(int employeeID, Date dateStart) {
         MongoCollection<PerformancePOJO> collection = database.getCollection("performance", PerformancePOJO.class);
         PerformancePOJO performance;
-        performance = collection.find(and(eq("employeeID", employeeID), gte("dateStart", dateStart))).first();
+        performance = collection.find(and(eq("employeeID", employeeID), eq("dateStart", dateStart))).first();
 
         return performance;
     }
@@ -227,6 +227,20 @@ public class Repository {
             collection.find(lte("date", endDate)).into(cola);
         } else {
             collection.find(and(gte("date", startDate), lte("date", endDate))).into(cola);
+        }
+
+        return cola;
+    }
+
+    public ArrayList<ColaPOJO> getEmployeeCola(int employeeID, Date startDate, Date endDate) {
+        MongoCollection<ColaPOJO> collection = database.getCollection("cola", ColaPOJO.class);
+        ArrayList<ColaPOJO> cola = new ArrayList<>();
+        if (endDate == null) {
+            collection.find(and(gte("date", startDate), eq("employeeID", employeeID))).into(cola);
+        } else if (startDate == null) {
+            collection.find(and(lte("date", endDate), eq("employeeID", employeeID))).into(cola);
+        } else {
+            collection.find(and(gte("date", startDate), lte("date", endDate), eq("employeeID", employeeID))).into(cola);
         }
 
         return cola;
