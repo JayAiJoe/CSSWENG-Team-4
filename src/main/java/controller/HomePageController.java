@@ -1,16 +1,21 @@
 package controller;
 
+import dao.LogbookPOJO;
 import driver.Driver;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import model.AttendanceProcessor;
+import model.ExcelHandler;
 
 import java.io.File;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class HomePageController extends Controller {
@@ -75,7 +80,7 @@ public class HomePageController extends Controller {
         }
     }
 
-    public void onEmployeesUpload(){
+    public void onEmployeesUpload() {
         FileChooser employeefileChooser = new FileChooser();
         employeefileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
@@ -83,15 +88,39 @@ public class HomePageController extends Controller {
         System.out.println(file);
     }
 
-    public void onAttendanceUpload(){
+    public void onAttendanceUpload() {
         FileChooser attendancefileChooser = new FileChooser();
         attendancefileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
         File file = attendancefileChooser.showOpenDialog(attendanceBtn.getScene().getWindow());
         System.out.println(file);
+
+        if (file == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("No file selected!");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            // read file
+            ArrayList<LogbookPOJO> logbooks = new ExcelHandler().readLogbook(file);
+            // process attendance
+            new AttendanceProcessor(logbooks);
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Error reading file!");
+            alert.showAndWait();
+        }
     }
 
-    public void onSSSUpload(){
+    public void onSSSUpload() {
         FileChooser sssfileChooser = new FileChooser();
         sssfileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
@@ -99,7 +128,7 @@ public class HomePageController extends Controller {
         System.out.println(file);
     }
 
-    public void onPhilhealthUpload(){
+    public void onPhilhealthUpload() {
         FileChooser philhealthfileChooser = new FileChooser();
         philhealthfileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
@@ -107,7 +136,7 @@ public class HomePageController extends Controller {
         System.out.println(file);
     }
 
-    public void onPagibigUpload(){
+    public void onPagibigUpload() {
         FileChooser pagibigfileChooser = new FileChooser();
         pagibigfileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
