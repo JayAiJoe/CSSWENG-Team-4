@@ -56,10 +56,10 @@ public class ExcelHandler {
         return SSSvalues;
     }
 
-    public ArrayList<LogbookPOJO> readLogbook(String filePath) throws IOException, ParseException {
+    public ArrayList<LogbookPOJO> readLogbook(File file) throws IOException, ParseException {
         ArrayList<LogbookPOJO> logbook = new ArrayList<>();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Workbook workbook = WorkbookFactory.create(new File(filePath));
+        Workbook workbook = WorkbookFactory.create(file);
         DataFormatter dataFormatter = new DataFormatter();
         int sheetIndex = 4;
         String name;
