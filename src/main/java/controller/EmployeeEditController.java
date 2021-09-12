@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class EmployeeEditController extends Controller {
     @FXML
-    private Button editBtn, removeBtn;
+    private Button editBtn, removeBtn, saveBtn;
 
     /**
      * initialization of error text  and textfields in EmployeeEdit.fxml
@@ -106,65 +106,67 @@ public class EmployeeEditController extends Controller {
      */
     @FXML
     private void onEditAction() {
-        if (editBtn.getText().equals("Edit")) { // on edit btn click
-            editBtn.setText("Save");
-            removeBtn.setVisible(false);
-            setTextFieldsStatus(false);
-        } else if (editBtn.getText().equals("Save")) { // on save button click
-            hideErrorText();
-            boolean check = true;
-            if (nameTf.getText().equals("")) {
-                nameErrorText.setText("Name should be filled!");
-                nameErrorText.setVisible(true);
-                check = false;
-            }
+        saveBtn.setVisible(true);
+        removeBtn.setVisible(false);
+        setTextFieldsStatus(false);
 
-            if (wageTf.getText().equals("")) {
-                wageErrorText.setText("Wage should be filled!");
+    }
+
+    public void onSaveAction(){
+        hideErrorText();
+        boolean check = true;
+        if (nameTf.getText().equals("")) {
+            nameErrorText.setText("Name should be filled!");
+            nameErrorText.setVisible(true);
+            check = false;
+        }
+
+        if (wageTf.getText().equals("")) {
+            wageErrorText.setText("Wage should be filled!");
+            wageErrorText.setVisible(true);
+            check = false;
+        } else {
+            double wage = Double.parseDouble(wageTf.getText());
+            if (wage <= 0 || !checkDecimalPlaces(wageTf.getText())) {
+                wageErrorText.setText("Wage should be a positive value with up to 2 decimal places only!");
                 wageErrorText.setVisible(true);
                 check = false;
-            } else {
-                double wage = Double.parseDouble(wageTf.getText());
-                if (wage <= 0 || !checkDecimalPlaces(wageTf.getText())) {
-                    wageErrorText.setText("Wage should be a positive value with up to 2 decimal places only!");
-                    wageErrorText.setVisible(true);
-                    check = false;
-                }
-            }
-
-            if (check) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Dialog");
-                alert.setHeaderText(null);
-                alert.setGraphic(null);
-
-                String alertText = "Save Changes?";
-                double wage = Double.parseDouble(wageTf.getText());
-                if (wage < employee.getWage()) {
-                    alertText += "\n\nWarning: New wage is less than previous wage!";
-                }
-                alert.setContentText(alertText);
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK) {
-                    employee.getEmployee().setCompleteName(nameTf.getText());
-                    employee.getEmployee().setWage(Double.parseDouble(wageTf.getText()));
-                    employeeForm.updateEmployee(employee);
-                    resetEmployee();
-
-                    editBtn.setText("Edit");
-                    setTextFieldsStatus(true);
-                    removeBtn.setVisible(true);
-
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success");
-                    alert.setHeaderText(null);
-                    alert.setGraphic(null);
-                    alert.setContentText("Employee has been updated");
-                    alert.showAndWait();
-                }
             }
         }
+
+        if (check) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+
+            String alertText = "Save Changes?";
+            double wage = Double.parseDouble(wageTf.getText());
+            if (wage < employee.getWage()) {
+                alertText += "\n\nWarning: New wage is less than previous wage!";
+            }
+            alert.setContentText(alertText);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                employee.getEmployee().setCompleteName(nameTf.getText());
+                employee.getEmployee().setWage(Double.parseDouble(wageTf.getText()));
+                employeeForm.updateEmployee(employee);
+                resetEmployee();
+
+                saveBtn.setVisible(false);
+                setTextFieldsStatus(true);
+                removeBtn.setVisible(true);
+
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setGraphic(null);
+                alert.setContentText("Employee has been updated");
+                alert.showAndWait();
+            }
+        }
+
     }
 
     /**
@@ -180,7 +182,7 @@ public class EmployeeEditController extends Controller {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            editBtn.setText("Edit");
+            saveBtn.setVisible(false);
             setTextFieldsStatus(true);
             hideErrorText();
             removeBtn.setVisible(true);

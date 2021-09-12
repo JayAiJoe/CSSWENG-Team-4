@@ -6,6 +6,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -40,11 +42,38 @@
                                                 <TableColumn fx:id="ph_value" prefWidth="179.99996948242188" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Fee" />
                                              </columns>
                                           </TableView>
-                                          <Button fx:id="ph_save_btn" disable="true" layoutX="7.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Save" />
-                                          <Button fx:id="ph_update_btn" layoutX="7.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Edit" />
-                                          <Button fx:id="ph_cancel_btn" cancelButton="true" disable="true" layoutX="66.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="cancelbutton" text="Cancel" />
-                                          <Button fx:id="ph_add_btn" disable="true" layoutX="367.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onAddRowAction" prefHeight="31.0" prefWidth="65.0" styleClass="normalbutton" text="Add" />
-                                          <Button fx:id="ph_delete_btn" disable="true" layoutX="432.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onDeleteRowAction" prefHeight="31.0" prefWidth="77.0" styleClass="cancelbutton" text="Remove" />
+                                          <Button fx:id="ph_save_btn" disable="true" layoutX="7.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="65.0" styleClass="savebutton" text="Save">
+                                             <graphic>
+                                                <ImageView fitHeight="23.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/checkIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                          <Button fx:id="ph_cancel_btn" cancelButton="true" disable="true" layoutX="72.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="69.0" styleClass="cancelbutton" text="Cancel">
+                                             <graphic>
+                                                <ImageView fitHeight="12.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/cancelIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                          <Button fx:id="ph_add_btn" disable="true" layoutX="367.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onAddRowAction" prefHeight="31.0" prefWidth="65.0" styleClass="normalbutton" text="Add">
+                                             <graphic>
+                                                <ImageView fitHeight="13.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/addIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                          <Button fx:id="ph_delete_btn" disable="true" layoutX="432.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onDeleteRowAction" prefHeight="31.0" prefWidth="77.0" styleClass="cancelbutton" text="Remove">
+                                             <graphic>
+                                                <ImageView fitHeight="58.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/minusIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
                                           <Text fx:id="ph_errorText" fill="RED" layoutX="14.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                                           <HBox alignment="CENTER" layoutX="19.0" prefHeight="46.0" prefWidth="490.0">
                                              <children>
@@ -55,6 +84,7 @@
                                                 </Text>
                                              </children>
                                           </HBox>
+                                          <Button fx:id="ph_update_btn" layoutX="7.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="66.0" styleClass="normalbutton" text="Edit" />
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="10.0" />
@@ -64,10 +94,24 @@
                                        <children>
                                           <Pane layoutX="9.0" layoutY="48.0" prefHeight="222.0" prefWidth="502.0" style="-fx-background-color: white;">
                                              <children>
-                                                <Button fx:id="pi_save_btn" disable="true" layoutX="168.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Save" visible="false" />
+                                                <Button fx:id="pi_save_btn" disable="true" layoutX="46.0" layoutY="157.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="66.0" styleClass="savebutton" text="Save">
+                                                   <graphic>
+                                                      <ImageView fitHeight="14.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/checkIcon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic></Button>
                                                 <TextField fx:id="pi_employeeTf" disable="true" layoutX="216.0" layoutY="34.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
-                                                <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="278.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="58.0" styleClass="cancelbutton" text="Cancel" visible="false" />
-                                                <Button fx:id="pi_edit_btn" layoutX="168.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Edit" />
+                                                <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="113.0" layoutY="157.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="67.0" styleClass="cancelbutton" text="Cancel" visible="false">
+                                                   <graphic>
+                                                      <ImageView fitHeight="11.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/cancelIcon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic></Button>
+                                                <Button fx:id="pi_edit_btn" layoutX="46.0" layoutY="157.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="67.0" styleClass="normalbutton" text="Edit" />
                                                 <Text layoutX="51.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employee Share:" />
                                                 <TextField fx:id="pi_employerTf" disable="true" layoutX="216.0" layoutY="80.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
                                                 <Text layoutX="51.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employer Contribution:" />
@@ -130,12 +174,40 @@
                                           </TableColumn>
                                        </columns>
                                     </TableView>
-                                    <Button fx:id="sss_save_btn" disable="true" layoutX="26.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onSSSEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Save" />
-                                    <Button fx:id="sss_edit_btn" layoutX="26.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onSSSEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Edit" />
-                                    <Button fx:id="sss_cancel_btn" cancelButton="true" disable="true" layoutX="85.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onSSSEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="cancelbutton" text="Cancel" />
-                                    <Button fx:id="sss_add_btn" disable="true" layoutX="408.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onAddSSSRowAction" prefHeight="31.0" prefWidth="65.0" styleClass="normalbutton" text="Add" />
-                                    <Button fx:id="sss_remove_btn" disable="true" layoutX="474.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onDeleteSSSRowAction" prefHeight="31.0" prefWidth="77.0" styleClass="cancelbutton" text="Remove" />
+                                    <Button fx:id="sss_save_btn" disable="true" layoutX="26.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onSSSEditClick" prefHeight="31.0" prefWidth="70.0" styleClass="savebutton" text="Save">
+                                       <graphic>
+                                          <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/checkIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
+                                    <Button fx:id="sss_cancel_btn" cancelButton="true" disable="true" layoutX="96.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onSSSEditClick" prefHeight="31.0" prefWidth="69.0" styleClass="cancelbutton" text="Cancel">
+                                       <graphic>
+                                          <ImageView fitHeight="11.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/cancelIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
+                                    <Button fx:id="sss_add_btn" disable="true" layoutX="408.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onAddSSSRowAction" prefHeight="31.0" prefWidth="65.0" styleClass="normalbutton" text="Add">
+                                       <graphic>
+                                          <ImageView fitHeight="150.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/addIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
+                                    <Button fx:id="sss_remove_btn" disable="true" layoutX="474.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onDeleteSSSRowAction" prefHeight="31.0" prefWidth="77.0" styleClass="cancelbutton" text="Remove">
+                                       <graphic>
+                                          <ImageView fitHeight="150.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/minusIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                     <Text fx:id="sss_errorText" fill="RED" layoutX="26.0" layoutY="625.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                    <Button fx:id="sss_edit_btn" layoutX="27.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onSSSEditClick" prefHeight="31.0" prefWidth="68.0" styleClass="normalbutton" text="Edit" />
                                  </children>
                               </AnchorPane>
                            </children>

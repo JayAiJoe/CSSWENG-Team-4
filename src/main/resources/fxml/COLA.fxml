@@ -16,7 +16,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.COLAController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -55,7 +54,14 @@
                                        </columns>
                                     </TableView>
                                     <Text layoutX="23.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Show" wrappingWidth="35.35901641845703" />
-                                    <Button layoutX="569.0" layoutY="23.0" mnemonicParsing="false" onAction="#onSaveAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Save" />
+                                    <Button layoutX="588.0" layoutY="23.0" mnemonicParsing="false" onAction="#onSaveAction" prefHeight="26.0" prefWidth="64.0" styleClass="savebutton" text="Save">
+                                       <graphic>
+                                          <ImageView fitHeight="15.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/checkIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                     <ChoiceBox fx:id="companyCb" layoutX="58.0" layoutY="23.0" onAction="#onFilterCompanyAction" prefHeight="26.0" prefWidth="86.0" styleClass="choicebox" value="All">
                                        <items>
                                           <FXCollections fx:factory="observableArrayList">

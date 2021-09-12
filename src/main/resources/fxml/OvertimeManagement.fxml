@@ -6,6 +6,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -34,7 +36,7 @@
                      <children>
                         <AnchorPane prefHeight="567.0" prefWidth="577.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 0;">
                            <children>
-                              <TableView fx:id="overtimeTv" layoutX="16.0" layoutY="103.0" prefHeight="442.0" prefWidth="546.0" stylesheets="@../css/Tableview.css">
+                              <TableView fx:id="overtimeTv" layoutX="16.0" layoutY="103.0" prefHeight="442.0" prefWidth="546.0" stylesheets="@../css/Tableview.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="15.200000000000045">
                                 <columns>
                                   <TableColumn fx:id="nameTc" editable="false" prefWidth="156.80005645751953" sortable="false" text="Name" />
                                   <TableColumn fx:id="overtimeTc" editable="false" prefWidth="156.800048828125" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Minutes of Overtime" />
@@ -42,12 +44,26 @@
                                     <TableColumn fx:id="buttonTc" prefWidth="106.4000244140625" sortable="false" text="Select" />
                                 </columns>
                               </TableView>
-                              <DatePicker fx:id="datePicker" layoutX="16.0" layoutY="69.0" prefHeight="26.0" prefWidth="115.0" />
+                              <DatePicker fx:id="datePicker" layoutX="16.0" layoutY="69.0" prefHeight="26.0" prefWidth="115.0" AnchorPane.rightAnchor="446.40000000000003" />
                               <Text layoutX="16.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Filter By date" wrappingWidth="100.15899658203125" />
-                              <Button layoutX="450.0" layoutY="69.0" mnemonicParsing="false" onAction="#onRejectAction" prefHeight="26.0" prefWidth="112.0" styleClass="normalbutton" text="Reject Selected" />
-                              <Button layoutX="338.0" layoutY="69.0" mnemonicParsing="false" onAction="#onApproveAction" prefHeight="26.0" prefWidth="112.0" styleClass="normalbutton" text="Approve Selected" />
-                              <Button fx:id="checkAllBtn" layoutX="198.0" layoutY="69.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Check All" />
-                              <ToggleButton fx:id="filterBtn" layoutX="131.0" layoutY="69.0" mnemonicParsing="false" onAction="#onFilterAction" prefHeight="26.0" prefWidth="67.0" styleClass="normalbutton" text="Filter" />
+                              <Button layoutX="434.0" layoutY="69.0" mnemonicParsing="false" onAction="#onRejectAction" prefHeight="26.0" prefWidth="128.0" styleClass="cancelbutton" text="Reject Selected" AnchorPane.rightAnchor="15.600000000000023">
+                                 <graphic>
+                                    <ImageView fitHeight="14.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/cancelIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button layoutX="306.0" layoutY="69.0" mnemonicParsing="false" onAction="#onApproveAction" prefHeight="26.0" prefWidth="128.0" styleClass="savebutton" text="Approve Selected" AnchorPane.rightAnchor="143.60000000000002">
+                                 <graphic>
+                                    <ImageView fitHeight="150.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/checkIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button fx:id="checkAllBtn" layoutX="198.0" layoutY="69.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Check All" AnchorPane.rightAnchor="297.20000000000005" />
+                              <ToggleButton fx:id="filterBtn" layoutX="131.0" layoutY="69.0" mnemonicParsing="false" onAction="#onFilterAction" prefHeight="26.0" prefWidth="67.0" styleClass="normalbutton" text="Filter" AnchorPane.rightAnchor="379.40000000000003" />
                               <Text fill="#1360a8" layoutX="131.0" layoutY="37.0" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending Overtime" textAlignment="CENTER" wrappingWidth="315.2695770263672">
                                  <font>
                                     <Font name="System Bold" size="23.0" />
