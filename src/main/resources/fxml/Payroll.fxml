@@ -56,9 +56,9 @@
                                     <Insets bottom="10.0" />
                                  </padding>
                               </AnchorPane>
-                              <AnchorPane layoutX="47.0" layoutY="119.0" prefHeight="573.0" prefWidth="1091.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="13.399999999999977" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="119.0">
+                              <AnchorPane layoutX="47.0" layoutY="105.0" prefHeight="589.0" prefWidth="1086.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="105.0">
                                  <children>
-                                    <TableView id="t_payroll" fx:id="payrollTv" layoutX="23.0" layoutY="68.0" prefHeight="491.0" prefWidth="1044.0" stylesheets="@../css/Tableview.css" AnchorPane.bottomAnchor="14.400000000000034" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="68.00000000000006">
+                                    <TableView id="t_payroll" fx:id="payrollTv" layoutX="23.0" layoutY="85.0" prefHeight="490.0" prefWidth="1039.0" stylesheets="@../css/Tableview.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="85.0">
                                       <columns>
                                         <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="171.20000839233398" resizable="false" sortable="false" text="Name" />
                                         <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="42.40000915527344" resizable="false" sortable="false" text="Mode" />
@@ -88,12 +88,13 @@
                                           <TableColumn id="tc_total" fx:id="netTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="61.60009765625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Net Amount&#10;      Paid" />
                                       </columns>
                                     </TableView>
-                                    <Text fx:id="daterangeText" layoutX="23.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="For the Period:" AnchorPane.leftAnchor="23.0" />
-                                    <Text fx:id="addressText" layoutX="23.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Located at:" AnchorPane.leftAnchor="23.0" />
-                                    <Button fx:id="ixxiBtn" layoutX="967.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onPayrollClick" prefHeight="31.0" prefWidth="98.0" text="IX-XI Hardware" AnchorPane.rightAnchor="20.599999999999994" />
-                                    <Button fx:id="crayolaBtn" layoutX="869.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#onPayrollClick" prefHeight="31.0" prefWidth="98.0" text="Crayola atbp." AnchorPane.rightAnchor="119.0" />
-                                    <CheckBox fx:id="toggleThirteen" layoutX="691.0" layoutY="40.0" mnemonicParsing="false" onAction="#onThirteenClick" styleClass="textlabel" text="Include 13th Month Pay" AnchorPane.rightAnchor="246.60000000000014" />
-                                    <Button fx:id="thirteenBtn" layoutX="515.0" layoutY="35.0" mnemonicParsing="false" onAction="#onViewThirteenClick" prefHeight="26.0" prefWidth="166.0" styleClass="normalbutton" text="View 13th Month Payroll" visible="false" AnchorPane.rightAnchor="405.0000000000001" />
+                                    <Text fx:id="daterangeText" layoutX="23.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="For the Period:" AnchorPane.leftAnchor="23.0" />
+                                    <Text fx:id="addressText" layoutX="23.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Located at:" AnchorPane.leftAnchor="23.0" />
+                                    <Button fx:id="ixxiBtn" layoutX="967.0" layoutY="48.0" mnemonicParsing="false" onMouseClicked="#onPayrollClick" prefHeight="31.0" prefWidth="98.0" text="IX-XI Hardware" AnchorPane.rightAnchor="21.0" />
+                                    <Button fx:id="crayolaBtn" layoutX="868.0" layoutY="48.0" mnemonicParsing="false" onMouseClicked="#onPayrollClick" prefHeight="31.0" prefWidth="98.0" text="Crayola atbp." AnchorPane.rightAnchor="120.00000000000011" />
+                                    <CheckBox fx:id="toggleThirteen" layoutX="689.0" layoutY="55.0" mnemonicParsing="false" onAction="#onThirteenClick" styleClass="textlabel" text="Include 13th Month Pay" AnchorPane.rightAnchor="248.60000000000014" />
+                                    <Button fx:id="thirteenBtn" layoutX="511.0" layoutY="50.0" mnemonicParsing="false" onAction="#onViewThirteenClick" prefHeight="26.0" prefWidth="166.0" styleClass="normalbutton" text="View 13th Month Payroll" visible="false" AnchorPane.rightAnchor="409.0000000000001" />
+                                    <Button fx:id="exportBtn" layoutX="967.0" layoutY="7.0" mnemonicParsing="false" onAction="#onExportClick" onMouseClicked="#onPayrollClick" prefHeight="32.0" prefWidth="98.0" styleClass="normalbutton" text="Export to Excel" AnchorPane.rightAnchor="21.0" />
                                  </children>
                               </AnchorPane>
                            </children>

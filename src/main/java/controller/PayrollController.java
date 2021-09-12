@@ -13,9 +13,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import model.Payroll;
 import model.PayrollEntry;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -33,7 +35,7 @@ public class PayrollController extends Controller {
      * Instantiation of objects related to the company info in Payroll.fxml
      */
     @FXML
-    private Button crayolaBtn, ixxiBtn, thirteenBtn;
+    private Button crayolaBtn, ixxiBtn, thirteenBtn, exportBtn;
 
     @FXML
     private Text addressText, companyText, daterangeText;
@@ -238,5 +240,15 @@ public class PayrollController extends Controller {
 
     public void onViewThirteenClick(){
         Driver.getScreenController().activate("ThirteenPayroll");
+    }
+
+    public void onExportClick(){
+        FileChooser exportfileChooser = new FileChooser();
+        exportfileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
+        File filepath = exportfileChooser.showSaveDialog(exportBtn.getScene().getWindow());
+        System.out.println(filepath);
+        //TODO: Save payroll to excel using filepath
+
     }
 }
