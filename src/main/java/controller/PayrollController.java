@@ -278,7 +278,6 @@ public class PayrollController extends Controller {
         File filepath = exportfileChooser.showSaveDialog(exportBtn.getScene().getWindow());
         System.out.println(filepath);
         if (formatCb.getValue().equals("Standard")) {
-            System.out.println("HOOOOOOOOOO");
             try {
                 if (isCrayola) {
                     new ExcelHandler().printMD(filepath.getAbsolutePath(),
