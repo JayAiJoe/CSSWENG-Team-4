@@ -1,11 +1,13 @@
 package model;
 
+import dao.EmployeePOJO;
 import dao.LogbookPOJO;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,6 +56,34 @@ public class ExcelHandler {
         }
 
         return SSSvalues;
+    }
+
+    public ArrayList<EmployeePOJO> readEmployees(String filepath) throws IOException, ParseException {
+        ArrayList<EmployeePOJO> employees = new ArrayList<>();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+
+        Workbook workbook = WorkbookFactory.create(new File(filepath));
+        Sheet sheet = workbook.getSheetAt(0);
+        int i=0;
+
+        /*
+            Format of the Excel file should follow the employeePOJO constructor of employeeID, employeeName, company, wage, mode of payment, frequency of payment,
+            debt amount, date joined and date left.
+         */
+        for (Row row: sheet){
+            if (i==0){i++; continue;}
+            ArrayList<String> rowValues = new ArrayList<>();
+            for(Cell cell: row){
+                rowValues.add(cell.getStringCellValue());
+            }
+            EmployeePOJO newEmployee = new EmployeePOJO(Integer.parseInt(rowValues.get(0)),rowValues.get(1),rowValues.get(2),Double.parseDouble(rowValues.get(3)),
+                                                        rowValues.get(4),rowValues.get(5),Double.parseDouble(rowValues.get(6)),formatter.parse(rowValues.get(7)),
+                                                        formatter.parse(rowValues.get(8)));
+            employees.add(newEmployee);
+        }
+
+        return employees;
     }
 
     public ArrayList<LogbookPOJO> readLogbook(File file) throws IOException, ParseException {
@@ -185,4 +215,6 @@ public class ExcelHandler {
         fileOut.close();
         workbook.close();
     }
+
+
 }
