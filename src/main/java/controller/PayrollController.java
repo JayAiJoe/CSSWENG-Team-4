@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import model.ExcelHandler;
 import model.Payroll;
 import model.PayrollEntry;
 
@@ -61,6 +62,7 @@ public class PayrollController extends Controller {
     private String frequency;
     private boolean created = false;
     private boolean newPayroll = false;
+    private boolean isCrayola = true;
 
     @Override
     public void update() {
@@ -154,19 +156,21 @@ public class PayrollController extends Controller {
             addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
             companyText.setText("Crayola atbp.");
             payrollTv.setItems(crayolaEntries);
+            isCrayola = true;
         } else if (mouseEvent.getSource() == ixxiBtn) {
             ixxiBtn.setDisable(true);
             crayolaBtn.setDisable(false);
             addressText.setText("Located at: " + "UNIT 5, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
             companyText.setText("IX-XI Hardware");
             payrollTv.setItems(ixxiEntries);
+            isCrayola = false;
         }
     }
 
     /**
      * Method for returning to Home.fxml
      */
-    public void onHomeClick(){
+    public void onHomeClick() {
         Driver.getScreenController().activate("Home");
     }
 
@@ -174,14 +178,14 @@ public class PayrollController extends Controller {
     /**
      * Method for adding or removing 13th Month column in the table
      */
-    public void onThirteenClick(){
-        if(toggleThirteen.isSelected()){
+    public void onThirteenClick() {
+        if (toggleThirteen.isSelected()) {
             initCol(thirteenTc, "13th Month", 16);
             init13thCol();
             thirteenBtn.setVisible(true);
             thirteenTc.setVisible(true);
         }
-        else{
+        else {
             initPayrollCol();
             thirteenBtn.setVisible(false);
             thirteenTc.setVisible(false);
@@ -191,7 +195,7 @@ public class PayrollController extends Controller {
     /**
      * Method initializes all columns with 13th Month Pay not being present in the table
      */
-    private void initPayrollCol(){
+    private void initPayrollCol() {
         initCol(nameTc, "employeeName", 8);
         initCol(modeTc, "mode", 18);
         initCol(absentTc, "absent", 20);
@@ -216,7 +220,7 @@ public class PayrollController extends Controller {
     /**
      * Method Initializes all Columns with 13th Month pay included in the table
      */
-    private void init13thCol(){
+    private void init13thCol() {
         initCol(nameTc, "employeeName", 9);
         initCol(modeTc, "mode", 19);
         initCol(absentTc, "absent", 21);
@@ -238,17 +242,33 @@ public class PayrollController extends Controller {
         initCol(wageTc, "wage", 17);
     }
 
-    public void onViewThirteenClick(){
+    public void onViewThirteenClick() {
         Driver.getScreenController().activate("ThirteenPayroll");
     }
 
-    public void onExportClick(){
+    public void onExportClick() {
         FileChooser exportfileChooser = new FileChooser();
         exportfileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
         File filepath = exportfileChooser.showSaveDialog(exportBtn.getScene().getWindow());
         System.out.println(filepath);
         //TODO: Save payroll to excel using filepath
-
+        try {
+            if (isCrayola) {
+                new ExcelHandler().printMD(filepath.getAbsolutePath(),
+                        crayolaEntries,
+                        new SimpleDateFormat("MM/dd/yyyy").format(startDate),
+                        new SimpleDateFormat("MM/dd/yyyy").format(endDate),
+                        "Crayola atbp.");
+            } else {
+                new ExcelHandler().printMD(filepath.getAbsolutePath(),
+                        ixxiEntries,
+                        new SimpleDateFormat("MM/dd/yyyy").format(startDate),
+                        new SimpleDateFormat("MM/dd/yyyy").format(endDate),
+                        "IX-XI Hardware");
+            }
+        } catch (Exception e) {
+            System.out.println("Problem printing to file");
+        }
     }
 }
