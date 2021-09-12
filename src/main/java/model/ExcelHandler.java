@@ -222,26 +222,32 @@ public class ExcelHandler {
         Workbook workbook = new HSSFWorkbook();
 
         String[] columns = {"NAME OF EMPLOYEE", "DAYS OF WORK", "RATE", "TOTAL REGULAR WAGE", "OVERTIME","", "COLA", "TOTAL AMOUNT","DEDUCTIONS","","","","","NET AMOUNT PAID"};
-
+        Font headersFont = workbook.createFont();
+        headersFont.setBold(true);
+        CellStyle headerCellStyle = workbook.createCellStyle();
+        headerCellStyle.setFont(headersFont);
         Sheet sheet = workbook.createSheet(company+" Payroll");
         Row row = sheet.createRow(0);
         for(int i = 0; i<14;i++){
             Cell cell = row.createCell(i);
             switch (i){
-                case 7:
+                case 6:
                     cell.setCellValue("For the period of");
                     break;
                 case 8:
                     cell.setCellValue(dateStart);
+                    cell.setCellStyle(headerCellStyle);
                     break;
                 case 10:
                     cell.setCellValue("to");
                     break;
                 case 12:
                     cell.setCellValue(dateEnd);
+                    cell.setCellStyle(headerCellStyle);
                     break;
             }
         }
+        sheet.addMergedRegion(CellRangeAddress.valueOf("G1:H1"));
         sheet.addMergedRegion(CellRangeAddress.valueOf("I1:J1"));
         sheet.addMergedRegion(CellRangeAddress.valueOf("M1:N1"));
         Row row2 = sheet.createRow(1);
@@ -254,9 +260,11 @@ public class ExcelHandler {
                 case 3:
                     if (company.equals("CRAYOLA")) {
                         cell.setCellValue("CRAYOLA ATBP.");
+                        cell.setCellStyle(headerCellStyle);
                     }
                     else {
                         cell.setCellValue("IX-XI HARDWARE");
+                        cell.setCellStyle(headerCellStyle);
                     }
                     break;
                 case 7:
@@ -265,9 +273,11 @@ public class ExcelHandler {
                 case 8:
                     if (company.equals("CRAYOLA")) {
                         cell.setCellValue("UNIT 2-3, U&I BLDG., F. TAÑEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+                        cell.setCellStyle(headerCellStyle);
                     }
                     else {
                         cell.setCellValue("UNIT 5, U&I BLDG., F. TAÑEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+                        cell.setCellStyle(headerCellStyle);
                     }
                     break;
             }
@@ -284,12 +294,14 @@ public class ExcelHandler {
         for (int i=0; i<14; i++){
             Cell cell = headers.createCell(i);
             cell.setCellValue(columns[i]);
+            cell.setCellStyle(headerCellStyle);
         }
         Row headers2 = sheet.createRow(4);
         for (int i=0; i<14; i++){
             Cell cell = headers2.createCell(i);
             if (i == 4){
                 cell.setCellValue("REGULAR/HOLIDAY");
+                cell.setCellStyle(headerCellStyle);
             }
         }
         Row headers3 = sheet.createRow(5);
@@ -318,6 +330,7 @@ public class ExcelHandler {
                     cell.setCellValue("LATE/UT");
                     break;
             }
+            cell.setCellStyle(headerCellStyle);
         }
         sheet.addMergedRegion(CellRangeAddress.valueOf("A4:A6"));
         sheet.addMergedRegion(CellRangeAddress.valueOf("B4:B6"));
@@ -383,12 +396,14 @@ public class ExcelHandler {
             }
         }
 
+        for (int i =0; i<4;i++){
+            sheet.autoSizeColumn(i);
+        }
+
         FileOutputStream fileOut = new FileOutputStream(filePath);
         workbook.write(fileOut);
         fileOut.close();
         workbook.close();
     }
-
-
 
 }
