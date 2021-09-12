@@ -18,7 +18,7 @@
                <children>
                   <AnchorPane fx:id="displayPayroll" layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                      <children>
-                        <AnchorPane layoutY="34.0" prefHeight="673.0" prefWidth="1186.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
+                        <AnchorPane layoutY="26.0" prefHeight="676.0" prefWidth="1186.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
                            <children>
                               <AnchorPane layoutY="1.0" prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                                  <children>
@@ -36,9 +36,9 @@
                                     <Insets bottom="10.0" />
                                  </padding>
                               </AnchorPane>
-                              <AnchorPane layoutX="47.0" layoutY="119.0" prefHeight="573.0" prefWidth="1091.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="13.399999999999977" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="119.0">
+                              <AnchorPane layoutX="47.0" layoutY="119.0" prefHeight="589.0" prefWidth="1086.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="105.0">
                                  <children>
-                                    <TableView id="t_payroll" fx:id="payrollTv" layoutX="23.0" layoutY="68.0" prefHeight="491.0" prefWidth="1044.0" stylesheets="@../css/Tableview.css" AnchorPane.bottomAnchor="14.400000000000034" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="68.00000000000006">
+                                    <TableView id="t_payroll" fx:id="payrollTv" layoutX="23.0" layoutY="68.0" prefHeight="490.0" prefWidth="1039.0" stylesheets="@../css/Tableview.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="85.0">
                                       <columns>
                                         <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="171.20000839233398" resizable="false" sortable="false" text="Name" />
                                         <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="42.40000915527344" resizable="false" sortable="false" text="Mode" />
@@ -67,9 +67,9 @@
                                           <TableColumn id="tc_total" fx:id="netTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="61.60009765625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Net Amount&#10;      Paid" />
                                       </columns>
                                     </TableView>
-                                    <Text fx:id="daterangeText" layoutX="23.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="For the Period:" AnchorPane.leftAnchor="23.0" />
-                                    <Text fx:id="addressText" layoutX="23.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Located at:" AnchorPane.leftAnchor="23.0" />
-                                    <Button fx:id="payrollBtn" layoutX="923.0" layoutY="35.0" mnemonicParsing="false" onAction="#onViewPayrollClick" prefHeight="26.0" prefWidth="138.0" styleClass="normalbutton" text="Return to Main Payroll" AnchorPane.rightAnchor="25.0" />
+                                    <Text fx:id="daterangeText" layoutX="23.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="For the Period:" AnchorPane.leftAnchor="23.0" />
+                                    <Text fx:id="addressText" layoutX="23.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Located at:" AnchorPane.leftAnchor="23.0" />
+                                    <Button fx:id="payrollBtn" layoutX="923.0" layoutY="40.0" mnemonicParsing="false" onAction="#onViewPayrollClick" prefHeight="26.0" prefWidth="138.0" styleClass="normalbutton" text="Return to Main Payroll" AnchorPane.rightAnchor="25.0" />
                                  </children>
                               </AnchorPane>
                            </children>
