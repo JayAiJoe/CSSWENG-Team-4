@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,6 +12,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -95,6 +98,15 @@
                                     <CheckBox fx:id="toggleThirteen" layoutX="689.0" layoutY="55.0" mnemonicParsing="false" onAction="#onThirteenClick" styleClass="textlabel" text="Include 13th Month Pay" AnchorPane.rightAnchor="248.60000000000014" />
                                     <Button fx:id="thirteenBtn" layoutX="511.0" layoutY="50.0" mnemonicParsing="false" onAction="#onViewThirteenClick" prefHeight="26.0" prefWidth="166.0" styleClass="normalbutton" text="View 13th Month Payroll" visible="false" AnchorPane.rightAnchor="409.0000000000001" />
                                     <Button fx:id="exportBtn" layoutX="967.0" layoutY="7.0" mnemonicParsing="false" onAction="#onExportClick" onMouseClicked="#onPayrollClick" prefHeight="32.0" prefWidth="98.0" styleClass="normalbutton" text="Export to Excel" AnchorPane.rightAnchor="21.0" />
+                                    <Text fx:id="addressText1" layoutX="817.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Export as:" AnchorPane.rightAnchor="218.4117187500001" />
+                                    <ChoiceBox fx:id="formatCb" layoutX="872.0" layoutY="10.0" prefHeight="26.0" prefWidth="90.0" AnchorPane.rightAnchor="124.00000000000009" value="Standard">
+                                       <items>
+                                          <FXCollections fx:factory="observableArrayList">
+                                             <String fx:value="Standard" />
+                                             <String fx:value="Voucher" />
+                                          </FXCollections>
+                                       </items>
+                                    </ChoiceBox>
                                  </children>
                               </AnchorPane>
                            </children>

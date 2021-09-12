@@ -33,10 +33,18 @@ public class PayrollController extends Controller {
     private AnchorPane navBar_container, emptyPayroll, displayPayroll;
 
     /**
+     * Instantiation of objects related to file exports in Payroll.fxml
+     */
+    @FXML
+    private Button exportBtn;
+    @FXML
+    private ChoiceBox formatCb;
+
+    /**
      * Instantiation of objects related to the company info in Payroll.fxml
      */
     @FXML
-    private Button crayolaBtn, ixxiBtn, thirteenBtn, exportBtn;
+    private Button crayolaBtn, ixxiBtn, thirteenBtn;
 
     @FXML
     private Text addressText, companyText, daterangeText;
@@ -269,23 +277,31 @@ public class PayrollController extends Controller {
                 new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
         File filepath = exportfileChooser.showSaveDialog(exportBtn.getScene().getWindow());
         System.out.println(filepath);
-        //TODO: Save payroll to excel using filepath
-        try {
-            if (isCrayola) {
-                new ExcelHandler().printMD(filepath.getAbsolutePath(),
-                        crayolaEntries,
-                        new SimpleDateFormat("MM/dd/yyyy").format(startDate),
-                        new SimpleDateFormat("MM/dd/yyyy").format(endDate),
-                        "Crayola atbp.");
-            } else {
-                new ExcelHandler().printMD(filepath.getAbsolutePath(),
-                        ixxiEntries,
-                        new SimpleDateFormat("MM/dd/yyyy").format(startDate),
-                        new SimpleDateFormat("MM/dd/yyyy").format(endDate),
-                        "IX-XI Hardware");
+        if (formatCb.getValue() == "Standard") {
+            try {
+                if (isCrayola) {
+                    new ExcelHandler().printMD(filepath.getAbsolutePath(),
+                            crayolaEntries,
+                            new SimpleDateFormat("MM/dd/yyyy").format(startDate),
+                            new SimpleDateFormat("MM/dd/yyyy").format(endDate),
+                            "Crayola atbp.");
+                } else {
+                    new ExcelHandler().printMD(filepath.getAbsolutePath(),
+                            ixxiEntries,
+                            new SimpleDateFormat("MM/dd/yyyy").format(startDate),
+                            new SimpleDateFormat("MM/dd/yyyy").format(endDate),
+                            "IX-XI Hardware");
+                }
+            } catch (Exception e) {
+                System.out.println("Problem printing to file");
             }
-        } catch (Exception e) {
-            System.out.println("Problem printing to file");
+        } else if(formatCb.getValue() == "Voucher"){
+            try {
+                //TODO: Save Payroll to excel in Voucher form
+            } catch (Exception e) {
+                System.out.println("Problem printing to file");
+            }
         }
+
     }
 }
