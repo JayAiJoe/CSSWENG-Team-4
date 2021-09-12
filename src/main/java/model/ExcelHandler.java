@@ -59,12 +59,12 @@ public class ExcelHandler {
         return SSSvalues;
     }
 
-    public ArrayList<EmployeePOJO> readEmployees(String filepath) throws IOException, ParseException {
+    public ArrayList<EmployeePOJO> readEmployees(File file) throws IOException, ParseException {
         ArrayList<EmployeePOJO> employees = new ArrayList<>();
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 
-        Workbook workbook = WorkbookFactory.create(new File(filepath));
+        Workbook workbook = WorkbookFactory.create(file);
         Sheet sheet = workbook.getSheetAt(0);
         int i=0;
 
