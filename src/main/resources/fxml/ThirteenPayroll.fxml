@@ -64,7 +64,6 @@
                                                 <TableColumn id="tcd_late" fx:id="lateTc" editable="false" prefWidth="49.59991455078125" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Late/UT" />
                                              </columns>
                                           </TableColumn>
-                                          <TableColumn id="tc_thirteen" fx:id="thirteenTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="61.60009765625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="13th Month" visible="false" />
                                           <TableColumn id="tc_total" fx:id="netTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="61.60009765625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Net Amount&#10;      Paid" />
                                       </columns>
                                     </TableView>
