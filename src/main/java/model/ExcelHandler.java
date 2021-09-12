@@ -2,6 +2,7 @@ package model;
 
 import dao.EmployeePOJO;
 import dao.LogbookPOJO;
+import javafx.collections.ObservableList;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -215,6 +216,179 @@ public class ExcelHandler {
         fileOut.close();
         workbook.close();
     }
+
+    public void printMD(String filePath, ObservableList<PayrollEntry> payrollEntries, String dateStart, String dateEnd, String company) throws IOException {
+
+        Workbook workbook = new HSSFWorkbook();
+
+        String[] columns = {"NAME OF EMPLOYEE", "DAYS OF WORK", "RATE", "TOTAL REGULAR WAGE", "OVERTIME","", "COLA", "TOTAL AMOUNT","DEDUCTIONS","","","","","NET AMOUNT PAID"};
+
+        Sheet sheet = workbook.createSheet(company+" Payroll");
+        Row row = sheet.createRow(0);
+        for(int i = 0; i<14;i++){
+            Cell cell = row.createCell(i);
+            switch (i){
+                case 7:
+                    cell.setCellValue("For the period of");
+                    break;
+                case 8:
+                    cell.setCellValue(dateStart);
+                    break;
+                case 10:
+                    cell.setCellValue("to");
+                    break;
+                case 12:
+                    cell.setCellValue(dateEnd);
+                    break;
+            }
+        }
+        sheet.addMergedRegion(CellRangeAddress.valueOf("I1:J1"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("M1:N1"));
+        Row row2 = sheet.createRow(1);
+        for(int i = 0; i<14;i++){
+            Cell cell = row2.createCell(i);
+            switch (i){
+                case 0:
+                    cell.setCellValue("WE HEREBY ACKNOWLEDGE to have received from");
+                    break;
+                case 3:
+                    if (company.equals("CRAYOLA")) {
+                        cell.setCellValue("CRAYOLA ATBP.");
+                    }
+                    else {
+                        cell.setCellValue("IX-XI HARDWARE");
+                    }
+                    break;
+                case 7:
+                    cell.setCellValue("located at");
+                    break;
+                case 8:
+                    if (company.equals("CRAYOLA")) {
+                        cell.setCellValue("UNIT 2-3, U&I BLDG., F. TAÑEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+                    }
+                    else {
+                        cell.setCellValue("UNIT 5, U&I BLDG., F. TAÑEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+                    }
+                    break;
+            }
+        }
+        sheet.addMergedRegion(CellRangeAddress.valueOf("A2:C2"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("D2:F2"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("I2:N2"));
+        Row row3 = sheet.createRow(2);
+        Cell cellValue = row3.createCell(0);
+        cellValue.setCellValue("the sum specified opposite our respective name, as full compensation for our service rendered.");
+        sheet.addMergedRegion(CellRangeAddress.valueOf("A3:M3"));
+
+        Row headers = sheet.createRow(3);
+        for (int i=0; i<14; i++){
+            Cell cell = headers.createCell(i);
+            cell.setCellValue(columns[i]);
+        }
+        Row headers2 = sheet.createRow(4);
+        for (int i=0; i<14; i++){
+            Cell cell = headers2.createCell(i);
+            if (i == 4){
+                cell.setCellValue("REGULAR/HOLIDAY");
+            }
+        }
+        Row headers3 = sheet.createRow(5);
+        for (int i=0; i<14; i++){
+            Cell cell = headers3.createCell(i);
+            switch (i){
+                case 4:
+                    cell.setCellValue("HRS. minutes");
+                    break;
+                case 5:
+                    cell.setCellValue("AMOUNT");
+                    break;
+                case 8:
+                    cell.setCellValue("S.S.S");
+                    break;
+                case 9:
+                    cell.setCellValue("PHILHEALTH");
+                    break;
+                case 10:
+                    cell.setCellValue("PAG-IBIG FUND");
+                    break;
+                case 11:
+                    cell.setCellValue("TAX W/HELD");
+                    break;
+                case 12:
+                    cell.setCellValue("LATE/UT");
+                    break;
+            }
+        }
+        sheet.addMergedRegion(CellRangeAddress.valueOf("A4:A6"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("B4:B6"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("C4:C6"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("D4:D6"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("E4:F4"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("E5:F5"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("G4:G6"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("H4:H6"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("I4:M5"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("N4:N6"));
+
+        int rowNum = 6;
+        for (PayrollEntry employee: payrollEntries)
+        {
+            Row contents = sheet.createRow(rowNum++);
+            for(int j = 0;j<14;j++ ){
+                Cell cell = contents.createCell(j);
+                switch (j){
+                    case 0:
+                        cell.setCellValue(employee.getEmployeeName());
+                        break;
+                    case 1:
+                        cell.setCellValue(employee.getWorkdays());
+                        break;
+                    case 2:
+                        cell.setCellValue(employee.getRate());
+                        break;
+                    case 3:
+                        cell.setCellValue(employee.getSalary());
+                        break;
+                    case 4:
+                        cell.setCellValue(employee.getTime());
+                        break;
+                    case 5:
+                        cell.setCellValue(employee.getAmount());
+                        break;
+                    case 6:
+                        cell.setCellValue(employee.getCola());
+                        break;
+                    case 7:
+                        cell.setCellValue(employee.getTotal());
+                        break;
+                    case 8:
+                        cell.setCellValue(employee.getSss());
+                        break;
+                    case 9:
+                        cell.setCellValue(employee.getPhilhealth());
+                        break;
+                    case 10:
+                        cell.setCellValue(employee.getPagibig());
+                        break;
+                    case 11:
+                        cell.setCellValue("");
+                        break;
+                    case 12:
+                        cell.setCellValue(employee.getLate());
+                        break;
+                    case 13:
+                        cell.setCellValue(employee.getNet());
+                        break;
+                }
+            }
+        }
+
+        FileOutputStream fileOut = new FileOutputStream(filePath);
+        workbook.write(fileOut);
+        fileOut.close();
+        workbook.close();
+    }
+
 
 
 }
