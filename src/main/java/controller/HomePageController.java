@@ -1,6 +1,8 @@
 package controller;
 
+import dao.EmployeePOJO;
 import dao.LogbookPOJO;
+import dao.Repository;
 import driver.Driver;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -87,6 +89,30 @@ public class HomePageController extends Controller {
                 new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
         File file = employeefileChooser.showOpenDialog(employeeBtn.getScene().getWindow());
         System.out.println(file);
+
+        if (file == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("No file selected!");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            ArrayList<EmployeePOJO> employees = new ExcelHandler().readEmployees(file);
+            for (EmployeePOJO employee: employees) {
+                Repository.getInstance().addEmployee(employee);
+            }
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Error reading file!");
+            alert.showAndWait();
+        }
     }
 
     public void onAttendanceUpload() {
@@ -129,11 +155,11 @@ public class HomePageController extends Controller {
         System.out.println(file);
     }
 
-    public void onGoToEmployeesClick(){
+    public void onGoToEmployeesClick() {
         Driver.getScreenController().activate("Employees");
     }
 
-    public void onGoToFeesClick(){
+    public void onGoToFeesClick() {
         Driver.getScreenController().activate("EditFees");
     }
 
