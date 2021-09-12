@@ -84,7 +84,15 @@
                                                 </Text>
                                              </children>
                                           </HBox>
-                                          <Button fx:id="ph_update_btn" layoutX="7.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="66.0" styleClass="normalbutton" text="Edit" />
+                                          <Button fx:id="ph_update_btn" layoutX="7.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#onPHEditClick" prefHeight="31.0" prefWidth="66.0" styleClass="normalbutton" text="Edit">
+                                             <graphic>
+                                                <ImageView fitHeight="13.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/editIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="10.0" />
@@ -111,7 +119,14 @@
                                                          </image>
                                                       </ImageView>
                                                    </graphic></Button>
-                                                <Button fx:id="pi_edit_btn" layoutX="46.0" layoutY="157.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="67.0" styleClass="normalbutton" text="Edit" />
+                                                <Button fx:id="pi_edit_btn" layoutX="46.0" layoutY="157.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="67.0" styleClass="normalbutton" text="Edit">
+                                                   <graphic>
+                                                      <ImageView fitHeight="12.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/editIcon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic></Button>
                                                 <Text layoutX="51.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employee Share:" />
                                                 <TextField fx:id="pi_employerTf" disable="true" layoutX="216.0" layoutY="80.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
                                                 <Text layoutX="51.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employer Contribution:" />
@@ -207,7 +222,15 @@
                                           </ImageView>
                                        </graphic></Button>
                                     <Text fx:id="sss_errorText" fill="RED" layoutX="26.0" layoutY="625.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Button fx:id="sss_edit_btn" layoutX="27.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onSSSEditClick" prefHeight="31.0" prefWidth="68.0" styleClass="normalbutton" text="Edit" />
+                                    <Button fx:id="sss_edit_btn" layoutX="27.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onSSSEditClick" prefHeight="31.0" prefWidth="68.0" styleClass="normalbutton" text="Edit">
+                                       <graphic>
+                                          <ImageView fitHeight="150.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/editIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
                                  </children>
                               </AnchorPane>
                            </children>

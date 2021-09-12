@@ -100,7 +100,14 @@
                                                 </VBox>
                                              </children>
                                           </GridPane>
-                                          <Button fx:id="editBtn" layoutX="185.0" layoutY="365.0" mnemonicParsing="false" onAction="#onEditAction" prefHeight="26.0" prefWidth="93.0" styleClass="normalbutton" text="Edit" />
+                                          <Button fx:id="editBtn" layoutX="185.0" layoutY="365.0" mnemonicParsing="false" onAction="#onEditAction" prefHeight="26.0" prefWidth="93.0" styleClass="normalbutton" text="Edit">
+                                             <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/editIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
                                           <Button fx:id="cancelBtn" layoutX="344.0" layoutY="365.0" mnemonicParsing="false" onAction="#onCancelAction" prefHeight="26.0" prefWidth="94.0" styleClass="cancelbutton" text="Cancel">
                                              <graphic>
                                                 <ImageView fitHeight="150.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
@@ -117,7 +124,14 @@
                                                    </image>
                                                 </ImageView>
                                              </graphic></Button>
-                                          <Button fx:id="backBtn" layoutX="25.0" layoutY="21.0" mnemonicParsing="false" onAction="#onBackAction" prefHeight="26.0" prefWidth="118.0" styleClass="normalbutton" text="Back to Employees" />
+                                          <Button fx:id="backBtn" layoutX="25.0" layoutY="21.0" mnemonicParsing="false" onAction="#onBackAction" prefHeight="26.0" prefWidth="131.0" styleClass="normalbutton" text="Back to Employees">
+                                             <graphic>
+                                                <ImageView fitHeight="150.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/arrowIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
                                           <Button fx:id="saveBtn" layoutX="185.0" layoutY="365.0" mnemonicParsing="false" onAction="#onSaveAction" prefHeight="26.0" prefWidth="93.0" styleClass="savebutton" text="Save" visible="false">
                                              <graphic>
                                                 <ImageView fitHeight="150.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
