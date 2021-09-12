@@ -19,15 +19,12 @@ import model.PayrollEntry;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * This class is the main controller for any scripted event
- * for Payroll.fxml like onClick events, listeners, etc.
- */
-public class PayrollController extends Controller {
+public class ThirteenPayrollController extends Controller {
+
     private static final PseudoClass COLUMN_HOVER_PSEUDO_CLASS = PseudoClass.getPseudoClass("column-hover");
 
     @FXML
-    private AnchorPane navBar_container, emptyPayroll, displayPayroll;
+    private AnchorPane navBar_container;
 
     /**
      * Instantiation of objects related to the company info in Payroll.fxml
@@ -47,10 +44,7 @@ public class PayrollController extends Controller {
     private TableColumn<PayrollEntry, String> nameTc, modeTc, absentTc, rateTc, salaryTc,
             amountTc, colaTc, totalTc, sssTc, philhealthTc, pagibigTc, taxTc, lateTc, netTc, wageTc;
     @FXML
-    private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc, overtimeTc, deductionsTc, thirteenTc;
-
-    @FXML
-    private CheckBox toggleThirteen;
+    private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc, overtimeTc, deductionsTc;
 
     private Payroll payroll = null;
     private ObservableList<PayrollEntry> crayolaEntries = FXCollections.observableArrayList(),
@@ -67,28 +61,22 @@ public class PayrollController extends Controller {
             navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
         }
 
-        if (created) {
-            displayPayroll.toFront();
+        crayolaBtn.setDisable(true);
+        ixxiBtn.setDisable(false);
+        addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+        companyText.setText("Crayola atbp.");
 
-            crayolaBtn.setDisable(true);
-            ixxiBtn.setDisable(false);
-            addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
-            companyText.setText("Crayola atbp.");
-
-            if (newPayroll) {
-                // get and set data in table
-                payroll = new Payroll(startDate, endDate, frequency);
-                daterangeText.setText(daterangeText.getText() + " " +
-                        new SimpleDateFormat("MM/dd/yyyy").format(startDate) + " - " +
-                        new SimpleDateFormat("MM/dd/yyyy").format(endDate));
-                crayolaEntries.setAll(payroll.getCrayolaEntries());
-                ixxiEntries.setAll(payroll.getIxxiEntries());
-                payrollTv.setItems(crayolaEntries);
-                newPayroll = false;
-            }
-        } else {
-            emptyPayroll.toFront();
+        if (newPayroll) {
+            // get and set data in table
+            payroll = new Payroll(startDate, endDate, frequency);
+            daterangeText.setText("13th Month");
+            crayolaEntries.setAll(payroll.getCrayolaEntries());
+            ixxiEntries.setAll(payroll.getIxxiEntries());
+            payrollTv.setItems(crayolaEntries);
+            newPayroll = false;
         }
+
+
         navBar_container.toFront();
     }
 
@@ -162,32 +150,7 @@ public class PayrollController extends Controller {
     }
 
     /**
-     * Method for returning to Home.fxml
-     */
-    public void onHomeClick(){
-        Driver.getScreenController().activate("Home");
-    }
-
-
-    /**
-     * Method for adding or removing 13th Month column in the table
-     */
-    public void onThirteenClick(){
-        if(toggleThirteen.isSelected()){
-            initCol(thirteenTc, "13th Month", 16);
-            init13thCol();
-            thirteenBtn.setVisible(true);
-            thirteenTc.setVisible(true);
-        }
-        else{
-            initPayrollCol();
-            thirteenBtn.setVisible(false);
-            thirteenTc.setVisible(false);
-        }
-    }
-
-    /**
-     * Method initializes all columns with 13th Month Pay not being present in the table
+     * Method initializes all columns in the table
      */
     private void initPayrollCol(){
         initCol(nameTc, "employeeName", 8);
@@ -211,32 +174,7 @@ public class PayrollController extends Controller {
         initCol(wageTc, "wage", 16);
     }
 
-    /**
-     * Method Initializes all Columns with 13th Month pay included in the table
-     */
-    private void init13thCol(){
-        initCol(nameTc, "employeeName", 9);
-        initCol(modeTc, "mode", 19);
-        initCol(absentTc, "absent", 21);
-        initCol(workdaysTc, "workdays", 21);
-        initCol(rateTc, "rate", 21);
-        initCol(salaryTc, "salary", 17);
-        initCol(overtimeTc, "overtime", 57);
-        initCol(timeTc, "time", 26);
-        initCol(amountTc, "amount", 21);
-        initCol(colaTc, "cola", 19);
-        initCol(totalTc, "total", 17);
-        initCol(deductionsTc, "deductions", 105);
-        initCol(sssTc, "sss", 21);
-        initCol(philhealthTc, "philhealth", 21);
-        initCol(pagibigTc, "pagibig", 21);
-        initCol(lateTc, "late", 21);
-        initCol(taxTc, "", 21);
-        initCol(netTc, "net", 17);
-        initCol(wageTc, "wage", 17);
-    }
-
-    public void onViewThirteenClick(){
-        Driver.getScreenController().activate("ThirteenPayroll");
+    public void onViewPayrollClick(){
+        Driver.getScreenController().activate("Payroll");
     }
 }

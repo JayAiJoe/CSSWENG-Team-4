@@ -90,6 +90,10 @@ public class Driver extends Application {
         FXMLLoader colaLoader = new FXMLLoader();
         colaLoader.setLocation(getClass().getResource("/fxml/COLA.fxml"));
         screenController.addScreen("COLA", colaLoader);
+
+        FXMLLoader thirteenLoader = new FXMLLoader();
+        thirteenLoader.setLocation(getClass().getResource("/fxml/ThirteenPayroll.fxml"));
+        screenController.addScreen("ThirteenPayroll", thirteenLoader);
     }
 
     public static ScreenController getScreenController() {
