@@ -31,10 +31,10 @@
                                        <children>
                                           <TableView fx:id="philhealthTv" editable="true" layoutX="8.0" layoutY="97.0" prefHeight="216.0" prefWidth="502.0" stylesheets="@../css/Tableview.css">
                                              <columns>
-                                                <TableColumn fx:id="ph_range" maxWidth="1.7976931348623157E308" prefWidth="395.99998474121094" sortable="false" text="Range">
+                                                <TableColumn fx:id="ph_range" maxWidth="1.7976931348623157E308" prefWidth="395.99998474121094" sortable="false" text="Salary Range">
                                                    <columns>
-                                                      <TableColumn fx:id="ph_start" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="160.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Start" />
-                                                      <TableColumn fx:id="ph_end" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="160.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="End" />
+                                                      <TableColumn fx:id="ph_start" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="160.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Minimum" />
+                                                      <TableColumn fx:id="ph_end" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="160.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Maximum" />
                                                    </columns>
                                                 </TableColumn>
                                                 <TableColumn fx:id="ph_value" prefWidth="179.99996948242188" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Fee" />
@@ -110,6 +110,32 @@
                                           </Text>
                                        </children>
                                     </HBox>
+                                    <TableView fx:id="sssTv" editable="true" layoutX="26.0" layoutY="106.0" prefHeight="501.0" prefWidth="530.0" stylesheets="@../css/Tableview.css">
+                                       <columns>
+                                          <TableColumn fx:id="ph_range1" maxWidth="1.7976931348623157E308" prefWidth="395.99998474121094" sortable="false" text="Salary Range">
+                                             <columns>
+                                                <TableColumn fx:id="sss_startTc" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="96.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Minimum" />
+                                                <TableColumn fx:id="sss_endTc" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="91.20001220703125" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Maximum" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn fx:id="ph_value1" prefWidth="176.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Regular Social Security">
+                                             <columns>
+                                                <TableColumn fx:id="sss_EETc" prefWidth="176.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="EE" />
+                                             </columns>
+                                          </TableColumn>
+                                          <TableColumn fx:id="ph_value11" prefWidth="176.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Total">
+                                             <columns>
+                                                <TableColumn fx:id="sss_ERTc" prefWidth="163.20001220703125" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="ER" />
+                                             </columns>
+                                          </TableColumn>
+                                       </columns>
+                                    </TableView>
+                                    <Button fx:id="sss_save_btn" disable="true" layoutX="26.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onSSSEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Save" />
+                                    <Button fx:id="sss_edit_btn" layoutX="26.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onSSSEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Edit" />
+                                    <Button fx:id="sss_cancel_btn" cancelButton="true" disable="true" layoutX="85.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onSSSEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="cancelbutton" text="Cancel" />
+                                    <Button fx:id="sss_add_btn" disable="true" layoutX="408.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onAddSSSRowAction" prefHeight="31.0" prefWidth="65.0" styleClass="normalbutton" text="Add" />
+                                    <Button fx:id="sss_remove_btn" disable="true" layoutX="474.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#onDeleteSSSRowAction" prefHeight="31.0" prefWidth="77.0" styleClass="cancelbutton" text="Remove" />
+                                    <Text fx:id="sss_errorText" fill="RED" layoutX="26.0" layoutY="625.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -127,7 +153,6 @@
                               </HBox>
                            </children>
                         </AnchorPane>
-                        <VBox prefHeight="200.0" prefWidth="100.0" />
                      </children>
                   </AnchorPane>
                </children>

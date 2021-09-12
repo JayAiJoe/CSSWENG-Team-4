@@ -39,12 +39,13 @@ public class EditFeesController extends Controller {
     @FXML
     private Button pi_edit_btn, pi_cancel_btn,
             pi_save_btn, ph_update_btn, ph_cancel_btn, ph_add_btn, ph_delete_btn,
-            ph_save_btn;
+            ph_save_btn, sss_edit_btn, sss_save_btn, sss_cancel_btn, sss_add_btn,
+            sss_remove_btn;
 
     @FXML
     private TextField pi_employeeTf, pi_employerTf;
     @FXML
-    private Text pi_employer_errorText, pi_employee_errorText, ph_errorText;
+    private Text pi_employer_errorText, pi_employee_errorText, ph_errorText, sss_errorText;
 
     /**
      * Instantiation of objects related to table from EditFees.fxml
@@ -53,6 +54,10 @@ public class EditFeesController extends Controller {
     TableView<PhilHealthRange> philhealthTv;
     @FXML
     private TableColumn<PhilHealthRange, String> ph_start, ph_end, ph_value, ph_range;
+    @FXML
+    TableView sssTv;
+    @FXML
+    private TableColumn sss_startTc, sss_endTc, sss_EETc, sss_ERTc;
 
     /**
      * Model components that are necessary for editing
@@ -72,12 +77,14 @@ public class EditFeesController extends Controller {
 
         resetPagIbig();
         resetPhilHealth();
+        resetSSS();
     }
 
     @FXML
     public void initialize() {
         resetPagIbig();
         resetPhilHealth();
+        resetSSS();
 
         // Pag-Ibig initialization
         pi_employeeTf.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -283,7 +290,7 @@ public class EditFeesController extends Controller {
     }
 
     /**
-     * Resets the view components in the Pag-Ibig tab.
+     * Resets the view components related to PagIbig.
      */
     private void resetPagIbig() {
         // Pag-Ibig initialization
@@ -302,7 +309,7 @@ public class EditFeesController extends Controller {
     }
 
     /**
-     * Resets the view components in the PhilHealth tab.
+     * Resets the view components related to Philhealth.
      */
     private void resetPhilHealth() {
         // PhilHealth initialization
@@ -322,6 +329,29 @@ public class EditFeesController extends Controller {
         ph_save_btn.setDisable(true);
         ph_errorText.setVisible(false);
         resetRanges();
+    }
+
+    /**
+     * Resets the view components related to SSS.
+     */
+    private void resetSSS() {
+        // sss initialization
+        philhealthFeeTable = Calculator.getInstance().getPhilhealthFeeTable();
+        sssTv.edit(-1, null);
+        sssTv.setEditable(false);
+        sss_edit_btn.toFront();
+        sss_edit_btn.setDisable(false);
+        sss_cancel_btn.toBack();
+        sss_cancel_btn.setDisable(true);
+        sss_cancel_btn.setVisible(false);
+        sss_add_btn.setVisible(false);
+        sss_add_btn.setDisable(true);
+        sss_remove_btn.setVisible(false);
+        sss_remove_btn.setDisable(true);
+        sss_save_btn.setVisible(false);
+        sss_save_btn.setDisable(true);
+        sss_errorText.setVisible(false);
+        //resetRanges();
     }
 
     /**
@@ -594,6 +624,83 @@ public class EditFeesController extends Controller {
         }
     }
 
+    public void onSSSEditClick(MouseEvent mouseEvent) {
+        if (mouseEvent.getSource() == sss_edit_btn) {
+            sss_edit_btn.toBack();
+            sss_edit_btn.setDisable(true);
+            sss_cancel_btn.toFront();
+            sss_cancel_btn.setDisable(false);
+            sss_cancel_btn.setVisible(true);
+            sss_add_btn.setVisible(true);
+            sss_add_btn.setDisable(false);
+            sss_remove_btn.setVisible(true);
+            sss_remove_btn.setDisable(false);
+            sss_save_btn.setVisible(true);
+            sss_save_btn.setDisable(false);
+            sssTv.setEditable(true);
+        } else if (mouseEvent.getSource() == sss_save_btn) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setContentText("Apply changes?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                //TODO: saving of ranges and error checking
+
+                sss_edit_btn.toFront();
+                sss_edit_btn.setDisable(false);
+                sss_cancel_btn.toBack();
+                sss_cancel_btn.setDisable(true);
+                sss_cancel_btn.setVisible(false);
+                sss_add_btn.setVisible(false);
+                sss_add_btn.setDisable(true);
+                sss_remove_btn.setVisible(false);
+                sss_remove_btn.setDisable(true);
+                sss_save_btn.setVisible(false);
+                sss_save_btn.setDisable(true);
+                sss_errorText.setVisible(false);
+                //sssTv.edit(-1, null);
+                sssTv.setEditable(false);
+                System.out.println("Ok is pressed");
+            } else {
+                // ... user chose CANCEL or closed the dialog
+                System.out.println("cancel is pressed");
+            }
+        } else if (mouseEvent.getSource() == sss_cancel_btn) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setContentText("Discard changes?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                resetRanges();
+
+                sss_edit_btn.toFront();
+                sss_edit_btn.setDisable(false);
+                sss_cancel_btn.toBack();
+                sss_cancel_btn.setDisable(true);
+                sss_cancel_btn.setVisible(false);
+                sss_add_btn.setVisible(false);
+                sss_add_btn.setDisable(true);
+                sss_remove_btn.setVisible(false);
+                sss_remove_btn.setDisable(true);
+                sss_save_btn.setVisible(false);
+                sss_save_btn.setDisable(true);
+                //sssTv.edit(-1, null);
+                sssTv.setEditable(false);
+                sss_errorText.setVisible(false);
+                System.out.println("Ok is pressed");
+            } else {
+                // ... user chose CANCEL or closed the dialog
+                System.out.println("cancel is pressed");
+            }
+        }
+    }
+
     /**
      * Checks whether a given String value has up to
      * 2 decimal places only.
@@ -632,5 +739,23 @@ public class EditFeesController extends Controller {
         if (rowCount > 2) {
             ranges.remove(rowCount - 2);
         }
+    }
+
+    /**
+     * Adds a new row to the SSS fee table.
+     */
+    @FXML
+    private void onAddSSSRowAction(){
+        //TODO: Adding of new row to SSS table
+    }
+
+    /**
+     * Deletes the second to the last row from the
+     * SSS fee table provided that there are
+     * more than 2 rows in the fee table.
+     */
+    @FXML
+    private void onDeleteSSSRowAction(){
+        //TODO: Removing of 2nd to the last row of sss table
     }
 }
