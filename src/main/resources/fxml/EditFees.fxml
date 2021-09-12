@@ -27,7 +27,7 @@
                            <children>
                               <VBox prefHeight="634.0" prefWidth="520.0">
                                  <children>
-                                    <Pane fx:id="phil_tab" prefHeight="342.0" prefWidth="549.0" style="-fx-background-color: E1F4FF;">
+                                    <Pane prefHeight="342.0" prefWidth="549.0" style="-fx-background-color: E1F4FF;">
                                        <children>
                                           <TableView fx:id="philhealthTv" editable="true" layoutX="8.0" layoutY="97.0" prefHeight="216.0" prefWidth="502.0" stylesheets="@../css/Tableview.css">
                                              <columns>
@@ -62,7 +62,7 @@
                                     </Pane>
                                     <AnchorPane prefHeight="282.0" prefWidth="563.0" style="-fx-background-color: E1F4FF;">
                                        <children>
-                                          <Pane fx:id="pagibig_tab" layoutX="9.0" layoutY="48.0" prefHeight="222.0" prefWidth="502.0" style="-fx-background-color: white;">
+                                          <Pane layoutX="9.0" layoutY="48.0" prefHeight="222.0" prefWidth="502.0" style="-fx-background-color: white;">
                                              <children>
                                                 <Button fx:id="pi_save_btn" disable="true" layoutX="168.0" layoutY="172.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="59.0" styleClass="normalbutton" text="Save" visible="false" />
                                                 <TextField fx:id="pi_employeeTf" disable="true" layoutX="216.0" layoutY="34.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
@@ -112,18 +112,18 @@
                                     </HBox>
                                     <TableView fx:id="sssTv" editable="true" layoutX="26.0" layoutY="106.0" prefHeight="501.0" prefWidth="530.0" stylesheets="@../css/Tableview.css">
                                        <columns>
-                                          <TableColumn fx:id="ph_range1" maxWidth="1.7976931348623157E308" prefWidth="395.99998474121094" sortable="false" text="Salary Range">
+                                          <TableColumn fx:id="sss_range" maxWidth="1.7976931348623157E308" prefWidth="395.99998474121094" sortable="false" text="Salary Range">
                                              <columns>
                                                 <TableColumn fx:id="sss_startTc" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="96.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Minimum" />
                                                 <TableColumn fx:id="sss_endTc" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="91.20001220703125" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Maximum" />
                                              </columns>
                                           </TableColumn>
-                                          <TableColumn fx:id="ph_value1" prefWidth="176.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Regular Social Security">
+                                          <TableColumn fx:id="sss_value1" prefWidth="176.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Regular Social Security">
                                              <columns>
                                                 <TableColumn fx:id="sss_EETc" prefWidth="176.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="EE" />
                                              </columns>
                                           </TableColumn>
-                                          <TableColumn fx:id="ph_value11" prefWidth="176.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Total">
+                                          <TableColumn fx:id="sss_value2" prefWidth="176.0" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Total">
                                              <columns>
                                                 <TableColumn fx:id="sss_ERTc" prefWidth="163.20001220703125" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="ER" />
                                              </columns>
