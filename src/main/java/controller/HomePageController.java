@@ -3,10 +3,7 @@ package controller;
 import dao.LogbookPOJO;
 import driver.Driver;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -24,7 +21,7 @@ public class HomePageController extends Controller {
     private AnchorPane navBar_container;
 
     @FXML
-    private Button employeeBtn, sssBtn, philhealthBtn, pagibigBtn, attendanceBtn;
+    private Button employeeBtn, sssBtn, attendanceBtn;
     @FXML
     private DatePicker startDatePicker, endDatePicker;
     @FXML
@@ -32,8 +29,12 @@ public class HomePageController extends Controller {
     @FXML
     private Text dateErrorText, frequencyErrorText;
 
+    @FXML
+    private TableColumn startTc, endTc, typeTc, rangeTc, buttonTc;
+
     @Override
     public void update() {
+        disableReorder();
         // load navigation bar
         if (navBar_container.getChildren().isEmpty()) {
             navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
@@ -128,22 +129,6 @@ public class HomePageController extends Controller {
         System.out.println(file);
     }
 
-    public void onPhilhealthUpload() {
-        FileChooser philhealthfileChooser = new FileChooser();
-        philhealthfileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
-        File file = philhealthfileChooser.showOpenDialog(philhealthBtn.getScene().getWindow());
-        System.out.println(file);
-    }
-
-    public void onPagibigUpload() {
-        FileChooser pagibigfileChooser = new FileChooser();
-        pagibigfileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
-        File file = pagibigfileChooser.showOpenDialog(pagibigBtn.getScene().getWindow());
-        System.out.println(file);
-    }
-
     public void onGoToEmployeesClick(){
         Driver.getScreenController().activate("Employees");
     }
@@ -151,4 +136,13 @@ public class HomePageController extends Controller {
     public void onGoToFeesClick(){
         Driver.getScreenController().activate("EditFees");
     }
+
+    private void disableReorder(){
+        endTc.setReorderable(false);
+        startTc.setReorderable(false);
+        rangeTc.setReorderable(false);
+        buttonTc.setReorderable(false);
+        typeTc.setReorderable(false);
+    }
+
 }
