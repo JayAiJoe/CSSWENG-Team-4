@@ -110,8 +110,8 @@ public class Payroll {
             double salary = Calculator.getInstance().computeSalary(rate, workdays);
             int time = performance.getMinsOvertime();
             double amount = Calculator.getInstance().computeOvertime(rate, time);
-            double total = salary + amount;
             double cola = performance.getCola();
+            double total = salary + amount + cola;
 
             double sss, philhealth, pagibig;
             double monthlyWage;
