@@ -15,14 +15,14 @@
 
 <AnchorPane prefHeight="794.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditFeesController">
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
             <AnchorPane>
                <children>
                   <AnchorPane fx:id="navBar_container" prefHeight="36.0" prefWidth="1400.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-              <AnchorPane layoutY="33.0" minHeight="0.0" minWidth="0.0" prefHeight="1258.0" prefWidth="1424.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.599999999999909" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+              <AnchorPane layoutY="33.0" minHeight="-Infinity" prefHeight="759.0" prefWidth="1186.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
                      <children>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="82.0" prefWidth="1424.0" style="-fx-background-color: E0F4FF;" AnchorPane.bottomAnchor="1176.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.bottomAnchor="759.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <HBox alignment="CENTER" layoutY="111.0" prefHeight="634.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
                               <VBox prefHeight="634.0" prefWidth="520.0">
