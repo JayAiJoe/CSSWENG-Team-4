@@ -225,7 +225,22 @@ public class ExcelHandler {
         Font headersFont = workbook.createFont();
         headersFont.setBold(true);
         CellStyle headerCellStyle = workbook.createCellStyle();
+        CellStyle boldStyle = workbook.createCellStyle();
+        boldStyle.setFont(headersFont);
         headerCellStyle.setFont(headersFont);
+        headerCellStyle.setWrapText(true);
+        headerCellStyle.setAlignment(HorizontalAlignment.CENTER);
+        headerCellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        headerCellStyle.setBorderTop(BorderStyle.THICK);
+        headerCellStyle.setBorderRight(BorderStyle.THIN);
+        headerCellStyle.setBorderBottom(BorderStyle.THIN);
+        headerCellStyle.setBorderLeft(BorderStyle.THIN);
+        CellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setBorderRight(BorderStyle.THIN);
+        cellStyle.setBorderLeft(BorderStyle.THIN);
+        cellStyle.setBorderBottom(BorderStyle.DASH_DOT);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
+
         Sheet sheet = workbook.createSheet(company+" Payroll");
         Row row = sheet.createRow(0);
         for(int i = 0; i<14;i++){
@@ -236,14 +251,14 @@ public class ExcelHandler {
                     break;
                 case 8:
                     cell.setCellValue(dateStart);
-                    cell.setCellStyle(headerCellStyle);
+                    cell.setCellStyle(boldStyle);
                     break;
                 case 10:
                     cell.setCellValue("to");
                     break;
                 case 12:
                     cell.setCellValue(dateEnd);
-                    cell.setCellStyle(headerCellStyle);
+                    cell.setCellStyle(boldStyle);
                     break;
             }
         }
@@ -260,11 +275,11 @@ public class ExcelHandler {
                 case 3:
                     if (company.equals("CRAYOLA")) {
                         cell.setCellValue("CRAYOLA ATBP.");
-                        cell.setCellStyle(headerCellStyle);
+                        cell.setCellStyle(boldStyle);
                     }
                     else {
                         cell.setCellValue("IX-XI HARDWARE");
-                        cell.setCellStyle(headerCellStyle);
+                        cell.setCellStyle(boldStyle);
                     }
                     break;
                 case 7:
@@ -273,11 +288,11 @@ public class ExcelHandler {
                 case 8:
                     if (company.equals("CRAYOLA")) {
                         cell.setCellValue("UNIT 2-3, U&I BLDG., F. TAÑEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
-                        cell.setCellStyle(headerCellStyle);
+                        cell.setCellStyle(boldStyle);
                     }
                     else {
                         cell.setCellValue("UNIT 5, U&I BLDG., F. TAÑEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
-                        cell.setCellStyle(headerCellStyle);
+                        cell.setCellStyle(boldStyle);
                     }
                     break;
             }
@@ -301,8 +316,8 @@ public class ExcelHandler {
             Cell cell = headers2.createCell(i);
             if (i == 4){
                 cell.setCellValue("REGULAR/HOLIDAY");
-                cell.setCellStyle(headerCellStyle);
             }
+            cell.setCellStyle(headerCellStyle);
         }
         Row headers3 = sheet.createRow(5);
         for (int i=0; i<14; i++){
@@ -393,11 +408,12 @@ public class ExcelHandler {
                         cell.setCellValue(employee.getNet());
                         break;
                 }
+                cell.setCellStyle(cellStyle);
             }
         }
 
         for (int i =0; i<4;i++){
-            sheet.autoSizeColumn(i);
+            sheet.autoSizeColumn(i,true);
         }
 
         FileOutputStream fileOut = new FileOutputStream(filePath);
