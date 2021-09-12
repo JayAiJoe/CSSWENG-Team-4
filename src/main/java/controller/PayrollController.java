@@ -97,11 +97,28 @@ public class PayrollController extends Controller {
     }
 
     public void setPayrollInfo(Date startDate, Date endDate, String frequency) {
+        if(created){
+            resetPayroll();
+        }
         this.startDate = startDate;
         this.endDate = endDate;
         this.frequency = frequency;
         this.created = true;
         this.newPayroll = true;
+    }
+    
+    public void resetPayroll(){
+        created = false;
+        newPayroll = false;
+        initPayrollCol();
+        thirteenBtn.setVisible(false);
+        thirteenTc.setVisible(false);
+        toggleThirteen.setSelected(false);
+        daterangeText.setText("For the period:");
+        crayolaBtn.setDisable(true);
+        ixxiBtn.setDisable(false);
+        addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+        companyText.setText("Crayola atbp.");
     }
 
     @FXML
