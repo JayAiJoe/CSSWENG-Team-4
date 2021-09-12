@@ -277,7 +277,8 @@ public class PayrollController extends Controller {
                 new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
         File filepath = exportfileChooser.showSaveDialog(exportBtn.getScene().getWindow());
         System.out.println(filepath);
-        if (formatCb.getValue() == "Standard") {
+        if (formatCb.getValue().equals("Standard")) {
+            System.out.println("HOOOOOOOOOO");
             try {
                 if (isCrayola) {
                     new ExcelHandler().printMD(filepath.getAbsolutePath(),
@@ -295,7 +296,7 @@ public class PayrollController extends Controller {
             } catch (Exception e) {
                 System.out.println("Problem printing to file");
             }
-        } else if(formatCb.getValue() == "Voucher"){
+        } else if(formatCb.getValue().equals("Voucher")){
             try {
                 //TODO: Save Payroll to excel in Voucher form
             } catch (Exception e) {
