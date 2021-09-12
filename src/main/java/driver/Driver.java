@@ -6,7 +6,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Calculator;
 
@@ -68,7 +67,7 @@ public class Driver extends Application {
         screenController.addScreen("Home", homeLoader);
 
         FXMLLoader pendingOvertimeLoader = new FXMLLoader();
-        pendingOvertimeLoader.setLocation(getClass().getResource("/fxml/PendingOvertime.fxml"));
+        pendingOvertimeLoader.setLocation(getClass().getResource("/fxml/OvertimeManagement.fxml"));
         screenController.addScreen("PendingOvertime", pendingOvertimeLoader);
 
         FXMLLoader approvedOvertimeLoader = new FXMLLoader();
