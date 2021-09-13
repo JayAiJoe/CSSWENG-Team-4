@@ -218,6 +218,20 @@ public class Repository {
         return pendingOT;
     }
 
+    public ArrayList<LogbookPOJO> getAcceptedOT(Date startDate, Date endDate) {
+        MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
+        ArrayList<LogbookPOJO> acceptedOT = new ArrayList<>();
+        if (endDate == null) {
+            collection.find(and(gte("date", startDate), gt("acceptedOT", 0))).into(acceptedOT);
+        } else if (startDate == null) {
+            collection.find(and(lte("date", endDate), gt("acceptedOT", 0))).into(acceptedOT);
+        } else {
+            collection.find(and(gt("acceptedOT", 0), gte("date", startDate), lte("date", endDate))).into(acceptedOT);
+        }
+
+        return acceptedOT;
+    }
+
     public ArrayList<ColaPOJO> getCola(Date startDate, Date endDate) {
         MongoCollection<ColaPOJO> collection = database.getCollection("cola", ColaPOJO.class);
         ArrayList<ColaPOJO> cola = new ArrayList<>();
