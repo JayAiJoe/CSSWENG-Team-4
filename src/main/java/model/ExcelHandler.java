@@ -9,6 +9,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.io.*;
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -414,6 +415,102 @@ public class ExcelHandler {
 
         for (int i =0; i<4;i++){
             sheet.autoSizeColumn(i,true);
+        }
+
+        FileOutputStream fileOut = new FileOutputStream(filePath);
+        workbook.write(fileOut);
+        fileOut.close();
+        workbook.close();
+    }
+
+    public void printVoucher(String filePath , ObservableList<PayrollEntry> entries, String dateStart, String dateEnd) throws IOException {
+        Workbook workbook = new HSSFWorkbook();
+        DecimalFormat df = new DecimalFormat("0.00");
+        Sheet sheet = workbook.createSheet("Vouchers");
+        int rowNum = 2;
+
+        Font headersFont = workbook.createFont();
+        headersFont.setBold(true);
+        CellStyle bold = workbook.createCellStyle();
+        bold.setFont(headersFont);
+
+
+        for(PayrollEntry employee: entries){
+            Row row = sheet.createRow(rowNum);
+            Cell cell = row.createCell(0);
+            cell.setCellValue(employee.getEmployeeName().toUpperCase());
+            cell.setCellStyle(bold);
+
+            rowNum+=3;
+
+            Row row2 = sheet.createRow(rowNum++);
+            row2.createCell(0).setCellValue("DATE COVERED: ");
+            Cell cell2 = row2.createCell(1);
+            cell2.setCellValue(dateStart+" - "+dateEnd);
+            cell2.setCellStyle(bold);
+
+            row2.createCell(4).setCellValue("LESS DEDUCTIONS: ");
+
+
+            Row row3 = sheet.createRow(rowNum++);
+            row3.createCell(0).setCellValue("DAYS OF WORK: ");
+            row3.createCell(1).setCellValue(employee.getWorkdays());
+
+            row3.createCell(4).setCellValue("SSS: ");
+            row3.createCell(5).setCellValue(employee.getSss());
+
+
+            Row row4 = sheet.createRow(rowNum++);
+            row4.createCell(0).setCellValue("RATE ("+employee.getMode()+")");
+            row4.createCell(1).setCellValue(employee.getWage());
+
+            row4.createCell(4).setCellValue("PHILHEALTH: ");
+            row4.createCell(5).setCellValue(employee.getPhilhealth());
+
+            Row row5 = sheet.createRow(rowNum++);
+            row5.createCell(0).setCellValue("UNIFORM 10/DAY: ");
+            row5.createCell(1).setCellValue(employee.getCola());
+
+            row5.createCell(4).setCellValue("PAG-IBIG: ");
+            row5.createCell(5).setCellValue(employee.getPagibig());
+
+            Row row6 = sheet.createRow(rowNum++);
+            row6.createCell(0).setCellValue("OVERTIME: ");
+            row6.createCell(1).setCellValue(employee.getAmount());
+
+            row6.createCell(4).setCellValue("LATE/UNDERTIME: ");
+            row6.createCell(5).setCellValue(employee.getLate());
+
+            Row row7 = sheet.createRow(rowNum++);
+            row7.createCell(0).setCellValue("TOTAL REGULAR WAGE: ");
+            double regularWage = Double.parseDouble(employee.getRate())*(Double.parseDouble(employee.getWorkdays())+Double.parseDouble(employee.getAbsent()));
+            row7.createCell(1).setCellValue(df.format(regularWage));
+
+
+            row7.createCell(4).setCellValue("ABSENT "+ Double.parseDouble(employee.getAbsent()) +" DAYS");
+            double absentVal = Double.parseDouble(employee.getAbsent())*Double.parseDouble(employee.getRate());
+            row7.createCell(5).setCellValue(df.format(absentVal));
+
+            Row row8 = sheet.createRow(rowNum);
+            row8.createCell(4).setCellValue("TOTAL DEDUCTIONS: ");
+            double totalDeduction = Double.parseDouble(employee.getTotal())-Double.parseDouble(employee.getNet())+absentVal;
+            row8.createCell(5).setCellValue(df.format(totalDeduction));
+
+            rowNum+=2;
+            Row row9 = sheet.createRow(rowNum);
+            Cell cell3 = row9.createCell(4);
+            cell3.setCellValue("NET AMOUNT PAID: ");
+            cell3.setCellStyle(bold);
+
+            Cell cell4 = row9.createCell(6);
+            cell4.setCellValue(employee.getNet());
+            cell4.setCellStyle(bold);
+
+            rowNum+=9;
+        }
+
+        for (int i =0; i<7;i++){
+            sheet.autoSizeColumn(i);
         }
 
         FileOutputStream fileOut = new FileOutputStream(filePath);

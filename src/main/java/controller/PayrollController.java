@@ -300,7 +300,15 @@ public class PayrollController extends Controller {
             }
         } else if(formatCb.getValue().equals("Voucher")){
             try {
-                //TODO: Save Payroll to excel in Voucher form
+                if (isCrayola) {
+                    new ExcelHandler().printVoucher(filepath.getAbsolutePath(),crayolaEntries,
+                            new SimpleDateFormat("MM/dd/yyyy").format(startDate),
+                            new SimpleDateFormat("MM/dd/yyyy").format(endDate));
+                } else {
+                    new ExcelHandler().printVoucher(filepath.getAbsolutePath(),ixxiEntries,
+                            new SimpleDateFormat("MM/dd/yyyy").format(startDate),
+                            new SimpleDateFormat("MM/dd/yyyy").format(endDate));
+                }
             } catch (Exception e) {
                 System.out.println("Problem printing to file");
             }
