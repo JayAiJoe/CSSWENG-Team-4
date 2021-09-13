@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import model.Payroll;
 import model.PayrollEntry;
+import model.ThirteenPayroll;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -46,7 +47,7 @@ public class ThirteenPayrollController extends Controller {
     @FXML
     private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc, overtimeTc, deductionsTc;
 
-    private Payroll payroll = null;
+    private ThirteenPayroll payroll = null;
     private ObservableList<PayrollEntry> crayolaEntries = FXCollections.observableArrayList(),
             ixxiEntries = FXCollections.observableArrayList();
     private Date startDate, endDate;
@@ -66,16 +67,13 @@ public class ThirteenPayrollController extends Controller {
         addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
         companyText.setText("Crayola atbp.");
 
-        if (newPayroll) {
-            // get and set data in table
-            payroll = new Payroll(startDate, endDate, frequency);
-            daterangeText.setText("13th Month");
-            crayolaEntries.setAll(payroll.getCrayolaEntries());
-            ixxiEntries.setAll(payroll.getIxxiEntries());
-            payrollTv.setItems(crayolaEntries);
-            newPayroll = false;
-        }
-
+        // get and set data in table
+        payroll = new ThirteenPayroll(frequency);
+        daterangeText.setText("13th Month");
+        crayolaEntries.setAll(payroll.getCrayolaEntries());
+        ixxiEntries.setAll(payroll.getIxxiEntries());
+        payrollTv.setItems(crayolaEntries);
+        newPayroll = false;
 
         navBar_container.toFront();
     }
