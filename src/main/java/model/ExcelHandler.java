@@ -255,11 +255,15 @@ public class ExcelHandler {
                     cell.setCellStyle(boldStyle);
                     break;
                 case 10:
-                    cell.setCellValue("to");
+                    if (!dateStart.equals("13th month")) {
+                        cell.setCellValue("to");
+                    }
                     break;
                 case 12:
-                    cell.setCellValue(dateEnd);
-                    cell.setCellStyle(boldStyle);
+                    if (!dateStart.equals("13th month")) {
+                        cell.setCellValue(dateEnd);
+                        cell.setCellStyle(boldStyle);
+                    }
                     break;
             }
         }
@@ -446,7 +450,12 @@ public class ExcelHandler {
             Row row2 = sheet.createRow(rowNum++);
             row2.createCell(0).setCellValue("DATE COVERED: ");
             Cell cell2 = row2.createCell(1);
-            cell2.setCellValue(dateStart+" - "+dateEnd);
+            if (!dateStart.equals("13th month")) {
+                cell2.setCellValue(dateStart + " - " + dateEnd);
+            }
+            else {
+                cell2.setCellValue(dateStart);
+            }
             cell2.setCellStyle(bold);
 
             row2.createCell(4).setCellValue("LESS DEDUCTIONS: ");
