@@ -44,8 +44,6 @@ public class Payroll {
      * logbook information retrieved from the database.
      */
     private void initialize(Date startDate, Date endDate, String frequency) {
-
-        // TODO: Change everything later
         crayolaEntries = new ArrayList<>();
         ixxiEntries = new ArrayList<>();
 
@@ -134,34 +132,6 @@ public class Payroll {
             } else {
                 ixxiEntries.add(payrollEntry);
             }
-        }
-    }
-
-    /**
-     * Updates the Pag-Ibig, PhilHealth, and SSS Fees of an employee.
-     */
-    public void update() {
-        for (PayrollEntry entry: crayolaEntries) {
-            double sss, philhealth, pagibig;
-            double monthlyWage = entry.getMonthlyWage();
-            sss = Calculator.getInstance().computeSSSFee(monthlyWage);
-            philhealth = Calculator.getInstance().computePhilHealthFee(monthlyWage);
-            pagibig = Calculator.getInstance().computePagIbigFee(monthlyWage);
-
-            entry.setPagibig(pagibig);
-            entry.setPhilhealth(philhealth);
-            entry.setSss(sss);
-        }
-        for (PayrollEntry entry: ixxiEntries) {
-            double sss, philhealth, pagibig;
-            double monthlyWage = entry.getMonthlyWage();
-            sss = Calculator.getInstance().computeSSSFee(monthlyWage);
-            philhealth = Calculator.getInstance().computePhilHealthFee(monthlyWage);
-            pagibig = Calculator.getInstance().computePagIbigFee(monthlyWage);
-
-            entry.setPagibig(pagibig);
-            entry.setPhilhealth(philhealth);
-            entry.setSss(sss);
         }
     }
 }
