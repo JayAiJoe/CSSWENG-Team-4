@@ -80,6 +80,13 @@ public class Repository {
         return result.wasAcknowledged();
     }
 
+    public boolean addPayroll(PayrollPOJO payroll) {
+        MongoCollection<PayrollPOJO> collection = database.getCollection("payroll", PayrollPOJO.class);
+        InsertOneResult result = collection.insertOne(payroll);
+
+        return result.wasAcknowledged();
+    }
+
     public EmployeePOJO findEmployee(int employeeID) {
         MongoCollection<EmployeePOJO> collection = database.getCollection("employees", EmployeePOJO.class);
 
@@ -98,6 +105,14 @@ public class Repository {
         collection.find().into(employees);
 
         return employees;
+    }
+
+    public ArrayList<PayrollPOJO> getAllPayrolls() {
+        MongoCollection<PayrollPOJO> collection = database.getCollection("payroll", PayrollPOJO.class);
+        ArrayList<PayrollPOJO> payrolls = new ArrayList<>();
+        collection.find().into(payrolls);
+
+        return payrolls;
     }
 
     public ArrayList<PerformancePOJO> findPerformance(int employeeID) {
