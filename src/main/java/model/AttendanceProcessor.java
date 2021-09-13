@@ -4,6 +4,7 @@ import dao.LogbookPOJO;
 import dao.Repository;
 import dao.WorkdayPOJO;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,17 +30,30 @@ public class AttendanceProcessor {
 
         /* assumptions:
            1. logbooks is arranged by employee, then by date
-           2. workdays is arranged by date
-           3. the number of logbooks per employee is equal to the number of workdays
          */
         int logbookCtr = 0;
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
         while (logbookCtr < logbooks.size()) {
-            for (int i = 0; i < workdays.size() && logbookCtr < logbooks.size(); i++) {
+            int ID = logbooks.get(logbookCtr).getEmployeeID();
+            int i = 0;
+            while (logbookCtr < logbooks.size() && logbooks.get(logbookCtr).getEmployeeID() == ID) {
                 LogbookPOJO logbook = logbooks.get(logbookCtr);
-                WorkdayPOJO workday = workdays.get(i);
+                WorkdayPOJO workday = new WorkdayPOJO(null, 800, 1200,
+                        1300, 1700, 0, 0);
 
+                while (i < workdays.size()) {
+                    WorkdayPOJO temp = workdays.get(i);
+                    if (format.format(logbook.getDate()).equals(format.format(temp.getDate()))) {
+                        workday = temp;
+                        i++;
+                        break;
+                    } else if (logbook.getDate().compareTo(temp.getDate()) < 0) {
+                        break;
+                    } else {
+                        i++;
+                    }
+                }
                 processLogbook(logbook, workday);
-
                 logbookCtr++;
             }
         }
