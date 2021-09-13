@@ -137,6 +137,12 @@ public class HomePageController extends Controller {
             ArrayList<LogbookPOJO> logbooks = new ExcelHandler().readLogbook(file);
             // process attendance
             new AttendanceProcessor(logbooks);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Attendance processed successfully!");
+            alert.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

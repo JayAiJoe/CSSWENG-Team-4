@@ -27,10 +27,12 @@ public class AttendanceProcessor {
         endDate.setMinutes(59);
 
         ArrayList<WorkdayPOJO> workdays = Repository.getInstance().getWorkdays(startDate, endDate);
+        ArrayList<LogbookPOJO> finished = Repository.getInstance().getAttendance(startDate, endDate);
 
         /* assumptions:
            1. logbooks is arranged by employee, then by date
          */
+        ArrayList<LogbookPOJO> finalAttendance = new ArrayList<>();
         int logbookCtr = 0;
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
         while (logbookCtr < logbooks.size()) {
@@ -38,6 +40,22 @@ public class AttendanceProcessor {
             int i = 0;
             while (logbookCtr < logbooks.size() && logbooks.get(logbookCtr).getEmployeeID() == ID) {
                 LogbookPOJO logbook = logbooks.get(logbookCtr);
+
+                // check if logbook is already in database
+                boolean processed = false;
+                for (LogbookPOJO finishedLogbook: finished) {
+                    if (format.format(logbook.getDate()).equals(format.format(finishedLogbook.getDate())) &&
+                        logbook.getEmployeeID() == finishedLogbook.getEmployeeID()) {
+                        processed = true;
+                        break;
+                    }
+                }
+                System.out.println(processed);
+                if (processed) {
+                    logbookCtr++;
+                    continue;
+                }
+
                 WorkdayPOJO workday = new WorkdayPOJO(null, 800, 1200,
                         1300, 1700, 0, 0);
 
@@ -54,10 +72,11 @@ public class AttendanceProcessor {
                     }
                 }
                 processLogbook(logbook, workday);
+                finalAttendance.add(logbook);
                 logbookCtr++;
             }
         }
-        Repository.getInstance().addLogBook(logbooks);
+        Repository.getInstance().addLogBook(finalAttendance);
     }
 
     private void processLogbook(LogbookPOJO logbook, WorkdayPOJO workday) {
