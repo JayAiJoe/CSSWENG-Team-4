@@ -9,6 +9,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -94,12 +96,33 @@
                                                 <Text layoutX="396.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employees" wrappingWidth="63.35907745361328" />
                                                 <Button layoutX="87.0" layoutY="181.0" mnemonicParsing="false" onAction="#onGoToFeesClick" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Go To Page" />
                                                 <Button layoutX="386.0" layoutY="181.0" mnemonicParsing="false" onAction="#onGoToEmployeesClick" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Go To Page" />
-                                                <Button fx:id="sssBtn" layoutX="90.0" layoutY="55.0" mnemonicParsing="false" onAction="#onSSSUpload" prefHeight="26.0" prefWidth="115.0" styleClass="normalbutton" text="Upload a File" />
-                                                <Button fx:id="employeeBtn" layoutX="386.0" layoutY="55.0" mnemonicParsing="false" onAction="#onEmployeesUpload" prefHeight="26.0" prefWidth="115.0" styleClass="normalbutton" text="Upload a File" />
+                                                <Button fx:id="sssBtn" layoutX="90.0" layoutY="55.0" mnemonicParsing="false" onAction="#onSSSUpload" prefHeight="26.0" prefWidth="115.0" styleClass="uploadbutton" text="Upload a File">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/uploadIcon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic></Button>
+                                                <Button fx:id="employeeBtn" layoutX="386.0" layoutY="55.0" mnemonicParsing="false" onAction="#onEmployeesUpload" prefHeight="26.0" prefWidth="115.0" styleClass="uploadbutton" text="Upload a File">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/uploadIcon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic></Button>
                                                 <Text layoutX="27.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="SSS" wrappingWidth="28.000048828124818" />
                                                 <Text layoutX="310.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employees" wrappingWidth="63.35907745361328" />
                                                 <Text layoutX="310.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Attendance Log" wrappingWidth="63.35907745361328" />
-                                                <Button fx:id="attendanceBtn" layoutX="386.0" layoutY="116.0" mnemonicParsing="false" onAction="#onAttendanceUpload" prefHeight="26.0" prefWidth="115.0" styleClass="normalbutton" text="Upload a File" />
+                                                <Button fx:id="attendanceBtn" layoutX="386.0" layoutY="116.0" mnemonicParsing="false" onAction="#onAttendanceUpload" prefHeight="26.0" prefWidth="115.0" styleClass="uploadbutton" text="Upload a File">
+                                                   <graphic>
+                                                      <ImageView fitHeight="13.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../img/uploadIcon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic></Button>
                                              </children>
                                              <VBox.margin>
                                                 <Insets top="10.0" />

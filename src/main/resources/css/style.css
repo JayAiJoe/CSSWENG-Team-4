@@ -76,19 +76,49 @@
  -fx-background-radius: 0px;
 }
 
+.uploadbutton {
+-fx-font-family: 'Dosis';
+-fx-background-color: #B1B1B1;
+-fx-text-fill: white;
+-fx-background-radius: 20px;
+}
+
+.uploadbutton: hover{
+ -fx-font-family: 'Dosis';
+ -fx-background-color: #5b62f5;
+ -fx-text-fill: white;
+ -fx-background-radius: 20px;
+}
+
+.savebutton {
+-fx-font-family: 'Dosis';
+-fx-background-color: #329F29;
+-fx-text-fill: white;
+-fx-border-color: #329F29;
+-fx-background-radius: 0px;
+}
+
+.savebutton: hover{
+ -fx-font-family: 'Dosis';
+ -fx-background-color: #4C8A47;
+ -fx-text-fill: white;
+ -fx-border-color: #4C8A47;
+ -fx-background-radius: 0px;
+}
+
 .cancelbutton {
 -fx-font-family: 'Dosis';
 -fx-background-color: #FF4F4F;
 -fx-text-fill: white;
--fx-background-color: #FF4F4F;
+-fx-border-color: #FF4F4F;
 -fx-background-radius: 0px;
 }
 
 .cancelbutton: hover {
 -fx-font-family: 'Dosis';
--fx-background-color: red;
+-fx-background-color: #CC1F1F;
 -fx-text-fill: white;
--fx-border-color:  red;
+-fx-border-color:  #CC1F1F;
 -fx-background-radius: 0px;
 }
 

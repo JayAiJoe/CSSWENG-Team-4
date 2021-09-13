@@ -20,7 +20,7 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
     private AnchorPane navBar_container;
 
     @FXML
-    private Button nextEditBtn, currentEditBtn, nextCancelBtn, currentCancelBtn;
+    private Button nextEditBtn, currentEditBtn, currentSaveBtn, nextCancelBtn, currentCancelBtn, nextSaveBtn;
 
     /**
      * initialization of error text  and textfields in EmployeeForm.fxml
@@ -262,42 +262,44 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
     @FXML
     private void onCurrentEditAction() {
         hideCurrentErrorText();
+        // on edit btn click
+        currentSaveBtn.setVisible(true);
+        currentCancelBtn.setVisible(true);
+        setCurrentTextFieldsStatus(false);
 
-        if (currentEditBtn.getText().equals("Edit")) { // on edit btn click
-            currentEditBtn.setText("Save");
-            currentCancelBtn.setVisible(true);
-            setCurrentTextFieldsStatus(false);
-        } else if (currentEditBtn.getText().equals("Save")) {
-            WorkdayPOJO workday = onSaveAction(cShift1ErrorText, cShift2ErrorText,
-                    cOvertimeStartErrorText, cOvertimeEndErrorText, cFirstHalfStartTf,
-                    cFirstHalfEndTf, cSecondHalfStartTf, cSecondHalfEndTf,
-                    cOvertimeStartTf, cOvertimeEndTf);
+    }
 
-            if (workday != null) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Dialog");
+    @FXML
+    private void onCurrentSaveAction(){
+        WorkdayPOJO workday = onSaveAction(cShift1ErrorText, cShift2ErrorText,
+                cOvertimeStartErrorText, cOvertimeEndErrorText, cFirstHalfStartTf,
+                cFirstHalfEndTf, cSecondHalfStartTf, cSecondHalfEndTf,
+                cOvertimeStartTf, cOvertimeEndTf);
+
+        if (workday != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setContentText("Save changes to approved overtime and work hours?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                model.updateCurrentWorkday(workday);
+                currentWorkday = model.getCurrentWorkday();
+
+                setCurrentTextFieldsStatus(true);
+                currentSaveBtn.setVisible(false);
+                currentCancelBtn.setVisible(false);
+
+                alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setGraphic(null);
-                alert.setContentText("Save changes to approved overtime and work hours?");
+                alert.setTitle("Success");
+                alert.setContentText("Changes to approved overtime and work hours for the current day are saved!");
 
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK) {
-                    model.updateCurrentWorkday(workday);
-                    currentWorkday = model.getCurrentWorkday();
-
-                    setCurrentTextFieldsStatus(true);
-                    currentEditBtn.setText("Edit");
-                    currentCancelBtn.setVisible(false);
-
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText(null);
-                    alert.setGraphic(null);
-                    alert.setTitle("Success");
-                    alert.setContentText("Changes to approved overtime and work hours for the current day are saved!");
-
-                    System.out.println("Current workday updated");
-                    alert.showAndWait();
-                }
+                System.out.println("Current workday updated");
+                alert.showAndWait();
             }
         }
     }
@@ -305,42 +307,43 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
     @FXML
     private void onNextEditAction() {
         hideNextErrorText();
+        // on edit btn click
+        nextSaveBtn.setVisible(true);
+        nextCancelBtn.setVisible(true);
+        setNextTextFieldsStatus(false);
+    }
 
-        if (nextEditBtn.getText().equals("Edit")) { // on edit btn click
-            nextEditBtn.setText("Save");
-            nextCancelBtn.setVisible(true);
-            setNextTextFieldsStatus(false);
-        } else if (nextEditBtn.getText().equals("Save")) {
-            WorkdayPOJO workday = onSaveAction(nShift1ErrorText, nShift2ErrorText,
-                    nOvertimeStartErrorText, nOvertimeEndErrorText, nFirstHalfStartTf,
-                    nFirstHalfEndTf, nSecondHalfStartTf, nSecondHalfEndTf,
-                    nOvertimeStartTf, nOvertimeEndTf);
+    @FXML
+    private void onNextSaveAction(){
+        WorkdayPOJO workday = onSaveAction(nShift1ErrorText, nShift2ErrorText,
+                nOvertimeStartErrorText, nOvertimeEndErrorText, nFirstHalfStartTf,
+                nFirstHalfEndTf, nSecondHalfStartTf, nSecondHalfEndTf,
+                nOvertimeStartTf, nOvertimeEndTf);
 
-            if (workday != null) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Dialog");
+        if (workday != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText(null);
+            alert.setGraphic(null);
+            alert.setContentText("Save changes to approved overtime and work hours?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                model.updateNextWorkday(workday);
+                nextWorkday = model.getNextWorkday();
+
+                setNextTextFieldsStatus(true);
+                nextSaveBtn.setVisible(false);
+                nextCancelBtn.setVisible(false);
+
+                alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setGraphic(null);
-                alert.setContentText("Save changes to approved overtime and work hours?");
+                alert.setTitle("Success");
+                alert.setContentText("Changes to approved overtime and work hours for the next day are saved!");
 
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK) {
-                    model.updateNextWorkday(workday);
-                    nextWorkday = model.getNextWorkday();
-
-                    setNextTextFieldsStatus(true);
-                    nextEditBtn.setText("Edit");
-                    nextCancelBtn.setVisible(false);
-
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText(null);
-                    alert.setGraphic(null);
-                    alert.setTitle("Success");
-                    alert.setContentText("Changes to approved overtime and work hours for the next day are saved!");
-
-                    System.out.println("Next workday updated");
-                    alert.showAndWait();
-                }
+                System.out.println("Next workday updated");
+                alert.showAndWait();
             }
         }
     }
@@ -358,7 +361,7 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
             setCurrentTextFieldsStatus(true);
             hideCurrentErrorText();
             currentCancelBtn.setVisible(false);
-            currentEditBtn.setText("Edit");
+            currentSaveBtn.setVisible(false);
 
             resetCurrentWorkday();
         }
@@ -377,7 +380,7 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
             setNextTextFieldsStatus(true);
             hideNextErrorText();
             nextCancelBtn.setVisible(false);
-            nextEditBtn.setText("Edit");
+            nextSaveBtn.setVisible(false);
 
             resetNextWorkday();
         }

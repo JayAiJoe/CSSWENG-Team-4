@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -110,8 +112,22 @@
                   </VBox>
                </children>
             </GridPane>
-            <Button fx:id="cancelBtn" layoutX="231.0" layoutY="375.0" mnemonicParsing="false" onAction="#onCancelAction" prefHeight="27.0" prefWidth="98.0" styleClass="cancelbutton" text="Cancel" />
-            <Button fx:id="saveBtn" layoutX="118.0" layoutY="375.0" mnemonicParsing="false" onAction="#onSaveAction" prefHeight="27.0" prefWidth="98.0" styleClass="normalbutton" text="Save" />
+            <Button fx:id="cancelBtn" layoutX="257.0" layoutY="375.0" mnemonicParsing="false" onAction="#onCancelAction" prefHeight="27.0" prefWidth="71.0" styleClass="cancelbutton" text="Cancel">
+               <graphic>
+                  <ImageView fitHeight="63.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/cancelIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="saveBtn" layoutX="135.0" layoutY="375.0" mnemonicParsing="false" onAction="#onSaveAction" prefHeight="27.0" prefWidth="71.0" styleClass="savebutton" text="Save">
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/checkIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
          </children>
       </AnchorPane>
       <HBox alignment="CENTER" layoutX="8.0" layoutY="32.0" prefHeight="46.0" prefWidth="462.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="11.0">

@@ -79,6 +79,7 @@ public class EmployeesController extends Controller{
                         setGraphic(null);
                     } else {
                         editButton.setText("Edit");
+                        editButton.getStyleClass().add("normalbutton");
                         editButton.setOnMouseClicked(e -> onEditAction(this.getTableRow().getItem()));
                         setGraphic(editButton);
                     }

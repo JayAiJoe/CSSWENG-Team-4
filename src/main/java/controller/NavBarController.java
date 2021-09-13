@@ -61,7 +61,7 @@ public class NavBarController{
     }
 
     /**
-     * Changes screen to PendingOvertime.fxml.
+     * Changes screen to OvertimeManagement.fxml.
      */
     @FXML
     private void onPendingOvertimeAction() {

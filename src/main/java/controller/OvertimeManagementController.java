@@ -20,12 +20,25 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public class PendingOvertimeController extends Controller {
+public class OvertimeManagementController extends Controller {
     @FXML
     private AnchorPane navBar_container;
 
+
     /**
-     * initialization of Overtime Table related objects
+     * Initialization of Accepted Overtime Table related objects
+     */
+    @FXML
+    private TableView acceptedOvertimeTv;
+    @FXML
+    private TableColumn acceptedNameTc, acceptedMinTc, acceptedDateTc;
+    @FXML
+    private ToggleButton filterBtn2;
+    @FXML
+    private DatePicker datePicker2;
+
+    /**
+     * initialization of Pending Overtime Table related objects
      */
     @FXML
     private TableView<OvertimeEntry> overtimeTv;
@@ -45,6 +58,7 @@ public class PendingOvertimeController extends Controller {
     private OvertimeHandler model;
     private ObservableList<OvertimeEntry> entries;
     private FilteredList<OvertimeEntry> filteredEntries;
+
 
     @Override
     public void update() {
@@ -111,7 +125,7 @@ public class PendingOvertimeController extends Controller {
     }
 
     /**
-     * This method sets the size of table columns present in PendingOvertime.fxml
+     * This method sets the size of table columns present in OvertimeManagement.fxml
      */
 
     private void setColumnWidth() {
@@ -122,7 +136,7 @@ public class PendingOvertimeController extends Controller {
     }
 
     /**
-     * This method simply disables reorderability for all table columns in PendingOvertime.fxml
+     * This method simply disables reorderability for all table columns in OvertimeManagement.fxml
      */
     private void disableReorder() {
         nameTc.setReorderable(false);
