@@ -64,6 +64,7 @@ public class ThirteenPayrollController extends Controller {
             ixxiEntries = FXCollections.observableArrayList();
 
     private String frequency;
+    private boolean isCrayola = true;
 
     @Override
     public void update() {
@@ -145,12 +146,14 @@ public class ThirteenPayrollController extends Controller {
             addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
             companyText.setText("Crayola atbp.");
             payrollTv.setItems(crayolaEntries);
+            isCrayola = true;
         } else if (mouseEvent.getSource() == ixxiBtn) {
             ixxiBtn.setDisable(true);
             crayolaBtn.setDisable(false);
             addressText.setText("Located at: " + "UNIT 5, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
             companyText.setText("IX-XI Hardware");
             payrollTv.setItems(ixxiEntries);
+            isCrayola = false;
         }
     }
 
@@ -183,7 +186,43 @@ public class ThirteenPayrollController extends Controller {
      * Method for exporting 13th Month payroll
      */
     public void onExportClick() {
-        //TODO: Export of 13th Month
+        FileChooser exportfileChooser = new FileChooser();
+        exportfileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
+        File filepath = exportfileChooser.showSaveDialog(exportBtn.getScene().getWindow());
+        System.out.println(filepath);
+        if (formatCb.getValue().equals("Standard")) {
+            try {
+                if (isCrayola) {
+                    new ExcelHandler().printMD(filepath.getAbsolutePath(),
+                            crayolaEntries,
+                            "13th month","",
+                            "Crayola atbp.");
+                } else {
+                    new ExcelHandler().printMD(filepath.getAbsolutePath(),
+                            ixxiEntries,
+                            "13th month",
+                            "",
+                            "IX-XI Hardware");
+                }
+            } catch (Exception e) {
+                System.out.println("Problem printing to file");
+            }
+        } else if(formatCb.getValue().equals("Voucher")){
+            try {
+                if (isCrayola) {
+                    new ExcelHandler().printVoucher(filepath.getAbsolutePath(),crayolaEntries,
+                            "13th month",
+                            "");
+                } else {
+                    new ExcelHandler().printVoucher(filepath.getAbsolutePath(),ixxiEntries,
+                            "13th month",
+                            "");
+                }
+            } catch (Exception e) {
+                System.out.println("Problem printing to file");
+            }
+        }
 
     }
 
