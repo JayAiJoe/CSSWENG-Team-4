@@ -207,6 +207,9 @@ public class PayrollController extends Controller {
         if (toggleThirteen.isSelected()) {
             initCol(thirteenTc, "13th Month", 16);
             init13thCol();
+            ThirteenPayrollController controller = (ThirteenPayrollController) Driver
+                    .getScreenController().getController("ThirteenPayroll");
+            controller.setPayrollInfo(startDate, endDate, frequency);
             thirteenBtn.setVisible(true);
             thirteenTc.setVisible(true);
         }
