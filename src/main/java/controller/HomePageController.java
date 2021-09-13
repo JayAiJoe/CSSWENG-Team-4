@@ -31,13 +31,16 @@ public class HomePageController extends Controller {
     @FXML
     private DatePicker startDatePicker, endDatePicker;
     @FXML
-    private ChoiceBox<String> frequencyCb;
+    private ChoiceBox<String> frequencyCb, frequencyCb2;
     @FXML
-    private Text dateErrorText, frequencyErrorText;
+    private Text dateErrorText, frequencyErrorText, frequencyErrorText2;
     @FXML
     private TableView<PayrollWrapper> payrollListTv;
     @FXML
     private TableColumn<PayrollWrapper, String> startTc, endTc, frequencyTc, rangeTc, buttonTc;
+
+    private Date startDate, endDate;
+    private String frequency;
 
     @Override
     public void update() {
@@ -47,6 +50,7 @@ public class HomePageController extends Controller {
         }
         dateErrorText.setVisible(false);
         frequencyErrorText.setVisible(false);
+        frequencyErrorText2.setVisible(false);
 
         ArrayList<PayrollWrapper> entries = new ArrayList<>();
         for (PayrollPOJO payroll: Repository.getInstance().getAllPayrolls()) {
@@ -127,6 +131,26 @@ public class HomePageController extends Controller {
             controller.setPayrollInfo(startDate, endDate, frequencyCb.getValue().toUpperCase());
             Driver.getScreenController().activate("Payroll");
         }
+    }
+
+    @FXML
+    private void onCreateThirteenAction(){
+        frequencyErrorText2.setVisible(false);
+        boolean check = true;
+        if (frequencyCb2.getValue() == null) {
+            check = false;
+            frequencyErrorText2.setText("Frequency must be filled!");
+            frequencyErrorText2.setVisible(true);
+        }
+
+        if(check){
+            ThirteenPayrollController controller = (ThirteenPayrollController) Driver
+                    .getScreenController().getController("ThirteenPayroll");
+            controller.setPayrollInfo(frequencyCb2.getValue().toUpperCase());
+
+            Driver.getScreenController().activate("ThirteenPayroll");
+        }
+
     }
 
     public void onEmployeesUpload() {

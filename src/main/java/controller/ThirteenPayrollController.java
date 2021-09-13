@@ -13,10 +13,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import model.ExcelHandler;
 import model.Payroll;
 import model.PayrollEntry;
 import model.ThirteenPayroll;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,6 +29,15 @@ public class ThirteenPayrollController extends Controller {
 
     @FXML
     private AnchorPane navBar_container;
+
+    /**
+     * Instantiation of objects related to file exports in Payroll.fxml
+     */
+    @FXML
+    private Button exportBtn;
+    @FXML
+    private ChoiceBox formatCb;
+
 
     /**
      * Instantiation of objects related to the company info in Payroll.fxml
@@ -50,10 +62,8 @@ public class ThirteenPayrollController extends Controller {
     private ThirteenPayroll payroll = null;
     private ObservableList<PayrollEntry> crayolaEntries = FXCollections.observableArrayList(),
             ixxiEntries = FXCollections.observableArrayList();
-    private Date startDate, endDate;
+
     private String frequency;
-    private boolean created = false;
-    private boolean newPayroll = false;
 
     @Override
     public void update() {
@@ -73,17 +83,14 @@ public class ThirteenPayrollController extends Controller {
         crayolaEntries.setAll(payroll.getCrayolaEntries());
         ixxiEntries.setAll(payroll.getIxxiEntries());
         payrollTv.setItems(crayolaEntries);
-        newPayroll = false;
+
 
         navBar_container.toFront();
     }
 
-    public void setPayrollInfo(Date startDate, Date endDate, String frequency) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public void setPayrollInfo(String frequency) {
         this.frequency = frequency;
-        this.created = true;
-        this.newPayroll = true;
+
     }
 
     @FXML
@@ -172,7 +179,15 @@ public class ThirteenPayrollController extends Controller {
         initCol(wageTc, "wage", 16);
     }
 
-    public void onViewPayrollClick(){
-        Driver.getScreenController().activate("Payroll");
+    /**
+     * Method for exporting 13th Month payroll
+     */
+    public void onExportClick() {
+        //TODO: Export of 13th Month
+
+    }
+
+    public void onHomeClick(){
+        Driver.getScreenController().activate("Home");
     }
 }

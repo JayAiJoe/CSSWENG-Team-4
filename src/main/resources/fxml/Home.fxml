@@ -61,35 +61,62 @@
                                           </TableView>
                                        </children>
                                     </AnchorPane>
-                                    <VBox alignment="CENTER" prefHeight="574.0" prefWidth="568.0">
+                                    <VBox alignment="CENTER" prefHeight="574.0" prefWidth="656.0">
                                        <children>
-                                          <AnchorPane prefHeight="241.0" prefWidth="568.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
+                                          <HBox prefHeight="247.0" prefWidth="568.0">
                                              <children>
-                                                <Text layoutX="54.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Create a new Payroll" wrappingWidth="150.55902862548828" />
-                                                <Text layoutX="54.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Date Range:" wrappingWidth="72.15900421142578" />
-                                                <DatePicker fx:id="startDatePicker" layoutX="129.0" layoutY="76.0" prefHeight="26.0" prefWidth="115.0" />
-                                                <DatePicker fx:id="endDatePicker" layoutX="274.0" layoutY="76.0" prefHeight="26.0" prefWidth="115.0" />
-                                                <Text layoutX="251.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To" wrappingWidth="15.359016418457031" />
-                                                <ChoiceBox fx:id="frequencyCb" layoutX="129.0" layoutY="138.0" prefHeight="26.0" prefWidth="122.0">
-                                                   <items>
-                                                      <FXCollections fx:factory="observableArrayList">
-                                                         <String fx:value="Weekly" />
-                                                         <String fx:value="Biweekly" />
-                                                      </FXCollections>
-                                                   </items>
-                                                </ChoiceBox>
-                                                <Text layoutX="54.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Frequency:" wrappingWidth="72.15900421142578" />
-                                                <Button layoutX="243.0" layoutY="201.0" mnemonicParsing="false" onAction="#onCreatePayrollAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Create" />
-                                                <Text fx:id="dateErrorText" fill="RED" layoutX="54.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Error" />
-                                                <Text fx:id="frequencyErrorText" fill="RED" layoutX="54.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency Error" />
+                                                <AnchorPane prefHeight="247.0" prefWidth="433.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
+                                                   <children>
+                                                      <Text layoutX="38.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Create a new Payroll" wrappingWidth="150.55902862548828" />
+                                                      <Text layoutX="38.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Date Range:" wrappingWidth="72.15900421142578" />
+                                                      <DatePicker fx:id="startDatePicker" layoutX="113.0" layoutY="70.0" prefHeight="26.0" prefWidth="115.0" />
+                                                      <DatePicker fx:id="endDatePicker" layoutX="258.0" layoutY="70.0" prefHeight="26.0" prefWidth="115.0" />
+                                                      <Text layoutX="235.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To" wrappingWidth="15.359016418457031" />
+                                                      <ChoiceBox fx:id="frequencyCb" layoutX="113.0" layoutY="132.0" prefHeight="26.0" prefWidth="122.0">
+                                                         <items>
+                                                            <FXCollections fx:factory="observableArrayList">
+                                                               <String fx:value="Weekly" />
+                                                               <String fx:value="Biweekly" />
+                                                            </FXCollections>
+                                                         </items>
+                                                      </ChoiceBox>
+                                                      <Text layoutX="38.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Frequency:" wrappingWidth="72.15900421142578" />
+                                                      <Button layoutX="173.0" layoutY="206.0" mnemonicParsing="false" onAction="#onCreatePayrollAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Create" />
+                                                      <Text fx:id="dateErrorText" fill="RED" layoutX="38.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Error" />
+                                                      <Text fx:id="frequencyErrorText" fill="RED" layoutX="38.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency Error" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="247.0" prefWidth="220.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
+                                                   <children>
+                                                      <Text layoutX="22.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Create a 13th Month Payroll" wrappingWidth="172.15906524658203" />
+                                                      <Button layoutX="67.0" layoutY="206.0" mnemonicParsing="false" onAction="#onCreateThirteenAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Create" />
+                                                      <Text fx:id="dateErrorText1" fill="RED" layoutX="26.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                                      <ChoiceBox fx:id="frequencyCb2" layoutX="81.0" layoutY="83.0" prefHeight="26.0" prefWidth="122.0">
+                                                         <items>
+                                                            <FXCollections fx:factory="observableArrayList">
+                                                               <String fx:value="Weekly" />
+                                                               <String fx:value="Biweekly" />
+                                                            </FXCollections>
+                                                         </items>
+                                                      </ChoiceBox>
+                                                      <Text fx:id="frequencyErrorText2" fill="RED" layoutX="9.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency Error" />
+                                                      <Text layoutX="9.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Frequency:" wrappingWidth="72.15900421142578" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </AnchorPane>
                                              </children>
-                                             <opaqueInsets>
-                                                <Insets />
-                                             </opaqueInsets>
-                                             <VBox.margin>
-                                                <Insets bottom="10.0" />
-                                             </VBox.margin>
-                                          </AnchorPane>
+                                          </HBox>
                                           <AnchorPane prefHeight="241.0" prefWidth="568.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
                                              <children>
                                                 <Text layoutX="70.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Fees and Deductions" wrappingWidth="115.19999999999982" />
