@@ -159,11 +159,11 @@ public class ExcelHandler {
                                         times[k] = 0;
                                     }
                                 }
-                                LogbookPOJO entry = new LogbookPOJO(ID, name, value, 30.0, times[0], times[1], times[2], times[3]);
+                                LogbookPOJO entry = new LogbookPOJO(ID, name, new Date(value.getTime() + 8 * 3600000L), 30.0, times[0], times[1], times[2], times[3]);
                                 logbook.add(entry);
                             }
                         } else {
-                            LogbookPOJO entry = new LogbookPOJO(ID, name, value, 30.0, times[0], times[1], times[2], times[3]);
+                            LogbookPOJO entry = new LogbookPOJO(ID, name, new Date(value.getTime() + 8 * 3600000L), 30.0, times[0], times[1], times[2], times[3]);
                             logbook.add(entry);
                         }
                         rowNumber++;

@@ -11,14 +11,14 @@ import java.util.Date;
 public class AttendanceProcessor {
     public AttendanceProcessor(ArrayList<LogbookPOJO> logbooks) {
         // set start and end date
-        Date startDate = logbooks.get(0).getDate();
-        Date endDate = startDate;
+        Date startDate = new Date(logbooks.get(0).getDate().getTime());
+        Date endDate = new Date(startDate.getTime());
         for (LogbookPOJO logbook: logbooks) {
             if (startDate.compareTo(logbook.getDate()) > 0) {
-                startDate = logbook.getDate();
+                startDate = new Date(logbook.getDate().getTime());
             }
             if (endDate.compareTo(logbook.getDate()) < 0) {
-                endDate = logbook.getDate();
+                endDate = new Date(logbook.getDate().getTime());
             }
         }
         startDate.setHours(0);
