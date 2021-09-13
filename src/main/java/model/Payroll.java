@@ -47,6 +47,7 @@ public class Payroll {
         crayolaEntries = new ArrayList<>();
         ixxiEntries = new ArrayList<>();
 
+        boolean add = true;
         ArrayList<EmployeePOJO> employees = Repository.getInstance().getAllEmployees();
         for (EmployeePOJO employee: employees) {
             if (!employee.getWageFrequency().equals(frequency)) {
@@ -63,6 +64,22 @@ public class Payroll {
                         .getEmployeeCola(employee.getEmployeeID(), startDate, endDate);
                 if (logbooks.size() == 0) {
                     continue;
+                }
+
+                // check whether to add new payroll
+                if (add) {
+                    PayrollPOJO payroll = new PayrollPOJO(new Date(startDate.getTime() - 8 * 3600000L),
+                            new Date(endDate.getTime() - 8 * 3600000L), frequency);
+                    for (PayrollPOJO checkPayroll : Repository.getInstance().getAllPayrolls()) {
+                        if (checkPayroll.equals(payroll)) {
+                            add = false;
+                            break;
+                        }
+                    }
+                    if (add) {
+                        Repository.getInstance().addPayroll(payroll);
+                        add = false;
+                    }
                 }
 
                 double daysPresent = 0, daysAbsent = 0;
