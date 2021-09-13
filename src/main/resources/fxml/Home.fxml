@@ -56,7 +56,7 @@
                                                       <TableColumn fx:id="endTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="96.79998779296875" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="End Date" />
                                                    </columns>
                                                 </TableColumn>
-                                                <TableColumn fx:id="typeTc" editable="false" prefWidth="158.4000244140625" resizable="false" sortable="false" text="Type" />
+                                                <TableColumn fx:id="frequencyTc" editable="false" prefWidth="158.4000244140625" resizable="false" sortable="false" text="Frequency" />
                                              </columns>
                                           </TableView>
                                        </children>

@@ -2,15 +2,19 @@ package controller;
 
 import dao.EmployeePOJO;
 import dao.LogbookPOJO;
+import dao.PayrollPOJO;
 import dao.Repository;
 import driver.Driver;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import model.AttendanceProcessor;
 import model.ExcelHandler;
+import wrapper.PayrollWrapper;
 
 import java.io.File;
 import java.time.ZoneId;
@@ -30,19 +34,61 @@ public class HomePageController extends Controller {
     private ChoiceBox<String> frequencyCb;
     @FXML
     private Text dateErrorText, frequencyErrorText;
-
     @FXML
-    private TableColumn startTc, endTc, typeTc, rangeTc, buttonTc;
+    private TableView<PayrollWrapper> payrollListTv;
+    @FXML
+    private TableColumn<PayrollWrapper, String> startTc, endTc, frequencyTc, rangeTc, buttonTc;
 
     @Override
     public void update() {
-        disableReorder();
         // load navigation bar
         if (navBar_container.getChildren().isEmpty()) {
             navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
         }
         dateErrorText.setVisible(false);
         frequencyErrorText.setVisible(false);
+
+        ArrayList<PayrollWrapper> entries = new ArrayList<>();
+        for (PayrollPOJO payroll: Repository.getInstance().getAllPayrolls()) {
+            entries.add(new PayrollWrapper(payroll));
+        }
+        payrollListTv.setItems(FXCollections.observableList(entries));
+    }
+
+    @FXML
+    public void initialize() {
+        disableReorder();
+
+        startTc.setCellValueFactory(new PropertyValueFactory<>("startDateString"));
+        endTc.setCellValueFactory(new PropertyValueFactory<>("endDateString"));
+        frequencyTc.setCellValueFactory(new PropertyValueFactory<>("frequency"));
+        buttonTc.setCellFactory(t -> {
+            Button button = new Button();
+            button.setText("View");
+            TableCell<PayrollWrapper, String> cell = new TableCell<>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(button);
+                    }
+                }
+            };
+
+            button.setOnMouseClicked(e -> {
+                if (cell.getTableRow().getItem() != null) {
+                    PayrollWrapper payroll = cell.getTableRow().getItem();
+                    PayrollController controller = (PayrollController) Driver
+                            .getScreenController().getController("Payroll");
+                    controller.setPayrollInfo(payroll.getStartDate(), payroll.getEndDate(),
+                            payroll.getFrequency());
+                    Driver.getScreenController().activate("Payroll");
+                }
+            });
+
+            return cell;
+        });
     }
 
     @FXML
@@ -174,7 +220,7 @@ public class HomePageController extends Controller {
         startTc.setReorderable(false);
         rangeTc.setReorderable(false);
         buttonTc.setReorderable(false);
-        typeTc.setReorderable(false);
+        frequencyTc.setReorderable(false);
     }
 
 }
