@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class WorkdayHandler {
-    private static final WorkdayPOJO defaultWorkday = new WorkdayPOJO(null, 800, 1200,
-            1300, 1700, 0, 0);
     private WorkdayWrapper currentWorkday = null, nextWorkday = null;
 
     public WorkdayHandler(Date currentDate, Date nextDate) {
@@ -31,12 +29,16 @@ public class WorkdayHandler {
         }
 
         if (currentWorkday == null) {
-            currentWorkday = new WorkdayWrapper(defaultWorkday);
+            currentWorkday = new WorkdayWrapper(new WorkdayPOJO(null, 800, 1200,
+                    1300, 1700, 0, 0));
             currentWorkday.getWorkday().setDate(currentDate);
+            Repository.getInstance().addWorkday(currentWorkday.getWorkday());
         }
         if (nextWorkday == null) {
-            nextWorkday = new WorkdayWrapper(defaultWorkday);
+            nextWorkday = new WorkdayWrapper(new WorkdayPOJO(null, 800, 1200,
+                    1300, 1700, 0, 0));
             nextWorkday.getWorkday().setDate(nextDate);
+            Repository.getInstance().addWorkday(nextWorkday.getWorkday());
         }
     }
 
