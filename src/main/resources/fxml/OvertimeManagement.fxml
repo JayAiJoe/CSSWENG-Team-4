@@ -36,10 +36,10 @@
                      <children>
                         <AnchorPane prefHeight="567.0" prefWidth="577.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 0;">
                            <children>
-                              <TableView fx:id="overtimeTv" layoutX="16.0" layoutY="103.0" prefHeight="442.0" prefWidth="546.0" stylesheets="@../css/Tableview.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="15.200000000000045">
+                              <TableView fx:id="pendingOvertimeTv" layoutX="16.0" layoutY="103.0" prefHeight="442.0" prefWidth="546.0" stylesheets="@../css/Tableview.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="15.200000000000045">
                                 <columns>
                                   <TableColumn fx:id="nameTc" editable="false" prefWidth="156.80005645751953" sortable="false" text="Name" />
-                                  <TableColumn fx:id="overtimeTc" editable="false" prefWidth="156.800048828125" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Minutes of Overtime" />
+                                  <TableColumn fx:id="pendingOvertimeTc" editable="false" prefWidth="156.800048828125" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Minutes of Overtime" />
                                     <TableColumn fx:id="dateTc" editable="false" prefWidth="119.99993896484375" sortable="false" text="Date" />
                                     <TableColumn fx:id="buttonTc" prefWidth="106.4000244140625" sortable="false" text="Select" />
                                 </columns>
@@ -85,7 +85,7 @@
                               </TableView>
                               <DatePicker fx:id="datePicker2" layoutX="16.0" layoutY="69.0" prefHeight="26.0" prefWidth="115.0" />
                               <Text layoutX="16.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Filter By date" wrappingWidth="100.15899658203125" />
-                              <ToggleButton fx:id="filterBtn2" layoutX="131.0" layoutY="69.0" mnemonicParsing="false" onAction="#onFilterAction" prefHeight="26.0" prefWidth="67.0" styleClass="normalbutton" text="Filter" />
+                              <ToggleButton fx:id="filterBtn2" layoutX="131.0" layoutY="69.0" mnemonicParsing="false" onAction="#onFilter2Action" prefHeight="26.0" prefWidth="67.0" styleClass="normalbutton" text="Filter" />
                               <Text fill="#1360a8" layoutX="94.0" layoutY="36.0" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Accepted Overtime" textAlignment="CENTER" wrappingWidth="315.2695770263672">
                                  <font>
                                     <Font name="System Bold" size="23.0" />

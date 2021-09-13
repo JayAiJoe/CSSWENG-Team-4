@@ -29,9 +29,11 @@ public class OvertimeManagementController extends Controller {
      * Initialization of Accepted Overtime Table related objects
      */
     @FXML
-    private TableView acceptedOvertimeTv;
+    private TableView<OvertimeEntry> acceptedOvertimeTv;
     @FXML
-    private TableColumn acceptedNameTc, acceptedMinTc, acceptedDateTc;
+    private TableColumn<OvertimeEntry, String> acceptedNameTc, acceptedDateTc;
+    @FXML
+    private TableColumn<OvertimeEntry, Integer> acceptedMinTc;
     @FXML
     private ToggleButton filterBtn2;
     @FXML
@@ -41,11 +43,11 @@ public class OvertimeManagementController extends Controller {
      * initialization of Pending Overtime Table related objects
      */
     @FXML
-    private TableView<OvertimeEntry> overtimeTv;
+    private TableView<OvertimeEntry> pendingOvertimeTv;
     @FXML
     private TableColumn<OvertimeEntry, String> nameTc, dateTc;
     @FXML
-    private TableColumn<OvertimeEntry, Integer> overtimeTc;
+    private TableColumn<OvertimeEntry, Integer> pendingOvertimeTc;
     @FXML
     private TableColumn<OvertimeEntry, Boolean> buttonTc;
     @FXML
@@ -56,8 +58,8 @@ public class OvertimeManagementController extends Controller {
     private ToggleButton filterBtn;
 
     private OvertimeHandler model;
-    private ObservableList<OvertimeEntry> entries;
-    private FilteredList<OvertimeEntry> filteredEntries;
+    private ObservableList<OvertimeEntry> pendingEntries, acceptedEntries;
+    private FilteredList<OvertimeEntry> filteredPendingEntries, filteredAcceptedEntries;
 
 
     @Override
@@ -67,13 +69,16 @@ public class OvertimeManagementController extends Controller {
             navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
         }
 
-        Date today = new Date();
-        long ms = today.getTime();
-        model = new OvertimeHandler(new Date(ms - 16 * 86400000L), today);
-        entries = FXCollections.observableArrayList();
-        entries.setAll(model.getEntries());
-        filteredEntries = new FilteredList<>(entries);
-        overtimeTv.setItems(filteredEntries);
+        model = new OvertimeHandler(null, new Date());
+        pendingEntries = FXCollections.observableArrayList();
+        pendingEntries.setAll(model.getPendingEntries());
+        filteredPendingEntries = new FilteredList<>(pendingEntries);
+        pendingOvertimeTv.setItems(filteredPendingEntries);
+
+        acceptedEntries = FXCollections.observableArrayList();
+        acceptedEntries.setAll(model.getAcceptedEntries());
+        filteredAcceptedEntries = new FilteredList<>(acceptedEntries);
+        acceptedOvertimeTv.setItems(filteredAcceptedEntries);
     }
 
     @FXML
@@ -81,22 +86,22 @@ public class OvertimeManagementController extends Controller {
         //setColumnWidth();
         disableReorder();
 
-        overtimeTv.setEditable(true);
-        overtimeTv.setRowFactory(tv -> {
+        pendingOvertimeTv.setEditable(true);
+        pendingOvertimeTv.setRowFactory(tv -> {
             TableRow<OvertimeEntry> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY) {
                     boolean status = row.getItem().getStatus();
                     row.getItem().setStatus(!status);
                     updateCheckAll();
-                    overtimeTv.refresh();
+                    pendingOvertimeTv.refresh();
                 }
             });
             return row;
         });
 
         nameTc.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
-        overtimeTc.setCellValueFactory(new PropertyValueFactory<>("minutes"));
+        pendingOvertimeTc.setCellValueFactory(new PropertyValueFactory<>("minutes"));
         dateTc.setCellValueFactory(new PropertyValueFactory<>("dateString"));
         buttonTc.setCellValueFactory(new PropertyValueFactory<>("status"));
         buttonTc.setCellFactory(t -> {
@@ -122,6 +127,10 @@ public class OvertimeManagementController extends Controller {
             cell.setAlignment(Pos.CENTER);
             return cell;
         });
+
+        acceptedNameTc.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
+        acceptedMinTc.setCellValueFactory(new PropertyValueFactory<>("minutes"));
+        acceptedDateTc.setCellValueFactory(new PropertyValueFactory<>("dateString"));
     }
 
     /**
@@ -129,10 +138,10 @@ public class OvertimeManagementController extends Controller {
      */
 
     private void setColumnWidth() {
-        nameTc.prefWidthProperty().bind(overtimeTv.widthProperty().divide(11));
-        overtimeTc.prefWidthProperty().bind(overtimeTv.widthProperty().divide(11));
-        dateTc.prefWidthProperty().bind(overtimeTv.widthProperty().divide(11));
-        buttonTc.prefWidthProperty().bind(overtimeTv.widthProperty().divide(11));
+        nameTc.prefWidthProperty().bind(pendingOvertimeTv.widthProperty().divide(11));
+        pendingOvertimeTc.prefWidthProperty().bind(pendingOvertimeTv.widthProperty().divide(11));
+        dateTc.prefWidthProperty().bind(pendingOvertimeTv.widthProperty().divide(11));
+        buttonTc.prefWidthProperty().bind(pendingOvertimeTv.widthProperty().divide(11));
     }
 
     /**
@@ -140,15 +149,18 @@ public class OvertimeManagementController extends Controller {
      */
     private void disableReorder() {
         nameTc.setReorderable(false);
-        overtimeTc.setReorderable(false);
+        pendingOvertimeTc.setReorderable(false);
         dateTc.setReorderable(false);
         buttonTc.setReorderable(false);
+        acceptedNameTc.setReorderable(false);
+        acceptedMinTc.setReorderable(false);
+        acceptedDateTc.setReorderable(false);
     }
 
     @FXML
     private void onCheckAllAction() {
         boolean value = checkAllBtn.getText().equals("Check All");
-        for (OvertimeEntry entry : filteredEntries) {
+        for (OvertimeEntry entry : filteredPendingEntries) {
             entry.setStatus(value);
         }
         if (value) {
@@ -156,14 +168,14 @@ public class OvertimeManagementController extends Controller {
         } else {
             checkAllBtn.setText("Check All");
         }
-        overtimeTv.refresh();
+        pendingOvertimeTv.refresh();
     }
 
     @FXML
     private void onApproveAction() {
         StringBuilder sb = new StringBuilder();
         ArrayList<OvertimeEntry> approved = new ArrayList<>();
-        for (OvertimeEntry entry: filteredEntries) {
+        for (OvertimeEntry entry: filteredPendingEntries) {
             if (entry.getStatus()) {
                 approved.add(entry);
                 sb.append(String.format("%-25s\t\t", entry.getEmployeeName()));
@@ -189,12 +201,18 @@ public class OvertimeManagementController extends Controller {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            entries.removeAll(approved);
-            Predicate<? super OvertimeEntry> filter = filteredEntries.getPredicate();
-            filteredEntries = new FilteredList<>(entries);
-            filteredEntries.setPredicate(filter);
-            overtimeTv.setItems(filteredEntries);
+            pendingEntries.removeAll(approved);
+            Predicate<? super OvertimeEntry> filter = filteredPendingEntries.getPredicate();
+            filteredPendingEntries = new FilteredList<>(pendingEntries);
+            filteredPendingEntries.setPredicate(filter);
+            pendingOvertimeTv.setItems(filteredPendingEntries);
             model.save(approved);
+
+            acceptedEntries.setAll(model.getAcceptedEntries());
+            filter = filteredAcceptedEntries.getPredicate();
+            filteredAcceptedEntries = new FilteredList<>(acceptedEntries);
+            filteredAcceptedEntries.setPredicate(filter);
+            acceptedOvertimeTv.setItems(filteredAcceptedEntries);
         }
     }
 
@@ -202,7 +220,7 @@ public class OvertimeManagementController extends Controller {
     private void onRejectAction() {
         StringBuilder sb = new StringBuilder();
         ArrayList<OvertimeEntry> rejected = new ArrayList<>();
-        for (OvertimeEntry entry: filteredEntries) {
+        for (OvertimeEntry entry: filteredPendingEntries) {
             if (entry.getStatus()) {
                 entry.setStatus(false);
                 rejected.add(entry);
@@ -229,11 +247,11 @@ public class OvertimeManagementController extends Controller {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            entries.removeAll(rejected);
-            Predicate<? super OvertimeEntry> filter = filteredEntries.getPredicate();
-            filteredEntries = new FilteredList<>(entries);
-            filteredEntries.setPredicate(filter);
-            overtimeTv.setItems(filteredEntries);
+            pendingEntries.removeAll(rejected);
+            Predicate<? super OvertimeEntry> filter = filteredPendingEntries.getPredicate();
+            filteredPendingEntries = new FilteredList<>(pendingEntries);
+            filteredPendingEntries.setPredicate(filter);
+            pendingOvertimeTv.setItems(filteredPendingEntries);
             model.save(rejected);
         } else {
             for (OvertimeEntry entry: rejected) {
@@ -249,24 +267,43 @@ public class OvertimeManagementController extends Controller {
         if (status) {
             LocalDate filterDate = datePicker.getValue();
             if (filterDate == null) {
-                filteredEntries.setPredicate(null);
+                filteredPendingEntries.setPredicate(null);
                 updateCheckAll();
                 return;
             }
             String dateString = filterDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
             Predicate<OvertimeEntry> filter = entry -> entry.getDateString().equals(dateString);
-            filteredEntries.setPredicate(filter);
+            filteredPendingEntries.setPredicate(filter);
             updateCheckAll();
-            System.out.println(filteredEntries.size());
+            System.out.println(filteredPendingEntries.size());
         } else {
-            filteredEntries.setPredicate(null);
+            filteredPendingEntries.setPredicate(null);
             updateCheckAll();
+        }
+    }
+
+    @FXML
+    private void onFilter2Action() {
+        boolean status = filterBtn2.isSelected();
+
+        if (status) {
+            LocalDate filterDate = datePicker2.getValue();
+            if (filterDate == null) {
+                filteredAcceptedEntries.setPredicate(null);
+                return;
+            }
+            String dateString = filterDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+            Predicate<OvertimeEntry> filter = entry -> entry.getDateString().equals(dateString);
+            filteredAcceptedEntries.setPredicate(filter);
+            System.out.println(filteredAcceptedEntries.size());
+        } else {
+            filteredAcceptedEntries.setPredicate(null);
         }
     }
 
     private void updateCheckAll() {
         checkAllBtn.setText("Check All");
-        for (OvertimeEntry entry: filteredEntries) {
+        for (OvertimeEntry entry: filteredPendingEntries) {
             if (entry.getStatus()) {
                 checkAllBtn.setText("Uncheck All");
                 break;

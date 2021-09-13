@@ -9,13 +9,14 @@ import java.util.Date;
 public class OvertimeHandler {
     private Date startDate, endDate;
     private ArrayList<LogbookPOJO> attendance;
-    private ArrayList<OvertimeEntry> entries;
+    private ArrayList<OvertimeEntry> pendingEntries, acceptedEntries;
 
     public OvertimeHandler(Date startDate, Date endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.attendance = new ArrayList<>();
-        this.entries = new ArrayList<>();
+        this.pendingEntries = new ArrayList<>();
+        this.acceptedEntries = new ArrayList<>();
 
         initialize();
     }
@@ -24,12 +25,19 @@ public class OvertimeHandler {
         attendance = Repository.getInstance().getPendingOT(startDate, endDate);
 
         for (LogbookPOJO logbook: attendance) {
-            entries.add(new OvertimeEntry(logbook.getCompleteName(), logbook.getPendingOT(), logbook.getDate()));
+            pendingEntries.add(new OvertimeEntry(logbook.getCompleteName(), logbook.getPendingOT(), logbook.getDate()));
+        }
+        for (LogbookPOJO logbook: Repository.getInstance().getAcceptedOT(startDate, endDate)) {
+            acceptedEntries.add(new OvertimeEntry(logbook.getCompleteName(), logbook.getAcceptedOT(), logbook.getDate()));
         }
     }
 
-    public ArrayList<OvertimeEntry> getEntries() {
-        return entries;
+    public ArrayList<OvertimeEntry> getPendingEntries() {
+        return pendingEntries;
+    }
+
+    public ArrayList<OvertimeEntry> getAcceptedEntries() {
+        return acceptedEntries;
     }
 
     public void save(ArrayList<OvertimeEntry> finalEntries) {
@@ -44,9 +52,14 @@ public class OvertimeHandler {
                 if (entry.getEmployeeName().equals(name) && entry.getDate().equals(date)) {
                     if (entry.getStatus()) { // pendingOT is accepted
                         logbook.setApprovedOT(minutes + entry.getMinutes());
+                        logbook.setAcceptedOT(entry.getMinutes());
                     }
                     logbook.setPendingOT(0);
                     saveEntries.add(logbook);
+
+                    if (entry.getStatus()) {
+                        acceptedEntries.add(entry);
+                    }
                     break;
                 }
             }
