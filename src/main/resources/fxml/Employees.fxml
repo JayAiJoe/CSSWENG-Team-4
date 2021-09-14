@@ -45,7 +45,7 @@
                                        <children>
                                           <TableView fx:id="employeesTv" layoutX="15.0" layoutY="54.0" prefHeight="508.0" prefWidth="915.0" stylesheets="@../css/Tableview.css" AnchorPane.topAnchor="54.0">
                                              <columns>
-                                                <TableColumn fx:id="buttonTc" prefWidth="73.60004425048828" resizable="false" sortable="false" text="Select" />
+                                                <TableColumn fx:id="buttonTc" prefWidth="73.60004425048828" resizable="false" sortable="false" />
                                                 <TableColumn fx:id="idTc" editable="false" prefWidth="62.400054931640625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="ID" />
                                                 <TableColumn fx:id="nameTc" editable="false" prefWidth="179.99998474121094" resizable="false" sortable="false" text="Name" />
                                                 <TableColumn fx:id="companyTc" editable="false" prefWidth="171.20001220703125" resizable="false" sortable="false" text="Company" />

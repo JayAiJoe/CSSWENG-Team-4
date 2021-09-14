@@ -38,7 +38,7 @@
                               </AnchorPane>
                               <HBox alignment="CENTER" layoutY="107.0" prefHeight="574.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                    <AnchorPane prefHeight="504.0" prefWidth="432.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
+                                    <AnchorPane prefHeight="504.0" prefWidth="465.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
@@ -49,14 +49,15 @@
                                           <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Open a Previous Payroll..." wrappingWidth="150.55902862548828" />
                                           <TableView fx:id="payrollListTv" editable="true" layoutX="12.0" layoutY="47.0" prefHeight="442.0" prefWidth="407.0" style="-fx-background-radius: 10;" stylesheets="@../css/Tableview.css" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0">
                                              <columns>
-                                                <TableColumn fx:id="buttonTc" editable="false" prefWidth="51.2000150680542" resizable="false" sortable="false" />
+                                                <TableColumn fx:id="exportTc" editable="false" prefWidth="90.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER;" />
+                                                <TableColumn fx:id="buttonTc" editable="false" prefWidth="44.000003814697266" resizable="false" sortable="false" />
                                                 <TableColumn fx:id="rangeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="231.20001220703125" resizable="false" sortable="false" text="Range">
                                                    <columns>
                                                       <TableColumn fx:id="startTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="95.2000732421875" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Start Date" />
                                                       <TableColumn fx:id="endTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="96.79998779296875" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="End Date" />
                                                    </columns>
                                                 </TableColumn>
-                                                <TableColumn fx:id="frequencyTc" editable="false" prefWidth="158.4000244140625" resizable="false" sortable="false" text="Frequency" />
+                                                <TableColumn fx:id="frequencyTc" editable="false" prefWidth="110.39996337890625" resizable="false" sortable="false" style="-fx-alignment: CENTER;" text="Frequency" />
                                              </columns>
                                           </TableView>
                                        </children>

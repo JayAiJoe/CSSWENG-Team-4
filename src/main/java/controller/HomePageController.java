@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import model.AttendanceProcessor;
@@ -39,10 +40,13 @@ public class HomePageController extends Controller {
     @FXML
     private TableView<PayrollWrapper> payrollListTv;
     @FXML
-    private TableColumn<PayrollWrapper, String> startTc, endTc, frequencyTc, rangeTc, buttonTc;
+    private TableColumn<PayrollWrapper, String> startTc, endTc, frequencyTc, rangeTc, buttonTc, exportTc;
 
     private Date startDate, endDate;
     private String frequency;
+
+    final String IDLE_BUTTON_STYLE = "-fx-background-color: #0094FF; -fx-background-radius: 0px;";
+    final String HOVERED_BUTTON_STYLE = "-fx-background-color: #5b62f5; -fx-background-radius: 0px;";
 
     @Override
     public void update() {
@@ -93,6 +97,47 @@ public class HomePageController extends Controller {
                     Driver.getScreenController().activate("Payroll");
                 }
             });
+
+            return cell;
+        });
+
+        exportTc.setCellFactory(t -> {
+            MenuButton menubutton = new MenuButton();
+            MenuItem item1 = new MenuItem();
+            MenuItem item2 = new MenuItem();
+            menubutton.setText("Export");
+            menubutton.setOnMouseEntered(e -> menubutton.setStyle(HOVERED_BUTTON_STYLE));
+            menubutton.setOnMouseExited(e -> menubutton.setStyle(IDLE_BUTTON_STYLE));
+            menubutton.getStylesheets().add(getClass().getResource("/css/navButton.css").toExternalForm());
+            menubutton.setTextFill(Color.WHITE);
+            item1.setText("Standard");
+            item2.setText("Voucher");
+
+            TableCell<PayrollWrapper, String> cell = new TableCell<>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(menubutton);
+                    }
+                }
+            };
+
+            item1.setOnAction(e -> {
+
+                if(cell.getTableRow().getItem() != null){
+                    //TODO: exporting in standard format
+                }
+            });
+
+            item2.setOnAction(e -> {
+                if(cell.getTableRow().getItem() != null){
+                    //TODO: exporting in voucher form
+                }
+            });
+            menubutton.getItems().add(item1);
+            menubutton.getItems().add(item2);
 
             return cell;
         });

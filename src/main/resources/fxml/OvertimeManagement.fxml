@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToggleButton?>
@@ -16,99 +15,95 @@
 
 <AnchorPane prefHeight="738.0" prefWidth="1186.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OvertimeManagementController">
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <content>
-            <AnchorPane prefHeight="741.0" prefWidth="1186.0">
+      <AnchorPane prefHeight="741.0" prefWidth="1186.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutY="36.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
                <children>
-                  <AnchorPane layoutY="36.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
+                  <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox alignment="CENTER" layoutX="-120.0" layoutY="28.0" prefHeight="26.0" prefWidth="829.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <HBox alignment="CENTER" layoutX="-120.0" layoutY="28.0" prefHeight="26.0" prefWidth="829.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                 <children>
-                                    <Text fill="#1360a8" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime Management" textAlignment="CENTER" wrappingWidth="449.66957092285156">
-                                       <font>
-                                          <Font name="System Bold" size="30.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                        <HBox alignment="CENTER" layoutY="114.0" prefHeight="567.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                           <children>
-                              <AnchorPane prefHeight="567.0" prefWidth="577.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 0;">
-                                 <children>
-                                    <TableView fx:id="pendingOvertimeTv" layoutX="16.0" layoutY="103.0" prefHeight="442.0" prefWidth="546.0" stylesheets="@../css/Tableview.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="15.200000000000045">
-                                      <columns>
-                                          <TableColumn fx:id="dateTc" editable="false" prefWidth="119.99993896484375" sortable="false" text="Date" />
-                                        <TableColumn fx:id="nameTc" editable="false" prefWidth="156.80005645751953" sortable="false" text="Name" />
-                                        <TableColumn fx:id="pendingOvertimeTc" editable="false" prefWidth="156.800048828125" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Minutes of Overtime" />
-                                          <TableColumn fx:id="buttonTc" prefWidth="106.4000244140625" sortable="false" text="Select" />
-                                      </columns>
-                                    </TableView>
-                                    <DatePicker fx:id="datePicker" layoutX="16.0" layoutY="69.0" prefHeight="26.0" prefWidth="115.0" AnchorPane.rightAnchor="446.40000000000003" />
-                                    <Text layoutX="16.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Filter By date" wrappingWidth="100.15899658203125" />
-                                    <Button layoutX="434.0" layoutY="69.0" mnemonicParsing="false" onAction="#onRejectAction" prefHeight="26.0" prefWidth="128.0" styleClass="cancelbutton" text="Reject Selected" AnchorPane.rightAnchor="15.600000000000023">
-                                       <graphic>
-                                          <ImageView fitHeight="14.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../img/cancelIcon.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                    <Button layoutX="306.0" layoutY="69.0" mnemonicParsing="false" onAction="#onApproveAction" prefHeight="26.0" prefWidth="128.0" styleClass="savebutton" text="Approve Selected" AnchorPane.rightAnchor="143.60000000000002">
-                                       <graphic>
-                                          <ImageView fitHeight="150.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../img/checkIcon.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                    <Button fx:id="checkAllBtn" layoutX="198.0" layoutY="69.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Check All" AnchorPane.rightAnchor="297.20000000000005" />
-                                    <ToggleButton fx:id="filterBtn" layoutX="131.0" layoutY="69.0" mnemonicParsing="false" onAction="#onFilterAction" prefHeight="26.0" prefWidth="67.0" styleClass="normalbutton" text="Filter" AnchorPane.rightAnchor="379.40000000000003" />
-                                    <Text fill="#1360a8" layoutX="131.0" layoutY="37.0" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending Overtime" textAlignment="CENTER" wrappingWidth="315.2695770263672">
-                                       <font>
-                                          <Font name="System Bold" size="23.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets right="15.0" />
-                                 </HBox.margin>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="567.0" prefWidth="504.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 0;">
-                                 <children>
-                                    <TableView fx:id="acceptedOvertimeTv" layoutX="14.0" layoutY="103.0" prefHeight="442.0" prefWidth="474.0" style="-fx-border-radius: 0;" stylesheets="@../css/Tableview.css">
-                                       <columns>
-                                          <TableColumn fx:id="acceptedNameTc" editable="false" prefWidth="175.2000093460083" sortable="false" text="Name" />
-                                          <TableColumn fx:id="acceptedMinTc" editable="false" prefWidth="169.59999084472656" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Minutes of Overtime" />
-                                          <TableColumn fx:id="acceptedDateTc" editable="false" prefWidth="126.39996337890625" sortable="false" text="Date" />
-                                       </columns>
-                                    </TableView>
-                                    <DatePicker fx:id="datePicker2" layoutX="16.0" layoutY="69.0" prefHeight="26.0" prefWidth="115.0" />
-                                    <Text layoutX="16.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Filter By date" wrappingWidth="100.15899658203125" />
-                                    <ToggleButton fx:id="filterBtn2" layoutX="131.0" layoutY="69.0" mnemonicParsing="false" onAction="#onFilter2Action" prefHeight="26.0" prefWidth="67.0" styleClass="normalbutton" text="Filter" />
-                                    <Text fill="#1360a8" layoutX="94.0" layoutY="36.0" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Accepted Overtime" textAlignment="CENTER" wrappingWidth="315.2695770263672">
-                                       <font>
-                                          <Font name="System Bold" size="23.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="15.0" />
-                                 </HBox.margin>
-                              </AnchorPane>
+                              <Text fill="#1360a8" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Overtime Management" textAlignment="CENTER" wrappingWidth="449.66957092285156">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="navBar_container" prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <HBox alignment="CENTER" layoutY="114.0" prefHeight="567.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="567.0" prefWidth="577.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 0;">
+                           <children>
+                              <TableView fx:id="pendingOvertimeTv" layoutX="16.0" layoutY="103.0" prefHeight="442.0" prefWidth="546.0" stylesheets="@../css/Tableview.css" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="15.200000000000045">
+                                <columns>
+                                    <TableColumn fx:id="dateTc" editable="false" prefWidth="119.99993896484375" sortable="false" text="Date" />
+                                  <TableColumn fx:id="nameTc" editable="false" prefWidth="156.80005645751953" sortable="false" text="Name" />
+                                  <TableColumn fx:id="pendingOvertimeTc" editable="false" prefWidth="156.800048828125" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Minutes of Overtime" />
+                                    <TableColumn fx:id="buttonTc" prefWidth="106.4000244140625" sortable="false" text="Select" />
+                                </columns>
+                              </TableView>
+                              <DatePicker fx:id="datePicker" layoutX="16.0" layoutY="69.0" prefHeight="26.0" prefWidth="115.0" AnchorPane.rightAnchor="446.40000000000003" />
+                              <Text layoutX="16.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Filter By date" wrappingWidth="100.15899658203125" />
+                              <Button layoutX="434.0" layoutY="69.0" mnemonicParsing="false" onAction="#onRejectAction" prefHeight="26.0" prefWidth="128.0" styleClass="cancelbutton" text="Reject Selected" AnchorPane.rightAnchor="15.600000000000023">
+                                 <graphic>
+                                    <ImageView fitHeight="14.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/cancelIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button layoutX="306.0" layoutY="69.0" mnemonicParsing="false" onAction="#onApproveAction" prefHeight="26.0" prefWidth="128.0" styleClass="savebutton" text="Approve Selected" AnchorPane.rightAnchor="143.60000000000002">
+                                 <graphic>
+                                    <ImageView fitHeight="150.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/checkIcon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="checkAllBtn" layoutX="198.0" layoutY="69.0" mnemonicParsing="false" onAction="#onCheckAllAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Check All" AnchorPane.rightAnchor="297.20000000000005" />
+                              <ToggleButton fx:id="filterBtn" layoutX="131.0" layoutY="69.0" mnemonicParsing="false" onAction="#onFilterAction" prefHeight="26.0" prefWidth="67.0" styleClass="normalbutton" text="Filter" AnchorPane.rightAnchor="379.40000000000003" />
+                              <Text fill="#1360a8" layoutX="131.0" layoutY="37.0" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Pending Overtime" textAlignment="CENTER" wrappingWidth="315.2695770263672">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="567.0" prefWidth="504.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 0;">
+                           <children>
+                              <TableView fx:id="acceptedOvertimeTv" layoutX="14.0" layoutY="103.0" prefHeight="442.0" prefWidth="474.0" style="-fx-border-radius: 0;" stylesheets="@../css/Tableview.css">
+                                 <columns>
+                                    <TableColumn fx:id="acceptedNameTc" editable="false" prefWidth="175.2000093460083" sortable="false" text="Name" />
+                                    <TableColumn fx:id="acceptedMinTc" editable="false" prefWidth="169.59999084472656" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Minutes of Overtime" />
+                                    <TableColumn fx:id="acceptedDateTc" editable="false" prefWidth="126.39996337890625" sortable="false" text="Date" />
+                                 </columns>
+                              </TableView>
+                              <DatePicker fx:id="datePicker2" layoutX="16.0" layoutY="69.0" prefHeight="26.0" prefWidth="115.0" />
+                              <Text layoutX="16.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Filter By date" wrappingWidth="100.15899658203125" />
+                              <ToggleButton fx:id="filterBtn2" layoutX="131.0" layoutY="69.0" mnemonicParsing="false" onAction="#onFilter2Action" prefHeight="26.0" prefWidth="67.0" styleClass="normalbutton" text="Filter" />
+                              <Text fill="#1360a8" layoutX="94.0" layoutY="36.0" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Accepted Overtime" textAlignment="CENTER" wrappingWidth="315.2695770263672">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
-         </content>
-      </ScrollPane>
+            <AnchorPane fx:id="navBar_container" prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
