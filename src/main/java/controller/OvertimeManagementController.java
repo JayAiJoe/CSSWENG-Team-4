@@ -310,4 +310,9 @@ public class OvertimeManagementController extends Controller {
             }
         }
     }
+
+    @FXML
+    private void onFilterNameAction() {
+        //TODO Name filtering for accepted overtime
+    }
 }
