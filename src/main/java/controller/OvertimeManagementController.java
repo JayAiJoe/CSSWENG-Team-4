@@ -38,6 +38,8 @@ public class OvertimeManagementController extends Controller {
     private ToggleButton filterBtn2;
     @FXML
     private DatePicker datePicker2;
+    @FXML
+    private TextField nameTf;
 
     /**
      * initialization of Pending Overtime Table related objects
@@ -60,7 +62,7 @@ public class OvertimeManagementController extends Controller {
     private OvertimeHandler model;
     private ObservableList<OvertimeEntry> pendingEntries, acceptedEntries;
     private FilteredList<OvertimeEntry> filteredPendingEntries, filteredAcceptedEntries;
-
+    Predicate<OvertimeEntry> dateFilter = entry -> true, nameFilter = entry -> true;
 
     @Override
     public void update() {
@@ -289,15 +291,16 @@ public class OvertimeManagementController extends Controller {
         if (status) {
             LocalDate filterDate = datePicker2.getValue();
             if (filterDate == null) {
-                filteredAcceptedEntries.setPredicate(null);
-                return;
+                dateFilter = entry -> true;
+            } else {
+                String dateString = filterDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                dateFilter = entry -> entry.getDateString().equals(dateString);
             }
-            String dateString = filterDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-            Predicate<OvertimeEntry> filter = entry -> entry.getDateString().equals(dateString);
-            filteredAcceptedEntries.setPredicate(filter);
+            filteredAcceptedEntries.setPredicate(dateFilter.and(nameFilter));
             System.out.println(filteredAcceptedEntries.size());
         } else {
-            filteredAcceptedEntries.setPredicate(null);
+            dateFilter = entry -> true;
+            filteredAcceptedEntries.setPredicate(nameFilter);
         }
     }
 
@@ -313,6 +316,8 @@ public class OvertimeManagementController extends Controller {
 
     @FXML
     private void onFilterNameAction() {
-        //TODO Name filtering for accepted overtime
+        nameFilter = entry -> entry.getEmployeeName().toLowerCase()
+                .contains(nameTf.getText().toLowerCase());
+        filteredAcceptedEntries.setPredicate(dateFilter.and(nameFilter));
     }
 }
