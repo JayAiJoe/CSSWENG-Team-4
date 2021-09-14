@@ -179,18 +179,12 @@ public class ExcelHandler {
         return logbook;
     }
 
-    public void readWorkdays(String filePath) throws IOException {
-        Workbook workbook = WorkbookFactory.create(new File(filePath));
 
-
-    }
-
-    public void writeSSS(String filePath) throws IOException {
+    public void writeSSS(String filePath, ArrayList<ArrayList<Double>> sssValues) throws IOException {
 
         Workbook workbook = new HSSFWorkbook();
         CreationHelper creationHelper = workbook.getCreationHelper();
         String[] columns = {"Lower","Upper","Compensation","Fee"};
-        int[] values = {1,2,5,6};
 
         Sheet sheet = workbook.createSheet("Ranges");
 
@@ -201,18 +195,16 @@ public class ExcelHandler {
         }
 
         int rowNum = 1;
-        for (int i = 0;i<3;i++)
-        {
+        for (ArrayList<Double> range : sssValues) {
             Row row = sheet.createRow(rowNum++);
-            for(int j = 0;j<4;j++ ){
-                row.createCell(j).setCellValue(i+values[j]);
+            for (int j = 0; j < 4; j++) {
+                row.createCell(j).setCellValue(range.get(j));
             }
         }
 
         for (int i =0; i<4;i++){
             sheet.autoSizeColumn(i);
         }
-        sheet.addMergedRegion(CellRangeAddress.valueOf("A2:B2"));
 
         FileOutputStream fileOut = new FileOutputStream(filePath);
         workbook.write(fileOut);
