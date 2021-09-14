@@ -66,6 +66,22 @@ public class ThirteenPayrollController extends Controller {
     private String frequency;
     private boolean isCrayola = true;
 
+    final String TAB_NOTSELECTED_STYLE =
+            "-fx-background-color: #9CB9F0;" +
+                    "-fx-text-fill: white;" +
+                    "-fx-border-color:  #9CB9F0;" +
+                    "-fx-background-radius: 0px;";
+    final String TAB_SELECTED_STYLE =
+            " -fx-background-color: #5b62f5;" +
+                    " -fx-text-fill: white;" +
+                    " -fx-border-color:  #5b62f5;" +
+                    " -fx-background-radius: 0px;";
+    final String TAB_HOVERED_STYLE =
+            " -fx-background-color: #9CA0F1;" +
+                    " -fx-text-fill: white;" +
+                    " -fx-border-color:   #9CA0F1;" +
+                    " -fx-background-radius: 0px;";
+
     @Override
     public void update() {
         // load navigation bar
@@ -73,8 +89,8 @@ public class ThirteenPayrollController extends Controller {
             navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
         }
 
-        crayolaBtn.setDisable(true);
-        ixxiBtn.setDisable(false);
+        crayolaBtn.setStyle(TAB_SELECTED_STYLE);
+        ixxiBtn.setStyle(TAB_NOTSELECTED_STYLE);
         addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
         companyText.setText("Crayola atbp.");
 
@@ -103,8 +119,27 @@ public class ThirteenPayrollController extends Controller {
         // initialize columns
         initPayrollCol();
 
-        //disable crayolaBtn upon initialization
-        crayolaBtn.setDisable(true);
+        crayolaBtn.setOnMouseEntered(e -> {
+            if(!isCrayola){
+                crayolaBtn.setStyle(TAB_HOVERED_STYLE);
+            }
+        });
+        crayolaBtn.setOnMouseExited(e -> {
+            if(!isCrayola){
+                crayolaBtn.setStyle(TAB_NOTSELECTED_STYLE);
+            }
+        });
+        ixxiBtn.setOnMouseEntered(e -> {
+            if(isCrayola){
+                ixxiBtn.setStyle(TAB_HOVERED_STYLE);
+            }
+        });
+        ixxiBtn.setOnMouseExited(e -> {
+            if(isCrayola){
+                ixxiBtn.setStyle(TAB_NOTSELECTED_STYLE);
+            }
+        });
+
 
         addressText.setText(addressText.getText()
                 + " UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
@@ -141,19 +176,23 @@ public class ThirteenPayrollController extends Controller {
      */
     public void onPayrollClick(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() == crayolaBtn) {
-            crayolaBtn.setDisable(true);
-            ixxiBtn.setDisable(false);
-            addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
-            companyText.setText("Crayola atbp.");
-            payrollTv.setItems(crayolaEntries);
-            isCrayola = true;
+            if(!isCrayola){
+                crayolaBtn.setStyle(TAB_SELECTED_STYLE);
+                ixxiBtn.setStyle(TAB_NOTSELECTED_STYLE);
+                addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+                companyText.setText("Crayola atbp.");
+                payrollTv.setItems(crayolaEntries);
+                isCrayola = true;
+            }
         } else if (mouseEvent.getSource() == ixxiBtn) {
-            ixxiBtn.setDisable(true);
-            crayolaBtn.setDisable(false);
-            addressText.setText("Located at: " + "UNIT 5, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
-            companyText.setText("IX-XI Hardware");
-            payrollTv.setItems(ixxiEntries);
-            isCrayola = false;
+            if(isCrayola){
+                ixxiBtn.setStyle(TAB_SELECTED_STYLE);
+                crayolaBtn.setStyle(TAB_NOTSELECTED_STYLE);
+                addressText.setText("Located at: " + "UNIT 5, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+                companyText.setText("IX-XI Hardware");
+                payrollTv.setItems(ixxiEntries);
+                isCrayola = false;
+            }
         }
     }
 
