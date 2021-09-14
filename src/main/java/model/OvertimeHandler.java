@@ -28,7 +28,7 @@ public class OvertimeHandler {
             pendingEntries.add(new OvertimeEntry(logbook.getCompleteName(), logbook.getPendingOT(), logbook.getDate()));
         }
         for (LogbookPOJO logbook: Repository.getInstance().getAcceptedOT(startDate, endDate)) {
-            acceptedEntries.add(new OvertimeEntry(logbook.getCompleteName(), logbook.getAcceptedOT(), logbook.getDate()));
+            acceptedEntries.add(new OvertimeEntry(logbook.getCompleteName(), logbook.getApprovedOT(), logbook.getDate()));
         }
     }
 
@@ -52,13 +52,23 @@ public class OvertimeHandler {
                 if (entry.getEmployeeName().equals(name) && entry.getDate().equals(date)) {
                     if (entry.getStatus()) { // pendingOT is accepted
                         logbook.setApprovedOT(minutes + entry.getMinutes());
-                        logbook.setAcceptedOT(entry.getMinutes());
                     }
                     logbook.setPendingOT(0);
                     saveEntries.add(logbook);
 
                     if (entry.getStatus()) {
-                        acceptedEntries.add(entry);
+                        boolean add = true;
+                        for (OvertimeEntry accepted: acceptedEntries) {
+                            if (accepted.getEmployeeName().equals(entry.getEmployeeName()) &&
+                                accepted.getDateString().equals(entry.getDateString())) {
+                                add = false;
+                                accepted.setMinutes(entry.getMinutes());
+                                break;
+                            }
+                        }
+                        if (add) {
+                            acceptedEntries.add(entry);
+                        }
                     }
                     break;
                 }

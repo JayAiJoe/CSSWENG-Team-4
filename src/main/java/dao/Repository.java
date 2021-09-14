@@ -237,11 +237,11 @@ public class Repository {
         MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
         ArrayList<LogbookPOJO> acceptedOT = new ArrayList<>();
         if (endDate == null) {
-            collection.find(and(gte("date", startDate), gt("acceptedOT", 0))).into(acceptedOT);
+            collection.find(and(gte("date", startDate), gt("approvedOT", 0))).into(acceptedOT);
         } else if (startDate == null) {
-            collection.find(and(lte("date", endDate), gt("acceptedOT", 0))).into(acceptedOT);
+            collection.find(and(lte("date", endDate), gt("approvedOT", 0))).into(acceptedOT);
         } else {
-            collection.find(and(gt("acceptedOT", 0), gte("date", startDate), lte("date", endDate))).into(acceptedOT);
+            collection.find(and(gt("approvedOT", 0), gte("date", startDate), lte("date", endDate))).into(acceptedOT);
         }
 
         return acceptedOT;
