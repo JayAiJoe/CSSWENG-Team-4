@@ -76,7 +76,7 @@
                                              </columns>
                                           </TableColumn>
                                           <TableColumn id="tc_cola" fx:id="colaTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="30.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="COLA" />
-                                          <TableColumn id="tc_total" fx:id="totalTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="18.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Total&#10;Amount" />
+                                          <TableColumn id="tc_total" fx:id="totalTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="18.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="  Total&#10;Amount" />
                                           <TableColumn id="tc_deductions" fx:id="deductionsTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="314.40008544921875" resizable="false" sortable="false" text="Deductions">
                                              <columns>
                                                 <TableColumn id="tcd_sss" fx:id="sssTc" editable="false" prefWidth="55.99993896484375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="SSS" />

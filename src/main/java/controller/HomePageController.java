@@ -71,6 +71,7 @@ public class HomePageController extends Controller {
         buttonTc.setCellFactory(t -> {
             Button button = new Button();
             button.setText("View");
+            button.getStyleClass().add("normalbutton");
             TableCell<PayrollWrapper, String> cell = new TableCell<>() {
                 @Override
                 public void updateItem(String item, boolean empty) {

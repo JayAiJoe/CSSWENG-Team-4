@@ -81,7 +81,7 @@
                                                          </items>
                                                       </ChoiceBox>
                                                       <Text layoutX="38.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Frequency:" wrappingWidth="72.15900421142578" />
-                                                      <Button layoutX="173.0" layoutY="206.0" mnemonicParsing="false" onAction="#onCreatePayrollAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Create" />
+                                                      <Button layoutX="173.0" layoutY="199.0" mnemonicParsing="false" onAction="#onCreatePayrollAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Create" />
                                                       <Text fx:id="dateErrorText" fill="RED" layoutX="38.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Error" />
                                                       <Text fx:id="frequencyErrorText" fill="RED" layoutX="38.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency Error" />
                                                    </children>
@@ -94,10 +94,10 @@
                                                 </AnchorPane>
                                                 <AnchorPane prefHeight="247.0" prefWidth="220.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
                                                    <children>
-                                                      <Text layoutX="22.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Create a 13th Month Payroll" wrappingWidth="172.15906524658203" />
-                                                      <Button layoutX="67.0" layoutY="206.0" mnemonicParsing="false" onAction="#onCreateThirteenAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Create" />
+                                                      <Text layoutX="22.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Create a 13th Month Payroll" wrappingWidth="172.15906524658203" />
+                                                      <Button layoutX="67.0" layoutY="197.0" mnemonicParsing="false" onAction="#onCreateThirteenAction" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Create" />
                                                       <Text fx:id="dateErrorText1" fill="RED" layoutX="26.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                                                      <ChoiceBox fx:id="frequencyCb2" layoutX="81.0" layoutY="83.0" prefHeight="26.0" prefWidth="122.0">
+                                                      <ChoiceBox fx:id="frequencyCb2" layoutX="81.0" layoutY="96.0" prefHeight="26.0" prefWidth="122.0">
                                                          <items>
                                                             <FXCollections fx:factory="observableArrayList">
                                                                <String fx:value="Weekly" />
@@ -105,8 +105,8 @@
                                                             </FXCollections>
                                                          </items>
                                                       </ChoiceBox>
-                                                      <Text fx:id="frequencyErrorText2" fill="RED" layoutX="9.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency Error" />
-                                                      <Text layoutX="9.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Frequency:" wrappingWidth="72.15900421142578" />
+                                                      <Text fx:id="frequencyErrorText2" fill="RED" layoutX="9.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Frequency Error" />
+                                                      <Text layoutX="9.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Frequency:" wrappingWidth="72.15900421142578" />
                                                    </children>
                                                    <opaqueInsets>
                                                       <Insets />
@@ -119,11 +119,11 @@
                                           </HBox>
                                           <AnchorPane prefHeight="241.0" prefWidth="568.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
                                              <children>
-                                                <Text layoutX="70.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Fees and Deductions" wrappingWidth="115.19999999999982" />
-                                                <Text layoutX="396.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employees" wrappingWidth="63.35907745361328" />
-                                                <Button layoutX="87.0" layoutY="181.0" mnemonicParsing="false" onAction="#onGoToFeesClick" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Go To Page" />
-                                                <Button layoutX="386.0" layoutY="181.0" mnemonicParsing="false" onAction="#onGoToEmployeesClick" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Go To Page" />
-                                                <Button fx:id="sssBtn" layoutX="90.0" layoutY="55.0" mnemonicParsing="false" onAction="#onSSSUpload" prefHeight="26.0" prefWidth="115.0" styleClass="uploadbutton" text="Upload a File">
+                                                <Text layoutX="86.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Fees and Deductions" wrappingWidth="115.19999999999982" />
+                                                <Text layoutX="456.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employees" wrappingWidth="63.35907745361328" />
+                                                <Button layoutX="103.0" layoutY="181.0" mnemonicParsing="false" onAction="#onGoToFeesClick" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Go To Page" />
+                                                <Button layoutX="446.0" layoutY="180.0" mnemonicParsing="false" onAction="#onGoToEmployeesClick" prefHeight="26.0" prefWidth="82.0" styleClass="normalbutton" text="Go To Page" />
+                                                <Button fx:id="sssBtn" layoutX="103.0" layoutY="89.0" mnemonicParsing="false" onAction="#onSSSUpload" prefHeight="26.0" prefWidth="115.0" styleClass="uploadbutton" text="Upload a File">
                                                    <graphic>
                                                       <ImageView fitHeight="13.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -131,7 +131,7 @@
                                                          </image>
                                                       </ImageView>
                                                    </graphic></Button>
-                                                <Button fx:id="employeeBtn" layoutX="386.0" layoutY="55.0" mnemonicParsing="false" onAction="#onEmployeesUpload" prefHeight="26.0" prefWidth="115.0" styleClass="uploadbutton" text="Upload a File">
+                                                <Button fx:id="employeeBtn" layoutX="446.0" layoutY="54.0" mnemonicParsing="false" onAction="#onEmployeesUpload" prefHeight="26.0" prefWidth="115.0" styleClass="uploadbutton" text="Upload a File">
                                                    <graphic>
                                                       <ImageView fitHeight="13.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -139,10 +139,10 @@
                                                          </image>
                                                       </ImageView>
                                                    </graphic></Button>
-                                                <Text layoutX="27.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="SSS" wrappingWidth="28.000048828124818" />
-                                                <Text layoutX="310.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employees" wrappingWidth="63.35907745361328" />
-                                                <Text layoutX="310.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Attendance Log" wrappingWidth="63.35907745361328" />
-                                                <Button fx:id="attendanceBtn" layoutX="386.0" layoutY="116.0" mnemonicParsing="false" onAction="#onAttendanceUpload" prefHeight="26.0" prefWidth="115.0" styleClass="uploadbutton" text="Upload a File">
+                                                <Text layoutX="46.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="SSS" wrappingWidth="28.000048828124818" />
+                                                <Text layoutX="370.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employees" wrappingWidth="63.35907745361328" />
+                                                <Text layoutX="370.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Attendance Log" wrappingWidth="63.35907745361328" />
+                                                <Button fx:id="attendanceBtn" layoutX="446.0" layoutY="115.0" mnemonicParsing="false" onAction="#onAttendanceUpload" prefHeight="26.0" prefWidth="115.0" styleClass="uploadbutton" text="Upload a File">
                                                    <graphic>
                                                       <ImageView fitHeight="13.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>

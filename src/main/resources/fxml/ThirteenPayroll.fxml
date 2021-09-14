@@ -59,7 +59,7 @@
                                              </columns>
                                           </TableColumn>
                                           <TableColumn id="tc_cola" fx:id="colaTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="30.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="COLA" />
-                                          <TableColumn id="tc_total" fx:id="totalTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="18.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Total&#10;Amount" />
+                                          <TableColumn id="tc_total" fx:id="totalTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="18.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="  Total&#10;Amount" />
                                           <TableColumn id="tc_deductions" fx:id="deductionsTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="314.40008544921875" resizable="false" sortable="false" text="Deductions">
                                              <columns>
                                                 <TableColumn id="tcd_sss" fx:id="sssTc" editable="false" prefWidth="55.99993896484375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="SSS" />
@@ -74,7 +74,7 @@
                                     </TableView>
                                     <Text fx:id="daterangeText" layoutX="23.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="For the Period:" AnchorPane.leftAnchor="23.0" />
                                     <Text fx:id="addressText" layoutX="23.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Located at:" AnchorPane.leftAnchor="23.0" />
-                                    <Button fx:id="payrollBtn" layoutX="923.0" layoutY="40.0" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="26.0" prefWidth="152.0" styleClass="normalbutton" text="Return to Home" AnchorPane.rightAnchor="25.0">
+                                    <Button fx:id="payrollBtn" layoutX="909.0" layoutY="48.0" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="26.0" prefWidth="152.0" styleClass="normalbutton" text="Return to Home" AnchorPane.rightAnchor="25.40000000000009">
                                        <graphic>
                                           <ImageView fitHeight="13.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -82,7 +82,7 @@
                                              </image>
                                           </ImageView>
                                        </graphic></Button>
-                                    <ChoiceBox fx:id="formatCb" layoutX="864.0" layoutY="4.0" prefHeight="26.0" prefWidth="90.0" value="Standard">
+                                    <ChoiceBox fx:id="formatCb" layoutX="863.0" layoutY="14.0" prefHeight="26.0" prefWidth="90.0" value="Standard" AnchorPane.rightAnchor="133.0000000000001">
                                        <items>
                                           <FXCollections fx:factory="observableArrayList">
                                              <String fx:value="Standard" />
@@ -90,8 +90,8 @@
                                           </FXCollections>
                                        </items>
                                     </ChoiceBox>
-                                    <Button fx:id="exportBtn" layoutX="962.0" layoutY="2.0" mnemonicParsing="false" onAction="#onExportClick" onMouseClicked="#onPayrollClick" prefHeight="32.0" prefWidth="98.0" styleClass="normalbutton" text="Export to Excel" />
-                                    <Text fx:id="addressText1" layoutX="805.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Export as:" />
+                                    <Button fx:id="exportBtn" layoutX="962.0" layoutY="11.0" mnemonicParsing="false" onAction="#onExportClick" onMouseClicked="#onPayrollClick" prefHeight="32.0" prefWidth="98.0" styleClass="normalbutton" text="Export to Excel" AnchorPane.rightAnchor="26.0" />
+                                    <Text fx:id="addressText1" layoutX="804.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Export as:" AnchorPane.rightAnchor="231.4117187500001" />
                                  </children>
                               </AnchorPane>
                            </children>
