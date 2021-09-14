@@ -17,6 +17,8 @@ import model.ExcelHandler;
 import wrapper.PayrollWrapper;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -175,12 +177,26 @@ public class HomePageController extends Controller {
             for (EmployeePOJO employee: employees) {
                 Repository.getInstance().addEmployee(employee);
             }
-        } catch (Exception e) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Employees added successfully!");
+            alert.showAndWait();
+        } catch (ParseException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setGraphic(null);
             alert.setHeaderText(null);
-            alert.setContentText("Error reading file!");
+            alert.setContentText("Error parsing file!");
+            alert.showAndWait();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Error opening file! File may be open elsewhere!");
             alert.showAndWait();
         }
     }
@@ -213,12 +229,19 @@ public class HomePageController extends Controller {
             alert.setHeaderText(null);
             alert.setContentText("Attendance processed successfully!");
             alert.showAndWait();
-        } catch (Exception e) {
+        } catch (ParseException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setGraphic(null);
             alert.setHeaderText(null);
-            alert.setContentText("Error reading file!");
+            alert.setContentText("Error parsing file!");
+            alert.showAndWait();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Error opening file! File may be open elsewhere!");
             alert.showAndWait();
         }
     }
