@@ -128,16 +128,23 @@ public class Payroll {
             double cola = performance.getCola();
             double total = salary + amount + cola;
 
-            double sss, philhealth, pagibig;
+            double sss = 0, philhealth = 0, pagibig = 0;
             double monthlyWage;
             if (mode.equals("MONTHLY")) {
                 monthlyWage = employee.getWage();
             } else {
                 monthlyWage = rate * 26;
             }
-            sss = Calculator.getInstance().computeSSSFee(monthlyWage);
-            philhealth = Calculator.getInstance().computePhilHealthFee(monthlyWage);
-            pagibig = Calculator.getInstance().computePagIbigFee(monthlyWage);
+
+            if ((endDate.getDate() == 16 && frequency.equals("BIWEEKLY")) ||
+                    (startDate.getDate() <= 15 && endDate.getDate() >= 16)){
+                sss = Calculator.getInstance().computeSSSFee(monthlyWage);
+                philhealth = Calculator.getInstance().computePhilHealthFee(monthlyWage);
+            }
+            if ((startDate.getDate() == 16 && frequency.equals("BIWEEKLY")) ||
+                    new Date(startDate.getTime() + 7 * 86400000L).getMonth() != startDate.getMonth()) {
+                pagibig = Calculator.getInstance().computePagIbigFee(monthlyWage);
+            }
 
             double late = Calculator.getInstance().computeLateFee(rate, performance.getMinsLate());
             double net = total - sss - philhealth - pagibig - late;
