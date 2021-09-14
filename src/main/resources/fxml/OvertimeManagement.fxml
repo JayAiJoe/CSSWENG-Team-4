@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -93,6 +95,19 @@
                                     <Font name="System Bold" size="23.0" />
                                  </font>
                               </Text>
+                              <Button fx:id="searchBtn" layoutX="262.0" layoutY="68.0" mnemonicParsing="false" onAction="#onFilterNameAction" prefHeight="27.0" prefWidth="31.0" styleClass="searchbutton">
+                                 <graphic>
+                                    <ImageView fitHeight="18.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <viewport>
+                                          <Rectangle2D />
+                                       </viewport>
+                                       <image>
+                                          <Image url="@../img/search_icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <TextField fx:id="nameTf" layoutX="293.0" layoutY="68.0" onAction="#onFilterNameAction" prefHeight="16.0" prefWidth="192.0" promptText="Name Search" styleClass="searchfield" />
                            </children>
                            <HBox.margin>
                               <Insets left="15.0" />
