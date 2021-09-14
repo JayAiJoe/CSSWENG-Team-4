@@ -190,11 +190,20 @@
                                        </columns>
                                     </TableView>
                                     <Text fx:id="sss_errorText" fill="RED" layoutX="26.0" layoutY="625.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Button fx:id="sssBtn" layoutX="20.0" layoutY="73.0" mnemonicParsing="false" onAction="#onSSSUpload" prefHeight="26.0" prefWidth="115.0" styleClass="uploadbutton" text="Upload a File">
+                                    <Button fx:id="sssBtn" layoutX="20.0" layoutY="72.0" mnemonicParsing="false" onAction="#onSSSUpload" prefHeight="26.0" prefWidth="115.0" styleClass="uploadbutton" text="Upload a File">
                                        <graphic>
                                           <ImageView fitHeight="13.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../img/uploadIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="exportBtn" layoutX="446.0" layoutY="72.0" mnemonicParsing="false" onAction="#onExportClick" prefHeight="26.0" prefWidth="115.0" styleClass="normalbutton" text="Export to Excel">
+                                       <graphic>
+                                          <ImageView fitHeight="13.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/downloadIcon.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>

@@ -82,7 +82,7 @@
                                              </image>
                                           </ImageView>
                                        </graphic></Button>
-                                    <ChoiceBox fx:id="formatCb" layoutX="863.0" layoutY="14.0" prefHeight="26.0" prefWidth="90.0" value="Standard" AnchorPane.rightAnchor="133.0000000000001">
+                                    <ChoiceBox fx:id="formatCb" layoutX="832.0" layoutY="14.0" prefHeight="26.0" prefWidth="90.0" value="Standard" AnchorPane.rightAnchor="164.0000000000001">
                                        <items>
                                           <FXCollections fx:factory="observableArrayList">
                                              <String fx:value="Standard" />
@@ -90,8 +90,15 @@
                                           </FXCollections>
                                        </items>
                                     </ChoiceBox>
-                                    <Button fx:id="exportBtn" layoutX="962.0" layoutY="11.0" mnemonicParsing="false" onAction="#onExportClick" onMouseClicked="#onPayrollClick" prefHeight="32.0" prefWidth="98.0" styleClass="normalbutton" text="Export to Excel" AnchorPane.rightAnchor="26.0" />
-                                    <Text fx:id="addressText1" layoutX="804.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Export as:" AnchorPane.rightAnchor="231.4117187500001" />
+                                    <Button fx:id="exportBtn" layoutX="962.0" layoutY="11.0" mnemonicParsing="false" onAction="#onExportClick" onMouseClicked="#onPayrollClick" prefHeight="32.0" prefWidth="129.0" styleClass="normalbutton" text="Export to Excel" AnchorPane.rightAnchor="26.0">
+                                       <graphic>
+                                          <ImageView fitHeight="19.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/downloadIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
+                                    <Text fx:id="addressText1" layoutX="775.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Export as:" AnchorPane.rightAnchor="260.4117187500001" />
                                  </children>
                               </AnchorPane>
                            </children>

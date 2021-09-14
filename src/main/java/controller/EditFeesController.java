@@ -793,4 +793,15 @@ public class EditFeesController extends Controller {
             alert.showAndWait();
         }
     }
+
+    @FXML
+    private void onExportClick(){
+        FileChooser exportfileChooser = new FileChooser();
+        exportfileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
+        File filepath = exportfileChooser.showSaveDialog(sssTv.getScene().getWindow());
+        System.out.println(filepath);
+
+        //TODO Exporting of SSS table
+    }
 }
