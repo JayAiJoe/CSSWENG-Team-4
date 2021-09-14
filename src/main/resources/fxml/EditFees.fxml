@@ -100,9 +100,9 @@
                                     </Pane>
                                     <AnchorPane prefHeight="282.0" prefWidth="563.0" style="-fx-background-color: E1F4FF;">
                                        <children>
-                                          <Pane layoutX="9.0" layoutY="48.0" prefHeight="222.0" prefWidth="502.0" style="-fx-background-color: white;">
+                                          <Pane layoutX="7.0" layoutY="41.0" prefHeight="222.0" prefWidth="502.0" style="-fx-background-color: transparent;">
                                              <children>
-                                                <Button fx:id="pi_save_btn" disable="true" layoutX="46.0" layoutY="157.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="66.0" styleClass="savebutton" text="Save">
+                                                <Button fx:id="pi_save_btn" disable="true" layoutX="141.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="66.0" styleClass="savebutton" text="Save">
                                                    <graphic>
                                                       <ImageView fitHeight="14.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -110,8 +110,8 @@
                                                          </image>
                                                       </ImageView>
                                                    </graphic></Button>
-                                                <TextField fx:id="pi_employeeTf" disable="true" layoutX="216.0" layoutY="34.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
-                                                <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="113.0" layoutY="157.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="67.0" styleClass="cancelbutton" text="Cancel" visible="false">
+                                                <TextField fx:id="pi_employeeTf" disable="true" layoutX="212.0" layoutY="56.0" prefHeight="25.0" prefWidth="123.0" />
+                                                <Button fx:id="pi_cancel_btn" cancelButton="true" disable="true" layoutX="274.0" layoutY="177.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="67.0" styleClass="cancelbutton" text="Cancel">
                                                    <graphic>
                                                       <ImageView fitHeight="11.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -119,7 +119,7 @@
                                                          </image>
                                                       </ImageView>
                                                    </graphic></Button>
-                                                <Button fx:id="pi_edit_btn" layoutX="46.0" layoutY="157.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="67.0" styleClass="normalbutton" text="Edit">
+                                                <Button fx:id="pi_edit_btn" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#onPIEditClick" prefHeight="31.0" prefWidth="67.0" styleClass="normalbutton" text="Edit">
                                                    <graphic>
                                                       <ImageView fitHeight="12.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -127,13 +127,13 @@
                                                          </image>
                                                       </ImageView>
                                                    </graphic></Button>
-                                                <Text layoutX="51.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employee Share:" />
-                                                <TextField fx:id="pi_employerTf" disable="true" layoutX="216.0" layoutY="80.0" prefHeight="25.0" prefWidth="123.0" stylesheets="@../css/textfield.css" />
-                                                <Text layoutX="51.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employer Contribution:" />
-                                                <Text layoutX="347.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="\%" />
-                                                <Text layoutX="187.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="PhP" />
-                                                <Text fx:id="pi_employer_errorText" fill="RED" layoutX="51.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution should be nonnegative and up to 2 decimal places only!" wrappingWidth="421.7632751464844" />
-                                                <Text fx:id="pi_employee_errorText" fill="RED" layoutX="52.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share should be greater than 0 and less than 100!" />
+                                                <Text layoutX="47.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employee Share:" />
+                                                <TextField fx:id="pi_employerTf" disable="true" layoutX="212.0" layoutY="102.0" prefHeight="25.0" prefWidth="123.0" />
+                                                <Text layoutX="47.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Employer Contribution:" />
+                                                <Text layoutX="343.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="\%" />
+                                                <Text layoutX="183.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="PhP" />
+                                                <Text fx:id="pi_employer_errorText" fill="RED" layoutX="47.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employer Contribution should be nonnegative and up to 2 decimal places only!" wrappingWidth="421.7632751464844" />
+                                                <Text fx:id="pi_employee_errorText" fill="RED" layoutX="48.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Share should be greater than 0 and less than 100!" />
                                              </children>
                                           </Pane>
                                           <HBox alignment="CENTER" layoutX="7.0" prefHeight="31.0" prefWidth="502.0">

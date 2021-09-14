@@ -17,8 +17,6 @@ public class Driver extends Application {
 
     public static final int WIDTH = 1300;
     public static final int HEIGHT = 780;
-
-    //flag that indicates the window is re-maximized by the application (to prevent setting the maximum size when un-maximizing the stage)
     private boolean reMaximize = false;
 
     @Override
@@ -40,7 +38,6 @@ public class Driver extends Application {
 
 
         primaryStage.setScene(scene);
-        primaryStage.setMaximized(true);
         primaryStage.setMinWidth(WIDTH);
         primaryStage.setMaxWidth(WIDTH);
         primaryStage.setMinHeight(HEIGHT);
