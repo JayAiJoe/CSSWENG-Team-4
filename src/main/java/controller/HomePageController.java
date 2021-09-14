@@ -106,6 +106,7 @@ public class HomePageController extends Controller {
             MenuItem item1 = new MenuItem();
             MenuItem item2 = new MenuItem();
             menubutton.setText("Export");
+            menubutton.setStyle(IDLE_BUTTON_STYLE);
             menubutton.setOnMouseEntered(e -> menubutton.setStyle(HOVERED_BUTTON_STYLE));
             menubutton.setOnMouseExited(e -> menubutton.setStyle(IDLE_BUTTON_STYLE));
             menubutton.getStylesheets().add(getClass().getResource("/css/navButton.css").toExternalForm());
