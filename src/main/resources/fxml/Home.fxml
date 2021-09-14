@@ -49,8 +49,8 @@
                                           <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Open a Previous Payroll..." wrappingWidth="150.55902862548828" />
                                           <TableView fx:id="payrollListTv" editable="true" layoutX="12.0" layoutY="47.0" prefHeight="442.0" prefWidth="407.0" style="-fx-background-radius: 10;" stylesheets="@../css/Tableview.css" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0">
                                              <columns>
-                                                <TableColumn fx:id="exportTc" editable="false" prefWidth="90.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER;" />
-                                                <TableColumn fx:id="buttonTc" editable="false" prefWidth="44.000003814697266" resizable="false" sortable="false" />
+                                                <TableColumn fx:id="exportTc" editable="false" prefWidth="79.99999046325684" resizable="false" sortable="false" style="-fx-alignment: CENTER;" />
+                                                <TableColumn fx:id="buttonTc" editable="false" prefWidth="56.00000762939453" resizable="false" sortable="false" style="-fx-alignment: CENTER;" />
                                                 <TableColumn fx:id="rangeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="231.20001220703125" resizable="false" sortable="false" text="Range">
                                                    <columns>
                                                       <TableColumn fx:id="startTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="95.2000732421875" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT" text="Start Date" />

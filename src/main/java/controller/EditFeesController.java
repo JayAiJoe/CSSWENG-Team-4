@@ -11,8 +11,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import model.*;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,8 +35,7 @@ public class EditFeesController extends Controller {
     @FXML
     private Button pi_edit_btn, pi_cancel_btn,
             pi_save_btn, ph_update_btn, ph_cancel_btn, ph_add_btn, ph_delete_btn,
-            ph_save_btn, sss_edit_btn, sss_save_btn, sss_cancel_btn, sss_add_btn,
-            sss_remove_btn;
+            ph_save_btn;
 
     @FXML
     private TextField pi_employeeTf, pi_employerTf;
@@ -497,17 +498,6 @@ public class EditFeesController extends Controller {
         employeeCompensation = Calculator.getInstance().getEmployeeCompensation();
         sssTv.edit(-1, null);
         sssTv.setEditable(false);
-        sss_edit_btn.toFront();
-        sss_edit_btn.setDisable(false);
-        sss_cancel_btn.toBack();
-        sss_cancel_btn.setDisable(true);
-        sss_cancel_btn.setVisible(false);
-        sss_add_btn.setVisible(false);
-        sss_add_btn.setDisable(true);
-        sss_remove_btn.setVisible(false);
-        sss_remove_btn.setDisable(true);
-        sss_save_btn.setVisible(false);
-        sss_save_btn.setDisable(true);
         sss_errorText.setVisible(false);
         resetSSSRanges();
     }
@@ -809,151 +799,6 @@ public class EditFeesController extends Controller {
         }
     }
 
-    public void onSSSEditClick(MouseEvent mouseEvent) {
-        if (mouseEvent.getSource() == sss_edit_btn) {
-            sss_edit_btn.toBack();
-            sss_edit_btn.setDisable(true);
-            sss_cancel_btn.toFront();
-            sss_cancel_btn.setDisable(false);
-            sss_cancel_btn.setVisible(true);
-            sss_add_btn.setVisible(true);
-            sss_add_btn.setDisable(false);
-            sss_remove_btn.setVisible(true);
-            sss_remove_btn.setDisable(false);
-            sss_save_btn.setVisible(true);
-            sss_save_btn.setDisable(false);
-            sssTv.setEditable(true);
-        } else if (mouseEvent.getSource() == sss_save_btn) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText(null);
-            alert.setGraphic(null);
-            alert.setContentText("Apply changes?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                // remove ranges that are all empty
-                ArrayList<SSSRange> newRanges = new ArrayList<>();
-                for (SSSRange range : sssRanges) {
-                    if (range.getStart().isEmpty() && range.getEnd().isEmpty() &&
-                            range.getCompensation().isEmpty() && range.getValue().isEmpty()) {
-                        continue;
-                    }
-                    newRanges.add(range);
-                }
-                sssRanges.setAll(newRanges);
-
-                // check ranges that are incomplete
-                newRanges = new ArrayList<>();
-                for (SSSRange range : sssRanges) {
-                    if (range.getStart().isEmpty() || range.getEnd().isEmpty() ||
-                            range.getCompensation().isEmpty() || range.getValue().isEmpty()) {
-                        sss_errorText.setText("All cells must be nonempty!");
-                        sss_errorText.setVisible(true);
-                        return;
-                    }
-                    newRanges.add(range);
-                }
-
-                // sort input ranges
-                Collections.sort(newRanges);
-                // set new ranges
-                sssRanges.setAll(newRanges);
-                // check all ranges are valid
-                int rangeCount = newRanges.size();
-                for (int i = 0; i < rangeCount - 1; i++) {
-                    ArrayList<Double> rangeA = sssRanges.get(i).convert();
-                    ArrayList<Double> rangeB = sssRanges.get(i + 1).convert();
-
-                    double start = rangeB.get(0);
-                    double end = rangeA.get(1);
-
-                    if (start != end + 0.01) {
-                        if (start > end) {
-                            sss_errorText.setText("Ranges must be connected!");
-                        } else {
-                            sss_errorText.setText("Ranges must not overlap!");
-                        }
-                        sss_errorText.setVisible(true);
-                        return;
-                    }
-                }
-
-                // update SSS fee table
-                ArrayList<ArrayList<Double>> sssFormulas = new ArrayList<>();
-                ArrayList<ArrayList<Double>> compensationFormulas = new ArrayList<>();
-                for (int i = 0; i < rangeCount; i++) {
-                    SSSRange range = sssRanges.get(i);
-                    ArrayList<Double> newRange = range.convert();
-                    ArrayList<Double> rangeA = new ArrayList<>();
-                    ArrayList<Double> rangeB = new ArrayList<>();
-
-                    rangeA.add(newRange.get(0));
-                    rangeA.add(newRange.get(1));
-                    rangeA.add(newRange.get(3));
-                    rangeB.add(newRange.get(0));
-                    rangeB.add(newRange.get(1));
-                    rangeB.add(newRange.get(2));
-
-                    sssFormulas.add(rangeA);
-                    compensationFormulas.add(rangeB);
-                }
-
-                sssFeeTable.setFormulas(sssFormulas);
-                employeeCompensation.setFormulas(compensationFormulas);
-
-                sss_edit_btn.toFront();
-                sss_edit_btn.setDisable(false);
-                sss_cancel_btn.toBack();
-                sss_cancel_btn.setDisable(true);
-                sss_cancel_btn.setVisible(false);
-                sss_add_btn.setVisible(false);
-                sss_add_btn.setDisable(true);
-                sss_remove_btn.setVisible(false);
-                sss_remove_btn.setDisable(true);
-                sss_save_btn.setVisible(false);
-                sss_save_btn.setDisable(true);
-                sss_errorText.setVisible(false);
-                sssTv.edit(-1, null);
-                sssTv.setEditable(false);
-                System.out.println("Ok is pressed");
-            } else {
-                // ... user chose CANCEL or closed the dialog
-                System.out.println("cancel is pressed");
-            }
-        } else if (mouseEvent.getSource() == sss_cancel_btn) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText(null);
-            alert.setGraphic(null);
-            alert.setContentText("Discard changes?");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                resetSSSRanges();
-
-                sss_edit_btn.toFront();
-                sss_edit_btn.setDisable(false);
-                sss_cancel_btn.toBack();
-                sss_cancel_btn.setDisable(true);
-                sss_cancel_btn.setVisible(false);
-                sss_add_btn.setVisible(false);
-                sss_add_btn.setDisable(true);
-                sss_remove_btn.setVisible(false);
-                sss_remove_btn.setDisable(true);
-                sss_save_btn.setVisible(false);
-                sss_save_btn.setDisable(true);
-                sssTv.edit(-1, null);
-                sssTv.setEditable(false);
-                sss_errorText.setVisible(false);
-                System.out.println("Ok is pressed");
-            } else {
-                // ... user chose CANCEL or closed the dialog
-                System.out.println("cancel is pressed");
-            }
-        }
-    }
-
     /**
      * Checks whether a given String value has up to
      * 2 decimal places only.
@@ -994,25 +839,13 @@ public class EditFeesController extends Controller {
         }
     }
 
-    /**
-     * Adds a new row to the SSS fee table.
-     */
-    @FXML
-    private void onAddSSSRowAction(){
-        int rowCount = sssRanges.size();
-        sssRanges.add(rowCount - 1, new SSSRange());
-    }
+    public void onSSSUpload() {
+        FileChooser sssfileChooser = new FileChooser();
+        sssfileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
+        File file = sssfileChooser.showOpenDialog(sssTv.getScene().getWindow());
+        System.out.println(file);
 
-    /**
-     * Deletes the second to the last row from the
-     * SSS fee table provided that there are
-     * more than 2 rows in the fee table.
-     */
-    @FXML
-    private void onDeleteSSSRowAction(){
-        int rowCount = sssRanges.size();
-        if (rowCount > 2) {
-            sssRanges.remove(rowCount - 2);
-        }
+        //TODO load file content to table
     }
 }

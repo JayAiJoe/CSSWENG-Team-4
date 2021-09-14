@@ -95,7 +95,7 @@
                                     <Font name="System Bold" size="23.0" />
                                  </font>
                               </Text>
-                              <Button layoutX="262.0" layoutY="68.0" mnemonicParsing="false" onAction="#onFilterNameAction" prefHeight="27.0" prefWidth="31.0" styleClass="searchbutton">
+                              <Button fx:id="searchBtn" layoutX="262.0" layoutY="68.0" mnemonicParsing="false" onAction="#onFilterNameAction" prefHeight="27.0" prefWidth="31.0" styleClass="searchbutton" AnchorPane.rightAnchor="211.60000000000002">
                                  <graphic>
                                     <ImageView fitHeight="18.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                        <viewport>
@@ -107,7 +107,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <TextField fx:id="nameTf" layoutX="293.0" layoutY="68.0" onAction="#onFilterNameAction" prefHeight="16.0" prefWidth="192.0" promptText="Name Search" styleClass="searchfield" />
+                              <TextField fx:id="nameTf" layoutX="293.0" layoutY="68.0" onAction="#onFilterNameAction" prefHeight="16.0" prefWidth="192.0" promptText="Name Search" styleClass="searchfield" AnchorPane.rightAnchor="19.80000000000001" />
                            </children>
                            <HBox.margin>
                               <Insets left="15.0" />
