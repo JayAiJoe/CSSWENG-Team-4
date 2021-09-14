@@ -802,6 +802,26 @@ public class EditFeesController extends Controller {
         File filepath = exportfileChooser.showSaveDialog(sssTv.getScene().getWindow());
         System.out.println(filepath);
 
-        //TODO Exporting of SSS table
+        try {
+            ArrayList<ArrayList<Double>> sssValues = new ArrayList<>();
+            for (SSSRange range: sssRanges) {
+                sssValues.add(range.convert());
+            }
+            new ExcelHandler().writeSSS(filepath.getAbsolutePath(), sssValues);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("File printed successfully!");
+            alert.showAndWait();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Problem printing to file!");
+            alert.showAndWait();
+        }
     }
 }
