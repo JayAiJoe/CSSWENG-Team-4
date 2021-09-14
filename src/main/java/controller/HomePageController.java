@@ -15,11 +15,13 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import model.AttendanceProcessor;
 import model.ExcelHandler;
+import model.Payroll;
 import wrapper.PayrollWrapper;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,9 +43,6 @@ public class HomePageController extends Controller {
     private TableView<PayrollWrapper> payrollListTv;
     @FXML
     private TableColumn<PayrollWrapper, String> startTc, endTc, frequencyTc, rangeTc, buttonTc, exportTc;
-
-    private Date startDate, endDate;
-    private String frequency;
 
     final String IDLE_BUTTON_STYLE = "-fx-background-color: #0094FF; -fx-background-radius: 0px;";
     final String HOVERED_BUTTON_STYLE = "-fx-background-color: #5b62f5; -fx-background-radius: 0px;";
@@ -125,15 +124,122 @@ public class HomePageController extends Controller {
             };
 
             item1.setOnAction(e -> {
+                if (cell.getTableRow().getItem() != null) {
+                    PayrollWrapper payrollWrapper = cell.getTableRow().getItem();
+                    Payroll payroll = new Payroll(payrollWrapper.getStartDate(),
+                            payrollWrapper.getEndDate(), payrollWrapper.getFrequency());
 
-                if(cell.getTableRow().getItem() != null){
-                    //TODO: exporting in standard format
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.getExtensionFilters().addAll(
+                            new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
+                    fileChooser.setTitle("Crayola atbp.");
+                    File filepath = fileChooser.showSaveDialog(menubutton.getScene().getWindow());
+
+                    try {
+                        new ExcelHandler().printMD(filepath.getAbsolutePath(),
+                                FXCollections.observableList(payroll.getCrayolaEntries()),
+                                payrollWrapper.getStartDateString(),
+                                payrollWrapper.getEndDateString(),
+                                "CRAYOLA");
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success");
+                        alert.setGraphic(null);
+                        alert.setHeaderText(null);
+                        alert.setContentText("File printed successfully!");
+                        alert.showAndWait();
+                    } catch (Exception exception) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setGraphic(null);
+                        alert.setHeaderText(null);
+                        alert.setContentText("Problem printing to file!");
+                        alert.showAndWait();
+                        System.out.println("Problem printing to file");
+                        return;
+                    }
+
+                    fileChooser.setTitle("IX-XI Hardware");
+                    filepath = fileChooser.showSaveDialog(menubutton.getScene().getWindow());
+                    try {
+                        new ExcelHandler().printMD(filepath.getAbsolutePath(),
+                                FXCollections.observableList(payroll.getIxxiEntries()),
+                                payrollWrapper.getStartDateString(),
+                                payrollWrapper.getEndDateString(),
+                                "IX-XI Hardware");
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success");
+                        alert.setGraphic(null);
+                        alert.setHeaderText(null);
+                        alert.setContentText("File printed successfully!");
+                        alert.showAndWait();
+                    } catch (Exception exception) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setGraphic(null);
+                        alert.setHeaderText(null);
+                        alert.setContentText("Problem printing to file!");
+                        alert.showAndWait();
+                        System.out.println("Problem printing to file");
+                    }
                 }
             });
 
             item2.setOnAction(e -> {
-                if(cell.getTableRow().getItem() != null){
-                    //TODO: exporting in voucher form
+                if (cell.getTableRow().getItem() != null) {
+                    PayrollWrapper payrollWrapper = cell.getTableRow().getItem();
+                    Payroll payroll = new Payroll(payrollWrapper.getStartDate(),
+                            payrollWrapper.getEndDate(), payrollWrapper.getFrequency());
+
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.getExtensionFilters().addAll(
+                            new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
+                    fileChooser.setTitle("Crayola atbp.");
+                    File filepath = fileChooser.showSaveDialog(menubutton.getScene().getWindow());
+
+                    try {
+                        new ExcelHandler().printVoucher(filepath.getAbsolutePath(),
+                                FXCollections.observableList(payroll.getCrayolaEntries()),
+                                payrollWrapper.getStartDateString(),
+                                payrollWrapper.getEndDateString());
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success");
+                        alert.setGraphic(null);
+                        alert.setHeaderText(null);
+                        alert.setContentText("File printed successfully!");
+                        alert.showAndWait();
+                    } catch (Exception exception) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setGraphic(null);
+                        alert.setHeaderText(null);
+                        alert.setContentText("Problem printing to file!");
+                        alert.showAndWait();
+                        System.out.println("Problem printing to file");
+                        return;
+                    }
+
+                    fileChooser.setTitle("IX-XI Hardware");
+                    filepath = fileChooser.showSaveDialog(menubutton.getScene().getWindow());
+                    try {
+                        new ExcelHandler().printVoucher(filepath.getAbsolutePath(),
+                                FXCollections.observableList(payroll.getIxxiEntries()),
+                                payrollWrapper.getStartDateString(),
+                                payrollWrapper.getEndDateString());
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Success");
+                        alert.setGraphic(null);
+                        alert.setHeaderText(null);
+                        alert.setContentText("File printed successfully!");
+                        alert.showAndWait();
+                    } catch (Exception exception) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setGraphic(null);
+                        alert.setHeaderText(null);
+                        alert.setContentText("Problem printing to file!");
+                        alert.showAndWait();
+                        System.out.println("Problem printing to file");
+                    }
                 }
             });
             menubutton.getItems().add(item1);

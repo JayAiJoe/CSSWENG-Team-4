@@ -233,7 +233,7 @@ public class PayrollController extends Controller {
                             crayolaEntries,
                             new SimpleDateFormat("MM/dd/yyyy").format(startDate),
                             new SimpleDateFormat("MM/dd/yyyy").format(endDate),
-                            "Crayola atbp.");
+                            "CRAYOLA");
                 } else {
                     new ExcelHandler().printMD(filepath.getAbsolutePath(),
                             ixxiEntries,
@@ -241,7 +241,19 @@ public class PayrollController extends Controller {
                             new SimpleDateFormat("MM/dd/yyyy").format(endDate),
                             "IX-XI Hardware");
                 }
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setGraphic(null);
+                alert.setHeaderText(null);
+                alert.setContentText("File printed successfully!");
+                alert.showAndWait();
             } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setGraphic(null);
+                alert.setHeaderText(null);
+                alert.setContentText("Problem printing to file!");
+                alert.showAndWait();
                 System.out.println("Problem printing to file");
             }
         } else if(formatCb.getValue().equals("Voucher")){
@@ -255,7 +267,19 @@ public class PayrollController extends Controller {
                             new SimpleDateFormat("MM/dd/yyyy").format(startDate),
                             new SimpleDateFormat("MM/dd/yyyy").format(endDate));
                 }
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setGraphic(null);
+                alert.setHeaderText(null);
+                alert.setContentText("File printed successfully!");
+                alert.showAndWait();
             } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setGraphic(null);
+                alert.setHeaderText(null);
+                alert.setContentText("Problem printing to file!");
+                alert.showAndWait();
                 System.out.println("Problem printing to file");
             }
         }
