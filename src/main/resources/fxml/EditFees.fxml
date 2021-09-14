@@ -169,7 +169,7 @@
                                           </Text>
                                        </children>
                                     </HBox>
-                                    <TableView fx:id="sssTv" editable="true" layoutX="26.0" layoutY="106.0" prefHeight="501.0" prefWidth="530.0" stylesheets="@../css/Tableview.css">
+                                    <TableView fx:id="sssTv" editable="true" layoutX="20.0" layoutY="109.0" prefHeight="502.0" prefWidth="541.0" stylesheets="@../css/Tableview.css">
                                        <columns>
                                           <TableColumn fx:id="sss_range" maxWidth="1.7976931348623157E308" prefWidth="395.99998474121094" sortable="false" text="Salary Range">
                                              <columns>
