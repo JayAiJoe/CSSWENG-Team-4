@@ -15,6 +15,12 @@ import java.util.Objects;
 public class Driver extends Application {
     private static ScreenController screenController;
 
+    public static final int WIDTH = 1300;
+    public static final int HEIGHT = 780;
+
+    //flag that indicates the window is re-maximized by the application (to prevent setting the maximum size when un-maximizing the stage)
+    private boolean reMaximize = false;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -32,9 +38,32 @@ public class Driver extends Application {
             System.out.println("Error establishing connection to the database!");
         }
 
+
         primaryStage.setScene(scene);
-        primaryStage.setWidth(840);
-        primaryStage.setHeight(540);
+        primaryStage.setMaximized(true);
+        primaryStage.setMinWidth(WIDTH);
+        primaryStage.setMaxWidth(WIDTH);
+        primaryStage.setMinHeight(HEIGHT);
+        primaryStage.setMaxHeight(HEIGHT);
+
+        primaryStage.maximizedProperty().addListener((observer, oldVal, newVal) -> {
+            if (newVal) {
+                primaryStage.setMaxWidth(Integer.MAX_VALUE);
+                primaryStage.setMaxHeight(Integer.MAX_VALUE);
+                if (!reMaximize) {
+                    reMaximize = true;
+                    primaryStage.setMaximized(false);
+                    primaryStage.setMaximized(true);
+                }
+                reMaximize = false;
+            }
+            else {
+                if (!reMaximize) {
+                    primaryStage.setMaxWidth(WIDTH);
+                    primaryStage.setMaxHeight(HEIGHT);
+                }
+            }
+        });
 
         primaryStage.setOnCloseRequest(event -> Calculator.getInstance().close());
 
