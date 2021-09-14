@@ -291,9 +291,7 @@ public class EditFeesController extends Controller {
      */
     private void resetPagIbig() {
         // Pag-Ibig initialization
-        pi_edit_btn.toFront();
         pi_edit_btn.setDisable(false);
-        pi_cancel_btn.toBack();
         pi_cancel_btn.setDisable(true);
         pi_cancel_btn.setVisible(false);
         pi_save_btn.setVisible(false);
@@ -395,7 +393,6 @@ public class EditFeesController extends Controller {
     public void onPIEditClick(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() == pi_edit_btn) {
             //buttons
-            pi_edit_btn.toBack();
             pi_edit_btn.setDisable(true);
             pi_cancel_btn.toFront();
             pi_cancel_btn.setDisable(false);
@@ -416,7 +413,6 @@ public class EditFeesController extends Controller {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 //buttons
-                pi_edit_btn.toFront();
                 pi_edit_btn.setDisable(false);
                 pi_cancel_btn.toBack();
                 pi_cancel_btn.setDisable(true);
@@ -477,7 +473,6 @@ public class EditFeesController extends Controller {
                 pagIbigFee.setTotalRate(totalRate);
                 pagIbigFee.setEmployerContrib(employerContrib);
 
-                pi_edit_btn.toFront();
                 pi_edit_btn.setDisable(false);
                 pi_cancel_btn.toBack();
                 pi_cancel_btn.setDisable(true);
@@ -685,7 +680,6 @@ public class EditFeesController extends Controller {
         File file = sssfileChooser.showOpenDialog(sssTv.getScene().getWindow());
         System.out.println(file);
 
-        //TODO load file content to table
         if (file == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
