@@ -95,7 +95,7 @@
                                     <Font name="System Bold" size="23.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="searchBtn" layoutX="262.0" layoutY="68.0" mnemonicParsing="false" onAction="#onFilterNameAction" prefHeight="27.0" prefWidth="31.0" styleClass="searchbutton" AnchorPane.rightAnchor="211.60000000000002">
+                              <Button layoutX="262.0" layoutY="68.0" mnemonicParsing="false" onAction="#onFilterNameAction" prefHeight="27.0" prefWidth="31.0" styleClass="searchbutton" AnchorPane.rightAnchor="211.60000000000002">
                                  <graphic>
                                     <ImageView fitHeight="18.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                        <viewport>

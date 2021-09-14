@@ -8,7 +8,6 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,16 +41,19 @@ public class ExcelHandler {
         return table;
     }
 
-    public ArrayList<ArrayList<Double>> readSSSTable2(String filePath) throws IOException{
+    public ArrayList<ArrayList<Double>> readSSSTable2(File file) throws IOException, IllegalStateException{
         ArrayList<ArrayList<Double>> SSSvalues = new ArrayList<>();
 
-        Workbook workbook = WorkbookFactory.create(new File(filePath));
+        Workbook workbook = WorkbookFactory.create(file);
         Sheet sheet = workbook.getSheetAt(0);
         int i =0;
         for (Row row: sheet){
             if (i==0){i++;continue;}
             ArrayList<Double> rowValues = new ArrayList<>();
             for (Cell cell: row) {
+                if (cell.getNumericCellValue() < 0) {
+                    throw new IllegalStateException();
+                }
                 rowValues.add(cell.getNumericCellValue());
             }
             SSSvalues.add(rowValues);

@@ -9,12 +9,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import model.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,7 +63,7 @@ public class EditFeesController extends Controller {
     private FeeTable philhealthFeeTable, sssFeeTable, employeeCompensation;
     private ObservableList<PhilHealthRange> philHealthRanges;
     private ObservableList<SSSRange> sssRanges;
-    private int ph_editRow, sss_editRow;
+    private int ph_editRow;
 
     @Override
     public void update() {
@@ -170,54 +170,6 @@ public class EditFeesController extends Controller {
             }
             ph_errorText.setVisible(false);
         });
-        sss_startTc.setOnEditStart(t -> {
-            int row = t.getTablePosition().getRow();
-            sss_editRow = row;
-            if (row == 0) {
-                sssTv.edit(-1, null);
-            } else {
-                String start = sssRanges.get(row).getStart();
-                if (!start.isEmpty() && start.charAt(0) == 'P') {
-                    sssRanges.get(row).setStart(start.substring(4));
-                    sssTv.refresh();
-                }
-                sss_errorText.setVisible(false);
-            }
-        });
-        sss_endTc.setOnEditStart(t -> {
-            int row = t.getTablePosition().getRow();
-            sss_editRow = row;
-            if (row == sssRanges.size() - 1) {
-                sssTv.edit(-1, null);
-            } else {
-                String end = sssRanges.get(row).getEnd();
-                if (!end.isEmpty() && end.charAt(0) == 'P') {
-                    sssRanges.get(row).setEnd(end.substring(4));
-                    sssTv.refresh();
-                }
-                sss_errorText.setVisible(false);
-            }
-        });
-        sss_EETc.setOnEditStart(t -> {
-            int row = t.getTablePosition().getRow();
-            sss_editRow = row;
-            String compensation = sssRanges.get(row).getCompensation();
-            if (!compensation.isEmpty() && compensation.charAt(0) == 'P') {
-                sssRanges.get(row).setCompensation(compensation.substring(4));
-                sssTv.refresh();
-            }
-            sss_errorText.setVisible(false);
-        });
-        sss_ERTc.setOnEditStart(t -> {
-            int row = t.getTablePosition().getRow();
-            sss_editRow = row;
-            String value = sssRanges.get(row).getValue();
-            if (!value.isEmpty() && value.charAt(0) == 'P') {
-                sssRanges.get(row).setValue(value.substring(4));
-                sssTv.refresh();
-            }
-            sss_errorText.setVisible(false);
-        });
 
         // add symbols back on edit cancel
         ph_start.setOnEditCancel(t -> {
@@ -253,42 +205,6 @@ public class EditFeesController extends Controller {
                     philHealthRanges.get(row).setValue(value + " %");
                     philhealthTv.refresh();
                 }
-            }
-        });
-        sss_startTc.setOnEditCancel(t -> {
-            int row = sss_editRow;
-            if (row != 0) {
-                String start = sssRanges.get(row).getStart();
-                if (!start.isEmpty() && start.charAt(0) != 'P') {
-                    sssRanges.get(row).setStart("PhP " + start);
-                    sssTv.refresh();
-                }
-            }
-        });
-        sss_endTc.setOnEditCancel(t -> {
-            int row = sss_editRow;
-            if (row != sssRanges.size() - 1) {
-                String end = sssRanges.get(row).getEnd();
-                if (!end.isEmpty() && end.charAt(0) != 'P') {
-                    sssRanges.get(row).setEnd("PhP " + end);
-                    sssTv.refresh();
-                }
-            }
-        });
-        sss_EETc.setOnEditCancel(t -> {
-            int row = sss_editRow;
-            String compensation = sssRanges.get(row).getCompensation();
-            if (!compensation.isEmpty() && compensation.charAt(0) != 'P') {
-                sssRanges.get(row).setCompensation("PhP " + compensation);
-                sssTv.refresh();
-            }
-        });
-        sss_ERTc.setOnEditCancel(t -> {
-            int row = sss_editRow;
-            String value = sssRanges.get(row).getValue();
-            if (!value.isEmpty() && value.charAt(0) != 'P') {
-                sssRanges.get(row).setValue("PhP " + value);
-                sssTv.refresh();
             }
         });
 
@@ -364,83 +280,6 @@ public class EditFeesController extends Controller {
             }
             philhealthTv.refresh();
         });
-        sss_startTc.setOnEditCommit(t -> {
-            int row = t.getTablePosition().getRow();
-            try {
-                double check = Double.parseDouble(t.getNewValue());
-                if (check <= 0 || !checkDecimalPlaces(t.getNewValue())) {
-                    throw new Exception();
-                }
-                sssRanges.get(row).setStart("PhP " + df.format(check));
-            } catch (Exception e) {
-                sss_errorText.setText("All inputs must be positive values with up to 2 decimal places only!");
-                sss_errorText.setVisible(true);
-
-                String start = sssRanges.get(row).getStart();
-                if (!start.isEmpty()) {
-                    sssRanges.get(row).setStart("PhP " + start);
-                }
-            }
-            sssTv.refresh();
-        });
-        sss_endTc.setOnEditCommit(t -> {
-            int row = t.getTablePosition().getRow();
-            try {
-                double check = Double.parseDouble(t.getNewValue());
-                if (check <= 0 || !checkDecimalPlaces(t.getNewValue())) {
-                    throw new Exception();
-                }
-                sssRanges.get(row).setEnd("PhP " + df.format(check));
-            } catch (Exception e) {
-                sss_errorText.setText("All inputs must be positive values with up to 2 decimal places only!");
-                sss_errorText.setVisible(true);
-
-                String end = sssRanges.get(row).getEnd();
-                if (!end.isEmpty()) {
-                    sssRanges.get(row).setEnd("PhP " + end);
-                }
-            }
-            sssTv.refresh();
-        });
-        sss_EETc.setOnEditCommit(t -> {
-            int row = t.getTablePosition().getRow();
-            try {
-                double check = Double.parseDouble(t.getNewValue());
-                if (check <= 0 || !checkDecimalPlaces(t.getNewValue())) {
-                    throw new Exception();
-                }
-                sssRanges.get(row).setCompensation("PhP " + df.format(check));
-            } catch (Exception e) {
-                sss_errorText.setText("All inputs must be positive values with up to 2 decimal places only!");
-                sss_errorText.setVisible(true);
-
-                String compensation = sssRanges.get(row).getCompensation();
-                if (!compensation.isEmpty()) {
-                    sssRanges.get(row).setCompensation("PhP " + compensation);
-                }
-            }
-            sssTv.refresh();
-        });
-        sss_ERTc.setOnEditCommit(t -> {
-            int row = t.getTablePosition().getRow();
-            try {
-                double check = Double.parseDouble(t.getNewValue());
-                if (check <= 0 || !checkDecimalPlaces(t.getNewValue())) {
-                    throw new Exception();
-                }
-                sssRanges.get(row).setValue("PhP " + df.format(check));
-            } catch (Exception e) {
-                sss_errorText.setText("All inputs must be positive values with up to 2 decimal places only!");
-                sss_errorText.setVisible(true);
-
-                String value = sssRanges.get(row).getValue();
-                if (!value.isEmpty()) {
-                    sssRanges.get(row).setValue("PhP " + value);
-                }
-            }
-            sssTv.refresh();
-        });
-
 
         // get and set data
         resetPhilHealthRanges();
@@ -847,5 +686,111 @@ public class EditFeesController extends Controller {
         System.out.println(file);
 
         //TODO load file content to table
+        if (file == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("No file selected!");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            ArrayList<ArrayList<Double>> sssValues = new ExcelHandler().readSSSTable2(file);
+
+            ArrayList<SSSRange> ranges = new ArrayList<>();
+            for (ArrayList<Double> range: sssValues) {
+                if (range.size() != 4) {
+                    throw new IllegalStateException();
+                }
+                if (range.get(1) < range.get(0) ||
+                    range.get(2) <= 0 || range.get(3) <= 0) {
+                    throw new IllegalStateException();
+                }
+                double start = range.get(0);
+                double end = range.get(1);
+                double compensation = range.get(2);
+                double value = range.get(3);
+                ranges.add(new SSSRange("PhP " + df.format(start),
+                        "PhP " + df.format(end),
+                        "PhP " + df.format(compensation),
+                        "PhP " + df.format(value)));
+            }
+
+            Collections.sort(ranges);
+            int size = ranges.size();
+            if (size < 2 || !ranges.get(0).getStart().equals("PhP 0.00") ||
+                !ranges.get(size - 1).getEnd().equals("MAX")) {
+                throw new IllegalStateException();
+            }
+
+            // check ranges continuous and not overlapping
+            for (int i = 0; i < size - 1; i++) {
+                ArrayList<Double> rangeA = ranges.get(i).convert();
+                ArrayList<Double> rangeB = ranges.get(i + 1).convert();
+
+                double start = rangeB.get(0);
+                double end = rangeA.get(1);
+
+                if (start != end + 0.01) {
+                    if (start > end) {
+                        throw new Exception("Ranges must be connected!");
+                    } else {
+                        throw new Exception("Ranges must not overlap!");
+                    }
+                }
+            }
+
+            // update SSS fee table
+            ArrayList<ArrayList<Double>> sssFormulas = new ArrayList<>();
+            ArrayList<ArrayList<Double>> compensationFormulas = new ArrayList<>();
+            for (SSSRange range : ranges) {
+                ArrayList<Double> newRange = range.convert();
+                ArrayList<Double> rangeA = new ArrayList<>();
+                ArrayList<Double> rangeB = new ArrayList<>();
+
+                rangeA.add(newRange.get(0));
+                rangeA.add(newRange.get(1));
+                rangeA.add(newRange.get(3));
+                rangeB.add(newRange.get(0));
+                rangeB.add(newRange.get(1));
+                rangeB.add(newRange.get(2));
+
+                sssFormulas.add(rangeA);
+                compensationFormulas.add(rangeB);
+            }
+            sssRanges.setAll(ranges);
+            sssFeeTable.setFormulas(sssFormulas);
+            employeeCompensation.setFormulas(compensationFormulas);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("SSS table updated successfully!");
+            alert.showAndWait();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("Error reading file!");
+            alert.showAndWait();
+        } catch (IllegalStateException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText("File contains invalid values and/or has an invalid format!");
+            alert.showAndWait();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setGraphic(null);
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 }

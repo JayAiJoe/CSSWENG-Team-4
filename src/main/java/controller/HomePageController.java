@@ -21,7 +21,6 @@ import wrapper.PayrollWrapper;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -126,15 +125,15 @@ public class HomePageController extends Controller {
 
             item1.setOnAction(e -> {
                 if (cell.getTableRow().getItem() != null) {
-                    PayrollWrapper payrollWrapper = cell.getTableRow().getItem();
-                    Payroll payroll = new Payroll(payrollWrapper.getStartDate(),
-                            payrollWrapper.getEndDate(), payrollWrapper.getFrequency());
-
                     FileChooser fileChooser = new FileChooser();
                     fileChooser.getExtensionFilters().addAll(
                             new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
                     fileChooser.setTitle("Crayola atbp.");
                     File filepath = fileChooser.showSaveDialog(menubutton.getScene().getWindow());
+
+                    PayrollWrapper payrollWrapper = cell.getTableRow().getItem();
+                    Payroll payroll = new Payroll(payrollWrapper.getStartDate(),
+                            payrollWrapper.getEndDate(), payrollWrapper.getFrequency());
 
                     try {
                         new ExcelHandler().printMD(filepath.getAbsolutePath(),
@@ -187,15 +186,15 @@ public class HomePageController extends Controller {
 
             item2.setOnAction(e -> {
                 if (cell.getTableRow().getItem() != null) {
-                    PayrollWrapper payrollWrapper = cell.getTableRow().getItem();
-                    Payroll payroll = new Payroll(payrollWrapper.getStartDate(),
-                            payrollWrapper.getEndDate(), payrollWrapper.getFrequency());
-
                     FileChooser fileChooser = new FileChooser();
                     fileChooser.getExtensionFilters().addAll(
                             new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls"));
                     fileChooser.setTitle("Crayola atbp.");
                     File filepath = fileChooser.showSaveDialog(menubutton.getScene().getWindow());
+
+                    PayrollWrapper payrollWrapper = cell.getTableRow().getItem();
+                    Payroll payroll = new Payroll(payrollWrapper.getStartDate(),
+                            payrollWrapper.getEndDate(), payrollWrapper.getFrequency());
 
                     try {
                         new ExcelHandler().printVoucher(filepath.getAbsolutePath(),

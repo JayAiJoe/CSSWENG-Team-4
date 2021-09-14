@@ -35,6 +35,9 @@ public class SSSRange implements Comparable<SSSRange> {
         this.end = end;
         this.compensation = compensation;
         this.value = value;
+        if (end.equals("PhP " + MAX)) {
+            this.end = "MAX";
+        }
     }
 
     /**
