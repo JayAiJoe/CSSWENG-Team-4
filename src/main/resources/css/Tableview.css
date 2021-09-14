@@ -1,8 +1,16 @@
-.table-view {
-    -fx-background-color: white;
+.table-view{
+   -fx-background-color: white;
+}
+
+.table-view .filler {
+     -fx-background-color: transparent;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
 }
 .table-view .column-header-background{
-     -fx-background-color: #6CB9FF;
+     -fx-background-color: transparent;
  }
 
  .table-view .column-header{
@@ -24,7 +32,7 @@
 
 .table-view *.scroll-bar:horizontal *.increment-button,
 .table-view *.scroll-bar:horizontal *.decrement-button {
-  -fx-background-color: null;
+  -fx-background-color: transparent;
   -fx-background-radius: 0;
   -fx-background-insets: 0;
   -fx-padding: 0;
@@ -32,10 +40,17 @@
 
 .table-view *.scroll-bar:horizontal *.increment-arrow,
 .table-view *.scroll-bar:horizontal *.decrement-arrow {
-  -fx-background-color: null;
+  -fx-background-color: transparent;
   -fx-background-radius: 0;
   -fx-background-insets: 0;
   -fx-padding: 0;
   -fx-shape: null;
 }
+
+.table-view > .virtual-flow > .scroll-bar:vertical
+{
+    -fx-background-color: transparent;
+}
+
+
 

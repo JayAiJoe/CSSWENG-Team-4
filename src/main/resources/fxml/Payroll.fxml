@@ -58,9 +58,9 @@
                                     <Insets bottom="10.0" />
                                  </padding>
                               </AnchorPane>
-                              <AnchorPane layoutX="47.0" layoutY="105.0" prefHeight="589.0" prefWidth="1086.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="105.0">
+                              <AnchorPane layoutX="47.0" layoutY="105.0" prefHeight="558.0" prefWidth="1049.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="105.0">
                                  <children>
-                                    <TableView id="t_payroll" fx:id="payrollTv" layoutX="23.0" layoutY="85.0" prefHeight="490.0" prefWidth="1039.0" stylesheets="@../css/Tableview.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="85.0">
+                                    <TableView id="t_payroll" fx:id="payrollTv" layoutX="42.0" layoutY="84.0" prefHeight="459.0" prefWidth="965.0" stylesheets="@../css/Tableview.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="84.0">
                                       <columns>
                                         <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="171.20000839233398" resizable="false" sortable="false" text="Name" />
                                         <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="42.40000915527344" resizable="false" sortable="false" text="Mode" />
