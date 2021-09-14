@@ -999,7 +999,8 @@ public class EditFeesController extends Controller {
      */
     @FXML
     private void onAddSSSRowAction(){
-        //TODO: Adding of new row to SSS table
+        int rowCount = sssRanges.size();
+        sssRanges.add(rowCount - 1, new SSSRange());
     }
 
     /**
@@ -1009,6 +1010,9 @@ public class EditFeesController extends Controller {
      */
     @FXML
     private void onDeleteSSSRowAction(){
-        //TODO: Removing of 2nd to the last row of sss table
+        int rowCount = sssRanges.size();
+        if (rowCount > 2) {
+            sssRanges.remove(rowCount - 2);
+        }
     }
 }
