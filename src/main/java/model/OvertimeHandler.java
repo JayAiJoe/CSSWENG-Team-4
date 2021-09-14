@@ -4,6 +4,7 @@ import dao.LogbookPOJO;
 import dao.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class OvertimeHandler {
@@ -30,6 +31,7 @@ public class OvertimeHandler {
         for (LogbookPOJO logbook: Repository.getInstance().getAcceptedOT(startDate, endDate)) {
             acceptedEntries.add(new OvertimeEntry(logbook.getCompleteName(), logbook.getApprovedOT(), logbook.getDate()));
         }
+        Collections.reverse(acceptedEntries);
     }
 
     public ArrayList<OvertimeEntry> getPendingEntries() {
