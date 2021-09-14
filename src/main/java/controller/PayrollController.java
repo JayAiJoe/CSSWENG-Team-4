@@ -217,7 +217,7 @@ public class PayrollController extends Controller {
         initCol(lateTc, "late", 20);
         initCol(taxTc, "", 20);
         initCol(netTc, "net", 16);
-        initCol(wageTc, "wage", 16);
+        initCol(wageTc, "wage", 14);
     }
 
     public void onExportClick() {

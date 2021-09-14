@@ -47,7 +47,7 @@
                                        </HBox.margin>
                                        <children>
                                           <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Open a Previous Payroll..." wrappingWidth="150.55902862548828" />
-                                          <TableView fx:id="payrollListTv" editable="true" layoutX="12.0" layoutY="47.0" prefHeight="442.0" prefWidth="407.0" style="-fx-background-radius: 10;" stylesheets="@../css/Tableview.css" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0">
+                                          <TableView fx:id="payrollListTv" editable="true" layoutX="12.0" layoutY="47.0" prefHeight="442.0" prefWidth="443.0" style="-fx-background-radius: 10;" stylesheets="@../css/Tableview.css" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="11.0">
                                              <columns>
                                                 <TableColumn fx:id="exportTc" editable="false" prefWidth="79.99999046325684" resizable="false" sortable="false" style="-fx-alignment: CENTER;" />
                                                 <TableColumn fx:id="buttonTc" editable="false" prefWidth="56.00000762939453" resizable="false" sortable="false" style="-fx-alignment: CENTER;" />

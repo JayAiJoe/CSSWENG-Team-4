@@ -178,8 +178,8 @@ public class ThirteenPayrollController extends Controller {
         initCol(pagibigTc, "pagibig", 20);
         initCol(lateTc, "late", 20);
         initCol(taxTc, "", 20);
-        initCol(netTc, "net", 16);
-        initCol(wageTc, "wage", 16);
+        initCol(netTc, "net", 15);
+        initCol(wageTc, "wage", 14);
     }
 
     /**
