@@ -10,7 +10,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AttendanceStatisticsController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -36,9 +35,9 @@
                               </AnchorPane>
                               <HBox alignment="CENTER" layoutY="117.0" prefHeight="567.0" prefWidth="1198.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                    <AnchorPane prefHeight="567.0" prefWidth="985.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
+                                    <AnchorPane prefHeight="567.0" prefWidth="905.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
                                        <children>
-                                          <TableView fx:id="attendanceTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="926.0" stylesheets="@../css/Tableview.css">
+                                          <TableView fx:id="attendanceTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="841.0" stylesheets="@../css/Tableview.css">
                                              <columns>
                                                 <TableColumn prefWidth="204.00004196166992" text="Payday Range">
                                                    <columns>
@@ -52,7 +51,6 @@
                                                 <TableColumn fx:id="absentTc" prefWidth="98.4000244140625" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Absent" />
                                                 <TableColumn fx:id="overtimeTc" prefWidth="105.5999755859375" style="-fx-alignment: CENTER-RIGHT;" text="Overtime" />
                                                 <TableColumn fx:id="lateTc" prefWidth="110.4000244140625" style="-fx-alignment: CENTER-RIGHT;" text="Late" />
-                                                <TableColumn fx:id="holidayTc" prefWidth="88.79998779296875" text="Holiday" />
                                              </columns>
                                           </TableView>
                                           <ToggleButton layoutX="32.0" layoutY="24.0" mnemonicParsing="false" styleClass="normalbutton" text="Filter by Payday" />

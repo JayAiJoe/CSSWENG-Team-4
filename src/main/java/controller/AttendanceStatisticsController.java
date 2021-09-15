@@ -31,7 +31,7 @@ public class AttendanceStatisticsController extends Controller {
     private TableColumn<PerformanceWrapper, Date> startdateTc, paydateTc;
     @FXML
     private TableColumn<PerformanceWrapper, String> nameTc, presentTc, absentTc,
-            overtimeTc, lateTc, holidayTc, idTc;
+            overtimeTc, lateTc, idTc;
 
     private AttendanceStatistics statistics;
     private ObservableList<PerformanceWrapper> entries = FXCollections.observableArrayList();
@@ -46,7 +46,6 @@ public class AttendanceStatisticsController extends Controller {
         initCol(absentTc, "daysAbsent");
         initCol(overtimeTc, "minsOvertime");
         initCol(lateTc, "minsLate");
-        initCol(holidayTc, "");
     }
 
     @Override
