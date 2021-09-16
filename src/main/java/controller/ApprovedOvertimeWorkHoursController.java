@@ -179,6 +179,8 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
         } else {
             int start = Integer.parseInt(firstHalfStartTf.getText());
             int end = Integer.parseInt(firstHalfEndTf.getText());
+            firstHalfStartTf.setText(String.format("%04d", start));
+            firstHalfEndTf.setText(String.format("%04d", end));
             if (start >= end) {
                 shift1ErrorText.setText("Start time should be before end time!");
                 shift1ErrorText.setVisible(true);
@@ -198,6 +200,8 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
         } else if (!secondHalfStartTf.getText().equals("") && !secondHalfEndTf.getText().equals("")) {
             int start = Integer.parseInt(secondHalfStartTf.getText());
             int end = Integer.parseInt(secondHalfEndTf.getText());
+            secondHalfStartTf.setText(String.format("%04d", start));
+            secondHalfEndTf.setText(String.format("%04d", end));
             if (start >= end) {
                 shift2ErrorText.setText("Start time should be before end time!");
                 shift2ErrorText.setVisible(true);
@@ -209,11 +213,15 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
             overtimeStartErrorText.setText("Overtime Start Time should be in valid 24-hour time format!");
             overtimeStartErrorText.setVisible(true);
             check = false;
+        } else if (!overtimeStartTf.getText().isEmpty()) {
+            overtimeStartTf.setText(String.format("%04d", Integer.parseInt(overtimeStartTf.getText())));
         }
         if (isInvalidTime(overtimeEndTf.getText())) {
             overtimeEndErrorText.setText("Overtime End Time should be in valid 24-hour time format!");
             overtimeEndErrorText.setVisible(true);
             check = false;
+        } else if (!overtimeEndTf.getText().isEmpty()) {
+            overtimeEndTf.setText(String.format("%04d", Integer.parseInt(overtimeEndTf.getText())));
         }
         if (!check) {
             return null;
@@ -266,11 +274,11 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
         currentSaveBtn.setVisible(true);
         currentCancelBtn.setVisible(true);
         setCurrentTextFieldsStatus(false);
-
     }
 
     @FXML
-    private void onCurrentSaveAction(){
+    private void onCurrentSaveAction() {
+        hideCurrentErrorText();
         WorkdayPOJO workday = onSaveAction(cShift1ErrorText, cShift2ErrorText,
                 cOvertimeStartErrorText, cOvertimeEndErrorText, cFirstHalfStartTf,
                 cFirstHalfEndTf, cSecondHalfStartTf, cSecondHalfEndTf,
@@ -314,7 +322,8 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
     }
 
     @FXML
-    private void onNextSaveAction(){
+    private void onNextSaveAction() {
+        hideNextErrorText();
         WorkdayPOJO workday = onSaveAction(nShift1ErrorText, nShift2ErrorText,
                 nOvertimeStartErrorText, nOvertimeEndErrorText, nFirstHalfStartTf,
                 nFirstHalfEndTf, nSecondHalfStartTf, nSecondHalfEndTf,

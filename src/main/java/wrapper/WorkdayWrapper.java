@@ -52,7 +52,7 @@ public class WorkdayWrapper {
         if (getTimeIn1() == 0) {
             return "";
         } else {
-            return String.valueOf(getTimeIn1());
+            return String.format("%04d", getTimeIn1());
         }
     }
 
@@ -60,7 +60,7 @@ public class WorkdayWrapper {
         if (getTimeOut1() == 0) {
             return "";
         } else {
-            return String.valueOf(getTimeOut1());
+            return String.format("%04d", getTimeOut1());
         }
     }
 
@@ -68,7 +68,7 @@ public class WorkdayWrapper {
         if (getTimeIn2() == 0) {
             return "";
         } else {
-            return String.valueOf(getTimeIn2());
+            return String.format("%04d", getTimeIn2());
         }
     }
 
@@ -76,7 +76,7 @@ public class WorkdayWrapper {
         if (getTimeOut2() == 0) {
             return "";
         } else {
-            return String.valueOf(getTimeOut2());
+            return String.format("%04d", getTimeOut2());
         }
     }
 
@@ -84,7 +84,7 @@ public class WorkdayWrapper {
         if (getOvertimeIn() == 0) {
             return "";
         } else {
-            return String.valueOf(getOvertimeIn());
+            return String.format("%04d", getOvertimeIn());
         }
     }
 
@@ -92,7 +92,7 @@ public class WorkdayWrapper {
         if (getOvertimeOut() == 0) {
             return "";
         } else {
-            return String.valueOf(getOvertimeOut());
+            return String.format("%04d", getOvertimeOut());
         }
     }
 }
