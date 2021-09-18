@@ -245,7 +245,7 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
 
         if (!overtimeStartTf.getText().equals("")) {
             overtimeIn = Integer.parseInt(overtimeStartTf.getText());
-            if (overtimeIn > timeIn1) {
+            if (overtimeIn >= timeIn1) {
                 overtimeStartErrorText.setText("Overtime Start Time should be before Work Hours!");
                 overtimeStartErrorText.setVisible(true);
                 check = false;
@@ -253,7 +253,7 @@ public class ApprovedOvertimeWorkHoursController extends Controller{
         }
         if (!overtimeEndTf.getText().equals("")) {
             overtimeOut = Integer.parseInt(overtimeEndTf.getText());
-            if (overtimeOut < end) {
+            if (overtimeOut <= end) {
                 overtimeEndErrorText.setText("Overtime End Time should be after Work Hours!");
                 overtimeEndErrorText.setVisible(true);
                 check = false;

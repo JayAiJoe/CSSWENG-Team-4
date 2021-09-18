@@ -29,6 +29,10 @@ public class AttendanceProcessor {
         ArrayList<WorkdayPOJO> workdays = Repository.getInstance().getWorkdays(startDate, endDate);
         ArrayList<LogbookPOJO> finished = Repository.getInstance().getAttendance(startDate, endDate);
 
+        for (WorkdayPOJO workday: workdays) {
+            workday.setDate(new Date(workday.getDate().getTime() - 8 * 3600000L));
+        }
+
         /* assumptions:
            1. logbooks is arranged by employee, then by date
          */
@@ -76,7 +80,10 @@ public class AttendanceProcessor {
                 logbookCtr++;
             }
         }
-        Repository.getInstance().addLogBook(finalAttendance);
+
+        if (!finalAttendance.isEmpty()) {
+            Repository.getInstance().addLogBook(finalAttendance);
+        }
     }
 
     private void processLogbook(LogbookPOJO logbook, WorkdayPOJO workday) {
