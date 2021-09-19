@@ -142,7 +142,7 @@ public class Payroll {
                 philhealth = Calculator.getInstance().computePhilHealthFee(monthlyWage);
             }
             if ((startDate.getDate() == 16 && frequency.equals("BIWEEKLY")) ||
-                    new Date(startDate.getTime() + 7 * 86400000L).getMonth() != startDate.getMonth()) {
+                    endDate.getMonth() != startDate.getMonth()) {
                 pagibig = Calculator.getInstance().computePagIbigFee(monthlyWage);
             }
 

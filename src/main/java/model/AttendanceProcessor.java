@@ -54,7 +54,6 @@ public class AttendanceProcessor {
                         break;
                     }
                 }
-                System.out.println(processed);
                 if (processed) {
                     logbookCtr++;
                     continue;
