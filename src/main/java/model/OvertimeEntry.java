@@ -36,6 +36,10 @@ public class OvertimeEntry {
         return status;
     }
 
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
+    }
+
     public void setStatus(boolean status) {
         this.status = status;
     }

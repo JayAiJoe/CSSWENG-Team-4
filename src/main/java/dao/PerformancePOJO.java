@@ -12,9 +12,10 @@ public class PerformancePOJO {
     private double daysAbsent;
     private int minsOvertime;
     private int minsLate;
+    private int cola;
 
     public PerformancePOJO(int employeeID, String completeName, Date dateStart, Date datePaid,
-                           double daysPresent, double daysAbsent, int minsOvertime, int minsLate) {
+                           double daysPresent, double daysAbsent, int minsOvertime, int minsLate, int cola) {
         this.employeeID = employeeID;
         this.completeName = completeName;
         this.dateStart = dateStart;
@@ -23,6 +24,7 @@ public class PerformancePOJO {
         this.daysAbsent = daysAbsent;
         this.minsOvertime = minsOvertime;
         this.minsLate = minsLate;
+        this.cola = cola;
     }
 
     public PerformancePOJO() {
@@ -60,6 +62,10 @@ public class PerformancePOJO {
         return minsLate;
     }
 
+    public int getCola() {
+        return cola;
+    }
+
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
@@ -90,5 +96,9 @@ public class PerformancePOJO {
 
     public void setMinsOvertime(int minsOvertime) {
         this.minsOvertime = minsOvertime;
+    }
+
+    public void setCola(int cola) {
+        this.cola = cola;
     }
 }

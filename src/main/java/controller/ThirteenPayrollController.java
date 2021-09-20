@@ -17,20 +17,18 @@ import javafx.stage.FileChooser;
 import model.ExcelHandler;
 import model.Payroll;
 import model.PayrollEntry;
+import model.ThirteenPayroll;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * This class is the main controller for any scripted event
- * for Payroll.fxml like onClick events, listeners, etc.
- */
-public class PayrollController extends Controller {
+public class ThirteenPayrollController extends Controller {
+
     private static final PseudoClass COLUMN_HOVER_PSEUDO_CLASS = PseudoClass.getPseudoClass("column-hover");
 
     @FXML
-    private AnchorPane navBar_container, emptyPayroll, displayPayroll;
+    private AnchorPane navBar_container;
 
     /**
      * Instantiation of objects related to file exports in Payroll.fxml
@@ -40,11 +38,12 @@ public class PayrollController extends Controller {
     @FXML
     private ChoiceBox formatCb;
 
+
     /**
      * Instantiation of objects related to the company info in Payroll.fxml
      */
     @FXML
-    private Button crayolaBtn, ixxiBtn;
+    private Button crayolaBtn, ixxiBtn, thirteenBtn;
 
     @FXML
     private Text addressText, companyText, daterangeText;
@@ -60,26 +59,23 @@ public class PayrollController extends Controller {
     @FXML
     private TableColumn<PayrollEntry, Integer> workdaysTc, timeTc, overtimeTc, deductionsTc;
 
-
-    private Payroll payroll = null;
+    private ThirteenPayroll payroll = null;
     private ObservableList<PayrollEntry> crayolaEntries = FXCollections.observableArrayList(),
             ixxiEntries = FXCollections.observableArrayList();
-    private Date startDate, endDate;
+
     private String frequency;
-    private boolean created = false;
-    private boolean newPayroll = false;
     private boolean isCrayola = true;
 
     final String TAB_NOTSELECTED_STYLE =
             "-fx-background-color: #9CB9F0;" +
-            "-fx-text-fill: white;" +
-            "-fx-border-color:  #9CB9F0;" +
-            "-fx-background-radius: 0px;";
+                    "-fx-text-fill: white;" +
+                    "-fx-border-color:  #9CB9F0;" +
+                    "-fx-background-radius: 0px;";
     final String TAB_SELECTED_STYLE =
             " -fx-background-color: #5b62f5;" +
-            " -fx-text-fill: white;" +
-            " -fx-border-color:  #5b62f5;" +
-            " -fx-background-radius: 0px;";
+                    " -fx-text-fill: white;" +
+                    " -fx-border-color:  #5b62f5;" +
+                    " -fx-background-radius: 0px;";
     final String TAB_HOVERED_STYLE =
             " -fx-background-color: #9CA0F1;" +
                     " -fx-text-fill: white;" +
@@ -92,6 +88,36 @@ public class PayrollController extends Controller {
         if (navBar_container.getChildren().isEmpty()) {
             navBar_container.getChildren().add(Driver.getScreenController().getNavBar());
         }
+
+        crayolaBtn.setStyle(TAB_SELECTED_STYLE);
+        ixxiBtn.setStyle(TAB_NOTSELECTED_STYLE);
+        addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
+        companyText.setText("Crayola atbp.");
+
+        // get and set data in table
+        payroll = new ThirteenPayroll(frequency);
+        daterangeText.setText("13th Month");
+        crayolaEntries.setAll(payroll.getCrayolaEntries());
+        ixxiEntries.setAll(payroll.getIxxiEntries());
+        payrollTv.setItems(crayolaEntries);
+
+
+        navBar_container.toFront();
+    }
+
+    public void setPayrollInfo(String frequency) {
+        this.frequency = frequency;
+
+    }
+
+    @FXML
+    public void initialize() {
+
+        // disable row selection
+        payrollTv.setSelectionModel(null);
+
+        // initialize columns
+        initPayrollCol();
 
         crayolaBtn.setOnMouseEntered(e -> {
             if(!isCrayola){
@@ -107,67 +133,12 @@ public class PayrollController extends Controller {
             if(isCrayola){
                 ixxiBtn.setStyle(TAB_HOVERED_STYLE);
             }
-            });
+        });
         ixxiBtn.setOnMouseExited(e -> {
             if(isCrayola){
                 ixxiBtn.setStyle(TAB_NOTSELECTED_STYLE);
             }
         });
-
-        if (created) {
-            displayPayroll.toFront();
-            crayolaBtn.setStyle(TAB_SELECTED_STYLE);
-            ixxiBtn.setStyle(TAB_NOTSELECTED_STYLE);
-            addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
-            companyText.setText("Crayola atbp.");
-
-            if (newPayroll) {
-                // get and set data in table
-                payroll = new Payroll(startDate, endDate, frequency);
-                daterangeText.setText(daterangeText.getText() + " " +
-                        new SimpleDateFormat("MM/dd/yyyy").format(startDate) + " - " +
-                        new SimpleDateFormat("MM/dd/yyyy").format(endDate));
-                crayolaEntries.setAll(payroll.getCrayolaEntries());
-                ixxiEntries.setAll(payroll.getIxxiEntries());
-                payrollTv.setItems(crayolaEntries);
-                newPayroll = false;
-            }
-        } else {
-            emptyPayroll.toFront();
-        }
-        navBar_container.toFront();
-    }
-
-    public void setPayrollInfo(Date startDate, Date endDate, String frequency) {
-        if(created){
-            resetPayroll();
-        }
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.frequency = frequency;
-        this.created = true;
-        this.newPayroll = true;
-    }
-    
-    public void resetPayroll(){
-        created = false;
-        newPayroll = false;
-        initPayrollCol();
-        daterangeText.setText("For the period:");
-        crayolaBtn.setStyle(TAB_SELECTED_STYLE);
-        ixxiBtn.setStyle(TAB_NOTSELECTED_STYLE);
-        addressText.setText("Located at: " + "UNIT 2-3, U&I BLDG., F. TANEDO ST., SAN NICOLAS BLK 8, TARLAC CITY");
-        companyText.setText("Crayola atbp.");
-    }
-
-    @FXML
-    public void initialize() {
-
-        // disable row selection
-        payrollTv.setSelectionModel(null);
-
-        // initialize columns
-        initPayrollCol();
 
 
         addressText.setText(addressText.getText()
@@ -222,22 +193,13 @@ public class PayrollController extends Controller {
                 payrollTv.setItems(ixxiEntries);
                 isCrayola = false;
             }
-
         }
     }
 
     /**
-     * Method for returning to Home.fxml
+     * Method initializes all columns in the table
      */
-    public void onHomeClick() {
-        Driver.getScreenController().activate("Home");
-    }
-
-
-    /**
-     * Method initializes all columns
-     */
-    private void initPayrollCol() {
+    private void initPayrollCol(){
         initCol(nameTc, "employeeName", 8);
         initCol(modeTc, "mode", 18);
         initCol(absentTc, "absent", 20);
@@ -255,10 +217,13 @@ public class PayrollController extends Controller {
         initCol(pagibigTc, "pagibig", 20);
         initCol(lateTc, "late", 20);
         initCol(taxTc, "", 20);
-        initCol(netTc, "net", 16);
+        initCol(netTc, "net", 15);
         initCol(wageTc, "wage", 14);
     }
 
+    /**
+     * Method for exporting 13th Month payroll
+     */
     public void onExportClick() {
         FileChooser exportfileChooser = new FileChooser();
         exportfileChooser.getExtensionFilters().addAll(
@@ -270,58 +235,37 @@ public class PayrollController extends Controller {
                 if (isCrayola) {
                     new ExcelHandler().printMD(filepath.getAbsolutePath(),
                             crayolaEntries,
-                            new SimpleDateFormat("MM/dd/yyyy").format(startDate),
-                            new SimpleDateFormat("MM/dd/yyyy").format(endDate),
-                            "CRAYOLA");
+                            "13th month","",
+                            "Crayola atbp.");
                 } else {
                     new ExcelHandler().printMD(filepath.getAbsolutePath(),
                             ixxiEntries,
-                            new SimpleDateFormat("MM/dd/yyyy").format(startDate),
-                            new SimpleDateFormat("MM/dd/yyyy").format(endDate),
+                            "13th month",
+                            "",
                             "IX-XI Hardware");
                 }
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setGraphic(null);
-                alert.setHeaderText(null);
-                alert.setContentText("File printed successfully!");
-                alert.showAndWait();
             } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setGraphic(null);
-                alert.setHeaderText(null);
-                alert.setContentText("Problem printing to file!");
-                alert.showAndWait();
                 System.out.println("Problem printing to file");
             }
         } else if(formatCb.getValue().equals("Voucher")){
             try {
                 if (isCrayola) {
                     new ExcelHandler().printVoucher(filepath.getAbsolutePath(),crayolaEntries,
-                            new SimpleDateFormat("MM/dd/yyyy").format(startDate),
-                            new SimpleDateFormat("MM/dd/yyyy").format(endDate));
+                            "13th month",
+                            "");
                 } else {
                     new ExcelHandler().printVoucher(filepath.getAbsolutePath(),ixxiEntries,
-                            new SimpleDateFormat("MM/dd/yyyy").format(startDate),
-                            new SimpleDateFormat("MM/dd/yyyy").format(endDate));
+                            "13th month",
+                            "");
                 }
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setGraphic(null);
-                alert.setHeaderText(null);
-                alert.setContentText("File printed successfully!");
-                alert.showAndWait();
             } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setGraphic(null);
-                alert.setHeaderText(null);
-                alert.setContentText("Problem printing to file!");
-                alert.showAndWait();
                 System.out.println("Problem printing to file");
             }
         }
 
+    }
+
+    public void onHomeClick(){
+        Driver.getScreenController().activate("Home");
     }
 }

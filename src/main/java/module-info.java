@@ -18,4 +18,6 @@ module Sample.main {
     exports model;
     exports dao;
     opens dao;
+    opens wrapper;
+    exports wrapper;
 }

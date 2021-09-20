@@ -1,5 +1,7 @@
 package dao;
 
+import com.mongodb.client.result.InsertManyResult;
+import com.mongodb.client.result.InsertOneResult;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -36,115 +38,133 @@ public class Repository {
         return instance;
     }
 
-    public void addEmployee(EmployeePOJO employee) {
-
+    public boolean addEmployee(EmployeePOJO employee) {
         MongoCollection<EmployeePOJO> collection = database.getCollection("employees", EmployeePOJO.class);
-        collection.insertOne(employee);
+        InsertOneResult result = collection.insertOne(employee);
+
+        return result.wasAcknowledged();
     }
 
-    public void addLogBook(ArrayList<LogbookPOJO> attendance) {
-
+    public boolean addLogBook(ArrayList<LogbookPOJO> attendance) {
         MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
-        collection.insertMany(attendance);
+        InsertManyResult result = collection.insertMany(attendance);
 
+        return result.wasAcknowledged();
     }
 
-    public void addDebt(DebtPOJO debt) {
-
+    public boolean addDebt(DebtPOJO debt) {
         MongoCollection<DebtPOJO> collection = database.getCollection("debt", DebtPOJO.class);
-        collection.insertOne(debt);
+        InsertOneResult result = collection.insertOne(debt);
 
+        return result.wasAcknowledged();
     }
 
-    public void addPerformance(PerformancePOJO performance) {
-
+    public boolean addPerformance(PerformancePOJO performance) {
         MongoCollection<PerformancePOJO> collection = database.getCollection("performance", PerformancePOJO.class);
-        collection.insertOne(performance);
+        InsertOneResult result = collection.insertOne(performance);
 
+        return result.wasAcknowledged();
+    }
+
+    public boolean addWorkday(WorkdayPOJO workday) {
+        MongoCollection<WorkdayPOJO> collection = database.getCollection("workday", WorkdayPOJO.class);
+        InsertOneResult result = collection.insertOne(workday);
+
+        return result.wasAcknowledged();
+    }
+
+    public boolean addCola(ColaPOJO cola) {
+        MongoCollection<ColaPOJO> collection = database.getCollection("cola", ColaPOJO.class);
+        InsertOneResult result = collection.insertOne(cola);
+
+        return result.wasAcknowledged();
+    }
+
+    public boolean addPayroll(PayrollPOJO payroll) {
+        MongoCollection<PayrollPOJO> collection = database.getCollection("payroll", PayrollPOJO.class);
+        InsertOneResult result = collection.insertOne(payroll);
+
+        return result.wasAcknowledged();
     }
 
     public EmployeePOJO findEmployee(int employeeID) {
-
         MongoCollection<EmployeePOJO> collection = database.getCollection("employees", EmployeePOJO.class);
-        EmployeePOJO newEmployee;
-        newEmployee = collection.find(eq("employeeID", employeeID)).first();
 
-        return newEmployee;
+        return collection.find(eq("employeeID", employeeID)).first();
+    }
 
+    public EmployeePOJO findEmployee(String lowerCaseName) {
+        MongoCollection<EmployeePOJO> collection = database.getCollection("employees", EmployeePOJO.class);
+
+        return collection.find(eq("lowerCaseName", lowerCaseName)).first();
     }
 
     public ArrayList<EmployeePOJO> getAllEmployees() {
-
         MongoCollection<EmployeePOJO> collection = database.getCollection("employees", EmployeePOJO.class);
         ArrayList<EmployeePOJO> employees = new ArrayList<>();
         collection.find().into(employees);
 
         return employees;
+    }
 
+    public ArrayList<PayrollPOJO> getAllPayrolls() {
+        MongoCollection<PayrollPOJO> collection = database.getCollection("payroll", PayrollPOJO.class);
+        ArrayList<PayrollPOJO> payrolls = new ArrayList<>();
+        collection.find().into(payrolls);
+
+        return payrolls;
     }
 
     public ArrayList<PerformancePOJO> findPerformance(int employeeID) {
-
         MongoCollection<PerformancePOJO> collection = database.getCollection("performance", PerformancePOJO.class);
         ArrayList<PerformancePOJO> performance = new ArrayList<>();
         collection.find(eq("employeeID", employeeID)).into(performance);
 
         return performance;
-
     }
 
     public ArrayList<PerformancePOJO> getAllPerformance() {
-
         MongoCollection<PerformancePOJO> collection = database.getCollection("performance", PerformancePOJO.class);
         ArrayList<PerformancePOJO> performance = new ArrayList<>();
         collection.find().into(performance);
 
         return performance;
-
     }
 
     public PerformancePOJO findPerformanceOne(int employeeID, Date dateStart) {
-
         MongoCollection<PerformancePOJO> collection = database.getCollection("performance", PerformancePOJO.class);
         PerformancePOJO performance;
-        performance = collection.find(and(eq("employeeID", employeeID), gte("dateStart", dateStart))).first();
+        performance = collection.find(and(eq("employeeID", employeeID), eq("dateStart", dateStart))).first();
 
         return performance;
     }
 
 
     public ArrayList<DebtPOJO> findDebt(int employeeID) {
-
         MongoCollection<DebtPOJO> collection = database.getCollection("debt", DebtPOJO.class);
         ArrayList<DebtPOJO> debt = new ArrayList<>();
         collection.find(eq("employeeID", employeeID)).into(debt);
 
         return debt;
-
     }
 
     public ArrayList<DebtPOJO> getAllDebt() {
-
         MongoCollection<DebtPOJO> collection = database.getCollection("debt", DebtPOJO.class);
         ArrayList<DebtPOJO> debt = new ArrayList<>();
         collection.find().into(debt);
 
         return debt;
-
     }
 
     public ArrayList<LogbookPOJO> getLogbook() {
-
         MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
         ArrayList<LogbookPOJO> attendance = new ArrayList<>();
         collection.find().into(attendance);
 
         return attendance;
-
     }
 
     public ArrayList<LogbookPOJO> getAttendance(Date startDate, Date endDate) {
-
         MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
 
         ArrayList<LogbookPOJO> attendance = new ArrayList<>();
@@ -157,11 +177,9 @@ public class Repository {
         }
 
         return attendance;
-
     }
 
     public ArrayList<LogbookPOJO> getEmployeeAttendance(int employeeID, Date startDate, Date endDate) {
-
         MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
 
         ArrayList<LogbookPOJO> attendance = new ArrayList<>();
@@ -173,11 +191,9 @@ public class Repository {
             collection.find(and(eq("employeeID", employeeID), gte("date", startDate), lte("date", endDate))).into(attendance);
         }
         return attendance;
-
     }
 
-    public void deleteLogbook(Date startDate, Date endDate){
-
+    public void deleteLogbook(Date startDate, Date endDate) {
         MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
 
         ArrayList<LogbookPOJO> attendance = new ArrayList<>();
@@ -188,11 +204,9 @@ public class Repository {
         } else {
             collection.deleteMany(and(gte("date", startDate), lte("date", endDate)));
         }
-
     }
 
     public ArrayList<WorkdayPOJO> getWorkdays(Date startDate, Date endDate) {
-
         MongoCollection<WorkdayPOJO> collection = database.getCollection("workday", WorkdayPOJO.class);
         ArrayList<WorkdayPOJO> workdays = new ArrayList<>();
         if (endDate == null) {
@@ -203,11 +217,9 @@ public class Repository {
             collection.find(and(gte("date", startDate), lte("date", endDate))).into(workdays);
         }
         return workdays;
-
     }
 
-    public ArrayList<LogbookPOJO> getPendingOT(Date startDate, Date endDate){
-
+    public ArrayList<LogbookPOJO> getPendingOT(Date startDate, Date endDate) {
         MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
         ArrayList<LogbookPOJO> pendingOT = new ArrayList<>();
         if (endDate == null) {
@@ -219,16 +231,73 @@ public class Repository {
         }
 
         return pendingOT;
-
     }
 
-    public void updateLogbookOT(ArrayList<LogbookPOJO> logbook){
+    public ArrayList<LogbookPOJO> getAcceptedOT(Date startDate, Date endDate) {
+        MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
+        ArrayList<LogbookPOJO> acceptedOT = new ArrayList<>();
+        if (endDate == null) {
+            collection.find(and(gte("date", startDate), gt("approvedOT", 0))).into(acceptedOT);
+        } else if (startDate == null) {
+            collection.find(and(lte("date", endDate), gt("approvedOT", 0))).into(acceptedOT);
+        } else {
+            collection.find(and(gt("approvedOT", 0), gte("date", startDate), lte("date", endDate))).into(acceptedOT);
+        }
+
+        return acceptedOT;
+    }
+
+    public ArrayList<ColaPOJO> getCola(Date startDate, Date endDate) {
+        MongoCollection<ColaPOJO> collection = database.getCollection("cola", ColaPOJO.class);
+        ArrayList<ColaPOJO> cola = new ArrayList<>();
+        if (endDate == null) {
+            collection.find(gte("date", startDate)).into(cola);
+        } else if (startDate == null) {
+            collection.find(lte("date", endDate)).into(cola);
+        } else {
+            collection.find(and(gte("date", startDate), lte("date", endDate))).into(cola);
+        }
+
+        return cola;
+    }
+
+    public ArrayList<ColaPOJO> getEmployeeCola(int employeeID, Date startDate, Date endDate) {
+        MongoCollection<ColaPOJO> collection = database.getCollection("cola", ColaPOJO.class);
+        ArrayList<ColaPOJO> cola = new ArrayList<>();
+        if (endDate == null) {
+            collection.find(and(gte("date", startDate), eq("employeeID", employeeID))).into(cola);
+        } else if (startDate == null) {
+            collection.find(and(lte("date", endDate), eq("employeeID", employeeID))).into(cola);
+        } else {
+            collection.find(and(gte("date", startDate), lte("date", endDate), eq("employeeID", employeeID))).into(cola);
+        }
+
+        return cola;
+    }
+
+    public void updateLogbookOT(ArrayList<LogbookPOJO> logbook) {
         MongoCollection<LogbookPOJO> collection = database.getCollection("logbook", LogbookPOJO.class);
 
-        for(LogbookPOJO entry: logbook){
-            collection.replaceOne(and(eq("date",entry.getDate()),eq("employeeID",entry.getEmployeeID())), entry);
+        for (LogbookPOJO entry : logbook) {
+            collection.replaceOne(and(eq("date", entry.getDate()), eq("employeeID", entry.getEmployeeID())), entry);
         }
     }
 
+    public void updateEmployee(EmployeePOJO employee) {
+        MongoCollection<EmployeePOJO> collection = database.getCollection("employees", EmployeePOJO.class);
 
+        collection.replaceOne(eq("employeeID", employee.getEmployeeID()), employee);
+    }
+
+    public void updateWorkday(WorkdayPOJO workday) {
+        MongoCollection<WorkdayPOJO> collection = database.getCollection("workday", WorkdayPOJO.class);
+
+        collection.replaceOne(eq("date", workday.getDate()), workday);
+    }
+
+    public void updateCola(ColaPOJO cola) {
+        MongoCollection<ColaPOJO> collection = database.getCollection("cola", ColaPOJO.class);
+
+        collection.replaceOne(and(eq("date", cola.getDate()), eq("employeeID", cola.getEmployeeID())), cola);
+    }
 }

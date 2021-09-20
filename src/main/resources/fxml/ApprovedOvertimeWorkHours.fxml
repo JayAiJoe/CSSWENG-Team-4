@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ApprovedOvertimeWorkHoursController">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="0.05078125" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane prefHeight="741.0" prefWidth="1186.0">
+               <children>
+                  <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                     <children>
+                        <AnchorPane prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="TOP_CENTER" layoutY="27.0" prefHeight="36.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <children>
+                                          <Text fill="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Approved Overtime Hours and Work Hours" textAlignment="CENTER" wrappingWidth="481.6696014404297">
+                                             <font>
+                                                <Font name="System Bold" size="22.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                              <HBox alignment="CENTER" layoutY="181.0" prefHeight="388.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                    <AnchorPane prefHeight="388.0" prefWidth="517.0" style="-fx-background-color: E1F4FF;">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                       <children>
+                                          <GridPane layoutX="31.0" layoutY="54.0" prefHeight="280.0" prefWidth="450.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.800048828125" minWidth="10.0" prefWidth="151.1999755859375" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="414.4" minWidth="10.0" prefWidth="287.20002441406245" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Date" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Overtime Start Time" GridPane.rowIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Work Hours 1st Shift" wrappingWidth="121.54849243164062" GridPane.rowIndex="2" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Work Hours 2nd Shift" wrappingWidth="121.05703735351562" GridPane.rowIndex="3" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Overtime End Time" GridPane.rowIndex="4" />
+                                                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TextField fx:id="cOvertimeStartTf" prefHeight="26.0" prefWidth="151.0">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Text fx:id="cOvertimeStartErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TextField fx:id="cFirstHalfStartTf">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To">
+                                                               <HBox.margin>
+                                                                  <Insets left="10.0" right="10.0" top="15.0" />
+                                                               </HBox.margin>
+                                                            </Text>
+                                                            <TextField fx:id="cFirstHalfEndTf">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Text fx:id="cShift1ErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </VBox>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <children>
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TextField fx:id="cSecondHalfStartTf">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To">
+                                                               <HBox.margin>
+                                                                  <Insets left="10.0" right="10.0" top="15.0" />
+                                                               </HBox.margin>
+                                                            </Text>
+                                                            <TextField fx:id="cSecondHalfEndTf">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Text fx:id="cShift2ErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+                                                   </children>
+                                                </VBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="218.0" GridPane.columnIndex="1">
+                                                   <children>
+                                                      <Text fx:id="cDateText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Date" />
+                                                   </children>
+                                                </HBox>
+                                                <VBox alignment="CENTER_LEFT" layoutX="136.0" layoutY="64.0" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TextField fx:id="cOvertimeEndTf" prefHeight="26.0" prefWidth="153.0">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Text fx:id="cOvertimeEndErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </GridPane>
+                                          <Text fill="#1360a8" layoutX="15.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Day" textAlignment="CENTER" wrappingWidth="481.6696014404297">
+                                             <font>
+                                                <Font name="System Bold" size="22.0" />
+                                             </font>
+                                          </Text>
+                                          <Button fx:id="currentEditBtn" layoutX="127.0" layoutY="347.0" mnemonicParsing="false" onAction="#onCurrentEditAction" prefHeight="26.0" prefWidth="93.0" styleClass="normalbutton" text="Edit">
+                                             <graphic>
+                                                <ImageView fitHeight="12.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/editIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                          <Button fx:id="currentCancelBtn" layoutX="288.0" layoutY="347.0" mnemonicParsing="false" onAction="#onCurrentCancelAction" prefHeight="26.0" prefWidth="94.0" styleClass="cancelbutton" text="Cancel" visible="false">
+                                             <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/cancelIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                          <Button fx:id="currentSaveBtn" layoutX="127.0" layoutY="347.0" mnemonicParsing="false" onAction="#onCurrentSaveAction" prefHeight="26.0" prefWidth="93.0" styleClass="savebutton" text="Save" visible="false">
+                                             <graphic>
+                                                <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/checkIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="388.0" prefWidth="517.0" style="-fx-background-color: E1F4FF;">
+                                       <children>
+                                          <GridPane layoutX="31.0" layoutY="54.0" prefHeight="280.0" prefWidth="450.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.800048828125" minWidth="10.0" prefWidth="151.1999755859375" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="414.4" minWidth="10.0" prefWidth="287.20002441406245" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Date" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Overtime Start Time" GridPane.rowIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Work Hours 1st Shift" wrappingWidth="116.74852752685547" GridPane.rowIndex="2" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Work Hours 2nd Shift" wrappingWidth="120.25707244873047" GridPane.rowIndex="3" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Overtime End Time" GridPane.rowIndex="4" />
+                                                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <children>
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TextField fx:id="nOvertimeStartTf">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Text fx:id="nOvertimeStartErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <children>
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TextField fx:id="nFirstHalfStartTf">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To">
+                                                               <HBox.margin>
+                                                                  <Insets left="10.0" right="10.0" top="15.0" />
+                                                               </HBox.margin>
+                                                            </Text>
+                                                            <TextField fx:id="nFirstHalfEndTf">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Text fx:id="nShift1ErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+                                                   </children>
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                </VBox>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <children>
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TextField fx:id="nSecondHalfStartTf">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="To">
+                                                               <HBox.margin>
+                                                                  <Insets left="10.0" right="10.0" top="15.0" />
+                                                               </HBox.margin>
+                                                            </Text>
+                                                            <TextField fx:id="nSecondHalfEndTf">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Text fx:id="nShift2ErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+                                                   </children>
+                                                </VBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="218.0" GridPane.columnIndex="1">
+                                                   <children>
+                                                      <Text fx:id="nDateText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Date" />
+                                                   </children>
+                                                </HBox>
+                                                <VBox alignment="CENTER_LEFT" layoutX="136.0" layoutY="64.0" prefHeight="200.0" prefWidth="107.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                   <children>
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <TextField fx:id="nOvertimeEndTf">
+                                                               <HBox.margin>
+                                                                  <Insets top="10.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <Text fx:id="nOvertimeEndErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </GridPane>
+                                          <Text fill="#1360a8" layoutX="15.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Next Day" textAlignment="CENTER" wrappingWidth="481.6696014404297" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                                             <font>
+                                                <Font name="System Bold" size="22.0" />
+                                             </font>
+                                          </Text>
+                                          <Button fx:id="nextEditBtn" layoutX="127.0" layoutY="347.0" mnemonicParsing="false" onAction="#onNextEditAction" prefHeight="26.0" prefWidth="93.0" styleClass="normalbutton" text="Edit">
+                                             <graphic>
+                                                <ImageView fitHeight="12.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/editIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                          <Button fx:id="nextCancelBtn" layoutX="288.0" layoutY="347.0" mnemonicParsing="false" onAction="#onNextCancelAction" prefHeight="26.0" prefWidth="94.0" styleClass="cancelbutton" text="Cancel" visible="false">
+                                             <graphic>
+                                                <ImageView fitHeight="15.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/cancelIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                          <Button fx:id="nextSaveBtn" layoutX="127.0" layoutY="347.0" mnemonicParsing="false" onAction="#onNextSaveAction" prefHeight="26.0" prefWidth="93.0" styleClass="savebutton" text="Save" visible="false">
+                                             <graphic>
+                                                <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../img/checkIcon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="navBar_container" prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

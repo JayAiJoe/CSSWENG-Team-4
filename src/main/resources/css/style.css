@@ -1,0 +1,137 @@
+@font-face {
+    font-family: Dosis;
+    src: url('Dosis-Medium.ttf');
+}
+.root{
+    -fx-font-family: 'Dosis';
+}
+
+.textlabel {
+    -fx-fill: #1360A8;
+    -fx-font-size: 14px;
+}
+
+.text-field{
+    -fx-background-color: #EAF5FF;
+    -fx-border-color: #3F86F1;
+}
+
+.choice-box {
+    -fx-background-color: #CAD6FF;
+}
+
+.date-picker > .text-field {
+    -fx-background-color: #EAF5FF;
+    -fx-border-color: #3F86F1;
+}
+
+.date-picker > .arrow-button {
+    -fx-background-color: #EAF5FF;
+    -fx-border-color: #3F86F1;
+    -fx-background-radius: 0px;
+}
+
+.date-picker > .arrow-button: hover {
+    -fx-background-color: #75B3FB;
+    -fx-border-color: #3F86F1;
+    -fx-background-radius: 0px;
+}
+
+.searchbutton {
+    -fx-background-color: #75B3FB;
+    -fx-border-color: #3F86F1;
+}
+
+.searchbutton: hover {
+    -fx-background-color: #3F86F1;
+    -fx-border-color: #3F86F1;
+}
+
+.searchfield {
+    -fx-background-color: #EAF5FF;
+    -fx-border-color: #3F86F1;
+}
+
+.normalbutton {
+-fx-font-family: 'Dosis';
+-fx-background-color: #0094FF;
+-fx-text-fill: white;
+-fx-border-color:  #0094FF;
+-fx-background-radius: 0px;
+}
+
+.normalbutton: selected{
+ -fx-font-family: 'Dosis';
+ -fx-background-color: #5b62f5;
+ -fx-text-fill: white;
+ -fx-border-color:  #5b62f5;
+ -fx-background-radius: 0px;
+}
+
+.normalbutton: hover{
+ -fx-font-family: 'Dosis';
+ -fx-background-color: #5b62f5;
+ -fx-text-fill: white;
+ -fx-border-color:  #5b62f5;
+ -fx-background-radius: 0px;
+}
+
+.uploadbutton {
+-fx-font-family: 'Dosis';
+-fx-background-color: #B1B1B1;
+-fx-text-fill: white;
+-fx-background-radius: 20px;
+}
+
+.uploadbutton: hover{
+ -fx-font-family: 'Dosis';
+ -fx-background-color: #5b62f5;
+ -fx-text-fill: white;
+ -fx-background-radius: 20px;
+}
+
+.savebutton {
+-fx-font-family: 'Dosis';
+-fx-background-color: #329F29;
+-fx-text-fill: white;
+-fx-border-color: #329F29;
+-fx-background-radius: 0px;
+}
+
+.savebutton: hover{
+ -fx-font-family: 'Dosis';
+ -fx-background-color: #4C8A47;
+ -fx-text-fill: white;
+ -fx-border-color: #4C8A47;
+ -fx-background-radius: 0px;
+}
+
+.cancelbutton {
+-fx-font-family: 'Dosis';
+-fx-background-color: #FF4F4F;
+-fx-text-fill: white;
+-fx-border-color: #FF4F4F;
+-fx-background-radius: 0px;
+}
+
+.cancelbutton: hover {
+-fx-font-family: 'Dosis';
+-fx-background-color: #CC1F1F;
+-fx-text-fill: white;
+-fx-border-color:  #CC1F1F;
+-fx-background-radius: 0px;
+}
+
+.hyperlabel {
+    -fx-fill: #040DE1;
+    -fx-font-size: 18px;
+}
+
+.hyperlabel: hover {
+    -fx-fill: #5201FF;
+}
+
+.notiftext {
+    -fx-fill: #1360A8;
+    -fx-font-size: 16px;
+}

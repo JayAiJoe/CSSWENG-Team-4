@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.COLAController">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane prefHeight="741.0" prefWidth="1186.0">
+               <children>
+                  <AnchorPane layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                     <children>
+                        <AnchorPane layoutY="-3.0" prefHeight="710.0" prefWidth="1400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER" layoutY="25.0" prefHeight="26.0" prefWidth="829.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <children>
+                                          <Text fill="#1360a8" stroke="#1360a8" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee COLA" textAlignment="CENTER" wrappingWidth="288.8695831298828">
+                                             <font>
+                                                <Font name="System Bold" size="30.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <HBox alignment="CENTER" layoutX="-4.0" layoutY="117.0" prefHeight="574.0" prefWidth="1186.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="602.0" prefWidth="674.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
+                                 <children>
+                                    <TableView fx:id="employeesTv" layoutX="21.0" layoutY="66.0" prefHeight="485.0" prefWidth="631.0" stylesheets="@../css/Tableview.css">
+                                       <columns>
+                                          <TableColumn fx:id="idTc" editable="false" prefWidth="119.99993896484375" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="ID" />
+                                          <TableColumn fx:id="nameTc" editable="false" prefWidth="192.800048828125" resizable="false" sortable="false" text="Name" />
+                                          <TableColumn fx:id="companyTc" editable="false" prefWidth="190.4000244140625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Company" />
+                                          <TableColumn fx:id="buttonTc" prefWidth="125.5999755859375" resizable="false" sortable="false" text="COLA" />
+                                       </columns>
+                                    </TableView>
+                                    <Text layoutX="23.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Show" wrappingWidth="35.35901641845703" />
+                                    <Button layoutX="588.0" layoutY="23.0" mnemonicParsing="false" onAction="#onSaveAction" prefHeight="26.0" prefWidth="64.0" styleClass="savebutton" text="Save">
+                                       <graphic>
+                                          <ImageView fitHeight="15.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/checkIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
+                                    <ChoiceBox fx:id="companyCb" layoutX="58.0" layoutY="23.0" onAction="#onFilterCompanyAction" prefHeight="26.0" prefWidth="86.0" styleClass="choicebox" value="All">
+                                       <items>
+                                          <FXCollections fx:factory="observableArrayList">
+                                             <String fx:value="All" />
+                                             <String fx:value="Crayola Atbp." />
+                                             <String fx:value="IX-XI Hardware" />
+                                          </FXCollections>
+                                       </items>
+                                    </ChoiceBox>
+                                    <TextField fx:id="nameTf" layoutX="189.0" layoutY="22.0" onAction="#onFilterNameAction" prefHeight="16.0" prefWidth="192.0" promptText="Name Search" styleClass="searchfield" />
+                                    <Button fx:id="searchBtn" layoutX="158.0" layoutY="22.0" mnemonicParsing="false" onAction="#onFilterNameAction" prefHeight="27.0" prefWidth="31.0" styleClass="searchbutton">
+                                       <graphic>
+                                          <ImageView fitHeight="18.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport>
+                                             <image>
+                                                <Image url="@../img/search_icon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="navBar_container" prefHeight="36.0" prefWidth="1186.0" styleClass="navBar" stylesheets="@../css/navBar.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

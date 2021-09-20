@@ -15,35 +15,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PayrollController">
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ThirteenPayrollController">
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
             <AnchorPane prefHeight="741.0" prefWidth="1186.0">
                <children>
-                  <AnchorPane fx:id="emptyPayroll" prefHeight="720.0" prefWidth="1410.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <HBox alignment="CENTER" layoutX="22.0" prefHeight="720.0" prefWidth="1410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <AnchorPane prefHeight="720.0" prefWidth="382.0">
-                                 <HBox.margin>
-                                    <Insets bottom="250.0" top="250.0" />
-                                 </HBox.margin>
-                                 <children>
-                                    <Text layoutX="29.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="notiftext" text="There is currently no Active Payroll" wrappingWidth="288.8695831298827" />
-                                    <Text layoutX="29.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="notiftext" text="Create a new Payroll or open an existing one from" wrappingWidth="348.9590530395508" />
-                                    <Text layoutX="342.0" layoutY="103.0" onMouseClicked="#onHomeClick" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="hyperlabel" text="Home" underline="true" wrappingWidth="57.796875" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
                   <AnchorPane fx:id="displayPayroll" layoutY="40.0" prefHeight="720.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                      <children>
-                        <AnchorPane layoutY="31.0" prefHeight="676.0" prefWidth="1186.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
+                        <AnchorPane layoutY="26.0" prefHeight="676.0" prefWidth="1186.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
                            <children>
-                              <HBox alignment="CENTER" layoutX="600.0" layoutY="1.0" prefHeight="35.0" prefWidth="986.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
                               <AnchorPane layoutY="1.0" prefHeight="89.0" prefWidth="1186.0" style="-fx-background-color: E0F4FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                                  <children>
                                     <HBox alignment="CENTER" layoutY="22.0" prefHeight="26.0" prefWidth="829.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -60,9 +41,9 @@
                                     <Insets bottom="10.0" />
                                  </padding>
                               </AnchorPane>
-                              <AnchorPane layoutX="47.0" layoutY="105.0" prefHeight="558.0" prefWidth="1049.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="105.0">
+                              <AnchorPane layoutX="47.0" layoutY="119.0" prefHeight="589.0" prefWidth="1086.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="105.0">
                                  <children>
-                                    <TableView id="t_payroll" fx:id="payrollTv" layoutX="42.0" layoutY="84.0" prefHeight="459.0" prefWidth="965.0" stylesheets="@../css/Tableview.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="84.0">
+                                    <TableView id="t_payroll" fx:id="payrollTv" layoutX="23.0" layoutY="68.0" prefHeight="490.0" prefWidth="1039.0" stylesheets="@../css/Tableview.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="85.0">
                                       <columns>
                                         <TableColumn id="tc_name" fx:id="nameTc" editable="false" maxWidth="1.7976931348623157E308" minWidth="80.8000259399414" prefWidth="171.20000839233398" resizable="false" sortable="false" text="Name" />
                                         <TableColumn id="tc_mode" fx:id="modeTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="42.40000915527344" resizable="false" sortable="false" text="Mode" />
@@ -91,18 +72,17 @@
                                           <TableColumn id="tc_total" fx:id="netTc" editable="false" maxWidth="1.7976931348623157E308" prefWidth="61.60009765625" resizable="false" sortable="false" style="-fx-alignment: CENTER-RIGHT;" text="Net Amount&#10;      Paid" />
                                       </columns>
                                     </TableView>
-                                    <Text fx:id="daterangeText" layoutX="23.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="For the Period:" AnchorPane.leftAnchor="23.0" />
-                                    <Text fx:id="addressText" layoutX="23.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Located at:" AnchorPane.leftAnchor="23.0" />
-                                    <Button fx:id="exportBtn" layoutX="916.0" layoutY="8.0" mnemonicParsing="false" onAction="#onExportClick" onMouseClicked="#onPayrollClick" prefHeight="32.0" prefWidth="118.0" styleClass="normalbutton" text="Export to Excel" AnchorPane.rightAnchor="15.0">
+                                    <Text fx:id="daterangeText" layoutX="23.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="For the Period:" AnchorPane.leftAnchor="23.0" />
+                                    <Text fx:id="addressText" layoutX="23.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Located at:" AnchorPane.leftAnchor="23.0" />
+                                    <Button fx:id="payrollBtn" layoutX="909.0" layoutY="48.0" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="26.0" prefWidth="152.0" styleClass="normalbutton" text="Return to Home" AnchorPane.rightAnchor="25.40000000000009">
                                        <graphic>
-                                          <ImageView fitHeight="19.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="13.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../img/downloadIcon.png" />
+                                                <Image url="@../img/arrowIcon.png" />
                                              </image>
                                           </ImageView>
                                        </graphic></Button>
-                                    <Text fx:id="addressText1" layoutX="760.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Export as:" AnchorPane.rightAnchor="238.4117187500001" />
-                                    <ChoiceBox fx:id="formatCb" layoutX="818.0" layoutY="10.0" prefHeight="26.0" prefWidth="90.0" value="Standard" AnchorPane.rightAnchor="141.0000000000001">
+                                    <ChoiceBox fx:id="formatCb" layoutX="832.0" layoutY="14.0" prefHeight="26.0" prefWidth="90.0" value="Standard" AnchorPane.rightAnchor="164.0000000000001">
                                        <items>
                                           <FXCollections fx:factory="observableArrayList">
                                              <String fx:value="Standard" />
@@ -110,6 +90,15 @@
                                           </FXCollections>
                                        </items>
                                     </ChoiceBox>
+                                    <Button fx:id="exportBtn" layoutX="962.0" layoutY="11.0" mnemonicParsing="false" onAction="#onExportClick" onMouseClicked="#onPayrollClick" prefHeight="32.0" prefWidth="129.0" styleClass="normalbutton" text="Export to Excel" AnchorPane.rightAnchor="26.0">
+                                       <graphic>
+                                          <ImageView fitHeight="19.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/downloadIcon.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
+                                    <Text fx:id="addressText1" layoutX="775.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textlabel" text="Export as:" AnchorPane.rightAnchor="260.4117187500001" />
                                  </children>
                               </AnchorPane>
                            </children>

@@ -1,9 +1,11 @@
 .button {
 -fx-background-color: #577CFF;
+-fx-background-radius: 0px;
 }
 
 .menu-button{
 -fx-background-color: #577CFF;
+-fx-background-radius: 0px;
 }
 
 .button: hover{
@@ -12,4 +14,5 @@
 
 .menu-button: hover{
 -fx-background-color: #577CFF;
+-fx-background-radius: 0px;
 }
