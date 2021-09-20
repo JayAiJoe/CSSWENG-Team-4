@@ -1,5 +1,6 @@
 package model;
 
+import dao.EmployeePOJO;
 import dao.LogbookPOJO;
 import dao.Repository;
 import dao.WorkdayPOJO;
@@ -28,6 +29,7 @@ public class AttendanceProcessor {
 
         ArrayList<WorkdayPOJO> workdays = Repository.getInstance().getWorkdays(startDate, endDate);
         ArrayList<LogbookPOJO> finished = Repository.getInstance().getAttendance(startDate, endDate);
+        ArrayList<EmployeePOJO> employees = Repository.getInstance().getAllEmployees();
 
         for (WorkdayPOJO workday: workdays) {
             workday.setDate(new Date(workday.getDate().getTime() - 8 * 3600000L));
@@ -44,6 +46,7 @@ public class AttendanceProcessor {
             int i = 0;
             while (logbookCtr < logbooks.size() && logbooks.get(logbookCtr).getEmployeeID() == ID) {
                 LogbookPOJO logbook = logbooks.get(logbookCtr);
+                logbook.setCompleteName(employees.get(ID).getCompleteName());
 
                 // check if logbook is already in database
                 boolean processed = false;
