@@ -23,7 +23,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Objects;
 
 public class HomePageController extends Controller {
 
@@ -60,6 +62,7 @@ public class HomePageController extends Controller {
         for (PayrollPOJO payroll: Repository.getInstance().getAllPayrolls()) {
             entries.add(new PayrollWrapper(payroll));
         }
+        Collections.sort(entries);
         payrollListTv.setItems(FXCollections.observableList(entries));
     }
 
@@ -107,7 +110,8 @@ public class HomePageController extends Controller {
             menubutton.setStyle(IDLE_BUTTON_STYLE);
             menubutton.setOnMouseEntered(e -> menubutton.setStyle(HOVERED_BUTTON_STYLE));
             menubutton.setOnMouseExited(e -> menubutton.setStyle(IDLE_BUTTON_STYLE));
-            menubutton.getStylesheets().add(getClass().getResource("/css/navButton.css").toExternalForm());
+            menubutton.getStylesheets().add(Objects.requireNonNull(getClass()
+                    .getResource("/css/navButton.css")).toExternalForm());
             menubutton.setTextFill(Color.WHITE);
             item1.setText("Standard");
             item2.setText("Voucher");

@@ -5,7 +5,7 @@ import dao.PayrollPOJO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PayrollWrapper {
+public class PayrollWrapper implements Comparable<PayrollWrapper> {
     private PayrollPOJO payroll;
 
     public PayrollWrapper(PayrollPOJO payroll) {
@@ -30,5 +30,10 @@ public class PayrollWrapper {
 
     public String getEndDateString() {
         return new SimpleDateFormat("MM/dd/yyyy").format(getEndDate());
+    }
+
+    @Override
+    public int compareTo(PayrollWrapper other) {
+        return other.getStartDate().compareTo(this.getStartDate());
     }
 }
