@@ -37,7 +37,7 @@
                                  <children>
                                     <AnchorPane prefHeight="567.0" prefWidth="905.0" style="-fx-background-color: E1F4FF; -fx-background-radius: 20;">
                                        <children>
-                                          <TableView fx:id="attendanceTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="841.0" stylesheets="@../css/Tableview.css">
+                                          <TableView fx:id="attendanceTv" layoutX="32.0" layoutY="56.0" prefHeight="488.0" prefWidth="846.0" stylesheets="@../css/Tableview.css">
                                              <columns>
                                                 <TableColumn prefWidth="204.00004196166992" text="Payday Range">
                                                    <columns>
